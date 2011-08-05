@@ -10,11 +10,17 @@
  */
 function localize_config(&$conf)
 {
+    
+    /**** EDIT THIS TO POINT the "framework' directory ***************/
+    $conf['PATH_TO_YII'] = dirname(__FILE__).'/../../server/framework';
+    
+
+    
     $conf['modules']['gii'] = array
     (
-            'class'     => 'system.gii.GiiModule',
-            'password'  => 'qwerty',
-            'ipFilters' => array('127.0.0.1','::1'),
+        'class'     => 'system.gii.GiiModule',
+        'password'  => 'qwerty',
+        'ipFilters' => array('127.0.0.1','::1'),
     );
     
     // add logging in development env
@@ -24,18 +30,19 @@ function localize_config(&$conf)
     $conf['components']['log'] = array
     (
         'class'=>'CLogRouter',
-        'routes'=>array(
-                array(
-                        'class'=>'CFileLogRoute',
-                        'levels'=>'error, warning',
-                ),
-                // uncomment the following to show log messages on web pages     
-                /*
-                array(
-                        'class'=>'CWebLogRoute',
-                )
-                */
-                
+        'routes'=>array
+        (
+            array
+            (
+                'class'=>'CFileLogRoute',
+                'levels'=>'error, warning',
+            ),
+            // uncomment the following to show log messages on web pages     
+            /*
+            array(
+                'class'=>'CWebLogRoute',
+            )
+            */    
         )
     );
 }

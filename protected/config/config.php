@@ -11,6 +11,17 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
+    
+        /******************************************************/
+        /**** This is production path, above public_html ******/
+        /**** Edit the path in localize.php, not here    ******/
+        /******************************************************/
+        'PATH_TO_YII' => dirname(__FILE__).'/../../framework',
+        /******************************************************/
+        /******************************************************/
+    
+    
+    
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Phpguide',
 
