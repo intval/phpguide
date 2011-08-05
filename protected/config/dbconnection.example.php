@@ -8,8 +8,8 @@
 return array
 (
 	'connectionString' => 'mysql:host=localhost;dbname=YOUR_DATABASE',
-	'username' => 'root',
-	'password' => '',
+        'username' => 'root',
+        'password' => '',
     
 	'emulatePrepare' => true,
 	'charset' => 'utf8',
