@@ -1,0 +1,48 @@
+#header .homepage-link { background: url('/static/images/logo.jpg') no-repeat center right !important; }
+#header ul.header a.forum  { background: url('/static/images/answers.png') no-repeat top center !important; }
+#header ul.header a.guides { background: url('/static/images/guides.png') no-repeat top center !important; }
+#header ul.header a.templates { background: url('/static/images/templates.png') no-repeat top center !important; }
+#header ul.header a.phplive { background: url('/static/images/phplive.png') no-repeat top center !important; }
+#header ul.header a.tools { background: url('/static/images/tools.png') no-repeat top center !important; }
+#header ul.header a.add { background: url('/static/images/add.png') no-repeat top center !important; }
+#sidebar a.active {	background:#77b3d8 url('/static/images/arr.png') 0 -2px no-repeat !important; }
+.next-chapter { background: url('/static/images/next.png') no-repeat center right !important; }
+.rssfeed{background:url('/static/images/feed.png') no-repeat right center !important}
+
+.codeblock { margin:0 !important; }
+#content-publishing-info { margin-top:0 !important; }
+a.blog_entry_back { margin-bottom:0 !important; }
+
+
+.navigation span.active 
+{
+	border:none !important;
+	background: url('/static/images/active_pagination.png') no-repeat center center !important;
+}
+
+.paginator .scroll_knob 
+{
+	background:url('/static/images/slider_knob.gif') no-repeat 50% 50% !important;
+
+}
+
+
+.about .about-contacts .email
+{
+    background: url('/static/images/abouticons/email.png') no-repeat left top !important;
+}
+
+.about .about-contacts .msn
+{
+    background: url('/static/images/abouticons/msn.png') no-repeat left top !important;
+}
+
+.about .about-contacts .phone
+{
+    background: url('/static/images/abouticons/phone.png') no-repeat left top !important;
+}
+
+.about .about-contacts .pm
+{
+    background: url('/static/images/abouticons/pm.png') no-repeat left top !important;
+}

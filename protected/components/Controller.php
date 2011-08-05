@@ -1,0 +1,99 @@
+<?php
+/**
+ * Controller is the customized base controller class.
+ * All controller classes for this application should extend from this base class.
+ */
+class Controller extends CController
+{
+	/**
+	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
+	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
+	 */
+	public $layout='//layouts/main';
+	/**
+	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
+	 */
+	public $menu=array();
+	/**
+	 * @var array the breadcrumbs of the current page. The value of this property will
+	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
+	 * for more details on how to specify this property.
+	 */
+	public $breadcrumbs=array();
+        
+        /**
+         * Facebook microformats data, used to help facebook get an idea what is this page about
+         * @var array $facebook
+         */
+        protected $facebook = array
+        (
+            'image' => '',            // set after getting host
+            'current_page_url' => '', // set at runtime, when request's url is known
+            'site_name' => 'מדריך לימוד PHP — phpguide.co.il',
+            'admins' => '100001276887326',
+            'app_id' => '188852921151034',
+            'type' => 'blog'
+        );
+        
+        /**
+         * Used to populate meta tags and title
+         * @var array $vars
+         */
+        public $vars = array
+        (
+                'title'=>'מדריכי לימוד PHP', 
+                'keywords'=>'מדריך, לימוד, PHP', 
+                'page_author'=>'אלכסנדר רסקין', 
+                'description'=>'מדריכים, כתבות, פרסומים, מאמרים ולימוד שיעורי PHP, Apache, Mysql', 
+        );
+        
+        /**
+         * This is the action to handle external exceptions.
+         */
+        public function actionError()
+        {
+            if($error=Yii::app()->errorHandler->error)
+            {
+                if(Yii::app()->request->isAjaxRequest)
+                    echo $error['message'];
+                else
+                    $this->render('//error', $error);
+            }
+        }
+        
+        
+        /*** @var array list of included javascripts */
+        protected $scripts_list = array();
+        
+        /**
+         * Registers client script from URL and adds it to lateload
+         * Takes the scripts from /static/scripts/___.js folder, automatically appending file extension
+         * @param args $script list of arguments, each argument should be a different script
+         * @example $this->addscript('ui') results in <script src='/static/scripts/ui.js'>
+         * @example $this->addscript('ui', 'bbcode', 'http://jquery.com/jquery.js');
+         */
+        protected function addscript($script)
+        {
+            $php52_bugfix =  func_get_args();
+            // Fatal error: func_get_args(): Can't be used as a function parameter 
+            $this->scripts_list = array_merge($this->scripts_list,$php52_bugfix);
+        }
+        
+        /**
+         * You are not supposed to call this method directly, i guess
+         * @param type $id
+         * @param type $module 
+         */
+        public function __construct($id, $module = null)
+        {
+            // nginx access apache via internal communications, therefore REQUEST_URI 
+            // is missing. But nginx kindly pushes that value into another server var.
+            $this->facebook['current_page_url'] = 'http://' . $_SERVER['HTTP_HOST'] . (isset($_SERVER["REDIRECT_URL"]) ? $_SERVER["REDIRECT_URL"] : $_SERVER["REQUEST_URI"]);
+            $this->facebook['image'] = 'http://' . $_SERVER['HTTP_HOST'] . '/static/images/logo.jpg';
+            parent::__construct($id, $module);
+        }
+        
+}
+
+
+

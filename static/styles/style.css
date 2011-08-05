@@ -1,0 +1,1162 @@
+@import "images.css";
+
+/********************* HTML5 RESET ***************************/
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section 
+{ 
+    display:block;
+}
+
+
+
+
+/********************* General Reset *************************/
+
+* 
+{
+	margin:0;	
+	padding:0; 
+}
+
+body
+{
+	border-top:5px solid #77b3d8;
+	font-family: Tahoma,Geneva,sans-serif;
+        font-size: 12px;
+	margin-bottom:60px;
+}
+
+a
+{
+	color:#5F99CB; 
+	outline:none;
+}
+a:hover
+{
+	text-decoration:none;
+	color:#ff7700;
+}
+
+#sidebar .blog a:visited , #sidebar ul.chapters a:visited
+{
+	color: #646DC6;
+}
+
+img { border:none;}
+
+/****************************** Layout **********************/
+
+#main
+{
+	width:980px;
+	margin:0 auto;
+}
+
+#header
+{
+	height:75px;
+	border-bottom:1px solid #cccccc;
+	width: 940px;
+	margin:0 auto 10px auto;
+}
+
+#sidebar
+{
+	width:250px;
+	float:right;
+	margin:15px 20px 0 10px;
+	/*outline:1px solid red;*/
+}
+
+#content
+{
+	float:left;
+	width:570px; /** 677 933 */
+	margin:15px 0 0 20px ;
+	color:#222222;
+	/*outline: 1px solid green;*/
+	font-size: 1.1em;
+        line-height: 21px;
+}
+
+.clear { clear:both; }
+.right { float:right; }
+.left  { float:left; }
+
+
+
+/**************************** Header section ********************/
+
+#header .homepage-link
+{
+	padding-top:30px;
+	display:block;
+	width:217px;
+	height:43px;
+	float:right;
+}
+
+#header .social-buttons
+{
+    float: right;
+    margin: 20px 20px 0 20px;
+    text-align: left;
+
+}
+
+#header ul.header 
+{ 
+	list-style: none; 
+	float:left; 
+	display:block;
+	margin-top:10px; 
+}
+
+#header ul li
+{
+	float:left;
+	padding-right:20px;
+}
+
+#header ul.header a 
+{ 
+	color: #211C21; 
+	padding:35px 10px 0 10px; 
+	display:block;
+}
+
+/****** Drop down menu */
+
+ul.header ul.dropped_submenu 
+{
+    position:absolute; width:120px; top:26px; left:0;  display:none; opacity:0; list-style:none;
+    background-color:#77B3D8;
+    
+    -moz-border-radius: 3px;
+    -webkit-border-radius:3px; /* Safari, Chrome */
+    -khtml-border-radius:3px; /* KHTML */
+    border-radius:3px; /* CSS3 */
+    
+    padding:5px 10px 0 10px;
+    
+    
+}
+ul.header ul.dropped_submenu li { float:none !important; padding:1px 0 !important;}
+ul.header ul.dropped_submenu li a { padding:2px 3px !important; }
+ul.header ul.dropped_submenu li a:hover {background-color:white;}
+ul.header ul.dropped_submenu .topline {border-top:1px solid #aaa}
+
+
+
+
+/**************************** Content Formatting ***************/
+
+
+
+h1.content-title
+{
+    color: #666666; /*#558EC3;*/
+    font-size: 26pt;
+    margin-top: 0;
+	width:100%;
+	position:relative;
+	padding:5px 0;
+	line-height:36px;
+}
+
+h1.content-title span
+{
+
+    
+    display: block;
+    height: 24px;
+    margin-top:3px;
+    position: absolute;
+    width: 100%;
+}
+
+#content-publishing-info
+{
+    color:gray;
+    font-size:12px;
+    margin-bottom:20px;
+    margin-top:-5px;
+}
+
+
+.next-chapter
+{
+    
+    padding-right:35px;
+    color:#666666;
+}
+
+/**************************** Sidebar formatting *****************/
+
+
+#sidebar ul.chapters li 
+{ 
+    line-height:24px;
+    list-style: none;
+    margin-right:20px;
+}
+
+#sidebar ul.chapters li a 
+{ 
+    width:200px; 
+    display:block; 
+    padding-right:5px;
+}
+
+
+#sidebar ul.chapters a.active
+{
+    
+    color: white !important; 
+    text-decoration:none;
+}
+
+#sidebar ul.chapters a.index-chapter:visited { color: #666; }
+
+
+/** BLOG sidebar **/
+
+.blog-sidebar-links-wrapper
+{
+    border:1px solid #F7F7F7;
+    padding:1px;
+    margin-right:20px;
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius:0 0 6px 6px; /* Safari, Chrome */
+    -khtml-border-radius:0 0 6px 6px; /* KHTML */
+    border-radius:0 0 6px 6px; /* CSS3 */
+}
+
+.blog-sidebar-links-header
+{
+    margin:0 25px 10px 0;
+    color:#254763;
+}
+
+#sidebar ol.blog
+{
+    background:#F7F7F7;
+    border:1px solid #EFEFEF;
+    -moz-border-radius: 0 0 6px 6px;
+    padding:5px;
+	
+}
+
+#sidebar ol.blog li
+{
+    margin-right:20px;
+    padding:5px 0;
+}
+
+a.blog_entry_back
+{
+    display:block;
+    margin-bottom:-5px;
+}
+
+
+.rssfeed 
+{
+    padding-right:25px !important;
+    
+    display:block;
+    text-decoration:none;
+    padding:2px;
+    margin-bottom:2px;
+    color: #5f99cb ;
+}
+
+.blog-links-block
+{
+    margin:10px 20px 0 0;
+}
+
+
+
+
+.user_info
+{
+    border: 1px solid #CCC;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    padding:10px;
+    
+    margin-bottom:30px;
+}
+
+.user_info p
+{
+    margin-right:10px; width:170px;
+}
+
+.user_info #reg_form
+{
+    margin-top:20px;
+    display:none;
+}
+
+.user_info .err
+{
+    border: 1px solid #ff9999;
+}
+
+/********************************* PRETTIFIER ********************************/
+
+.codeblock
+{
+    background:#E8F3FF;
+    margin:15px -25px 15px -15px;
+    padding:10px 15px;
+    font-size:13px;
+    font-family: Courier, "Courier New", monospace;
+    line-height:19px;
+    direction:ltr;
+}
+
+/** * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann * (http://qbnz.com/highlighter/ and http://geshi.org/) */
+.php .de1, .php .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;} 
+.php {font-family:monospace;} 
+.php .imp {font-weight: bold; color: red;} 
+.php li, .php .li1 {background: #010101;} 
+.php .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;} 
+.php .kw1 {color: #b1b100;} 
+.php .kw2 {color: #000000; font-weight: bold;} 
+.php .kw3 {color: #990000;} 
+.php .kw4 {color: #009900; font-weight: bold;} 
+.php .co1 {color: #666666; font-style: italic;} 
+.php .co2 {color: #666666; font-style: italic;} 
+.php .co3 {color: #0000cc; font-style: italic;} 
+.php .co4 {color: #009933; font-style: italic;} 
+.php .coMULTI {color: #666666; font-style: italic;} 
+.php .es0 {color: #000099; font-weight: bold;} 
+.php .es1 {color: #000099; font-weight: bold;} 
+.php .es2 {color: #660099; font-weight: bold;} 
+.php .es3 {color: #660099; font-weight: bold;} 
+.php .es4 {color: #006699; font-weight: bold;} 
+.php .es5 {color: #006699; font-weight: bold; font-style: italic;} 
+.php .es6 {color: #009933; font-weight: bold;} 
+.php .es_h {color: #000099; font-weight: bold;} 
+.php .br0 {color: #009900;} 
+.php .sy0 {color: #339933;} 
+.php .sy1 {color: #000000; font-weight: bold;} 
+.php .st0 {color: #0000ff;} 
+.php .st_h {color: #0000ff;} 
+.php .nu0 {color: #cc66cc;} 
+.php .nu8 {color: #208080;} 
+.php .nu12 {color: #208080;}
+.php .nu19 {color:#800080;} 
+.php .me1 {color: #004000;} 
+.php .me2 {color: #004000;} 
+.php .re0 {color: #000088;} 
+.php span.xtra { display:block; } 
+
+
+
+
+/*********************************** CONTENT FORMATTING ******************************/
+
+
+span.dirleft 
+{
+	display:block;
+	direction:ltr;
+}
+
+span.underline
+{
+	text-decoration:underline;
+}
+
+
+.blogpost { margin-bottom: 60px;  }
+
+.blogpost h1
+{
+    margin-bottom:5px;
+}
+
+.blogpost h1.title a 
+{ 
+    color: #3E627F; 
+    font-weight:bold; 
+    font-size: 16px; 
+    text-decoration:none; 
+}
+.blogpost h1.title a:hover
+{	
+    color:#4979A2; 
+    text-decoration: underline;
+}
+
+
+.blogpost .submited 
+{
+    color:#999999;
+    font-size:10px;
+    line-height:16px;
+    margin-top:0px;
+}
+
+
+.blogpost .post
+{
+    margin:10px 0 10px 0;
+    padding-bottom:10px;
+    border-bottom: 1px solid #E3ECF4;
+    
+}
+
+ .post-image
+{
+    height:75px;
+    width:75px;
+    margin-left:20px;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+ .post-content
+{
+    width:470px;
+  
+}
+
+#content h3 { color: #2E475F; font-size:13pt; }
+#content h4 { color: #3B6D9F; }
+
+
+/*Image floatings*/
+.content-image-floatright { float:right; margin-left:15px; }
+.content-image-floatleft  { float:left;  margin-right:15px; }
+
+
+
+
+
+
+/****************************** PAGINATION *****************************/
+
+.navigation a {
+    color:#5f99cb;
+    font-size:12px;
+
+}
+.navigation a:hover {
+    color:#ff7700;
+}
+.navigation span.active {
+    font-weight:bold;
+    color:#5f99cb;
+    -moz-border-radius:3px; /* Firefox */
+    -webkit-border-radius:3px; /* Safari, Chrome */
+    -khtml-border-radius:3px; /* KHTML */
+    border-radius:3px; /* CSS3 */
+    border:2px solid #639dcd;
+    padding:3px;
+    background:#fff;
+
+}
+.navigation .ctrl {
+    direction:ltr;
+    float:right;
+    margin-top:10px;
+    /*text-align:center;*/
+    font-size:14px;
+    color:#999;
+}
+
+
+
+/******************************** Facebook Like button *******************/
+
+.fb-like-frame
+{
+    background:#e4e4e4;
+    
+    height:23px !important;
+    
+    
+    float:left;
+    border:none;
+    overflow:hidden;
+    width:95px;
+    background-color:transparent;
+}
+
+
+
+/******************************** BLOG COMMENTS **********************/
+
+
+/*section.*/.comments
+{
+    margin-top:80px;
+}
+
+.comments .blog-comment
+{
+    margin-top:30px;
+    background-color:#F7F5F5;
+    padding:5px;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-raidus:3px;
+}
+
+.comment-table
+{
+    margin-top: 50px;
+    }
+
+.comment-table .rightcolumn { float:right; width:100px; }
+.comment-table .leftcolumn { float:right; }
+
+.comment-table .rightcolumn span
+{  
+	display:block;
+	font-weight:bold;
+}
+
+.comment-table .rightcolumn .label-comment {  margin-top:30px; }
+.comment-table .label-captcha { margin-top: 145px; }
+
+.comment-table input.author-input
+{
+    width: 152px;
+	height:21px;
+	margin-bottom:10px;
+	padding-right:2px;
+}
+
+.comment-table input.submit
+{
+	height:27px;
+}
+
+.comment-table textarea { width:438px; }
+
+
+.comment-author { font-weight: bold; }
+.comment-date
+{
+	color:gray;
+	font-size:90%;
+}
+
+
+#comments_loading_img
+{
+    display:none;
+}
+/******************************** ADD FORM ***************************/
+
+
+
+div.addform .name { 
+	width:440px;
+	padding:3px 5px 3px 5px;
+	margin-bottom:11px;
+}
+
+div.addform .second-name {
+	width:152px;
+	padding:1px 5px 0px 5px;
+	margin-right:24px;
+}
+
+div.addform .third-name {
+	width:152px;
+	padding:1px 5px 0px 5px;
+	margin-right:19px;
+	color:#b2b2b2;
+}
+
+div.addform .text {
+	width:591px;
+	height:364px;
+}
+
+div.addform .buttons {
+	overflow:hidden;
+	float:right;
+	padding-top:38px;
+	padding-bottom:8px;
+}
+
+div.addform .buttons a {
+	display:block;
+	width:24px;
+	height:13px;
+	padding:1px 0px 9px 0;
+	float:left;
+	margin-right:5px;
+	
+	border:1px solid #e6e6e6;
+	text-align:center;
+	text-decoration:none;
+	color:#101010;
+	font-size:11px;
+}
+
+
+
+div.addform .buttons a:hover, div.addform .buttons a.active 
+{
+	
+	border:1px solid #5fa5cd;
+	color:#fff;
+}
+
+div.addform .buttons .bold-text {
+	font-weight:bold;
+}
+div.addform .buttons .italic-text {
+	font-style:italic;
+}
+div.addform .buttons .underline-text {
+	text-decoration:underline;
+}
+div.addform .buttons .through-text {
+	text-decoration:line-through;
+	margin-right:16px;
+}
+div.addform .buttons .h3-text {
+	margin-right:15px;
+}
+div.addform .buttons .ltr-text {
+	margin-right:15px;
+}
+div.addform .buttons .a-text {
+	color:#2495cf;
+	text-decoration:underline;
+}
+
+div.addform .submit 
+{
+	
+	width:93px;
+	height:33px;
+	border:0;
+	margin-top:16px;
+	cursor:pointer;
+	float:left;
+}
+
+
+
+
+div.addform h1.title { margin-bottom:5px; }
+
+
+#forum_user
+{
+    color:green;
+    font-weight:bold;
+}
+
+
+/* simple css-based tooltip */
+.tooltip {
+	background-color:#000;
+	border:1px solid #fff;
+	padding:10px 15px;
+	width:200px;
+	display:none;
+	color:#fff;
+	text-align:right;
+	font-size:12px;
+        
+
+	/* outline radius for mozilla/firefox only */
+	-moz-box-shadow:0 0 10px #000;
+	-webkit-box-shadow:0 0 10px #000;
+}
+
+
+
+
+
+
+/* Corols Drop Down Menu */
+/* #9B9B9B; #F0F8FF */
+.anylinkmenu
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	visibility: hidden;
+	border: 1px solid #9B9B9B;
+	font: normal 12px Verdana;
+	line-height: 18px;
+	background: #F0F8FF;
+	width:120px;
+}
+
+.anylinkmenu ul
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.anylinkmenu ul li a
+{
+	width: 100%;
+	display: block;
+	text-indent: 3px;
+	padding: 2px 0;
+	text-decoration: none;
+	text-indent: 5px;
+}
+
+.anylinkmenu a:hover{ background:#FFFFCC; }
+
+
+
+
+
+
+
+/********************** TEMPLATES ***********************/
+div.template
+{
+	float:right;
+    border: 1px solid #CCCCCC;
+    margin: 10px 10px 4px 4px;
+    padding: 4px;
+    width: 142px;
+    height:173px;
+}
+div.template img 
+{ 
+	margin-right:1px; 
+	border:none;
+}
+section.templates-section 
+{
+	margin-right:30px;
+}
+
+
+/* frameset */
+a.download-frame-button
+{
+    background: url("/static/images/button.png") no-repeat scroll center center transparent;
+    color: #326FA8;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    height: 34px;
+    padding: 10px 0 0;
+    text-align: center;
+    text-decoration: none;
+    width: 94px;
+    float:right;
+    margin:0 15px;
+
+}
+
+a.goto-next-template
+{
+	padding-top:13px;
+	display:block;
+	float:right;
+}
+
+div.download-template-links
+{
+	float:left; width:280px;
+	margin-top:20px;
+}
+
+
+
+
+/************************** Error pages *******************/
+div.error-page 
+{
+	margin-top:50px; 
+	background:#fff;
+	margin:2em auto;
+	width:700px;
+	
+	
+	-moz-border-radius:11px;
+	-khtml-border-radius:11px;
+	-webkit-border-radius:11px;
+	border-radius:11px;
+	border:1px solid #dfdfdf;
+	padding: 0 25px;
+}
+div.error-page p{font-size:12px;line-height:18px;margin:25px 0 20px;text-align:center;}
+body.error-page
+{
+	background:#eee;
+	color:#333;
+	padding:1em 2em;
+	font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+	border:none;
+}
+
+
+/************************** 404 LUck pages *******************/
+
+div.luck-page
+{
+    
+    margin-top:50px;
+    background:#fff0f0;
+    margin:2em auto;
+    width:700px;
+
+
+    -moz-border-radius:11px;
+    -khtml-border-radius:11px;
+    -webkit-border-radius:11px;
+    border-radius:11px;
+    border:1px solid #dfdfdf;
+    padding: 0 25px;
+}
+div.luck-page p{font-size:12px;line-height:18px;margin:25px 0 20px;text-align:center;}
+body.luck-page
+{
+	background:white;
+	color:#333;
+	padding:1em 2em;
+	font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+	border:none;
+        font-size:14px;
+}
+ol.luck-read-more
+{
+    width:400px;
+    margin-right:350px;
+    margin-top:-50px;
+}
+ol.luck-read-more li
+{
+    margin-bottom:10px;
+}
+.luck-forum
+{
+    padding-top:30px;
+    color:red;
+}
+
+
+.luck-homepage-link
+{
+    display:block;
+    margin:0 auto;
+    width:750px;
+    margin-bottom:-30px;
+}
+
+
+
+/************************************ SANDBOX ********************************/
+#sandboxresponse
+{
+    padding:3px;
+    background-color:#fff9ba;
+    border: 1px dashed green;
+
+}
+#sandboxarea
+{
+
+    padding-left:3px;
+}
+
+.phplive-sidebar h3
+{
+    color:#5782b8;
+    margin-bottom:5px;
+}
+
+/********************************** LATEST FORUM POSTS ***********************/
+
+.events-list
+{
+    border:2px solid #F0F0E7;
+    border-radius:6px;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    padding:8px;
+}
+
+div.event
+{
+    margin-bottom:10px;
+    width:229px;
+   
+    word-wrap: break-word;
+    font-size:11px;
+}
+
+div.event span { color: #CCC; font-size: 10px;}
+
+div.event a {  color:#999; }
+
+/*************************** SEARCH FORM **************************/
+
+.search_form
+{
+    padding:2px 3px;
+    
+    border:1px solid #ccc;
+    display:block;
+    width:180px;
+    margin-bottom:15px;
+}
+
+
+
+
+
+
+
+/********************************** ASK QUESTION FORM ***********************/
+
+#forum_question_text
+{
+    width:100%;
+    margin-top:10px;
+}
+
+#forum_question_controls
+{
+    display:none;
+}
+
+#forum_question_controls a
+{
+    padding-right:10px;
+}
+
+.new_question_form
+{
+    background: #e7f1fb;  
+    padding:20px 0; 
+    margin:-10px 0 30px 0;
+    border-radius:6px;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+}
+
+
+
+/******************* CATEGORIES **************************/
+
+.categories_list
+{
+    margin:20px 0 60px 0;
+}
+.categories_list > div
+{
+    margin-top:20px;
+}
+
+.categories_list a
+{
+    color:brown;
+}
+
+.categories_list .addlink
+{
+    color:blue;
+    background: #d3e8fe;
+        padding:2px 5px;
+        text-decoration: none;
+}
+.categories_list .addlink:hover { text-decoration: underline;}
+
+
+/********************************************** POLLS ***********************/
+
+.poll-holder { line-height: 22px;}
+
+.poll-holder input
+{
+    float:right;
+    margin: 5px 0px 0 10px;
+}
+
+.poll-holder .poll_bar
+{
+    float:right;
+    margin:6px 0 0 15px;
+    width:100px;
+}
+
+.poll-holder .poll_inner_bar
+{
+    background-color: #C3DDF7;
+    height:10px;
+}
+
+.poll-holder .poll_votes_num
+{
+    font-size:10px;
+    color:gray;
+    width:25px;
+    float:right;
+    text-align: left;
+    padding-left:6px;
+}
+
+.poll-holder .override_show
+{
+    display:block !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************* PAGINATION ******************************/
+#paginator
+{
+    padding:5px;
+    text-align:center;
+    border:1px solid gray;
+    background: #ebecec;
+    cursor:pointer;
+}
+
+
+
+
+
+
+/*****************************************************************************/
+/***************************** ABOUT PAGE ************************************/
+/*****************************************************************************/
+
+
+.about-sidebar .myphoto
+{
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px; 
+    
+    background:#E0E1E2;
+    padding:3px;
+}
+
+
+
+.about .about-contacts
+{
+    width:168px;
+    direction:ltr;
+    float: left;
+    margin-top:65px;
+    vertical-align: middle;
+}
+
+.about .about-contacts div, .about .about-contacts a
+{
+    padding-left:20px;
+    margin-bottom:13px;
+    display:block;
+    line-height: 16px;
+    
+}
+
+.about .about-contacts .email
+{
+    vertical-align: middle;
+    
+}
+
+
+/***********************************************************************************************************/
+/***********************************************************************************************************/
+/***********************************************************************************************************/
+/***********************************************************************************************************/
+/***********************************************************************************************************/
+/**************************************** GUIDE                   ******************************************/
+/***********************************************************************************************************/
+/***********************************************************************************************************/
+/***********************************************************************************************************/
+/***********************************************************************************************************/
+/***********************************************************************************************************/
+/***********************************************************************************************************/
+
+
+
+.guide_main h1.caption
+{
+
+    color:#3E627F;
+    font-size:26px;
+
+}
+
+.guide_main .guide_lesson_nav
+{
+    color: #77B3D8;
+    margin-top:5px;
+}
+
+
+.guide_main .guide_lesson_nav a
+{
+    font-size:11px;
+    font-weight:bold;
+    padding:0 7px;
+    color: #D6E8F3;
+    text-decoration:none;
+}
+
+.guide_main .guide_lesson_nav a.active { color:#77B3D8 !important; }
+
+
+
+/********************** IDEATOR ***********************/
+.ideator
+{
+    position: fixed;
+    top:70px; 
+    right:0;
+    background-color: #1c91d6;
+    padding:5px;
+    text-align:center;
+    color:white;
+    font-weight: bold;
+    text-decoration:none;
+    
+}
+.ideator:hover { color:white; text-decoration: underline;}
+
+
+
+
+
+
+
+/***************************** CATEGORY PAGE *********************/
+.category_bread_crumbs
+{
+    font-size: 10px;
+    margin-bottom: 25px;
+}
+
+.category_bread_crumbs a
+{
+    text-transform: uppercase;
+}
