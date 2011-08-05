@@ -12,7 +12,7 @@ function localize_config(&$conf)
 {
     
     /**** EDIT THIS TO POINT the "framework' directory ***************/
-    $conf['PATH_TO_YII'] = dirname(__FILE__).'/../../server/framework';
+    $conf['params']['PATH_TO_YII'] = dirname(__FILE__).'/../../server/framework';
     
 
     

@@ -13,7 +13,7 @@ Short HowTo
 
 5. Open protected/config/localize.php and edit the PATH_TO_YII element, to point to the framework directory.
     If you put both your "framework" directory in public_html - it should be somethig like
-    $conf['PATH_TO_YII'] = dirname(__FILE__).'/../../framework';
+    $conf['params']['PATH_TO_YII'] = dirname(__FILE__).'/../../framework';
 
 6. Open protected/config/dbconnection.php and change your connections settings
 

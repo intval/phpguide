@@ -44,6 +44,6 @@ if( !$production )
 
 
 // use light version in production
-require_once($conf['PATH_TO_YII'].'/yii'.($production ? 'lite' : '').'.php');
+require_once($config['params']['PATH_TO_YII'].'/yii'.($production ? 'lite' : '').'.php');
 require_once(dirname(__FILE__).'/protected/sources/global_functions.php');
 Yii::createWebApplication($config)->run();
