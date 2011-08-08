@@ -17,13 +17,17 @@ function e($data)
 }
 
 /**
- * This is the shortcut to Yii::app()->request->baseUrl
- * If the parameter is given, it will be returned and prefixed with the app baseUrl.
+ * Returns baseUrl for given url if any, otherwise returns Yii::app()->baseUrl
+ * @staticvar string $baseUrl caches baseUrl instead of calculating it every function call
+ * @param string $url postfix the baseUrl with this provided url
+ * @return string Yii::app()->baseUrl + $url
  */
-function bu($url=null) 
+function bu($url = null)
 {
     static $baseUrl;
     if ($baseUrl===null)
+    {
         $baseUrl=Yii::app()->getRequest()->getBaseUrl();
+    }
     return $url===null ? $baseUrl : $baseUrl.'/'.ltrim($url,'/');
 }
