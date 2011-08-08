@@ -298,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `zzsmf_members` (
 --
 
 INSERT INTO `zzsmf_members` (`id_member`, `member_name`, `date_registered`, `posts`, `id_group`, `lngfile`, `last_login`, `real_name`, `instant_messages`, `unread_messages`, `new_pm`, `buddy_list`, `pm_ignore_list`, `pm_prefs`, `mod_prefs`, `message_labels`, `passwd`, `openid_uri`, `email_address`, `personal_text`, `gender`, `birthdate`, `website_title`, `website_url`, `location`, `icq`, `aim`, `yim`, `msn`, `hide_email`, `show_online`, `time_format`, `signature`, `time_offset`, `avatar`, `pm_email_notify`, `karma_bad`, `karma_good`, `usertitle`, `notify_announcements`, `notify_regularity`, `notify_send_body`, `notify_types`, `member_ip`, `member_ip2`, `secret_question`, `secret_answer`, `id_theme`, `is_activated`, `validation_code`, `id_msg_last_visit`, `additional_groups`, `smiley_set`, `id_post_group`, `total_time_logged_in`, `password_salt`, `ignore_boards`, `warning`, `passwd_flood`, `pm_receive_from`, `is_registered`, `full_name`, `is_blog_admin`, `last_site_visit`) VALUES
-(1, 'admin', 1300443411, 636, 1, 'hebrew-utf8', 1311436449, 'admin', 46, 0, 0, '', '', 1, '', '', 'dd94709528bb1c83d08f3088d4043f4742891f4f', '', 'email@phpguide.co.il', '', 1, '1991-04-07', '', '', 'ישראל', '', '', '', '', 0, 1, '', '', 0, '', 1, 0, 0, '', 1, 1, 0, 2, '127.0.0.1', '127.0.0.1', '', '', 3, 1, '', 1752, '', '', 8, 606860, 'abcd', '', 0, '', 1, 1, 'שם משתמש', 1, 0);
+(1, 'admin', 1300443411, 636, 1, 'hebrew-utf8', 1311436449, 'admin', 46, 0, 0, '', '', 1, '', '', 'dd94709528bb1c83d08f3088d4043f4742891f4f', '', 'email@phpguide.co.il', '', 1, '1900-01-01', '', '', 'ישראל', '', '', '', '', 0, 1, '', '', 0, '', 1, 0, 0, '', 1, 1, 0, 2, '127.0.0.1', '127.0.0.1', '', '', 3, 1, '', 1752, '', '', 8, 60, 'abcd', '', 0, '', 1, 1, 'שם משתמש', 1, 0);
 -- --------------------------------------------------------
 
 --
@@ -320,3 +320,71 @@ CREATE TABLE IF NOT EXISTS `zzsmf_themes` (
 
 INSERT INTO `zzsmf_themes` (`id_member`, `id_theme`, `variable`, `value`) VALUES
 (1, 1, 'cust_37', 'ניתן לשינוי בטבלת zzsmf_themes');
+
+
+
+CREATE TABLE IF NOT EXISTS `zzsmf_messages` (
+  `id_msg` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_topic` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `id_board` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `poster_time` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_member` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `id_msg_modified` int(10) unsigned NOT NULL DEFAULT '0',
+  `subject` varchar(255) NOT NULL DEFAULT '',
+  `poster_name` varchar(255) NOT NULL DEFAULT '',
+  `poster_email` varchar(255) NOT NULL DEFAULT '',
+  `poster_ip` varchar(255) NOT NULL DEFAULT '',
+  `smileys_enabled` tinyint(4) NOT NULL DEFAULT '1',
+  `modified_time` int(10) unsigned NOT NULL DEFAULT '0',
+  `modified_name` varchar(255) NOT NULL DEFAULT '',
+  `body` mediumtext NOT NULL,
+  `icon` varchar(16) NOT NULL DEFAULT 'xx',
+  `approved` tinyint(3) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_msg`),
+  UNIQUE KEY `topic` (`id_topic`,`id_msg`),
+  UNIQUE KEY `id_board` (`id_board`,`id_msg`),
+  UNIQUE KEY `id_member` (`id_member`,`id_msg`),
+  KEY `approved` (`approved`),
+  KEY `ip_index` (`poster_ip`(15),`id_topic`),
+  KEY `participation` (`id_member`,`id_topic`),
+  KEY `show_posts` (`id_member`,`id_board`),
+  KEY `id_topic` (`id_topic`),
+  KEY `id_member_msg` (`id_member`,`approved`,`id_msg`),
+  KEY `current_topic` (`id_topic`,`id_msg`,`id_member`,`approved`),
+  KEY `related_ip` (`id_member`,`poster_ip`,`id_msg`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zzsmf_topics`
+--
+
+CREATE TABLE IF NOT EXISTS `zzsmf_topics` (
+  `id_topic` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `is_sticky` tinyint(4) NOT NULL DEFAULT '0',
+  `id_board` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `id_first_msg` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_last_msg` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_member_started` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `id_member_updated` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `id_poll` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `id_previous_board` smallint(5) NOT NULL DEFAULT '0',
+  `id_previous_topic` mediumint(8) NOT NULL DEFAULT '0',
+  `num_replies` int(10) unsigned NOT NULL DEFAULT '0',
+  `num_views` int(10) unsigned NOT NULL DEFAULT '0',
+  `locked` tinyint(4) NOT NULL DEFAULT '0',
+  `unapproved_posts` smallint(5) NOT NULL DEFAULT '0',
+  `approved` tinyint(3) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_topic`),
+  UNIQUE KEY `last_message` (`id_last_msg`,`id_board`),
+  UNIQUE KEY `first_message` (`id_first_msg`,`id_board`),
+  UNIQUE KEY `poll` (`id_poll`,`id_topic`),
+  KEY `is_sticky` (`is_sticky`),
+  KEY `approved` (`approved`),
+  KEY `id_board` (`id_board`),
+  KEY `member_started` (`id_member_started`,`id_board`),
+  KEY `last_message_sticky` (`id_board`,`is_sticky`,`id_last_msg`),
+  KEY `board_news` (`id_board`,`id_first_msg`),
+  KEY `id_last_msg` (`id_last_msg`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
