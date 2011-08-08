@@ -56,7 +56,7 @@ function comment_sumbitted_callback(response)
     {
         var nowdate = new Date();
         
-        var day = nowdate.getDay();if(day < 10) day = '0' + day;
+        var day = nowdate.getDate();if(day < 10) day = '0' + day;
         var month = nowdate.getMonth()+1;if(month < 10) month = '0' + month;
         
         nowdate =  day + '/' + month + '/' + nowdate.getFullYear();
