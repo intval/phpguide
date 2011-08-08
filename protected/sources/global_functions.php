@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains shortcuts and golbal functions available in the entire project
+ * This file contains shortcuts and global functions available in the entire project
  * @author Alex Raskin (Alex@phpguide.co.il)
  */
 
@@ -14,4 +14,16 @@
 function e($data)
 {
     return htmlSpecialChars($data, ENT_QUOTES, 'UTF-8');
+}
+
+/**
+ * This is the shortcut to Yii::app()->request->baseUrl
+ * If the parameter is given, it will be returned and prefixed with the app baseUrl.
+ */
+function bu($url=null) 
+{
+    static $baseUrl;
+    if ($baseUrl===null)
+        $baseUrl=Yii::app()->getRequest()->getBaseUrl();
+    return $url===null ? $baseUrl : $baseUrl.'/'.ltrim($url,'/');
 }
