@@ -10,10 +10,11 @@ class LoginController extends Controller
             }
             else
             {
-                $return_location = '/';
+                $return_location = 'index.php';
             }
             
-
+			$this->addscript('ui');
+			
             $this->render('//homepage/loginpage', array('return_location' => $return_location));
 	}
 
@@ -43,7 +44,7 @@ class LoginController extends Controller
         public function actionLogout()
 		{
 			User::get_current_user()->logout();
-			echo('מתנתק...');
+			$this->redirect("../index.php");
 		}
         
         public function actionRegister()

@@ -16,8 +16,6 @@ class HomepageController extends Controller
                         )   
                  );
 	}
-
-        
         
         public function actionError()
         {

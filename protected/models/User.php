@@ -326,7 +326,7 @@ class User extends CActiveRecord
         // add one to bruteforce counter
         Yii::app()->db
                 ->createCommand("INSERT INTO `unauth` (`ip`, `time`) VALUES(:ip, NOW()) ")
-                ->execute(array('ip' => $ip))   ;
+                ->execute(array('ip' => Yii::app()->request->userHostAddress))   ;
         
         return null;
     }

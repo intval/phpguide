@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="he">
 <head>
+	<base href="<?=bu()."/"?>" />
     <meta charset="utf-8" />
     <title><?=e($this->vars['title'])?></title>
 
