@@ -40,7 +40,11 @@ class LoginController extends Controller
             }
         }
         
-        
+        public function actionLogout()
+		{
+			User::get_current_user()->logout();
+			echo('מתנתק...');
+		}
         
         public function actionRegister()
         {

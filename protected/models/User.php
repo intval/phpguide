@@ -159,6 +159,13 @@ class User extends CActiveRecord
          setcookie('SMFCookie63', serialize(array($this->id_member, sha1($this->passwd. $this->password_salt), time()+315360000, 0)), time()+315360000, '/');
      }
      
+	 /** Destory the session, and clean up cookie data */
+	 public function logout()
+	 {
+		Yii::app()->session->clear();
+		Yii::app()->session->destroy();
+		unset(Yii::app()->request->cookies['SMFCookie63']);
+	 }
         
     /**
      * Checks whether current users info is stored in session
