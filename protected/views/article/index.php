@@ -1,6 +1,6 @@
 
 
-    <a href="/" class='blog_entry_back' rel="up">&rarr; <span>חזרה למדריכי PHP</span></a>
+    <a href="index.php" class='blog_entry_back' rel="up">&rarr; <span>חזרה למדריכי PHP</span></a>
     <h1 class='content-title'><span></span><?=e($article->title);?></h1>
     
     <!-- publisher -->
@@ -81,4 +81,4 @@
             </div>
             <div class="clear"></div>
 	</div>
-        <img src="" alt="loading" title="/static/images/ajax-loader.gif" id="comments_loading_img"/>
+        <img src="" alt="loading" title="static/images/ajax-loader.gif" id="comments_loading_img"/>

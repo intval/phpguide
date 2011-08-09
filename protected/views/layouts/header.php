@@ -18,10 +18,10 @@
     <meta property="fb:app_id" content="<?=e($this->facebook['app_id'])?>"/>
     <? endif; ?>
 
-    <link rel="shortcut icon" href="/static/images/favicon.ico" />
-    <link href="/static/styles/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="<?=bu("static/images/favicon.ico")?>" />
+    <link href="<?=bu("static/styles/style.css")?>" rel="stylesheet" />
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
-    <!--[if lte IE 7]><link href="/static/styles/ie_style.css" rel="stylesheet" /><![endif]-->
+    <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style.css")?>" rel="stylesheet" /><![endif]-->
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
 </head>
@@ -30,7 +30,7 @@
 <div id='header'>
 	
 	
-    <a href='/' title="מדריך לימוד PHP" class='homepage-link' rel="start"></a>
+    <a href='index.php' title="מדריך לימוד PHP" class='homepage-link' rel="start"></a>
     <div class="social-buttons" id="social_buttons"><!-- populated on page load complete with js --></div>
     <nav>
        <ul class='header' id="headernav">

@@ -67,16 +67,21 @@ class Controller extends CController
         
         /**
          * Registers client script from URL and adds it to lateload
-         * Takes the scripts from /static/scripts/___.js folder, automatically appending file extension
+         * Takes the scripts from static/scripts/___.js folder, automatically appending file extension
          * @param args $script list of arguments, each argument should be a different script
-         * @example $this->addscript('ui') results in <script src='/static/scripts/ui.js'>
+         * @example $this->addscript('ui') results in <script src='static/scripts/ui.js'>
          * @example $this->addscript('ui', 'bbcode', 'http://jquery.com/jquery.js');
          */
-        protected function addscript($script)
+        protected function addscript($scripts)
         {
-            $php52_bugfix =  func_get_args();
-            // Fatal error: func_get_args(): Can't be used as a function parameter 
-            $this->scripts_list = array_merge($this->scripts_list,$php52_bugfix);
+			foreach (func_get_args() as $key=>$val)
+			{
+				$url = $val;
+				
+				if (substr($url, 0, 7) != "http://")
+					$url = bu("static/scripts/".$val.".js");
+				Yii::app()->clientScript->registerScriptFile($url, CClientScript::POS_END);
+			}
         }
         
         /**
