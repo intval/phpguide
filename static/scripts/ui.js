@@ -33,7 +33,7 @@ function sendcomment()
     $('#comments_form').hide();
     $('#comments_loading_img').show();
     
-    $.post('/Comments/add', $('#comments_inputs').serialize() ,comment_sumbitted_callback, 'html');
+    $.post('Comments/add', $('#comments_inputs').serialize() ,comment_sumbitted_callback, 'html');
     return;
 }
 
@@ -579,7 +579,7 @@ function register_new_member()
     
     if(fail) return;
     
-    jQuery.post('/Login/register', {user: user, pass: pass}, function(result){
+    jQuery.post('Login/register', {user: user, pass: pass}, function(result){
         
  
         if( result.substr(0, 5) == ':err:')

@@ -21,7 +21,7 @@ class CategoryController extends Controller
             $this->vars['keywords']     =  $cat_url . ' מדריכים וכתבתות PHP';
             $this->vars['description']  =  $cat_url . ' מדריכי PHP ותכנות אתרים' ;
 
-            $this->addscript('ui');
+            $this->addscripts('ui');
             $this->render('//list/articlesInCategory', array('category' => $category));
 	}
 

@@ -10,10 +10,10 @@ class LoginController extends Controller
             }
             else
             {
-                $return_location = '/';
+                $return_location = 'index.php';
             }
             
-
+            $this->addscripts('ui');
             $this->render('//homepage/loginpage', array('return_location' => $return_location));
 	}
 
@@ -41,7 +41,18 @@ class LoginController extends Controller
         }
         
         
+        /**
+         * Logs user out of the system
+         */
+        public function actionLogout()
+        {
+                User::get_current_user()->logout();
+                $this->redirect("../index.php");
+        }
         
+        /*
+         * Rigsters the user according to post[user] and post[pass] provided
+         */
         public function actionRegister()
         {
             if(!empty($_POST['user']) and !empty($_POST['pass']))
@@ -52,6 +63,8 @@ class LoginController extends Controller
                     {
                         throw new UsernameAlreadyTaken;
                     }
+                    
+                    // If fails due to taken username -> throws an exception
                     User::get_current_user()->changeNameAndPass($_POST['user'], $_POST['pass'], 1);
                 }
                 catch (UsernameAlreadyTaken $e)

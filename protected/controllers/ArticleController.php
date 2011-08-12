@@ -26,7 +26,7 @@ class ArticleController extends Controller
                 
                 
                 
-                $this->addscript('ui');
+                $this->addscripts('ui');
 		$this->render('index', array('article' => &$article));
 	}
 

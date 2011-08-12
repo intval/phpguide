@@ -11,7 +11,9 @@
             <? if($user->is_registered): ?>
             <a href="/forum/"><?=$user->getNewForumPostsCount()?> הודעות פורום חדשות</a><br/>
             מאז ביקורך האחרון
-            
+			<br/>
+            <a href="Login/logout">התנתק</a>
+			
             <? else: ?>
             ברוך הבא לאתר לימוד PHP
             <br/>
@@ -48,7 +50,7 @@
                 
             </table>
             <br/>
-            <a href="/VIPlogin.php"  style="font-size: 75%; text-decoration: none"> &mdash;
+            <a href="Login"  style="font-size: 75%; text-decoration: none"> &mdash;
                 לחץ כאן אם אתה כבר רשום בשם אחר
             </a>
             

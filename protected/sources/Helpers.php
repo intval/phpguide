@@ -54,11 +54,15 @@ class Helpers
      */
     public static function getip()
     {
-        if( getenv("HTTP_CLIENT_IP"))        return getenv("HTTP_CLIENT_IP");
-        if( getenv("HTTP_X_FORWARDED_FOR"))  return getenv("HTTP_X_FORWARDED_FOR");
-        if( getenv("REMOTE_ADDR"))           return getenv("REMOTE_ADDR");
-        if(isset($_SERVER['REMOTE_ADDR']))   return $_SERVER['REMOTE_ADDR'];
-        return null;
+        static $ip;
+        if( $ip !== null) return $ip;
+        
+        if( getenv("HTTP_CLIENT_IP"))              $ip = getenv("HTTP_CLIENT_IP");
+        elseif( getenv("HTTP_X_FORWARDED_FOR"))    $ip = getenv("HTTP_X_FORWARDED_FOR");
+        elseif( getenv("REMOTE_ADDR"))             $ip = getenv("REMOTE_ADDR");
+        elseif(isset($_SERVER['REMOTE_ADDR']))     $ip = $_SERVER['REMOTE_ADDR'];
+        
+        return $ip;
     }
     
     

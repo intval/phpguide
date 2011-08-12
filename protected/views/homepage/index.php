@@ -66,7 +66,7 @@
         <? $break = sizeof($categories) / 2; $i = 0;
            foreach( $categories as $cat ):  ?>
 		
-        <a href="/cat/<?=e(urldecode($cat['name']));?>.htm"><?=e($cat['name']);?></a><br/>
+        <a href="cat/<?=e(urldecode($cat['name']));?>.htm"><?=e($cat['name']);?></a><br/>
         
             <? if(++$i == $break ): ?> 
                 </div><div style="width:49%;" class="right">

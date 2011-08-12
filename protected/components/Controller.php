@@ -52,7 +52,7 @@ class Controller extends CController
          */
         public function actionError()
         {
-            if($error=Yii::app()->errorHandler->error)
+            if(false !== ($error=Yii::app()->errorHandler->error))
             {
                 if(Yii::app()->request->isAjaxRequest)
                     echo $error['message'];
@@ -62,21 +62,23 @@ class Controller extends CController
         }
         
         
-        /*** @var array list of included javascripts */
-        protected $scripts_list = array();
-        
         /**
          * Registers client script from URL and adds it to lateload
-         * Takes the scripts from /static/scripts/___.js folder, automatically appending file extension
+         * Takes the scripts from static/scripts/___.js folder, automatically appending file extension
          * @param args $script list of arguments, each argument should be a different script
-         * @example $this->addscript('ui') results in <script src='/static/scripts/ui.js'>
+         * @example $this->addscript('ui') results in <script src='static/scripts/ui.js'>
          * @example $this->addscript('ui', 'bbcode', 'http://jquery.com/jquery.js');
          */
-        protected function addscript($script)
+        protected function addscripts($scripts)
         {
-            $php52_bugfix =  func_get_args();
-            // Fatal error: func_get_args(): Can't be used as a function parameter 
-            $this->scripts_list = array_merge($this->scripts_list,$php52_bugfix);
+            foreach (func_get_args() as $url)
+            {
+                if (substr($url, 0, 7) != "http://")
+                {
+                    $url = bu("static/scripts/$url.js");
+                }
+                Yii::app()->clientScript->registerScriptFile($url, CClientScript::POS_END);
+            }
         }
         
         /**

@@ -71,6 +71,11 @@
  */
 class User extends CActiveRecord
 {
+    
+        /** Cookie name to store user's info */
+        const COOKIE_NAME = self::COOKIE_NAME;
+    
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return User the static model class
@@ -156,9 +161,15 @@ class User extends CActiveRecord
      {
          Yii::app()->session['user'] =  $this;
          self::$current_user = & $this;
-         setcookie('SMFCookie63', serialize(array($this->id_member, sha1($this->passwd. $this->password_salt), time()+315360000, 0)), time()+315360000, '/');
+         setcookie(self::COOKIE_NAME, serialize(array($this->id_member, sha1($this->passwd. $this->password_salt), time()+315360000, 0)), time()+315360000, '/');
      }
      
+     /** Destory the session, and clean up cookie data */
+     public function logout()
+     {
+            Yii::app()->session->destroy();
+            unset(Yii::app()->request->cookies[self::COOKIE_NAME]);
+     }
         
     /**
      * Checks whether current users info is stored in session
@@ -181,10 +192,10 @@ class User extends CActiveRecord
         // default return value
         $user = null;
         
-        if ( isset($_COOKIE['SMFCookie63']) && mb_strlen($_COOKIE['SMFCookie63']) > 15)
+        if ( isset($_COOKIE[self::COOKIE_NAME]) && mb_strlen($_COOKIE[self::COOKIE_NAME]) > 15)
         {
             // unserialize cookies data
-            $cookie = unserialize($_COOKIE['SMFCookie63']);
+            $cookie = unserialize($_COOKIE[self::COOKIE_NAME]);
 
             // Create the selection condition
             $criteria = new CDbCriteria(array
@@ -319,7 +330,7 @@ class User extends CActiveRecord
         // add one to bruteforce counter
         Yii::app()->db
                 ->createCommand("INSERT INTO `unauth` (`ip`, `time`) VALUES(:ip, NOW()) ")
-                ->execute(array('ip' => $ip))   ;
+                ->execute(array('ip' => Helpers::getip()))   ;
         
         return null;
     }

@@ -7,7 +7,7 @@ class HomepageController extends Controller
 	public function actionIndex()
 	{
                 
-                $this->addscript('ui');
+                $this->addscripts('ui');
 		$this->render('index' , 
                         array
                         (
@@ -16,8 +16,6 @@ class HomepageController extends Controller
                         )   
                  );
 	}
-
-        
         
         public function actionError()
         {
