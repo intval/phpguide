@@ -73,7 +73,7 @@ class User extends CActiveRecord
 {
     
         /** Cookie name to store user's info */
-        const COOKIE_NAME = self::COOKIE_NAME;
+        const COOKIE_NAME = 'SMFCookie63';
     
     
 	/**
