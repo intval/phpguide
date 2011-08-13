@@ -13,7 +13,7 @@ class LoginController extends Controller
                 $return_location = Yii::app()->homeUrl;
             }
             
-			$this->addscript('ui');
+			$this->addscripts('ui');
 			
             $this->render('//homepage/loginpage', array('return_location' => $return_location));
 	}
