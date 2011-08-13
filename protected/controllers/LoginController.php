@@ -10,7 +10,7 @@ class LoginController extends Controller
             }
             else
             {
-                $return_location = 'index.php';
+                $return_location = Yii::app()->homeUrl;
             }
             
 			$this->addscript('ui');
@@ -44,7 +44,7 @@ class LoginController extends Controller
         public function actionLogout()
 		{
 			User::get_current_user()->logout();
-			$this->redirect("../index.php");
+			$this->redirect(Yii::app()->homeUrl);
 		}
         
         public function actionRegister()
