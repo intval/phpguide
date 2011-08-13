@@ -41,7 +41,7 @@
                 </tr>    
                 <tr>
                     <td>סיסמה:</td>
-                    <td><input type="text" id="new_user_pass"/></td>
+                    <td><input type="password" id="new_user_pass"/></td>
                 </tr>              
                 <tr>
                     <td></td>
