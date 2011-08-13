@@ -24,7 +24,7 @@ class CommentsController extends Controller
 			$model->attributes=$_POST['Comment'];
                         
                         $model->approved    = 1;
-                        $model->author      = 'test';
+                        $model->author      = User::get_current_user()->member_name;
                         $model->date        = new CDbExpression('NOW()');
         
                         try

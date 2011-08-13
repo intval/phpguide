@@ -6,7 +6,7 @@ class TemplatesController extends Controller
     
 	public function actionIndex()
 	{
-            $this->addscript('ui');
+            $this->addscripts('ui');
             $this->render('templatesList', array('templates' => Template::model()->findAll()));
 	}
         
