@@ -35,7 +35,7 @@
         
         <div>
             <div id="phplive_link" style="float:left">
-                <a href="#" id="code_get_link" tabindex="3" onclick="generate_code_url()">קישור לקוד הזה</a>
+                <a href="javascript:generate_code_url()" id="code_get_link" tabindex="3" >קישור לקוד הזה</a>
                 <span id="code_url" style="display:none"></span>
                 <img src="/static/images/pixel.gif" alt="..." title="/static/images/code_url_loader.gif" id="code_url_loader" style="display:none"/>
             </div>
