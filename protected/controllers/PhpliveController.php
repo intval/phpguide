@@ -23,8 +23,27 @@ class PhpliveController extends Controller
                     'description'   => "אפשרות לכתוב ולנסות קוד php און-ליין בלי שרת או איחסון", 
             );
             
-                $this->addscripts('ui', 'phplive');
-		$this->render('index', array('code' => $code));
+            $this->addscripts('ui', 'phplive');
+            $this->render('index', array('code' => $code));
 	}
+        
+        
+        public function actionStorecode()
+        {
+            if( !isset($_POST['code']) || trim($_POST['code']) === '' ) return;
+            
+            $code = trim($_POST['code']);
+            $checksum = md5($code);
+            
+            if( null === ($stored = Livecode::model()->findByAttributes(array('checksum' => $checksum))))
+            {
+                $stored = new Livecode();
+                $stored->code = $code;
+                $stored->checksum = $checksum;
+                $stored->save();
+            }
+            echo $stored->id;
+    
+        }
 
 }

@@ -13,19 +13,10 @@ window.onbeforeunload = function(e)
 
 
 
+    jQuery('#submit' ).click(function(){ jQuery('#newPostForm').attr('action','Add/save')   .attr('target', '_self') .submit(); });
+    jQuery('#preview').click(function(){ jQuery('#newPostForm').attr('action','Add/preview').attr('target', '_blank').submit(); });
 
-function submit_auth_check()
-{
 
-    if($('#full_name').length > 0 && jQuery.trim( jQuery('#full_name').val()) == '')
-    {
-        return confirm("לא הזנתם את שמכם המלא. כתבות עם שם המחבר זוכים ליותר צפיות והארצה. אתה בטוח שאתה מעדיף לוותר ולפרסם בלי שם?");
-    }
-    return true;
-}
-
-jQuery('#submit' ).click(function(){ jQuery('#add_form_form').attr('target', '_self') });
-jQuery('#preview').click(function(){ jQuery('#add_form_form').attr('target', '_blank') });
 
 
 
@@ -142,7 +133,7 @@ setopacity:function(el, value){
 
 showmenu:function(menuid)
 {
-	for(var i=0; i<openedTags.length; i++) 	if( openedTags[i] && openedTags[i] == '[color=somecolor]') { bbstyle('color'); return;}
+	for(var i=0; i<openedTags.length; i++) 	if( openedTags[i] && openedTags[i] == '[color=somecolor]') {bbstyle('color');return;}
 
 	var menu=anylinkmenu.menusmap[menuid]
 	clearTimeout(menu.hidetimer)

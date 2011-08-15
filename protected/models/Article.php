@@ -43,13 +43,9 @@ class Article extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, url, image, html_desc_paragraph, html_content, pub_date, keywords, description, author_id', 'required'),
-			array('approved, author_id', 'numerical', 'integerOnly'=>true),
+			array('title, image, keywords, description', 'required'),
 			array('title', 'length', 'max'=>150),
-			array('url, image', 'length', 'max'=>255),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, title, url, image, html_desc_paragraph, html_content, pub_date, keywords, description, approved, author_id', 'safe', 'on'=>'search'),
+			array('url, image', 'length', 'max'=>255)
 		);
 	}
 
@@ -63,7 +59,8 @@ class Article extends CActiveRecord
 		return array(
                     'author'     => array(self::BELONGS_TO, 'User',     'author_id'),
                     'comments'   => array(self::HAS_MANY,   'Comment',  'blogid'),
-                    'categories' => array(self::MANY_MANY,  'Category', 'blog_ost2cat(postid, catid)')
+                    'plain'      => array(self::HAS_ONE,    'ArticlePlainText', 'id') ,
+                    'categories' => array(self::MANY_MANY,  'Category', 'blog_post2cat(postid, catid)')
 		);
 	}
 
@@ -100,7 +97,7 @@ class Article extends CActiveRecord
         }
 
         
-        public function newest($count = 5)
+        public function newest($count = 8)
         {
            $this->getDbCriteria()->mergeWith( array('limit' => $count) );
            return $this;

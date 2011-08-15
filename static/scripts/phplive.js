@@ -3,28 +3,16 @@ document.domain = 'phpguide.co.il';
 var last_urled_code;
 var in_request = false;
 
-// assuming dom has been already loaded
-window.setTimeout(check_code_from_hash,1);
+
 
 $(document).ready(function()
 {   
     $('#sandboxarea').keyup(run_live_code);
     $('#sandboxarea').focus();
+    actual_run_code();
 });
 
-function check_code_from_hash()
-{ 
-    var hash = document.location.hash;
-    
-    if( hash.substr(1, 5) == 'code:')
-    {
-        $('#sandboxarea').val() = base64_decode( hash.substr(6) );
-        document.location.hash = '';
-        actual_run_code();
-    }
-    
-    actual_run_code(); // in case code was loaded from above
-}
+
 
 
 function run_live_code(e)
@@ -55,13 +43,13 @@ function generate_code_url()
     $('#code_url_loader').css('display' , 'inline');
     
     in_request = true;
-    $.post('handle.php', {tinycode: code}, receive_generated_url);
+    $.post('Phplive/storecode', {code: code}, receive_generated_url);
 }
 
 
 function receive_generated_url(response)
 {
-    
+
     var code_id  = parseInt(response);
     if(isNaN(code_id)) 
     {
