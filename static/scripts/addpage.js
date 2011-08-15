@@ -12,10 +12,10 @@ window.onbeforeunload = function(e)
 }
 
 
-
-    jQuery('#submit' ).click(function(){ jQuery('#newPostForm').attr('action','Add/save')   .attr('target', '_self') .submit(); });
-    jQuery('#preview').click(function(){ jQuery('#newPostForm').attr('action','Add/preview').attr('target', '_blank').submit(); });
-
+$(document).ready(function() {
+    jQuery('#submit' ).click(function(){ jQuery('#newPostForm').attr('action','Add/save').attr('target', '_self'); jQuery("#hiddenSubmit").trigger("click"); });
+    jQuery('#preview').click(function(){ jQuery('#newPostForm').attr('action','Add/preview').attr('target', '_blank').submit(); jQuery("#hiddenSubmit").trigger("click"); });
+});
 
 
 

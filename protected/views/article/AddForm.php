@@ -70,6 +70,6 @@
 
             <input type="button" name="submit"  id="submit"  class="submit" value="Submit"  />
             <input type="button" name="preview" id="preview" class="submit" value="Preview" />
-	
+			<input id="hiddenSubmit" type="submit" style="display: none" />
 </div>
 <?php $this->endWidget(); ?>

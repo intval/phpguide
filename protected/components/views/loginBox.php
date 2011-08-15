@@ -17,7 +17,7 @@
             <? else: ?>
             ברוך הבא לאתר לימוד PHP
             <br/>
-            <a href="#" onclick="show_reg_form()">
+            <a href="javascript:void(0)" onclick="show_reg_form()">
         בחר לעצמך שם משתמש אחר
             </a>
             <br/>
