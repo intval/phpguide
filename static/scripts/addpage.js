@@ -13,12 +13,55 @@ window.onbeforeunload = function(e)
 
 
 $(document).ready(function() {
-    jQuery('#submit' ).click(function(){ jQuery('#newPostForm').attr('action','Add/save').attr('target', '_self'); jQuery("#hiddenSubmit").trigger("click"); });
-    jQuery('#preview').click(function(){ jQuery('#newPostForm').attr('action','Add/preview').attr('target', '_blank'); jQuery("#hiddenSubmit").trigger("click"); });
+    jQuery('#submit' ).click(  {target:'_self'}, submit_newpost_form );
+    jQuery('#preview').click(  {target:'blank'}, submit_newpost_form );
 });
 
 
+function submit_newpost_form( e )
+{
+    var target = e.data.target || 'blank';
+    
+    if(!validate_newpost_form()) return;
+    
+    jQuery('#newPostForm').attr('action','Add/save').attr('target', target); 
+    jQuery("#hiddenSubmit").trigger("click");
+}
 
+
+function validate_newpost_form()
+{
+    var all_valid = true;
+    var iterator = function(index, field)
+    {    
+        // color empty field's borders
+        if( '' === jQuery.trim(jQuery(field).val()) )
+        {
+            jQuery(field).css('border', '1px solid pink').bind('change', unmark_field_on_change);
+            all_valid = false;
+        }
+
+    };
+    
+    
+    // Go threw the entire form and mark empty fields
+    jQuery('#newPostForm input[type="text"], #newPostForm textarea').each(iterator);
+    
+    
+    // function triggered onchange of a "marked as empty" field to unmark it
+    var unmark_field_on_change = function( e )
+    {
+        if( '' !== jQuery.trim(jQuery(this).val()) )
+        {
+            jQuery(this).css('border', '').unbind('change', unmark_field_on_change);
+        }
+    }
+    
+    
+    // show / hide error message
+    all_valid ? jQuery('#newpost_error_text').hide() : jQuery('#newpost_error_text').show();
+    return all_valid;
+}
 
 
 
@@ -26,7 +69,7 @@ $(document).ready(function() {
 // execute your scripts when the DOM is ready. this is a good habit
 window.load = function() {
     
-  
+  /*
     // select all desired input fields and attach tooltips to them
     $("#add_form_form input[type=text]").tooltip({
 
@@ -42,7 +85,7 @@ window.load = function() {
         // custom opacity setting
         opacity: 0.7
 
-    });
+    });*/
 };
 
 

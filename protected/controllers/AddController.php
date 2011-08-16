@@ -34,7 +34,7 @@ class AddController extends Controller
                 $author = User::get_current_user();
             }
             
-            $this->addscripts('http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js', 'bbcode', 'ui', 'addpage');
+            $this->addscripts( 'bbcode', 'ui', 'addpage');
             
             $view_data = array
             (
@@ -55,8 +55,8 @@ class AddController extends Controller
             {
                 $curuser = User::get_current_user();
                 
-                
-                if(($id = filter_input(INPUT_GET, 'edit', FILTER_VALIDATE_INT)) !== false)
+                // fails if id is not defined, or filter fails, or id = 0
+                if( $id = filter_input(INPUT_GET, 'edit', FILTER_VALIDATE_INT) )
                 {
                     if(    null === ($article = Article::model()->findByPk($id))  ||
                            null === ($articlePlain = ArticlePlainText::model()->findByPk($id)) ||
@@ -99,17 +99,20 @@ class AddController extends Controller
                     }
                     
                     $article->save();
-                    var_dump($article->getErrors());
                     $articlePlain->id = $article->id;
                     $articlePlain->save();
-                    var_dump($articlePlain->getErrors());
                     return;
+                }
+                else
+                {
+                    echo self::show_errors($article) , self::show_errors($articlePlain);
                 }
             }
         }
         
         public function actionPreview()
         {
+           
             if(isset($_POST['Article'], $_POST['ArticlePlainText']))
             {
                 $article        = new Article();
@@ -124,13 +127,36 @@ class AddController extends Controller
  
                     $article->html_content = bbcodes::bbcode($articlePlain->plain_content, $article->title);
                     $article->html_desc_paragraph = bbcodes::bbcode($articlePlain->plain_description, $article->title);
-                    $article->pub_date = Helpers::date2rfc(new DateTime());
+                    $article->pub_date = new DateTime();
                     $article->author = User::get_current_user();
                     
+                    $this->addscripts('ui');
                     $this->render('//article/index', array('article' => &$article));
+                }
+                else
+                {
+                    echo self::show_errors($article) , self::show_errors($articlePlain);
                 }
                 
             }
+            else 
+            {
+                throw new CHttpException(500, 'No post data provided');
+            }
         }
 	
+        /**
+         * Iterates over the list of model validation errors returning them as string
+         * @param CActiveRecord $model
+         * @return string
+         */
+        private static function show_errors(CActiveRecord $model)
+        {
+            $out = '';
+            foreach( $model->getErrors() as $field_errors)
+            {
+               $out .= implode('<br/>', $field_errors) . '<br/>';
+            }
+            return $out;
+        }
 }

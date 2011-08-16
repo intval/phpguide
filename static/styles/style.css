@@ -654,12 +654,14 @@ div.addform .submit
 div.addform h1.title { margin-bottom:5px; }
 
 
-#forum_user
+#newpost_error_text
 {
-    color:green;
+    text-align:left;
+    color:blue;
     font-weight:bold;
+    display: none;
+    margin-bottom:5px;
 }
-
 
 /* simple css-based tooltip */
 .tooltip {

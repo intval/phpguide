@@ -57,7 +57,7 @@
  
     
     
-    <?  $this->renderPartial('comments', array('comments' => $article->comments)); ?>
+    <?  $this->renderPartial('//article/comments', array('comments' => $article->comments)); ?>
 
 
     

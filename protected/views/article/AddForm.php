@@ -2,7 +2,7 @@
 	'id'=>'newPostForm',
 	'enableAjaxValidation'=>false,
         'action' => CController::createUrl('Add/save' . $editting_id ),
-        'enableClientValidation' => false
+        'enableClientValidation' => true
 )); ?>
 
 <div class='addform'>
@@ -67,7 +67,9 @@
             תיאור כתבה: 
             <?= $form->textField($model, 'description', array('class' => 'name', 'tabindex' => '7')) ?><br/>
 
-
+            <div id="newpost_error_text"/>
+            יש למלא את כל השדות
+            </div>
             <input type="button" name="submit"  id="submit"  class="submit" value="Submit"  />
             <input type="button" name="preview" id="preview" class="submit" value="Preview" />
 			<input id="hiddenSubmit" type="submit" style="display: none" />
