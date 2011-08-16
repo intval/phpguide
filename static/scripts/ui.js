@@ -646,10 +646,10 @@ function register_new_member()
 
 
 // insist on load completion before even trying to put up social buttons
-window.onload = function()
+window.setTimeout(function()
 {
-	win_height = getWindowHeight();
-        var loc = window.location.protocol + '//' + window.location.hostname;
+    win_height = getWindowHeight();
+    var loc = window.location.protocol + '//' + window.location.hostname;
 	
     $('#social_buttons').html
     (
@@ -665,7 +665,8 @@ window.onload = function()
         '></iframe>'
 
     );
-
+    
+    load('https://apis.google.com/js/plusone.js');
 
     if($('#like_for_concrete_post').length > 0)
     {
@@ -682,6 +683,6 @@ window.onload = function()
             '></iframe>'
         );
     }
-
-    load('https://apis.google.com/js/plusone.js');
-}
+    
+    
+}, 1000);

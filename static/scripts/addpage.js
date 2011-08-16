@@ -13,14 +13,35 @@ window.onbeforeunload = function(e)
 
 
 $(document).ready(function() {
-    jQuery('#submit' ).click(  {target:'_self'}, submit_newpost_form );
-    jQuery('#preview').click(  {target:'blank'}, submit_newpost_form );
+    
+
+    jQuery('#submit' ).click( function() { submit_newpost_form('_self') });
+    jQuery('#preview').click( function() { submit_newpost_form('blank') });
+    
+
+    // select all desired input fields and attach tooltips to them
+    $("#newPostForm input[type=text]").tooltip({
+
+        // place tooltip on the right edge
+        position: "center left",
+
+        // a little tweaking of the position
+        offset: [-2, 10],
+
+        // use the built-in fadeIn/fadeOut effect
+        effect: "fade",
+
+        // custom opacity setting
+        opacity: 0.7
+
+    }); 
+    
 });
 
 
-function submit_newpost_form( e )
+function submit_newpost_form( target )
 {
-    var target = e.data.target || 'blank';
+    var target = target || 'blank';
     
     if(!validate_newpost_form()) return;
     
@@ -44,10 +65,6 @@ function validate_newpost_form()
     };
     
     
-    // Go threw the entire form and mark empty fields
-    jQuery('#newPostForm input[type="text"], #newPostForm textarea').each(iterator);
-    
-    
     // function triggered onchange of a "marked as empty" field to unmark it
     var unmark_field_on_change = function( e )
     {
@@ -57,36 +74,15 @@ function validate_newpost_form()
         }
     }
     
+    // Go threw the entire form and mark empty fields
+    jQuery('#newPostForm input[type="text"], #newPostForm textarea').each(iterator);
+    
     
     // show / hide error message
     all_valid ? jQuery('#newpost_error_text').hide() : jQuery('#newpost_error_text').show();
     return all_valid;
 }
 
-
-
-
-// execute your scripts when the DOM is ready. this is a good habit
-window.load = function() {
-    
-  /*
-    // select all desired input fields and attach tooltips to them
-    $("#add_form_form input[type=text]").tooltip({
-
-        // place tooltip on the right edge
-        position: "center left",
-
-        // a little tweaking of the position
-        offset: [-2, 10],
-
-        // use the built-in fadeIn/fadeOut effect
-        effect: "fade",
-
-        // custom opacity setting
-        opacity: 0.7
-
-    });*/
-};
 
 
 

@@ -34,7 +34,7 @@ class AddController extends Controller
                 $author = User::get_current_user();
             }
             
-            $this->addscripts( 'bbcode', 'ui', 'addpage');
+            $this->addscripts('http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js', 'bbcode', 'ui', 'addpage');
             
             $view_data = array
             (
@@ -55,7 +55,7 @@ class AddController extends Controller
             {
                 $curuser = User::get_current_user();
                 
-                // fails if id is not defined, or filter fails, or id = 0
+                // fails if id is not defined, or filter wouldnt validate, or id = 0
                 if( $id = filter_input(INPUT_GET, 'edit', FILTER_VALIDATE_INT) )
                 {
                     if(    null === ($article = Article::model()->findByPk($id))  ||
