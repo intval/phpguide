@@ -42,14 +42,18 @@ class LoginController extends Controller
         }
         
         public function actionLogout()
-		{
-			User::get_current_user()->logout();
-			$this->redirect(Yii::app()->homeUrl);
-		}
+        {
+                User::get_current_user()->logout();
+                $this->redirect(Yii::app()->homeUrl);
+        }
         
         public function actionRegister()
         {
-            if(!empty($_POST['user']) and !empty($_POST['pass']))
+            if(mb_strlen($_POST['user']) > 15)
+            {
+                echo ':err:' , 'אנה בחרו שם משתמש קצר יותר';
+            }
+            else if(!empty($_POST['user']) and !empty($_POST['pass']))
             {
                 try
                 {

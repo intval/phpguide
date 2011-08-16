@@ -101,7 +101,7 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			
+			array('member_name', 'length', 'max' => 15)
 		);
 	}
 
@@ -286,6 +286,9 @@ class User extends CActiveRecord
         
         
     
+    /**
+     * @todo implement
+     */
     public function getNewForumPostsCount()
     {
         return 1;

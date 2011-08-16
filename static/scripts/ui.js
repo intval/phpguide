@@ -561,7 +561,7 @@ function register_new_member()
     
     var reg = new RegExp('^[\\w\\u0590-\\u05FFא-ת_]*$', 'ig');
     
-    if( user.length < 3 || !( reg.test(user)) ) 
+    if( user.length < 3 || user.length > 15 || !( reg.test(user)) ) 
     {
         $('#new_user_name').addClass('err');
         $('#new_user_name').focus();
