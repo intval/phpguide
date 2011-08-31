@@ -11,14 +11,14 @@ class CommentsController extends Controller
 
 	/**
 	 * Creates a new comment.
-	 * 
+	 * @todo A proper solution would be to serve an error message regarding time limit
 	 */
 	public function actionAdd()
 	{
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Comment']))
+		if(isset($_POST['Comment']) && User::get_current_user()->last_post_time < time()-15)
 		{
                         $model=new Comment;
 			$model->attributes=$_POST['Comment'];
@@ -35,9 +35,7 @@ class CommentsController extends Controller
                         catch( Exception $e)
                         {
                             // empty response indicates an error
-                        }
-                        
-
+                        }   
 		}
 
         }

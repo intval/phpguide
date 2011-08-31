@@ -72,65 +72,60 @@
 class User extends CActiveRecord
 {
     
-        /** Cookie name to store user's info */
-        const COOKIE_NAME = 'SMFCookie63';
-    
-    
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return User the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /** Cookie name to store user's info */
+    const COOKIE_NAME = 'SMFCookie63';
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'zzsmf_members';
-	}
+    /** holding last comments timestamp to avaoid spam */
+    public $last_post_time;
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('member_name', 'length', 'max' => 15)
-		);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return User the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+            return parent::model($className);
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-                    'articles' => array(self::HAS_MANY, 'Article',  'id_member' ),
-                    'about'    => array(self::HAS_ONE,  'UserInfo', 'id_member', 'on' => 'about.id_theme = 1 AND variable="cust_37"' )
-		);
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+            return 'zzsmf_members';
+    }
 
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+            // NOTE: you should only define rules for those attributes that
+            // will receive user inputs.
+            return array(
+                    array('member_name', 'length', 'max' => 15)
+            );
+    }
+
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+            // NOTE: you may need to adjust the relation name and the related
+            // class name for the relations automatically generated below.
+            return array(
+                'articles' => array(self::HAS_MANY, 'Article',  'id_member' ),
+                'about'    => array(self::HAS_ONE,  'UserInfo', 'id_member', 'on' => 'about.id_theme = 1 AND variable="cust_37"' )
+            );
+    }
+
+          
+    /** @var User refers to the current user model */
+    private static $current_user;
         
         
-        
-        
-        
-        
-        
-        
-        /** @var User refers to the current user model */
-        private static $current_user; 
-        
-        
-        /**
+     /**
      * Returns User instance of the current user
      * @return User
      */
@@ -163,14 +158,16 @@ class User extends CActiveRecord
          self::$current_user = & $this;
          setcookie(self::COOKIE_NAME, serialize(array($this->id_member, sha1($this->passwd. $this->password_salt), time()+315360000, 0)), time()+315360000, '/');
      }
-     
+
+
      /** Destory the session, and clean up cookie data */
      public function logout()
      {
             Yii::app()->session->destroy();
             unset(Yii::app()->request->cookies[self::COOKIE_NAME]);
      }
-        
+
+
     /**
      * Checks whether current users info is stored in session
      * @return User
@@ -242,6 +239,7 @@ class User extends CActiveRecord
         $user->is_blog_admin = 0; 
         
         $user->save();
+        $user->last_post_time = now();
         
         $user->changeNameAndPass('משתמש_'.$user->id_member);
         return $user;
