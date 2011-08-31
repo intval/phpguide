@@ -7,6 +7,8 @@
  * @author Alex Raskin (Alex@phpguide.co.il)
  */
 
+// Setting the db_connection_config array there
+include dirname(__FILE__).'/dbconnection.php';
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
@@ -31,7 +33,7 @@ return array(
 	'components'=>array
          (
 		'session'       => array( 'autoStart' => true),
-		'db'            => include dirname(__FILE__).'/dbconnection.php',
+		'db'            => $GLOBALS['db_connection_config'],
 		'errorHandler'  => array( 'errorAction'=>'homepage/error' ),
                 'urlManager'    => array
                 (

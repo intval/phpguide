@@ -5,7 +5,7 @@
  * @author Alex Raskin (Alex@phpguide.co.il)
  */
 
-return array
+$GLOBALS['db_connection_config'] = array
 (
 	'connectionString' => 'mysql:host=localhost;dbname=YOUR_DATABASE',
         'username' => 'root',
