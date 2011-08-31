@@ -36,7 +36,7 @@ Class RecentEvents Extends CWidget
         ");
         
         
-        $this->render('recentevents',array('events'=> $command->query() ));
+        $this->render('recentEvents',array('events'=> $command->query() ));
     }
 }
 
