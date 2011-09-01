@@ -10,11 +10,13 @@ class Controller extends CController
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
 	 */
 	public $layout='//layouts/main';
+
 	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */
 	public $menu=array();
-	/**
+
+        /**
 	 * @var array the breadcrumbs of the current page. The value of this property will
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
 	 * for more details on how to specify this property.
@@ -88,10 +90,19 @@ class Controller extends CController
          */
         public function __construct($id, $module = null)
         {
-            // nginx access apache via internal communications, therefore REQUEST_URI 
-            // is missing. But nginx kindly pushes that value into another server var.
-            $this->facebook['current_page_url'] = 'http://' . $_SERVER['HTTP_HOST'] . (isset($_SERVER["REDIRECT_URL"]) ? $_SERVER["REDIRECT_URL"] : $_SERVER["REQUEST_URI"]);
-            $this->facebook['image'] = 'http://' . $_SERVER['HTTP_HOST'] . '/static/images/logo.jpg';
+            if(!isset($_SERVER["HTTP_USER_AGENT"]) || stristr($_SERVER["HTTP_USER_AGENT"],'facebook') === FALSE)
+            {
+                // should display microformats metadata only to facebook client
+                $this->facebook = null;
+            }
+            else
+            {
+                // nginx access apache via internal communications, therefore REQUEST_URI
+                // is missing. But nginx kindly pushes that value into another server var.
+                $this->facebook['current_page_url'] = 'http://' . $_SERVER['HTTP_HOST'] . (isset($_SERVER["REDIRECT_URL"]) ? $_SERVER["REDIRECT_URL"] : $_SERVER["REQUEST_URI"]);
+                $this->facebook['image'] = 'http://' . $_SERVER['HTTP_HOST'] . '/static/images/logo.jpg';
+            }
+
             parent::__construct($id, $module);
         }
         
