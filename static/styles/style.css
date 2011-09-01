@@ -147,7 +147,18 @@ ul.header ul.dropped_submenu li a:hover {background-color:white;}
 ul.header ul.dropped_submenu .topline {border-top:1px solid #aaa}
 
 
-
+ul.header li a.chat { position: relative; }
+ul.header li a.chat div
+{
+    position:absolute;
+    font-size: 11px;
+    color:red;
+    background:white;
+    border:1px solid black;
+    top: 0;
+    right:10px;
+    padding: 2px 3px;
+}
 
 /**************************** Content Formatting ***************/
 

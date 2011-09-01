@@ -214,8 +214,8 @@ class User extends CActiveRecord
     private static function createNewUser()
     {
         $user = new User();
-        
-        $user->member_name= 'tempname_'. rand();
+
+        $user->member_name= 'tempname_'. rand(9999,99999);
         $user->date_registered = time();
         $user->last_site_visit = time();
         $user->member_ip  = Helpers::getip();
@@ -239,8 +239,8 @@ class User extends CActiveRecord
         $user->is_blog_admin = 0; 
         
         $user->save();
-        $user->last_post_time = now();
-        
+        $user->last_post_time = time();
+
         $user->changeNameAndPass('משתמש_'.$user->id_member);
         return $user;
         

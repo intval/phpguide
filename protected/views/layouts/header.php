@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he">
 <head>
-	<base href="<?=bu()."/"?>" />
+    <base href="<?=bu()."/"?>" />
     <meta charset="utf-8" />
     <title><?=e($this->vars['title'])?></title>
 
@@ -37,7 +37,10 @@
        <ul class='header' id="headernav">
             <li><a href='/forum/' title='פורום PHP' style="color:orangered;font-weight:bold;" class='forum' >פורום PHP</a></li>
             <li><a href="/עיצובים_להורדה" title="עיצובים מימין לשמאל חינם" class="templates">עיצובים להורדה</a></li> 
-            <li><a href='/phplive' class="phplive" title='הפעלת קוד PHP און ליין' >php און-ליין</a></li>
+            <li><a href='<?=bu('phplive')?>' class="phplive" title='הפעלת קוד PHP און ליין' >php און-ליין</a></li>
+            <li><a href="<?=bu('chat')?>" class="chat" title="צאט מפתחים" >צ'אט PHP
+                    <div><?= ChatController::count_online_members()?></div>
+                </a>
 	</ul>
     </nav>
     <div class='clear'></div>

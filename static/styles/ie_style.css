@@ -5,6 +5,8 @@
 #header ul.header a.phplive { background: url('/static/images/phplive.png') no-repeat top center !important; }
 #header ul.header a.tools { background: url('/static/images/tools.png') no-repeat top center !important; }
 #header ul.header a.add { background: url('/static/images/add.png') no-repeat top center !important; }
+#header ul.header a.chat { background: url('/static/images/chat.png') no-repeat top center !important; }
+
 #sidebar a.active {	background:#77b3d8 url('/static/images/arr.png') 0 -2px no-repeat !important; }
 .next-chapter { background: url('/static/images/next.png') no-repeat center right !important; }
 .rssfeed{background:url('/static/images/feed.png') no-repeat right center !important}
