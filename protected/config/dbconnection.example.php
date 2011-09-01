@@ -7,9 +7,9 @@
 
 $GLOBALS['db_connection_config'] = array
 (
-	'connectionString' => 'mysql:host=localhost;dbname=YOUR_DATABASE',
-        'username' => 'root',
-        'password' => '',
+	'connectionString' => 'mysql:host=localhost;dbname=YOURDATABASE',
+	'username' => 'root',
+	'password' => '',
     
 	'emulatePrepare' => true,
 	'charset' => 'utf8',
