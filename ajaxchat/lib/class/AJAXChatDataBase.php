@@ -12,14 +12,24 @@ class AJAXChatDataBase {
 
 	var $_db;
 
-	function AJAXChatDataBase(&$dbConnectionConfig) {
-		switch($dbConnectionConfig['type']) {
+	function AJAXChatDataBase(&$dbConnectionConfig) { 
+		switch($dbConnectionConfig['type']) { 
 			case 'mysqli':
+                                require(AJAX_CHAT_PATH.'lib/class/AJAXChatMySQLiDataBase.php');
+                                require(AJAX_CHAT_PATH.'lib/class/AJAXChatMySQLiQuery.php');
 				$this->_db = new AJAXChatDatabaseMySQLi($dbConnectionConfig);
 				break;
 			case 'mysql':
+                                require(AJAX_CHAT_PATH.'lib/class/AJAXChatMySQLDataBase.php');
+                                require(AJAX_CHAT_PATH.'lib/class/AJAXChatMySQLQuery.php');
 				$this->_db = new AJAXChatDatabaseMySQL($dbConnectionConfig);
 				break;
+                            
+                        case 'PDO':
+                                require(AJAX_CHAT_PATH.'lib/class/AJAXChatPDODataBase.php');
+                                require(AJAX_CHAT_PATH.'lib/class/AJAXChatPDOQuery.php');
+                                $this->_db = new AJAXChatDatabasePDO($dbConnectionConfig);
+                                break;
 			default:
 				// Use MySQLi if available, else MySQL (and check the type of a given database connection object):
 				if(function_exists('mysqli_connect') && (!$dbConnectionConfig['link'] || is_object($dbConnectionConfig['link']))) {

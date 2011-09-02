@@ -9,6 +9,19 @@
 
 class CustomAJAXChat extends AJAXChat {
 
+    private $passed_pdo_instance;
+
+    // Initialize custom configuration settings
+    function initCustomConfig()
+    {
+            // Use the existing phpBB database connection:
+            $this->setConfig('dbConnection', 'link', $this->passed_pdo_instance);
+    }
+    public function  __construct(PDO $pdolink = null)
+    {
+        if($pdolink !== null) $this->passed_pdo_instance = $pdolink;
+        parent::__construct();
+    }
 
     // Returns an associative array containing userName, userID and userRole
     // Returns null if login is invalid

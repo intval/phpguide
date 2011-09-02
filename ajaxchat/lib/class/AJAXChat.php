@@ -97,6 +97,7 @@ class AJAXChat {
 	}
 	
 	function initDataBaseConnection() {
+                
 		// Create a new database object:
 		$this->db = new AJAXChatDataBase(
 			$this->_config['dbConnection']

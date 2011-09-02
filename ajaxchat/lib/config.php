@@ -17,22 +17,26 @@ define('AJAX_CHAT_GUEST',		0);
 // AJAX Chat config parameters:
 $config = array();
 
-// Setting db_connection_config array there
-require_once dirname(__FILE__).'/../../protected/config/dbconnection.php';
-
+if( !defined('YII'))
+{
+    // Reuse connection info
+    require_once AJAX_CHAT_PATH . '/../protected/config/dbconnection.php';
+}
 
 // Database connection values:
 $config['dbConnection'] = array();
+$config['dbConnection']['dsn'] = $GLOBALS['db_connection_config']['connectionString'];
+
 // Database hostname:
-$config['dbConnection']['host'] = 'localhost';
+$config['dbConnection']['host'] = null;
 // Database username:
-$config['dbConnection']['user'] = 'root';
+$config['dbConnection']['user'] = $GLOBALS['db_connection_config']['username'];
 // Database password:
-$config['dbConnection']['pass'] = '123456';
+$config['dbConnection']['pass'] = $GLOBALS['db_connection_config']['password'];
 // Database name:
-$config['dbConnection']['name'] = 'intva109_phpbook';
+$config['dbConnection']['name'] = null;
 // Database type:
-$config['dbConnection']['type'] = null; // defaults to MYSQLI
+$config['dbConnection']['type'] = 'PDO'; // defaults to MYSQLI
 // Database link:
 $config['dbConnection']['link'] = null; // defaults to creating new connection
 

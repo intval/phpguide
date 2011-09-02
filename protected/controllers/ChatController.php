@@ -16,7 +16,7 @@ class ChatController extends Controller
         require(AJAX_CHAT_PATH.'lib/classes.php');
 
         // Run
-        new CustomAJAXChat();
+        new CustomAJAXChat(Yii::app()->db->getPdoInstance());
     }
 
 

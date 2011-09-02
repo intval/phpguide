@@ -10,10 +10,6 @@
 // Include Class libraries:
 require(AJAX_CHAT_PATH.'lib/class/AJAXChat.php');
 require(AJAX_CHAT_PATH.'lib/class/AJAXChatDataBase.php');
-require(AJAX_CHAT_PATH.'lib/class/AJAXChatMySQLDataBase.php');
-require(AJAX_CHAT_PATH.'lib/class/AJAXChatMySQLQuery.php');
-require(AJAX_CHAT_PATH.'lib/class/AJAXChatMySQLiDataBase.php');
-require(AJAX_CHAT_PATH.'lib/class/AJAXChatMySQLiQuery.php');
 require(AJAX_CHAT_PATH.'lib/class/AJAXChatEncoding.php');
 require(AJAX_CHAT_PATH.'lib/class/AJAXChatString.php');
 require(AJAX_CHAT_PATH.'lib/class/AJAXChatFileSystem.php');
