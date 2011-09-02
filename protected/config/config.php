@@ -44,7 +44,8 @@ return array(
                         '' => 'homepage/index',
                         '<article_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Article/index',
                         'cat/<cat_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Category/index',  
-                        '<controller:[a-z]+>/<action:\w+>'             => '<controller>/<action>',
+                        '<controller:[a-z]+>/<action:\w+>'          => '<controller>/<action>',
+                        'rss'                                       => 'Homepage/rss',
                         'phplive'                                   => 'Phplive/index',
                                 'עיצובים_להורדה' => 'Templates/index',
                             'עיצובים_להורדה/<id:\d+>' => 'Templates/showConcreteTemplate',
@@ -58,8 +59,8 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array
         (
-		'adminEmail'=>'Alex@phpguide.co.il',
-             /******************************************************/
+            'adminEmail'=>'Alex@phpguide.co.il',
+            /******************************************************/
             /**** This is production path, above public_html ******/
             /**** Edit the path in localize.php, not here    ******/
             /******************************************************/

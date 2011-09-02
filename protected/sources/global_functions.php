@@ -20,14 +20,18 @@ function e($data)
  * Returns baseUrl for given url if any, otherwise returns Yii::app()->baseUrl
  * @staticvar string $baseUrl caches baseUrl instead of calculating it every function call
  * @param string $url postfix the baseUrl with this provided url
+ * @param bool $prepend_host - shall add http://hostname/ to url ?
  * @return string Yii::app()->baseUrl + $url
  */
-function bu($url = null)
+function bu($url = null, $prepend_host = false)
 {
     static $baseUrl;
     if ($baseUrl===null)
     {
         $baseUrl=Yii::app()->getRequest()->getBaseUrl();
     }
-    return $url===null ? $baseUrl : $baseUrl.'/'.ltrim($url,'/');
+    
+    return
+        ($prepend_host ? Yii::app()->request->getHostInfo() : '') .
+        ($url===null ? $baseUrl : $baseUrl.'/'.ltrim($url,'/'));
 }

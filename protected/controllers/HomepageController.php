@@ -4,49 +4,60 @@ class HomepageController extends Controller
 {
     
    
-	public function actionIndex()
-	{
-                
-                $this->addscripts('ui');
-		$this->render('index' , 
-                        array
-                        (
-                            'categories' => Category::model()->findAll() ,
-                            'articles'   => Article::model()->newest()->findAll()
-                        )   
-                 );
-	}
+    public function actionIndex()
+    {
+
+        $this->addscripts('ui');
+        $this->render('index' ,
+            array
+            (
+                'categories' => Category::model()->findAll() ,
+                'articles'   => Article::model()->newest()->findAll()
+            )
+         );
+    }
         
-        public function actionError()
+
+    public function actionError()
+    {
+        // empty layout without header, footer, sidebar
+        $this->layout = '/';
+
+        if( false !== ($error =  Yii::app()->errorHandler->error ))
         {
-            // empty layout without header, footer, sidebar
-            $this->layout = '/';
-            
-            if( false !== ($error =  Yii::app()->errorHandler->error ))
-            {   
-                if($error['type'] === 'CHttpException' and $error['code'] === 404)
+            if($error['type'] === 'CHttpException' and $error['code'] === 404)
+            {
+                if( !empty($error['message']) )
                 {
-                    if( !empty($error['message']) )
-                    {
-                        $alternatives = Article::model()->similarTo($error['message'])->findAll();
-                    }
-                    else
-                    {
-                        $alternatives = Article::model()->newest(8)->findAll();
-                    }
-                    $this->render('error_404', array('alternatives' => $alternatives));
+                    $alternatives = Article::model()->similarTo($error['message'])->findAll();
                 }
                 else
                 {
-                    $this->render('error_500');
+                    $alternatives = Article::model()->newest(8)->findAll();
                 }
-                
+                $this->render('error_404', array('alternatives' => $alternatives));
             }
             else
             {
-                $this->redirect(Yii::app()->homeUrl);
+                $this->render('error_500');
             }
-           
+
+        }
+        else
+        {
+            $this->redirect(Yii::app()->homeUrl);
         }
 
+    }
+
+    public function actionRss()
+    {
+        $this->layout = '/';
+        $this->render('rss' ,
+            array
+            (
+                'articles'   => Article::model()->newest(10)->findAll()
+            )
+         );
+    }
 }
