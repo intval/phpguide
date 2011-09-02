@@ -5,6 +5,68 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 -- --------------------------------------------------------
 
+
+CREATE TABLE IF NOT EXISTS `ajax_chat_bans` (
+  `userID` int(11) NOT NULL,
+  `userName` varchar(64) COLLATE utf8_bin NOT NULL,
+  `dateTime` datetime NOT NULL,
+  `ip` varbinary(16) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `ajax_chat_bans`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ajax_chat_invitations`
+--
+
+CREATE TABLE IF NOT EXISTS `ajax_chat_invitations` (
+  `userID` int(11) NOT NULL,
+  `channel` int(11) NOT NULL,
+  `dateTime` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `ajax_chat_invitations`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ajax_chat_messages`
+--
+
+CREATE TABLE IF NOT EXISTS `ajax_chat_messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
+  `userName` varchar(64) COLLATE utf8_bin NOT NULL,
+  `userRole` int(1) NOT NULL,
+  `channel` int(11) NOT NULL,
+  `dateTime` datetime NOT NULL,
+  `ip` varbinary(16) NOT NULL,
+  `text` text COLLATE utf8_bin,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=52 ;
+
+
+
+CREATE TABLE IF NOT EXISTS `ajax_chat_online` (
+  `userID` int(11) NOT NULL,
+  `userName` varchar(64) COLLATE utf8_bin NOT NULL,
+  `userRole` int(1) NOT NULL,
+  `channel` int(11) NOT NULL,
+  `dateTime` datetime NOT NULL,
+  `ip` varbinary(16) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+----------------------------------------------------------------
 --
 -- Table structure for table `blog`
 --
