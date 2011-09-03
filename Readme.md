@@ -12,6 +12,7 @@ Installation
 
 - Download [YiiFramework](http://www.yiiframework.com/)
 
+
 - Extract the Yii archive and copy "framework" directory to your server
 
 - Download [this code](https://github.com/intval/phpguide/zipball/master) and put it on your server
@@ -29,6 +30,7 @@ Database Setup
 - Update `dbconnection.php` with your database connection info
 
 - Adjust the path to the framework directory in `localize.php`
+
 
 If you put "framework" directory in public_html - it should be somethig like
 
