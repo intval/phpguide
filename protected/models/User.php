@@ -142,7 +142,9 @@ class User extends CActiveRecord
             
             // create new, non existing yet, user
             if($user === null) $user = self::createNewUser();
-                
+
+            $user->last_site_visit = time();
+            $user->save();
             $user->make_user_current();
         }
         
