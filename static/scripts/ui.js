@@ -111,6 +111,58 @@ function show_comments_alert(message, type)
 /******************************************************************************/
 
 
+var bbcodes_loaded = false;
+function expand_forum_question_textarea(e)
+{
+    var val = jQuery.trim( $('#forum_question_text').val() ).replace("\r","\n") + '';
+    var length = val.length;
+    var display = $('#forum_question_controls').css('display');
+
+    var indexOfNewLine = val.indexOf("\n");
+    if( indexOfNewLine < 0) indexOfNewLine = 100000;
+
+    jQuery('#new_qna_subject_preview').html( val.substr(0, Math.min(indexOfNewLine, 50)) );
+
+    if( e.ctrlKey && ( e.keyCode==10 || e.keyCode==13 ) && length > 20 )
+    {
+        submit_new_question();
+        return;
+    }
+
+
+
+    // Displaying submit button if any text inside
+    if( length > 0 && display != 'inline')
+    {
+        $('#forum_question_controls').css('display', 'inline');
+
+        if(!bbcodes_loaded)
+        {
+            bbcodes_loaded = true;
+            load('/static/scripts/bbcode.js');
+        }
+    }
+    if(length < 1 && display=='inline')
+    {
+        $('#forum_question_controls').hide();
+    }
+
+    // expanding the textarea on long text
+    if(length > 15 && $('#forum_question_text').prop('rows') < 5)
+    {
+        window.scrollTo( 0, top_of_question_form) ;
+        $('#forum_question_text').prop('rows', '20');
+        $('#forum_question_text').focus();
+    }
+
+    if(length < 15 && $('#forum_question_text').prop('rows') > 5)
+    {
+        $('#forum_question_text').prop('rows', '2');
+    }
+}
+
+
+
 function submit_new_question()
 {
     jQuery('#forum_question_text').prop('disabled', true);
