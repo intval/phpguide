@@ -15,9 +15,6 @@ function handle_ctrl_enter(e)
 var submitted_comment;
 function sendcomment()
 {
-
-
-    
     if($.trim($('#commenttext').val()) == '') 
     {
         $('#commenttext').css('border', "1px solid red");
@@ -30,6 +27,7 @@ function sendcomment()
         author  : jQuery('#user_name').html()
     };
 
+    show_comments_alert('', 'hide');
     $('#comments_form').hide();
     $('#comments_loading_img').show();
     
@@ -37,9 +35,10 @@ function sendcomment()
     return;
 }
 
-function nl2br (str, is_xhtml) {   
-var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
-return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+function nl2br (str, is_xhtml)
+{   
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }
 
 
@@ -48,9 +47,13 @@ function comment_sumbitted_callback(response)
     $('#comments_loading_img').hide();
 
     
-    if (response == '') 
+    if (response == 'error')
     {
-        alert('התרחשה שגיאה. אנא נסו שוב.');
+        show_comments_alert('התרחשה שגיאה. אנא נסו שוב.', 'error');
+    }
+    else if (response == 'spam')
+    {
+        show_comments_alert('יש להמתין 15 שניות בין תגובה לתגובה', 'warn');
     }
     else
     {
@@ -79,6 +82,24 @@ function comment_sumbitted_callback(response)
 }
 
 
+
+function show_comments_alert(message, type)
+{
+    switch (type)
+    {
+        case 'hide':
+            $('#comments_alert').hide();
+            break;
+
+        case 'warn':
+            $('#comments_alert').text(message).attr('class','warn_alert').fadeIn();
+            break;
+
+        case 'error':
+            $('#comments_alert').text(message).attr('class','error_alert').fadeIn("slow");
+            break;
+    }
+}
 
 
 

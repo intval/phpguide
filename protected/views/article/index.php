@@ -72,6 +72,7 @@
                 <span class="label-comment">תגובה:</span>
             </div>
             <div class="leftcolumn">
+                <div id="comments_alert"> התגובה נוספה בהצלחה</div>
                 <form id="comments_inputs" >
                 <textarea cols="50" rows="10" name="Comment[text]" id='commenttext'></textarea><br/>
                 <input type='hidden' name="Comment[blogid]"  value="<?=e($article->id)?>" />

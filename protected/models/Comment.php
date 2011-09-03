@@ -10,6 +10,7 @@
  * @property string $author
  * @property string $text
  * @property integer $approved
+ * @property string $postingip
  */
 class Comment extends CActiveRecord
 {

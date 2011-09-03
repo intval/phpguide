@@ -524,7 +524,7 @@ span.underline
 .comment-table
 {
     margin-top: 50px;
-    }
+}
 
 .comment-table .rightcolumn { float:right; width:100px; }
 .comment-table .leftcolumn { float:right; }
@@ -559,6 +559,27 @@ span.underline
 {
 	color:gray;
 	font-size:90%;
+}
+
+.comment-table .error_alert
+{
+    background-color:#ff5e6a !important;
+    color:white !important;
+}
+
+.comment-table .warn_alert
+{
+    background-color:#fff9ba !important;
+}
+
+#comments_alert
+{
+    background-color:#8dcf82;
+    padding:4px 0;
+    text-indent: 6px;
+    margin-bottom: 3px;
+    display:none;
+    color:black;
 }
 
 

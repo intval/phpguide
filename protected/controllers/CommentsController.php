@@ -9,35 +9,76 @@ class CommentsController extends Controller
 	public $layout='/';
 
 
-	/**
+        /** Num of seconds required to pass between two comment posts*/
+        const ANTISPAM_DELAY = 15;
+
+
+        /**
 	 * Creates a new comment.
 	 * @todo A proper solution would be to serve an error message regarding time limit
 	 */
 	public function actionAdd()
 	{
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+            // Uncomment the following line if AJAX validation is needed
+            // $this->performAjaxValidation($model);
 
-		if(isset($_POST['Comment']) && User::get_current_user()->last_post_time < time()-15)
-		{
-                        $model=new Comment;
-			$model->attributes=$_POST['Comment'];
-                        
-                        $model->approved    = 1;
-                        $model->author      = User::get_current_user()->member_name;
-                        $model->date        = new CDbExpression('NOW()');
-        
-                        try
-                        {
-                            $model->save();
-                            echo 'תודה, תגובתכם נוספה';  
-                        }
-                        catch( Exception $e)
-                        {
-                            // empty response indicates an error
-                        }   
-		}
+            if(isset($_POST['Comment']))
+            {
+                if (!$this->antispam_check_passed())
+                {
+                    echo 'spam';
+                    return;
+                }
 
+                $model=new Comment;
+                $model->attributes=$_POST['Comment'];
+
+                $model->approved    = 1;
+                $model->author      = User::get_current_user()->member_name;
+                $model->date        = new CDbExpression('NOW()');
+                $model->postingip   = User::get_current_user()->member_ip;
+
+                try
+                {
+                    $model->save();
+                    echo 'ok';
+                }
+                catch( Exception $e)
+                {
+                    echo 'error';
+                }
+            }
+
+        }
+
+        /** Checks whether the ANTISPAM delay has passed since the last comment */
+        private function antispam_check_passed()
+        {
+            $is_comment_ok = true;
+
+            try
+            {
+                $is_comment_ok = Yii::app()->db->createCommand
+                (
+                 "SELECT COUNT(*)
+                  FROM " . Comment::model()->tableName() . "
+                  WHERE postingip = :ip AND
+                  date > DATE_SUB(NOW(), INTERVAL :delay SECOND)"
+                ) ->queryScalar
+                (
+                    array
+                    (
+                        'ip' => User::get_current_user()->member_ip,
+                        'delay' => self::ANTISPAM_DELAY
+                    )
+                ) < 1;
+            }
+            catch(Exception $e)
+            {
+                $is_comment_ok = false;
+            }
+
+            return $is_comment_ok;
         }
 
 

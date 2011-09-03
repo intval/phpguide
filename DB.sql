@@ -129,12 +129,14 @@ CREATE TABLE IF NOT EXISTS `blog_comments` (
   `cid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `blogid` mediumint(8) unsigned NOT NULL,
   `date` datetime NOT NULL,
+  `postingip` varchar(15) NOT NULL,
   `author` varchar(25) NOT NULL,
   `text` text NOT NULL,
   `approved` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`cid`),
-  KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=396 ;
+  KEY `date` (`date`),
+  KEY `postingip` (`postingip`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `blog_comments`

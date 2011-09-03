@@ -75,8 +75,6 @@ class User extends CActiveRecord
     /** Cookie name to store user's info */
     const COOKIE_NAME = 'SMFCookie63';
 
-    /** holding last comments timestamp to avaoid spam */
-    public $last_post_time;
 
     /**
      * Returns the static model of the specified AR class.
@@ -144,6 +142,7 @@ class User extends CActiveRecord
             if($user === null) $user = self::createNewUser();
 
             $user->last_site_visit = time();
+            $user->member_ip = Helpers::getip();
             $user->save();
             $user->make_user_current();
         }
