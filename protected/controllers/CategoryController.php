@@ -8,21 +8,21 @@
  */
 class CategoryController extends Controller
 {
-	public function actionIndex($cat_url)
-	{
-            $category = Category::model()->with('articles')->byTimeDesc()-> findByAttributes(array('name' => $cat_url));
+    public function actionIndex($cat_url)
+    {
+        $category = Category::model()->with('articles')->byTimeDesc()-> findByAttributes(array('name' => $cat_url));
 
-            if( $category === null)
-            {
-                throw new CHttpException(404);
-            }
+        if( $category === null)
+        {
+            throw new CHttpException(404);
+        }
 
-            $this->vars['title']        =  $cat_url . ' — מדריכי PHP';
-            $this->vars['keywords']     =  $cat_url . ' מדריכים וכתבתות PHP';
-            $this->vars['description']  =  $cat_url . ' מדריכי PHP ותכנות אתרים' ;
+        $this->vars['title']        =  $cat_url . ' — מדריכי PHP';
+        $this->vars['keywords']     =  $cat_url . ' מדריכים וכתבתות PHP';
+        $this->vars['description']  =  $cat_url . ' מדריכי PHP ותכנות אתרים' ;
 
-            $this->addscripts('ui');
-            $this->render('//list/articlesInCategory', array('category' => $category));
-	}
+        $this->addscripts('ui');
+        $this->render('//list/articlesInCategory', array('category' => $category));
+    }
 
 }

@@ -65,7 +65,15 @@ class Article extends CActiveRecord
 	}
 
 
-	
+        /** Provides a way to save the model with corresponding relationships
+         * http://www.yiiframework.com/extension/esaverelatedbehavior */
+        public function behaviors()
+        {
+            return array
+            (
+                'ESaveRelatedBehavior' => array('class' => 'application.components.ESaveRelatedBehavior')
+            );
+        }
         
         
         

@@ -1,15 +1,35 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'newPostForm',
 	'enableAjaxValidation'=>false,
-        'action' => CController::createUrl('Add/save' . $editting_id ),
+        'action' => CController::createUrl('Add/save' ),
         'enableClientValidation' => true
 )); ?>
 
 <div class='addform'>
+
+    <div class="errors">
+        <?php
+
+            foreach( $article->getErrors() as $errors)
+            {
+               // $errors is an array of errors for concrete field if it has more then one error whithin it
+               echo nl2br(e(implode("\r\n",$errors))) , '<br/>';
+            }
+
+            foreach( $plain->getErrors() as $error)
+            {
+               echo nl2br(e(implode("\r\n",$errors))) , '<br/>';
+            }
+
+        ?>
+    </div>
+
+
 	<h1 class="title">כותרת</h1>
-	
+
+            <input type="hidden" name="edit" value="<?=$editting_id?>" />
             
-            <?= $form->textField($model,'title', array('class' => 'name', 'placeholder' => 'כותרת', 'tabindex' => '1')); ?><br />
+            <?= $form->textField($article,'title', array('class' => 'name', 'placeholder' => 'כותרת', 'tabindex' => '1')); ?><br />
             
             <div>
                 <img class="right" src="<?=e($author->avatar)?>" width="45" height="45"/>
@@ -32,11 +52,11 @@
             
             <br/>
             תמונה(75x75):
-            <?= $form->textField($model, 'image', array('tabindex'=>"4", 'dir'=>"ltr", 'class'=>"name", 'style'=>"width:350px",
+            <?= $form->textField($article, 'image', array('tabindex'=>"4", 'dir'=>"ltr", 'class'=>"name", 'style'=>"width:350px",
                    'title'=>"קישור לתמונה בגודל 75 על 75 שתופיע ליד הכתבה בעמוד הראשי")); ?>
             <br/>
             
-            <? if ($model->url !== null && $author->is_blog_admin): ?>
+            <? if ($article->url !== null && $author->is_blog_admin): ?>
             <br/><br/><label>
                 <input type="checkbox" name="change_permalink"/>
                 לשנות קישור קיים?</label><br/>             
@@ -59,19 +79,32 @@
                 <div class="anylinkmenu"></div>
             </div>
             <?= $form->textArea($plain, 'plain_content', array('class'=>"text", 'id'=>'data', 'tabindex'=>"5")) ?>
-            
+
+
+          <br/><br/>
+          <b>קטגוריה</b><br/>
+
+          <?= $form->dropDownList($article, 'categories', $allCategories,
+                  array('style'=>"width:350px;" , 'multiple' => 'true', 'class'=>"chzn-select", 'id'=>"test_me", 'name'=>"Article[categories]" ,'tabindex'=>"6"))
+                    ?>
+
+    
+
+          <br/><br/><br/><br/>
+
+
 
             <b>מנועי חיפוש:</b><br/><br/>
             מילות מפתח: 
-            <?= $form->textField($model, 'keywords', array('class' => 'name', 'tabindex' => '6')) ?> <br/>
+            <?= $form->textField($article, 'keywords', array('class' => 'name', 'tabindex' => '7')) ?> <br/>
             תיאור כתבה: 
-            <?= $form->textField($model, 'description', array('class' => 'name', 'tabindex' => '7')) ?><br/>
+            <?= $form->textField($article, 'description', array('class' => 'name', 'tabindex' => '8')) ?><br/>
 
             <div id="newpost_error_text"/>
             יש למלא את כל השדות
             </div>
             <input type="button" name="submit"  id="submit"  class="submit" value="Submit"  />
             <input type="button" name="preview" id="preview" class="submit" value="Preview" />
-			<input id="hiddenSubmit" type="submit" style="display: none" />
+            <input id="hiddenSubmit" type="submit" style="display: none" />
 </div>
 <?php $this->endWidget(); ?>
