@@ -1,7 +1,7 @@
 <div class="user_info">
         
   
-        <img src="<?=e($user->avatar)?>" alt="<?=e($user->member_name)?>" width="45" height="45" class="right"/>
+        <img src="<?=e($user->avatar)?>" alt="תמונה" width="45" height="45" class="right"/>
         <p class="right">
          
             שלום

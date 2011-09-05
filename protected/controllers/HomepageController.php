@@ -8,13 +8,7 @@ class HomepageController extends Controller
     {
 
         $this->addscripts('ui');
-        $this->render('index' ,
-            array
-            (
-                'categories' => Category::model()->findAll() ,
-                'articles'   => Article::model()->newest()->findAll()
-            )
-         );
+        $this->render('index' ,array('articles' => Article::model()->newest()->findAll()) );
     }
         
 

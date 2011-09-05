@@ -54,29 +54,6 @@
 </div>
 
 
-<div class="categories_list">
-    
-    <a name="guides_cats"></a>
-    <div>
-        <h4 class="right" width="250px" >מדריכים מתקדמים לפי קטגוריה</h4>
-        <a href="<?=bu('Add')?>" class="addlink left">הוסף מדריך</a>
-        <div class="clear"></div>
-    </div>
-    <div style="width:49%;" class="right">
-        <? $break = sizeof($categories) / 2; $i = 0;
-           foreach( $categories as $cat ):  ?>
-		
-        <a href=<?=bu("cat/" . e(urlencode($cat['name'])) . ".htm")?>><?=e($cat['name']);?></a><br/>
-        
-            <? if(++$i == $break ): ?> 
-                </div><div style="width:49%;" class="right">
-            <? endif; ?>
-        
-	<? endforeach; ?>
-    </div>
-    <div class="clear"></div>
-</div>
-
 
 <h3>פרסומים אחרונים</h3>
 <br/><br/>

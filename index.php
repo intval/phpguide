@@ -16,8 +16,6 @@
 
 
 
-
-
 // determine whether this is production environment
 $production = $_SERVER['REMOTE_ADDR'] != '127.0.0.1';
 
@@ -47,3 +45,5 @@ if( !$production )
 require_once($config['params']['PATH_TO_YII'].'/yii'.($production ? 'lite' : '').'.php');
 require_once(dirname(__FILE__).'/protected/sources/global_functions.php');
 Yii::createWebApplication($config)->run();
+
+

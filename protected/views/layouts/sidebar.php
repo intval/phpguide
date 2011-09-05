@@ -16,10 +16,10 @@
 
 
 
- <h3 class='blog-sidebar-links-header'>עדכונים אחרונים:</h3>
+ <h3 class='blog-sidebar-links-header'>מדריכים מתקדמים לפי קטגוריה</h3>
     
 
-<? $this->widget('application.components.RecentEvents'); ?>
+<? $this->widget('application.components.CategoriesWidget'); ?>
 
     
     
