@@ -35,6 +35,7 @@ return array(
 		'session'       => array( 'autoStart' => true),
 		'db'            => $GLOBALS['db_connection_config'],
 		'errorHandler'  => array( 'errorAction'=>'homepage/error' ),
+                'request'       => array('enableCsrfValidation' => true),
                 'urlManager'    => array
                 (
                     'urlFormat'=>'path',
@@ -46,11 +47,7 @@ return array(
                         'cat/<cat_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Category/index',  
                         '<controller:[a-z]+>/<action:\w+>'          => '<controller>/<action>',
                         'rss'                                       => 'Homepage/rss',
-                        'phplive'                                   => 'Phplive/index',
-                                'עיצובים_להורדה' => 'Templates/index',
-                            'עיצובים_להורדה/<id:\d+>' => 'Templates/showConcreteTemplate',
-                            'עיצובים_להורדה/topframe/<id:\d+>' => 'Templates/topframe',
-                                
+                        'phplive'                                   => 'Phplive/index'                                
                     )
 		)
 	),
@@ -62,7 +59,7 @@ return array(
             'adminEmail'=>'Alex@phpguide.co.il',
             /******************************************************/
             /**** This is production path, above public_html ******/
-            /**** Edit the path in localize.php, not here    ******/
+            /**** Edit the path in local_config.php, not here******/
             /******************************************************/
             'PATH_TO_YII' => dirname(__FILE__).'/../../framework',
             /******************************************************/
