@@ -24,7 +24,7 @@
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
     <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style.css")?>" rel="stylesheet" /><![endif]-->
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 </head>
 
 <body dir='rtl'>
@@ -36,7 +36,6 @@
     <nav>
        <ul class='header' id="headernav">
             <li><a href='/forum/' title='פורום PHP' style="color:orangered;font-weight:bold;" class='forum' >פורום PHP</a></li>
-            <li><a href="/עיצובים_להורדה" title="עיצובים מימין לשמאל חינם" class="templates">עיצובים להורדה</a></li> 
             <li><a href='<?=bu('phplive')?>' class="phplive" title='הפעלת קוד PHP און ליין' >php און-ליין</a></li>
             <li><a href="<?=bu('chat')?>" class="chat" title="צאט מפתחים" >צ'אט PHP
                     <div><?= ChatController::count_online_members()?></div>
