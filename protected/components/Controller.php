@@ -75,7 +75,7 @@ class Controller extends CController
         {
             foreach (func_get_args() as $url)
             {
-                if (substr($url, 0, 7) != "http://")
+                if (mb_substr($url, 0, 7) != "http://")
                 {
                     $url = bu("static/scripts/$url.js");
                 }
@@ -90,6 +90,7 @@ class Controller extends CController
          */
         public function __construct($id, $module = null)
         {
+
             if(!isset($_SERVER["HTTP_USER_AGENT"]) || stristr($_SERVER["HTTP_USER_AGENT"],'facebook') === FALSE)
             {
                 // should display microformats metadata only to facebook client
