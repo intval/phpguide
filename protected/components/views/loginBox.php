@@ -11,9 +11,11 @@
             <? if($user->is_registered): ?>
             <a href="/forum/"><?=$user->getNewForumPostsCount()?> הודעות פורום חדשות</a><br/>
             מאז ביקורך האחרון
-			<br/>
-            <a href="Login/logout">התנתק</a>
-			
+
+            <div class="logout-link" title="התנתק">
+                <a href="<?=bu('Login/logout')?>" title="התנתק">x</a>
+            </div>
+
             <? else: ?>
             ברוך הבא לאתר לימוד PHP
             <br/>
