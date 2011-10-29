@@ -13,17 +13,11 @@
 
 
 
+<!-- code from sekindo -->
+<script type="text/javascript" language="javascript" src="http://live.sekindo.com/live/liveView.php?s=25876"></script>
+<!-- code from sekindo -->
 
 
-
- <h3 class='blog-sidebar-links-header'>מדריכים מתקדמים לפי קטגוריה</h3>
-    
-
-<? $this->widget('application.components.CategoriesWidget'); ?>
-
-    
-    
-    <br/>
 
     
 
