@@ -13,8 +13,19 @@ class Helpers
     {
         return $date->format('Y-m-dTH:i:s');
     }
-    
-    
+
+    public static function dateStr2heb($date, $long = false)
+    {
+        return self::date2heb(new DateTime($date), $long);
+    }
+
+    public static  function dateStr2rfc($date)
+    {
+        return self::date2rfc(new DateTime($date));
+    }
+
+
+
     public static function anchorize_urls_in_text($string_containing_urls)
     {
             // clear url

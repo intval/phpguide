@@ -8,12 +8,18 @@ Class bbcodes
      * @param string $string the string to parse
      * @param string $page_title used as alt in img tags
      * @return string htmlSpecialChars escaped html code 
+     * @todo Refactor this allowhtml/page_title shit
      */
     public static function bbcode($string, $page_title, $allow_html = false)
     {
 
-        $string =  preg_replace_callback('#\[php\](.*)\[\/php\]#simU',   array('bbcodes', 'cutcode'), $string); 
-        if($allow_html) $string =  preg_replace_callback('#\[html\](.*)\[\/html\]#simU', array('bbcodes','cuthtml'), $string); 
+        $string =  preg_replace_callback('#\[php\](.*)\[\/php\]#simU',   array('bbcodes', 'cutcode'), $string);  
+        
+        
+        if($allow_html) 
+        {
+            $string =  preg_replace_callback('#\[html\](.*)\[\/html\]#simU', array('bbcodes','cuthtml'), $string); 
+        }
 
         // The easy part
         $string = str_replace
@@ -40,7 +46,7 @@ Class bbcodes
             '/\[url\="?(.*?)"?\](.*?)\[\/url\]/i', 
             '/\[img\s?(left|right)?\](.*?)\[\/img\]/i',
             '@\[color=([a-z0-9#]+)\](.*)\[/color\]@iU', 
-            '#\[youtube\].*?v\=([a-z0-9\-]+)&?.*?\[/youtube\]#i'
+            '#\[youtube\].*?v\=([a-z0-9\-_]+)&?.*?\[/youtube\]#i'
         ) ;
 
         $rep = Array

@@ -23,15 +23,21 @@ function e($data)
  * @param bool $prepend_host - shall add http://hostname/ to url ?
  * @return string Yii::app()->baseUrl + $url
  */
-function bu($url = null, $prepend_host = false)
+function bu($relativePath = null, $prepend_host = false)
 {
-    static $baseUrl;
-    if ($baseUrl===null)
+    $url = '';
+    
+    if($prepend_host) 
     {
-        $baseUrl=Yii::app()->getRequest()->getBaseUrl();
+         $url .= Yii::app()->request->getHostInfo();
     }
     
-    return
-        ($prepend_host ? Yii::app()->request->getHostInfo() : '') .
-        ($url===null ? $baseUrl : $baseUrl.'/'.ltrim($url,'/'));
+    $url .= Yii::app()->getRequest()->getBaseUrl();
+    
+    if($relativePath)
+    {
+        $url .= '/'.ltrim($relativePath,'/');
+    }
+    
+    return $url;
 }
