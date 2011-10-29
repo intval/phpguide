@@ -67,7 +67,7 @@
  * @property integer $is_registered
  * @property string $full_name
  * @property integer $is_blog_admin
- * @property string $last_site_visit
+ * @property integer $last_site_visit
  */
 class User extends CActiveRecord
 {
@@ -131,9 +131,9 @@ class User extends CActiveRecord
     {
         if( !self::$current_user) 
         {
-            
+
             // Attemp to find user from session data
-            $user = self::getUserBySession();
+            $user = self::getUserBySession(); 
             
             // Maybe he has a forum's remember me cookie
             if($user === null) $user = self::getUserByCookie ();
@@ -154,8 +154,8 @@ class User extends CActiveRecord
     
      /** Sets the session/cookie data the way a user will become current_user    */
      private function make_user_current()
-     {
-         Yii::app()->session['user'] =  $this;
+     {    
+         Yii::app()->session['user'] =  $this; // something is just wrong with it
          self::$current_user = & $this;
          setcookie(self::COOKIE_NAME, serialize(array($this->id_member, sha1($this->passwd. $this->password_salt), time()+315360000, 0)), time()+315360000, '/');
      }
@@ -164,8 +164,9 @@ class User extends CActiveRecord
      /** Destory the session, and clean up cookie data */
      public function logout()
      {
-            Yii::app()->session->destroy();
-            unset(Yii::app()->request->cookies[self::COOKIE_NAME]);
+        Yii::app()->session->destroy();
+        setcookie(self::COOKIE_NAME,  '', time()-536000, '/');
+        unset(Yii::app()->request->cookies[self::COOKIE_NAME]);
      }
 
 
@@ -216,7 +217,7 @@ class User extends CActiveRecord
     {
         $user = new User();
 
-        $user->member_name= 'tempname_'. rand(9999,99999);
+        $user->member_name= 'tmpname_'. rand(9999,99999);
         $user->date_registered = time();
         $user->last_site_visit = time();
         $user->member_ip  = Helpers::getip();
@@ -235,12 +236,15 @@ class User extends CActiveRecord
         $user->password_salt  = Helpers::randString(); 
         
         $user->full_name = '';
+        // Avatar is set as defaults db field value
+        // $user->avatar = 'http://ncdn.phpguide.co.il/noavatar.jpg';
         $user->email_address  = 'anonymous@phpguide.co.il';
         $user->is_registered = 0;
         $user->is_blog_admin = 0; 
+
         
         $user->save();
-        $user->last_post_time = time();
+
 
         $user->changeNameAndPass('משתמש_'.$user->id_member);
         return $user;
@@ -361,8 +365,8 @@ class User extends CActiveRecord
      */
     private static function getUserByLoginAndPass($login, $pass)
     {
-        return self::model()
-                ->find("member_name = :login AND passwd = :pass", array('login' => $login, 'pass' => sha1(mb_strtolower($login). $pass) ));
+        return self::model()->
+                find("member_name = :login AND passwd = :pass", array('login' => $login, 'pass' => sha1(mb_strtolower($login). $pass) ));
     }
      
 }
