@@ -12,7 +12,6 @@ class LoginUser extends CWidget
 {
     public function run()
     {
-        $user = User::get_current_user();
-        $this->render('loginBox', array('user' => $user));
+        $this->render('loginBox', array('user' => User::get_current_user()));
     }
 }
