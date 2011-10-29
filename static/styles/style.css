@@ -262,6 +262,7 @@ h1.content-title span
     padding:10px;
     
     margin-bottom:30px;
+    position:relative;
 }
 
 .user_info p
@@ -275,6 +276,23 @@ h1.content-title span
     display:none;
 }
 
+.user_info .logout-link
+{
+    position:absolute;
+    top:5px;
+    left:5px;
+    display:none;
+}
+
+.user_info .logout-link a
+{
+    color:white;
+    background:gray;
+    padding:1px 4px;
+    text-decoration: none;
+    
+}
+
 #new_user_name, #new_user_pass
 {
     width:160px;
@@ -286,6 +304,8 @@ h1.content-title span
 }
 
 /********************************* PRETTIFIER ********************************/
+
+
 
 .codeblock
 {
@@ -417,6 +437,43 @@ span.underline
 
 
 
+/****************************** WALL ************************************/
+
+
+
+
+.wallPost-content
+{
+    margin-right: 20px;
+}
+
+.wallPost h6.username
+{
+    font-size:12px;
+    float:right;
+    width: 400px;
+    
+}
+
+.wallPost-content .postTime
+{
+    font-size:9px;
+    color:gray;
+    float:left;
+}
+
+.wallPost .comment
+{
+    background-color:#EDEFF5;
+    padding:4px 6px 4px 0;
+    margin-top:8px;
+    margin-right:70px;
+}
+
+.wallPost .comment h6.username
+{
+    margin-right:10px;
+}
 
 
 /****************************** PAGINATION *****************************/
@@ -721,60 +778,93 @@ div.addform .errors
 
 
 
+/************************** QNA ****************************/
 
-/********************** TEMPLATES ***********************/
-div.template
-{
-	float:right;
-    border: 1px solid #CCCCCC;
-    margin: 10px 10px 4px 4px;
-    padding: 4px;
-    width: 142px;
-    height:173px;
-}
-div.template img 
-{ 
-	margin-right:1px; 
-	border:none;
-}
-section.templates-section 
-{
-	margin-right:30px;
+.qna-home-row:first-of-type {
+    border-top: 0 none;
 }
 
+.qna-home-row {
+    border-top: 1px dotted #CCCCCE;
+    float: left;
+    overflow: hidden;
+    padding: 3px 0 5px 0;
+    position: relative;
+    width: 100%;
+}
 
-/* frameset */
-a.download-frame-button
+.qna-home-row .counts {
+    float: left;
+    margin-right: 0;
+    margin-top: 4px;
+    padding-right: 2px;
+    width: 175px;
+}
+
+.qna-home-row .question-summary-wrapper {
+    float: right;
+    
+}
+
+.qna-home-row h2 a
 {
-    background: url("/static/images/button.png") no-repeat scroll center center transparent;
-    color: #326FA8;
-    display: block;
-    font-size: 18px;
-    font-weight: bold;
-    height: 34px;
-    padding: 10px 0 0;
-    text-align: center;
+    color: #2A5594;
+    font-family: "Trebuchet MS","segoe ui",arial,sans-serif;
+    font-size: 17px;
     text-decoration: none;
-    width: 94px;
-    float:right;
-    margin:0 15px;
-
 }
 
-a.goto-next-template
+.qna-home-row h2 a:hover
 {
-	padding-top:13px;
-	display:block;
-	float:right;
+    text-decoration: underline;
 }
 
-div.download-template-links
-{
-	float:left; width:280px;
-	margin-top:20px;
+.qna-home-row .votes, .qna-home-row .views {
+    color: #666666;
 }
 
+.qna-home-row .counts .item-count {
+    font-size: 17px;
+    font-weight: bold;
+}
 
+.qna-home-row .votes, .qna-home-row .status, .qna-home-row .views {
+    border-bottom: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    border-right: 1px solid #CCCCCC;
+    float: left;
+    font-size: 11px;
+    height: 42px;
+    margin: 0 6px 0 0;
+    padding: 8px 2px 0;
+    text-align: center;
+    width: 46px;
+}
+
+.answered {
+     background: none repeat scroll 0 0 #E6F8DD;
+    color: #3A6231;
+}
+
+.unanswered {
+    background: none repeat scroll 0 0 #F3E3E1;
+    color: #6B2B28;
+}
+
+.qna-home-row .votes, .qna-home-row .views {
+    color: #666666;
+}
+
+.qna-home-row .userinfo {
+    color: #666666;
+    float: right;
+    margin-top: 8px;
+    font-size:90%;
+}
+
+.qna-home-row .userinfo a, .qna-home-row a.userinfo {
+    color: #3060A8;
+}
 
 
 /************************** Error pages *******************/
@@ -923,10 +1013,24 @@ div.event a {  color:#999; }
 
 /********************************** ASK QUESTION FORM ***********************/
 
+#forum_question_subject
+{
+    font-size: 18px;
+    padding:5px;
+    width:100%;
+    margin-top:10px;
+    color:green;
+    font-weight: bold;
+}
+
+
 #forum_question_text
 {
     width:100%;
     margin-top:10px;
+    display:none;
+    padding:5px;
+    height:250px;
 }
 
 #forum_question_controls
@@ -1483,3 +1587,12 @@ div.event a {  color:#999; }
   padding: 4px 20px 4px 5px;
 }
 /* @end */
+
+
+
+
+
+
+
+
+

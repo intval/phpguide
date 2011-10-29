@@ -39,7 +39,7 @@ function sendcomment()
 function nl2br (str, is_xhtml)
 {   
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
-    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, 'jQuery1'+ breakTag +'jQuery2');
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }
 
 
@@ -114,27 +114,16 @@ function show_comments_alert(message, type)
 var bbcodes_loaded = false;
 function expand_forum_question_textarea(e)
 {
-    var val = jQuery.trim( $('#forum_question_text').val() ).replace("\r","\n") + '';
+    var val = jQuery.trim( $('#forum_question_subject').val() ).replace("\r","\n") + '';
     var length = val.length;
     var display = $('#forum_question_controls').css('display');
 
-    var indexOfNewLine = val.indexOf("\n");
-    if( indexOfNewLine < 0) indexOfNewLine = 100000;
-
-    jQuery('#new_qna_subject_preview').html( val.substr(0, Math.min(indexOfNewLine, 50)) );
-
-    if( e.ctrlKey && ( e.keyCode==10 || e.keyCode==13 ) && length > 20 )
-    {
-        submit_new_question();
-        return;
-    }
-
-
-
+    
     // Displaying submit button if any text inside
     if( length > 0 && display != 'inline')
     {
-        $('#forum_question_controls').css('display', 'inline');
+        jQuery('#forum_question_text').show();
+        jQuery('#forum_question_controls').css('display', 'inline');
 
         if(!bbcodes_loaded)
         {
@@ -144,35 +133,25 @@ function expand_forum_question_textarea(e)
     }
     if(length < 1 && display=='inline')
     {
-        $('#forum_question_controls').hide();
+        jQuery('#forum_question_text').hide();
+        jQuery('#forum_question_controls').hide();
     }
 
-    // expanding the textarea on long text
-    if(length > 15 && $('#forum_question_text').prop('rows') < 5)
-    {
-        window.scrollTo( 0, top_of_question_form) ;
-        $('#forum_question_text').prop('rows', '20');
-        $('#forum_question_text').focus();
-    }
-
-    if(length < 15 && $('#forum_question_text').prop('rows') > 5)
-    {
-        $('#forum_question_text').prop('rows', '2');
-    }
+   
 }
 
 
 
-function submit_new_question()
+function disable_new_question_form()
 {
     jQuery('#forum_question_text').prop('disabled', true);
-    var data = {csrf: jQuery('#csrf').val(), forum_topic:jQuery('#forum_question_text').val()};
-    jQuery.post('handle.php', data , new_question_submitted_callback);
+    jQuery('#forum_question_subject').prop('disabled', true);
 }
 
 
 function new_question_submitted_callback(response)
 {
+    console.log(response); return;
     jQuery('#forum_question_text').prop('disabled', false);
     if(isNaN(response)) alert(response);
     else document.location = window.location.protocol + '//' + window.location.hostname + "/forum/index.php/topic,"+response+".0.html"; 
@@ -588,11 +567,11 @@ function register_new_member()
     load_polls();
 
     // if the page has a forum_question_text on it ...
-    if(jQuery('#forum_question_text').length > 0)
+    if(jQuery('#forum_question_subject').length > 0)
     {
-        jQuery('#forum_question_text').keyup(expand_forum_question_textarea);
-        if(document.location.hash == '') jQuery('#forum_question_text').focus();
-        top_of_question_form = jQuery('#forum_question_text').offset().top - 50;
+        jQuery('#forum_question_subject').keyup(expand_forum_question_textarea);
+        if(document.location.hash == '') jQuery('#forum_question_subject').focus();
+        top_of_question_form = jQuery('#forum_question_subject').offset().top - 50;
     }
 
     // initialize search field
@@ -604,7 +583,7 @@ function register_new_member()
     }
 
 
-
+    jQuery('.user_info').hover(function(){jQuery(this).find('.logout-link').toggle();});
 
 
 
