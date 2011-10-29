@@ -6,9 +6,8 @@ class HomepageController extends Controller
    
     public function actionIndex()
     {
-
-        $this->addscripts('ui');
-        $this->render('index' ,array('articles' => Article::model()->newest()->findAll()) );
+        $this->addscripts('ui'); 
+        $this->render('index' ,array ('articles' => Article::model()->newest()->findAll()) );
     }
         
 
