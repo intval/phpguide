@@ -210,34 +210,36 @@ h1.content-title span
     color:#666666;
 }
 
-/**************************** Sidebar formatting *****************************/
+
+/**************************** Categoriens on homepage ************************/
+
 
 .categories_list
 {
-
-    border: 1px solid #CCCCCC;
-    border-radius: 3px 3px 3px 3px;
-    margin-bottom: 30px;
-    padding: 10px;
+    margin:20px 0 60px 0;
+}
+.categories_list > div
+{
+    margin-top:20px;
 }
 
 .categories_list a
 {
-    display:block;
-    padding:6px 27px 6px 13px;
-    font-size: 14px;
-    color: #3E627F;
+    color:brown;
 }
 
-.categories_list a:hover
+.categories_list .addlink
 {
-    background-color: #dbecfa;
-    border-radius: 3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    border:1px solid  #bfbfbf;
-    
+    color:blue;
+    background: #d3e8fe;
+        padding:2px 5px;
+        text-decoration: none;
 }
+.categories_list .addlink:hover { text-decoration: underline;}
+
+
+/**************************** Sidebar formatting *****************************/
+
 
 .rssfeed 
 {
