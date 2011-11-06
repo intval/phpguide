@@ -9,7 +9,7 @@
     <a name="guides_cats"></a>
     <div>
         <h4 width="250px" class="right">מדריכים מתקדמים לפי קטגוריה</h4>
-        <a class="addlink left" href="<?=bu('add')?>">הוסף מדריך</a>
+        <a class="btn success left" href="<?=bu('add')?>">הוסף מדריך</a>
         <div class="clear"></div>
     </div>
     <div class="right" style="width:49%;">
@@ -37,7 +37,16 @@
 
 
 
+<?  $this->renderPartial('//list/homepageArticlesList', array('articles' => & $articles )); ?>
 
-<?  // $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
-<?  // $this->renderPartial('//wall/homepageWall', array('wallPosts' => & $wallPosts)) ?>
-<?   $this->renderPartial('//list/articlesList', array('articles' => & $articles )); ?>
+<!--
+<div class="row">
+    <div class="span6">
+	<? //$this->renderPartial('//list/homepageArticlesList', array('articles' => & $articles )); ?>
+    </div>
+    <div class="span6">
+	<? // $this->renderPartial('//wall/homepageWall', array('wallPosts' => & $wallPosts)) ?>
+	<? // $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
+    </div>
+</div>
+-->

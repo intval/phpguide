@@ -23,17 +23,19 @@
     <link href="<?=bu("static/styles/style.css")?>" rel="stylesheet" />
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
     <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style.css")?>" rel="stylesheet" /><![endif]-->
-    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 </head>
 
-<body dir='rtl'>
-<div id='header'>
+<body dir='rtl' >
+    
+<div id='header' >
 	
-	
+    <div>
     <a href='index.php' title="מדריך לימוד PHP" class='homepage-link' rel="start"></a>
+    </div>
+   
     <div class="social-buttons" id="social_buttons"><!-- populated on page load complete with js --></div>
-    <nav>
+    <nav >
        <ul class='header' id="headernav">
             <li><a href='/forum/' title='פורום PHP' style="color:orangered;font-weight:bold;" class='forum' >פורום PHP</a></li>
             <li><a href='<?=bu('phplive')?>' class="phplive" title='הפעלת קוד PHP און ליין' >php און-ליין</a></li>
@@ -42,6 +44,6 @@
                 </a>
 	</ul>
     </nav>
-    <div class='clear'></div>
 
 </div> <!-- /header -->
+

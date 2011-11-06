@@ -1,25 +1,22 @@
 
 <?php $this->renderPartial('//layouts/header'); ?>
 
-<div id="main">
 
+<div class="container">
+<div class="row">
     
-    
-    <section id="sidebar" >
+    <section id="sidebar" class="span4">
         <?php $this->renderPartial('//layouts/sidebar'); ?>
     </section>
 
 
-    <section id="content">
+    <section id="content" class="span12">
         <?=$content; ?> 
     </section> <!-- /content -->
 
-    
-    
-    
-    <!-- clear sidebar and content -->
-    <div class='clear'></div>
+</div>
+</div>
 
-</div> <!-- /main -->
+
     
 <?php $this->renderPartial('//layouts/footer'); ?>
