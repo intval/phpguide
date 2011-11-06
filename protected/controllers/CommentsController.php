@@ -41,7 +41,8 @@ class CommentsController extends Controller
                 try
                 {
                     $model->save();
-                    echo 'ok';
+		    $model->date = 'now';
+                    $this->renderPartial('//article/singleComment', array('comment' => &$model));
                 }
                 catch( Exception $e)
                 {

@@ -1,4 +1,5 @@
-
+<div class="row">
+<div class="offset2">
 
     <a href="index.php" class='blog_entry_back' rel="up">&rarr; <span>חזרה למדריכי PHP</span></a>
     <h1 class='content-title'><span></span><?=e($article->title);?></h1>
@@ -34,7 +35,7 @@
    
     <div style="margin-top:15px;">
         <div class="right" style="padding:5px; font-size: 85%;line-height: 16px; margin-bottom: 25px;  width:400px">
-        <img src="/static/images/pixel.gif" title="<?=e($article->author->avatar)?>" alt="<?=e($article->author->member_name)?>" width="45" height="45" class="right"/>
+        <img src="/static/images/pixel.gif" title="<?=e($article->author->avatar)?>" alt="<?=e($article->author->member_name)?>" width="50" height="50" class="right"/>
         <p style=" margin-right:10px; width:245px" class="right">
             על המחבר:
           
@@ -66,20 +67,34 @@
 	<div class="comment-table" id="comments_form">
             <b style="color:green">
             פרגן, מה אכפת לך :)
-            </b><br/><br/>
-            <div class="clear" ></div>
-            <div class="rightcolumn">
-                <span class="label-comment">תגובה:</span>
-            </div>
-            <div class="leftcolumn">
-                <div id="comments_alert"> התגובה נוספה בהצלחה</div>
-                <form id="comments_inputs" >
-                <textarea cols="50" rows="10" name="Comment[text]" id='commenttext'></textarea><br/>
-                <input type='hidden' name="Comment[blogid]"  value="<?=e($article->id)?>" />
-                אל תתבייש, חשוב לנו לדעת מה אתה חושב -->
-                <input type="button" onclick="sendcomment()" value="שלח תגובה (Ctrl + Enter)" class="submit"/> 
-                </form>
-            </div>
-            <div class="clear"></div>
+            </b>
+	    <br/><br/>
+	    <?php echo CHtml::beginForm('', 'post', array('id' => 'comments_inputs', 'class' => 'form-stacked')); ?>
+	    
+		<?= Chtml::hiddenField("Comment[blogid]", e($article->id))?>
+
+		<div id="comments_alert"></div>
+		<div class="clearfix">
+		    <label for="textarea">תגובה</label>
+		    <?= CHtml::textArea("Comment[text]", '', array('id' => 'commenttext')) ?>
+		</div>
+		<div class="actions">
+	
+אל תתבייש, חשוב לנו לדעת מה אתה חושב -->	    
+
+		    <?=CHtml::ajaxSubmitButton(
+			    'שלח תגובה!'
+			    ,bu('comments/add') ,
+			    array('success' => 'comment_sumbitted_callback', 'beforeSend' => 'sendcomment'), 
+			    array('class'=> 'btn primary'))?>
+
+		</div>
+		<?php echo CHtml::endForm();?>
+	    
 	</div>
-        <img src="" alt="loading" title="static/images/ajax-loader.gif" id="comments_loading_img"/>
+	<img src="static/images/ajax-loader.gif" id="comments_loading_img"/>    
+	    
+	    
+	    
+</div>
+</div>

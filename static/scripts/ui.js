@@ -14,25 +14,22 @@ function submit_comment_on_ctrl_enter(keyup_event)
     }
 }
 
-function sendcomment()
+function sendcomment(xhr)
 {
+    show_comments_alert('', 'hide');
+    
     if(jQuery.trim(jQuery('#commenttext').val()) == '')
     {
-        jQuery('#commenttext').css('border', "1px solid red");
-        return;
+        jQuery('#commenttext').addClass('error');
+        xhr.abort();
+	return;
     }
 
-    submitted_comment = 
-    { 
-        comment : jQuery.trim(jQuery('#commenttext').val())  ,
-        author  : jQuery('#user_name').html()
-    };
-
-    show_comments_alert('', 'hide');
+    
     jQuery('#comments_form').hide();
     jQuery('#comments_loading_img').show();
     
-    jQuery.post('Comments/add', jQuery('#comments_inputs').serialize() ,comment_sumbitted_callback, 'html');
+
     return;
 }
 
@@ -58,22 +55,8 @@ function comment_sumbitted_callback(response)
     }
     else
     {
-        var nowdate = new Date();
-        
-        var day = nowdate.getDate();if(day < 10) day = '0' + day;
-        var month = nowdate.getMonth()+1;if(month < 10) month = '0' + month;
-        
-        nowdate =  day + '/' + month + '/' + nowdate.getFullYear();
-            
-        jQuery('#post_comments').append
-        (
-            '<div class="blog-comment">'+ 
-                '<span class="comment-author">' + submitted_comment.author+' </span>' +
-                '<span dir="ltr" class="comment-date">'+nowdate+'</span><br/>' +
-                nl2br(submitted_comment.comment .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") ,true) +
-            '</div>'
-        );
-
+	show_comments_alert('תגובתך נוספה! תודה', 'ok');
+        jQuery('#post_comments').append ( response  );
         jQuery('#commenttext').val('');
     }
     
@@ -91,12 +74,15 @@ function show_comments_alert(message, type)
             break;
 
         case 'warn':
-            jQuery('#comments_alert').text(message).attr('class','warn_alert').fadeIn();
+            jQuery('#comments_alert').text(message).attr('class','alert-message warning').fadeIn();
             break;
 
         case 'error':
-            jQuery('#comments_alert').text(message).attr('class','error_alert').fadeIn("slow");
+            jQuery('#comments_alert').text(message).attr('class','alert-message error').fadeIn("slow");
             break;
+	case 'ok':
+	    jQuery('#comments_alert').text(message).attr('class','alert-message success').fadeIn("slow");
+	    break;
     }
 }
 
@@ -151,7 +137,7 @@ function disable_new_question_form()
 
 function new_question_submitted_callback(response)
 {
-    console.log(response); return;
+    console.log(response);return;
     jQuery('#forum_question_text').prop('disabled', false);
     if(isNaN(response)) alert(response);
     else document.location = window.location.protocol + '//' + window.location.hostname + "/forum/index.php/topic,"+response+".0.html"; 
