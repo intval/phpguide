@@ -1,26 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "qna_questions".
+ * This is the model class for table "qna_answers".
  *
- * The followings are the available columns in table 'qna_questions':
+ * The followings are the available columns in table 'qna_answers':
+ * @property string $aid
+ * @property integer $authorid
  * @property string $qid
- * @property string $subject
  * @property string $bb_text
  * @property string $html_text
- * @property integer $authorid
- * @property string $time
- * @property integer $views
- * @property integer $answers
  *
  * The followings are the available model relations:
- * @property User $author
+ * @property ZzsmfMembers $author
+ * @property QnaQuestions $q
  */
-class QnaQuestion extends CActiveRecord
+class QnaComment extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return QnaQuestion the static model class
+	 * @return QnaComments the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -32,7 +30,7 @@ class QnaQuestion extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'qna_questions';
+		return 'qna_answers';
 	}
 
 	/**
@@ -43,9 +41,8 @@ class QnaQuestion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('subject, bb_text', 'required'),
-			array('subject', 'length', 'max'=>255, 'min'=>5),
-			array('bb_text', 'length', 'min'=>5)
+			array('bb_text', 'length', 'min'=>2),
+			array('qid', 'numerical', 'integerOnly' => true, 'min' => 1)
 		);
 	}
 
@@ -57,27 +54,24 @@ class QnaQuestion extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-		    'author' => array(self::BELONGS_TO, 'User', 'authorid'),
-		    'comments' =>  array(self::HAS_MANY, 'QnaComment', 'qid')
+			'author' => array(self::BELONGS_TO, 'User', 'authorid'),
+			'question' => array(self::BELONGS_TO, 'QnaQuestions', 'qid'),
 		);
 	}
 
-
-        public function defaultScope()
+	public function defaultScope()
         {
             return array
             (
-                'condition' =>  'status!="hidden"' ,
-                'order'     =>  'time DESC',
+                'order'     =>  'time ASC',
                 'with'      => array
                 (
                     'author' => array
                     (
-                        'select'   => array('full_name','member_name', 'avatar')
+                        'select'   => array('full_name','member_name', 'avatar', 'id_member')
                     )
                 )
             );
         }
-
 
 }

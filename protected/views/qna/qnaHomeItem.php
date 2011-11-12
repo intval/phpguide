@@ -1,9 +1,9 @@
 <div class="qna-home-row">
     <div class="counts">
-        <div class="votes">
+        <!--<div class="votes">
             <div class="item-count">0</div>
             <div>אהבו</div>
-        </div>
+        </div>-->
         <div class="status  <?=$qna->answers < 1 ? 'un' : '';?>answered">
             <div class="item-count"><?=$qna->answers?></div>
             <div>תשובות</div>
@@ -21,7 +21,9 @@
             <a href="/forum/index.php?action=profile;u=<?=$qna->author->id_member?>">
         <?=e($qna->author->member_name)?></a>
             
-            <span class="relativetime">לפני שלוש שעות</span>
+            <span class="relativetime">
+לפני שלוש שעות
+	    </span>
             
 
         </div>
