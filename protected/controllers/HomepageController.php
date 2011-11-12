@@ -7,7 +7,9 @@ class HomepageController extends Controller
     public function actionIndex()
     {
         $this->addscripts('ui'); 
-        $this->render('index' ,array ('articles' => Article::model()->newest()->findAll()/*, 'qnas' => QnaQuestion::model()->findAll()*/) );
+        $this->render('index' ,array (
+	    'articles' => Article::model()->newest()->findAll(), 
+	    'qnas' => QnaQuestion::model()->findAll(array('limit' => 7, 'order' => 'time DESC'))) );
     }
         
 

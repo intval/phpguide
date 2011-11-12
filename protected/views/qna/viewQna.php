@@ -1,7 +1,7 @@
 <div class="row" >
 <div class="offset1">
 
-<div style="border-right:3px solid #13768C;  padding-right:25px; margin-bottom:20px;">
+<div class="qna_view_question">
     
     <? $this->renderPartial('//qna/qnaHomeItem', array('qna' => &$qna)) ?>
     <div class="clear"></div>
