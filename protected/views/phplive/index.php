@@ -1,6 +1,6 @@
+<div class="container"><div class="row">
 
-
-<section id="sidebar" class="phplive-sidebar">
+<section id="sidebar" class="phplive-sidebar span4">
     
     <h3>הוראות:</h3>
 
@@ -26,9 +26,9 @@
 
 </section>	<!-- /sidebar -->
 
-<section id="content">
+<section id="content" class="span12">
 
-    <form method="post"  action="http://sandbox.phpguide.co.il/sandbox.php" name="sandboxform" id="sandboxform" target="xmlFrame" dir="rtl">
+    <?= CHtml::beginForm('http://sandbox.phpguide.co.il/sandbox.php', 'post', array('name'=>"sandboxform", 'id'=>"sandboxform", 'target'=>"xmlFrame", 'dir'=>"rtl")) ?>
         <div dir="ltr">&nbsp;&lt;?php </div>
         <textarea name="code" id="sandboxarea" rows="15" cols="70" dir="ltr" tabindex="1"><?=e($code)?></textarea><br/>
         <input type="hidden" name="is_remote" value="true" />
@@ -39,11 +39,11 @@
                 <span id="code_url" style="display:none"></span>
                 <img src="/static/images/pixel.gif" alt="..." title="/static/images/code_url_loader.gif" id="code_url_loader" style="display:none"/>
             </div>
-            <input type="button" onclick="actual_run_code()" tabindex="2" style="display:block; float:right" value="בצע קוד"/>
+            <input type="button" onclick="actual_run_code()" tabindex="2" style="display:block; float:right;" class="btn" value="בצע קוד"/>
             <div class="clear"></div>
         </div>
         
-    </form>
+    <?= CHtml::endForm() ?>
     <iframe style="display:none;" src="http://sandox.phpguide.co.il/iframe.htm"  id="xmlFrame" name="xmlFrame"></iframe>
     <br/>
     <div dir="ltr">Response: </div>
@@ -51,3 +51,4 @@
     
 </section>
 
+</div></div>

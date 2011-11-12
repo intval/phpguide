@@ -42,8 +42,10 @@ function generate_code_url()
     $('#code_get_link').hide();
     $('#code_url_loader').css('display' , 'inline');
     
+    var csrf = $('input[name="YII_CSRF_TOKEN"]').val();
+    
     in_request = true;
-    $.post('Phplive/storecode', {code: code}, receive_generated_url);
+    $.post('Phplive/storecode', {code: code, 'YII_CSRF_TOKEN' : csrf}, receive_generated_url);
 }
 
 

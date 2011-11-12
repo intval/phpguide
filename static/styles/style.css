@@ -17,19 +17,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 audio[controls], canvas, video { display: inline-block; *display: inline; *zoom: 1; }
 
 
-/* =============================================================================
-   Base
-   ========================================================================== */
 
-/*
- * 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
- *    http://clagnut.com/blog/348/#c790
- * 2. Force vertical scrollbar in non-IE
- * 3. Remove Android and iOS tap highlight color to prevent entire container being highlighted
- *    www.yuiblog.com/blog/2010/10/01/quick-tip-customizing-the-mobile-safari-tap-highlight-color/
- * 4. Prevent iOS text size adjust on device orientation change, without disabling user zoom
- *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
- */
+
+
 
 html { font-size: 100%; overflow-y: scroll; -webkit-overflow-scrolling: touch; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
@@ -3556,6 +3546,116 @@ div.addform .errors
 }
 
 
+
+.addAnswer
+{
+    font-size:22px;
+    text-decoration:underline;
+    outline:none;
+}
+
+#qnaCommentForm
+{
+/*    display:none;*/
+margin-top:20px;
+}
+
+#qnaCommentForm textarea
+{
+    width:100%;
+    height:100px;
+}
+
+#qnaCommentForm .btn
+{
+    margin-top:5px;
+}
+
+#qnaCommentForm .controls_holder
+{
+    background:#EEEEEE; 
+    border:1px solid #C0CAD5; 
+    border-bottom:none; 
+    width:632px; 
+    padding:8px; 
+    margin-bottom:3px;
+}
+
+#qnaCommentForm .controls_holder a
+{
+    display:block;  
+    text-indent: -10000px; 
+    float:left;
+    height:16px;
+    width:16px;
+    background-repeat: no-repeat;
+    margin-right:10px;
+}
+
+#qnaCommentForm .controls_holder a.abold
+{
+    
+    background-image: url('http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/bold.png') ;
+}
+#qnaCommentForm .controls_holder a.aitalic
+{
+    background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/italic.png");
+}
+
+#qnaCommentForm .controls_holder a.astrike
+{
+    background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/stroke.png");
+}
+
+#qnaCommentForm .controls_holder a.aunderline
+{
+    background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/underline.png");
+}
+
+#qnaCommentForm .controls_holder a.acode
+{
+    background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/code.png");
+}
+
+#qnaCommentForm .controls_holder a.aimage
+{
+     background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/picture.png");
+}
+
+#qnaCommentForm .controls_holder a.alink
+{
+    background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/link.png");
+}
+
+
+   
+    
+/************************** QNA Answers *******************/
+
+.answer
+{
+    margin:10px 0 40px 0;
+}
+
+.answer .userinfo
+{
+    color: #666666;
+    vertical-align: middle;
+    font-size: 90%;
+    display:block;
+    margin-bottom:5px;
+    
+}
+
+.answer .avatar
+{
+    vertical-align: middle;
+}
+
+
+
+
+         
 /************************** Error pages *******************/
 div.error-page 
 {
@@ -3580,4 +3680,31 @@ body.error-page
 	padding:1em 2em;
 	font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
 	border:none;
+}
+
+
+
+/*********************************** SANDBOX - PHPLIVE *************************/
+
+#sandboxarea
+{
+    width:100%;
+    padding-left:3px;
+    margin:10px 0;
+
+}
+
+#sandboxresponse
+{
+    padding:3px;
+    background-color:#fff9ba;
+    border: 1px dashed green;
+
+}
+
+
+.phplive-sidebar h3
+{
+    color:#5782b8;
+    margin-bottom:5px;
 }
