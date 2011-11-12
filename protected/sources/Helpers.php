@@ -4,9 +4,7 @@ class Helpers
 {
     public static function date2heb(DateTime $date, $long = false)
     { 
-        static $months = Array("ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר");
-        static $eng_months = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Dec');     
-        return str_replace($eng_months, $months, $date->format('d לM Y' . ($long ? ' H:i' : '')));
+        return self::translateDate( $date->format('d לM Y' . ($long ? ' H:i' : '')) );
     }
     
     public static function date2rfc(DateTime $date)
@@ -24,6 +22,12 @@ class Helpers
         return self::date2rfc(new DateTime($date));
     }
 
+    public static function translateDate($strDate)
+    {
+	static $months = Array("ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר");
+        static $eng_months = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct','Nov', 'Dec');
+	return str_replace($eng_months, $months, $strDate);
+    }
 
 
     public static function anchorize_urls_in_text($string_containing_urls)
