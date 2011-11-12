@@ -5,7 +5,7 @@ class LoginController extends Controller
     public function actionIndex()
     {
         $return_location = isset($_GET['redir']) ? urldecode($_GET['redir']) : Yii::app()->homeUrl ;
-        $this->addscripts('ui');
+        $this->addscripts('ui', 'login');
         $this->render('//homepage/loginpage', array('return_location' => $return_location));
     }
 
@@ -42,12 +42,16 @@ class LoginController extends Controller
     {
         if(mb_strlen($_POST['user']) > 15)
         {
-            echo ':err:' , 'אנה בחרו שם משתמש קצר יותר';
+            echo  'אנה בחרו שם משתמש קצר יותר';
         }
-        else if( empty($_POST['user']) || empty($_POST['pass']))
+        else if( empty($_POST['user']) || empty($_POST['pass']) || empty($_POST['email']))
         {
-            echo ':err:' , 'לא הוזנו שם משתמש וסיסמה';
+            echo  'לא הוזנו שם משתמש, סיסמה ואימייל';
         }
+	else if(!$this->is_valid_email($_POST['email']))
+	{
+	    echo 'אנא וודא את כתובת האימייל';
+	}
         else
         {
             try
@@ -59,12 +63,25 @@ class LoginController extends Controller
 
                 // On failure this one throws UsernameAlreadyTaken either
                 User::get_current_user()->changeNameAndPass($_POST['user'], $_POST['pass'], 1);
+		$user = User::get_current_user();
+		$user->email_address = $_POST['email'];
+		$user->save();
+		
+		echo 'ok';
             }
             catch (UsernameAlreadyTaken $e)
             {
-                echo ':err:' , 'שם משתמש זה טפוס';
+                echo  'שם משתמש זה טפוס';
             }
         }
 
+    }
+    
+    private function is_valid_email($mail)
+    {
+	if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) return false;
+	$host = explode("@",$mail); $mxarr = array();
+	if (!getmxrr($host[1],$mxarr)) return false;
+	return true;
     }
 }
