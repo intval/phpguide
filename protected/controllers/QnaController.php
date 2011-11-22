@@ -8,8 +8,6 @@ class QnaController extends Controller
         $this->addscripts('ui', 'qna'); 
         $this->render('index' ,array
             (
-            'articles' => Article::model()->newest()->findAll(),
-            'wallPosts' => WallPost::model()->findAll(),
             'qnas' => QnaQuestion::model()->with('author')->findAll()
             ) );
     }

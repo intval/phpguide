@@ -311,3 +311,28 @@ Options -Indexes
 	php_value session.cookie_httponly true
 </IfModule>
 
+
+
+
+
+
+
+
+# ******************************** PHPGUIDE's stuff 
+
+
+AddOutputFilterByType DEFLATE text/html text/plain text/javascript text/css application/x-javascript
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4.0[678] no-gzip
+BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+
+FileETag MTime Size
+
+Options +FollowSymLinks -Indexes
+
+
+#static useless stuff
+RewriteRule ^sitemap\.xml$ /static/sitemap.xml [L,NC]
+RewriteRule ^robots\.txt$ /static/robots.txt [L,NC]
+RewriteRule ^google7fdd21603b37dc36\.html$ /static/google7fdd21603b37dc36.html [L,NC]
+RewriteRule ^favicon\.ico$ /static/images/favicon.ico [L,NC]

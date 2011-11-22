@@ -17,8 +17,8 @@ return array(
     
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Phpguide',
-
-
+	'preload' => array('log'),
+    
 	// autoloading model and component classes
 	'import' => array
         (
@@ -36,6 +36,21 @@ return array(
 		'db'            => $GLOBALS['db_connection_config'],
 		'errorHandler'  => array( 'errorAction'=>'homepage/error' ),
                 'request'       => array('enableCsrfValidation' => true),
+		'log'=>array(
+		    'class'=>'CLogRouter',
+		    'routes'=>array(
+			array(
+			    'class'=>'CFileLogRoute',
+			    'levels'=>'trace, info',
+			    'categories'=>'system.*',
+			),
+			array(
+			    'class'=>'CEmailLogRoute',
+			    'levels'=>'error, warning',
+			    'emails'=>'alex@phpguide.co.il',
+			),
+		    ),
+		),
                 'urlManager'    => array
                 (
                     'urlFormat'=>'path',
@@ -61,7 +76,7 @@ return array(
             /**** This is production path, above public_html ******/
             /**** Edit the path in local_config.php, not here******/
             /******************************************************/
-            'PATH_TO_YII' => dirname(__FILE__).'/../../framework',
+            'PATH_TO_YII' => dirname(__FILE__).'/../../../../framework',
             /******************************************************/
             /******************************************************/
 	),

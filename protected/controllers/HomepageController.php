@@ -30,11 +30,13 @@ class HomepageController extends Controller
                 {
                     $alternatives = Article::model()->newest(8)->findAll();
                 }
+		
                 $this->render('error_404', array('alternatives' => $alternatives));
             }
             else
             {
                 $this->render('error_500');
+		Yii::log($error, CLogger::LEVEL_ERROR);
             }
 
         }
