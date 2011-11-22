@@ -13,14 +13,6 @@
 
 
 
-<!-- code from sekindo -->
-<script type="text/javascript" language="javascript" src="http://live.sekindo.com/live/liveView.php?s=25876"></script>
-<!-- code from sekindo -->
-
-
-
-    
-
     
     
     <div class="blog-links-block">
@@ -37,7 +29,7 @@
 	
 	או קבל עדכונים באימייל:
         <input type="text" 
-               style="width:150px; text-align: center; height:22px;" 
+               style="width:150px; text-align: center; height:22px; margin:5px 0;"
                dir="ltr" 
                id="email_subscription" 
                name="email" 

@@ -21,7 +21,7 @@
     $article->pub_date = new DateTime($article->pub_date);
 ?>
 
-        <div class="blogpost">
+    <div class="blogpost">
         
         <article class="post">
             
@@ -43,10 +43,6 @@
             </div>
             <time datetime="<?=Helpers::date2rfc($article->pub_date);?>" pubdate></time>         
         </article>
-
-        
-        
-
     </div>
 <?endforeach;?>
 
