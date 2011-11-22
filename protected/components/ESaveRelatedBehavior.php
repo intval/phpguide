@@ -255,7 +255,8 @@ class ESaveRelatedBehavior extends CActiveRecordBehavior
             } elseif ($relation instanceof CHasManyRelation) { // Handle has_many relations
     		    if (!$append) {
     		        $class = $relation->className;
-    		        $class::model()->deleteAllByAttributes(array(  // delete current related models
+			$model1 = call_user_func(array($class, 'model'));
+    		        $model1->deleteAllByAttributes(array(  // delete current related models
     		            $relation->foreignKey => $this->owner->primaryKey
     		        ));
     		    }
