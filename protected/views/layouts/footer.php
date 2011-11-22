@@ -1,9 +1,5 @@
 
 
-<a class="ideator" href="http://idea.phpguide.co.il">
-   שפר את האתר
-</a>
-
 <script type='text/javascript'>
     var scr = false, _gaq;
     function load(js)
