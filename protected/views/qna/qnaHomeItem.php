@@ -19,11 +19,12 @@
         <div class="userinfo">
             שאל
             <a href="/forum/index.php?action=profile;u=<?=$qna->author->id_member?>">
-        <?=e($qna->author->member_name)?></a>
-            
-            <span class="relativetime">
-לפני שלוש שעות
-	    </span>
+                <?=e($qna->author->member_name)?>
+            </a>
+            ,
+            <span class="relativetime" style="display:inline-block;">
+                <?= Helpers::date2heb(new DateTime($qna->time)); ?>
+	        </span>
             
 
         </div>
