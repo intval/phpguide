@@ -18,9 +18,9 @@
         <h2><a href="/qna/view/id/<?=$qna->qid?>" title="<?=e(strip_tags(mb_substr($qna->html_text, 0, 500)))?>"><?=e($qna->subject)?></a></h2>
         <div class="userinfo">
             שאל
-            <a href="/forum/index.php?action=profile;u=<?=$qna->author->id_member?>">
+            
                 <?=e($qna->author->member_name)?>
-            </a>
+
             ,
             <span class="relativetime" style="display:inline-block;">
                 <?= Helpers::date2heb(new DateTime($qna->time)); ?>
