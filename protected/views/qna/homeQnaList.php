@@ -7,7 +7,7 @@
     <?
     foreach($qnas as $qna)
     {
-	$this->renderPartial('//qna/qnaHomeItem', array('qna' => &$qna));
+	    $this->renderPartial('//qna/qnaHomeItem', array('qna' => &$qna));
     }
     ?>
 </section>

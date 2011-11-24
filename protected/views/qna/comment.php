@@ -7,7 +7,7 @@
 	    <a href="/forum/index.php?action=profile;u=<?=$answer->author->id_member?>"><?=e($answer->author->member_name)?></a>
 	   ב-
 	   <span  style="font-size:10px"> <?= Helpers::date2heb($time, 1) ?> </span>
-	   <a id="answer_<?=$answer->aid?>" href="./#abc">#</a>
+	   <a id="answer_<?=$answer->aid?>" href="<?= Yii::app()->request->requestUri . "#answer_" . $answer->aid?>">#</a>
 	</span>
 	
 	<p>
