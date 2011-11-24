@@ -23,7 +23,7 @@
     <link href="<?=bu("static/styles/style.css")?>" rel="stylesheet" />
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
     <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style.css")?>" rel="stylesheet" /><![endif]-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+    <script src="<?=bu('static/scripts/jquery.js')?>" type="text/javascript"></script>
 </head>
 
 <body dir='rtl' >

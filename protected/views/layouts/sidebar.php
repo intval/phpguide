@@ -11,6 +11,7 @@
 
     <? $this->widget('application.components.LoginUser') ?>
 
+    <? $this->widget('application.components.RecentEvents') ?>
 
 
     
