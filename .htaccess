@@ -215,25 +215,7 @@ FileETag None
 
 
 
-# ----------------------------------------------------------------------
-# Start rewrite engine
-# ----------------------------------------------------------------------
 
-# Turning on the rewrite engine is necessary for the following rules and features.
-# FollowSymLinks must be enabled for this to work.
-
-<IfModule mod_rewrite.c>
-  Options +FollowSymlinks
-  RewriteEngine On
-  
-	# if a directory or a file exists, use it directly
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-
-	# otherwise forward it to index.php
-	RewriteRule . index.php
-
-</IfModule>
 
 
 
@@ -331,8 +313,30 @@ FileETag MTime Size
 Options +FollowSymLinks -Indexes
 
 
-#static useless stuff
-RewriteRule ^sitemap\.xml$ /static/sitemap.xml [L,NC]
-RewriteRule ^robots\.txt$ /static/robots.txt [L,NC]
-RewriteRule ^google7fdd21603b37dc36\.html$ /static/google7fdd21603b37dc36.html [L,NC]
-RewriteRule ^favicon\.ico$ /static/images/favicon.ico [L,NC]
+
+
+# ----------------------------------------------------------------------
+# Start rewrite engine
+# ----------------------------------------------------------------------
+
+# Turning on the rewrite engine is necessary for the following rules and features.
+# FollowSymLinks must be enabled for this to work.
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine On
+
+  #static useless stuff
+    RewriteRule ^sitemap\.xml$ /static/sitemap.xml [L,NC]
+    RewriteRule ^robots\.txt$ /static/robots.txt [L,NC]
+    RewriteRule ^google7fdd21603b37dc36\.html$ /static/google7fdd21603b37dc36.html [L,NC]
+    RewriteRule ^favicon\.ico$ /static/images/favicon.ico [L,NC]
+
+	# if a directory or a file exists, use it directly
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	# otherwise forward it to index.php
+	RewriteRule . index.php
+
+</IfModule>
