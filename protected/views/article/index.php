@@ -1,5 +1,4 @@
-<div class="row">
-<div class="offset2">
+
 
     <a href="index.php" class='blog_entry_back' rel="up">&rarr; <span>חזרה למדריכי PHP</span></a>
     <h1 class='content-title'><span></span><?=e($article->title);?></h1>
@@ -96,5 +95,3 @@
 	    
 	    
 	    
-</div>
-</div>

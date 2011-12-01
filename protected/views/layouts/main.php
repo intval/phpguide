@@ -5,12 +5,12 @@
 <div class="container">
 <div class="row">
     
-    <section id="sidebar" class="span4">
+    <section id="sidebar" class="span4_5" >
         <?php $this->renderPartial('//layouts/sidebar'); ?>
     </section>
 
 
-    <section id="content" class="span12">
+    <section id="content" class="span11 offset0_5">
         <?=$content; ?> 
     </section> <!-- /content -->
 

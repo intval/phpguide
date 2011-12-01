@@ -1,6 +1,4 @@
-<div class="row">
-<div class="offset2" >
-	
+
     
 <h1 class="category-title"><?=e($category->name)?></h1>
 <div class="category_bread_crumbs">
@@ -49,5 +47,3 @@
 </div>
 
 
-</div>
-</div>

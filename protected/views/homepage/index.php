@@ -36,8 +36,8 @@
 </div>
 
 
-<?  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
-<div class="clear"></div>
+<? //  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
+<!-- <div class="clear"></div> -->
 <?  $this->renderPartial('//list/homepageArticlesList', array('articles' => & $articles )); ?>
 
 <!--

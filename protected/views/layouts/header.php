@@ -37,7 +37,7 @@
     <div class="social-buttons" id="social_buttons"><!-- populated on page load complete with js --></div>
     <nav >
        <ul class='header' id="headernav">
-            <li><a href='<?=bu('qna')?>' title='שאלות PHP' style="color:orangered;font-weight:bold;" class='forum' >שאלות ותשובות</a></li>
+            <li><a href='<?=bu('forum')?>' title='פורום PHP'  style="color:orangered;font-weight:bold;" class='forum' >פורום PHP</a></li>
             <li><a href='<?=bu('phplive')?>' class="phplive" title='הפעלת קוד PHP און ליין' >php און-ליין</a></li>
             <li><a href="<?=bu('chat')?>" class="chat" title="צאט מפתחים" >צ'אט PHP
                     <div><?= ChatController::count_online_members()?></div>
