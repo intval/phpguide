@@ -36,7 +36,7 @@ class HomepageController extends Controller
             else
             {
                 $this->render('error_500');
-		Yii::log($error, CLogger::LEVEL_ERROR);
+                Yii::log($error, CLogger::LEVEL_ERROR);
             }
 
         }
