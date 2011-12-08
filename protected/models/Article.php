@@ -117,7 +117,7 @@ class Article extends CActiveRecord
         {
             $this->getDbCriteria()->mergeWith
             (
-                    array('condition' => "`id` IN 
+                    array('condition' => "`id` IN
                         (
                             SELECT `postid` FROM `blog_post2cat` 
                             WHERE `catid` = (SELECT `cat_id` FROM `blog_categories` WHERE `name` = :name)

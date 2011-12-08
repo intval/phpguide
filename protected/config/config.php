@@ -35,35 +35,20 @@ return array(
 		'session'       => array( 'autoStart' => true),
 		'db'            => $GLOBALS['db_connection_config'],
 		'errorHandler'  => array( 'errorAction'=>'homepage/error' ),
-                'request'       => array('enableCsrfValidation' => true),
-		'log'=>array(
-		    'class'=>'CLogRouter',
-		    'routes'=>array(
-			array(
-			    'class'=>'CFileLogRoute',
-			    'levels'=>'trace, info',
-			    'categories'=>'system.*',
-			),
-			array(
-			    'class'=>'CEmailLogRoute',
-			    'levels'=>'error, warning',
-			    'emails'=>'alex@phpguide.co.il',
-			),
-		    ),
-		),
-                'urlManager'    => array
-                (
-                    'urlFormat'=>'path',
-                    'showScriptName'=>false,
-                    'rules'=>array
-                    (
-                        '' => 'homepage/index',
-                        '<article_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Article/index',
-                        'cat/<cat_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Category/index',  
-                        '<controller:[a-z]+>/<action:\w+>'          => '<controller>/<action>',
-                        'rss'                                       => 'Homepage/rss',
-                        'phplive'                                   => 'Phplive/index'                                
-                    )
+        'request'       => array('enableCsrfValidation' => true),
+        'urlManager'    => array
+        (
+            'urlFormat'=>'path',
+            'showScriptName'=>false,
+            'rules'=>array
+            (
+                '' => 'homepage/index',
+                '<article_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Article/index',
+                'cat/<cat_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Category/index',
+                '<controller:[a-z]+>/<action:\w+>'          => '<controller>/<action>',
+                'rss'                                       => 'Homepage/rss',
+                'phplive'                                   => 'Phplive/index'
+            )
 		)
 	),
 
