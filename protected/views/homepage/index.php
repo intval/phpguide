@@ -6,7 +6,7 @@
 
 <div class="categories_list">
 
-    <a name="guides_cats"></a>
+    <a id="guides_cats"></a>
     <div>
         <h4 width="250px" class="right">מדריכים מתקדמים לפי קטגוריה</h4>
         <a class="btn success left" href="<?=bu('add')?>">הוסף מדריך</a>
@@ -36,18 +36,17 @@
 </div>
 
 
-<? //  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
-<!-- <div class="clear"></div> -->
-<?  $this->renderPartial('//list/homepageArticlesList', array('articles' => & $articles )); ?>
 
-<!--
-<div class="row">
-    <div class="span6">
-	<? //$this->renderPartial('//list/homepageArticlesList', array('articles' => & $articles )); ?>
-    </div>
-    <div class="span6">
-	<? // $this->renderPartial('//wall/homepageWall', array('wallPosts' => & $wallPosts)) ?>
-	<? // $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
-    </div>
+<?  $this->renderPartial('//list/homepageArticlesList', array('articles' =>  array_slice($articles, 0, 2) )); ?>
+<div class="homepage-banner">
+    <img src="http://messagemagazine.com.au/images/advertise-here.png" alt="banner" />
 </div>
--->
+<?  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
+<?  $this->renderPartial('//list/homepageArticlesList', array('articles' =>  array_slice($articles, 2) )); ?>
+
+<div class="paginator" id="paginator3" dir="ltr"></div>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+	   pag3 = new Paginator('paginator3', <?=$pagination['total_pages']?> /*total*/, 15, <?=$pagination['current_page']?> /*current*/, "?page=");
+	}) ;
+</script>
