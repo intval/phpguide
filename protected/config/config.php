@@ -24,8 +24,8 @@ return array(
         (
 		'application.models.*',
 		'application.components.*',
-                'application.controllers.*',
-                'application.sources.*'
+        'application.controllers.*',
+        'application.sources.*'
 	),
 
 
@@ -36,6 +36,19 @@ return array(
 		'db'            => $GLOBALS['db_connection_config'],
 		'errorHandler'  => array( 'errorAction'=>'homepage/error' ),
         'request'       => array('enableCsrfValidation' => true),
+        'log'           => array
+        (
+            'class' => 'CLogRouter',
+            'routes' => array
+            (
+                array
+                (
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'error', 
+                    'categories' => '500.*'
+                )
+            )
+        ),
         'urlManager'    => array
         (
             'urlFormat'=>'path',

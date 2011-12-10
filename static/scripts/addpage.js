@@ -15,8 +15,8 @@ window.onbeforeunload = function(e)
 $(document).ready(function() {
     
 
-    jQuery('#submit' ).click( function() { submit_newpost_form('_self') });
-    jQuery('#preview').click( function() { submit_newpost_form('blank') });
+    jQuery('#submit' ).click( function() { submit_newpost_form('_self', 'save') });
+    jQuery('#preview').click( function() { submit_newpost_form('blank', 'preview') });
     
 
     // select all desired input fields and attach tooltips to them
@@ -41,13 +41,14 @@ $(document).ready(function() {
 });
 
 
-function submit_newpost_form( target )
+function submit_newpost_form( target , action)
 {
     var target = target || 'blank';
+    var action = action || 'save';
     
     if(!validate_newpost_form()) return;
     
-    jQuery('#newPostForm').attr('action','Add/save').attr('target', target); 
+    jQuery('#newPostForm').attr('action','Add/'+action).attr('target', target); 
     jQuery("#hiddenSubmit").trigger("click");
 }
 
@@ -58,7 +59,7 @@ function validate_newpost_form()
     var iterator = function(index, field)
     {    
         // color empty field's borders
-        if( '' === jQuery.trim(jQuery(field).val()) )
+        if( 'data' !== jQuery(field).attr('id') && '' === jQuery.trim(jQuery(field).val()) )
         {
             jQuery(field).css('border', '1px solid pink').bind('change', unmark_field_on_change);
             all_valid = false;

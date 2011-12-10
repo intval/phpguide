@@ -35,7 +35,8 @@ class ArticlePlainText extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('plain_description, plain_content', 'required')
+			array('plain_description', 'required'),
+            array('plain_content', 'safe')
 		);
 	}
 

@@ -184,7 +184,7 @@ class AddController extends Controller
             catch (Exception $e)
             {
                 $trans->rollback();
-                $this->show_form_on_failure($article, $articlePlain);
+                throw new Exception('Failed to save data, proly because of repeating PK in plainblog tbl');
             }
 
         }
@@ -192,8 +192,7 @@ class AddController extends Controller
 
         private function show_form_on_failure(&$article, &$plain)
         {
-
-            $this->_articlesAuthor = & $article->author;
+            $this->_articlesAuthor =  $article->author;
             $this->_articlesModel  = & $article;
             $this->_plainModel     = & $plain;
             $this->_articlesCategories =  $article->categories;
@@ -213,14 +212,13 @@ class AddController extends Controller
                 // Assign post data
                 $article      ->attributes  =  $_POST['Article'];
                 $articlePlain ->attributes  =  $_POST['ArticlePlainText'];
+                $article->author = User::get_current_user();
                 
                 if($articlePlain->validate() && $article->validate())
                 {
- 
                     $article->html_content = bbcodes::bbcode($articlePlain->plain_content, $article->title);
                     $article->html_desc_paragraph = bbcodes::bbcode($articlePlain->plain_description, $article->title);
                     $article->pub_date = new DateTime();
-                    $article->author = User::get_current_user();
                     
                     $this->addscripts('ui');
                     $this->render('//article/index', array('article' => &$article));
