@@ -39,7 +39,7 @@
 
 <?  $this->renderPartial('//list/homepageArticlesList', array('articles' =>  array_slice($articles, 0, 2) )); ?>
 <div class="homepage-banner">
-    <img src="http://messagemagazine.com.au/images/advertise-here.png" alt="banner" />
+    פרסם כאן
 </div>
 <?  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
 <?  $this->renderPartial('//list/homepageArticlesList', array('articles' =>  array_slice($articles, 2) )); ?>

@@ -2864,7 +2864,40 @@ input, textarea { font-size:14px; font-family: Arial;}
 
 
 
+ 
 
+
+/********************************** FOOTER ***********************************/
+
+.footer
+{
+    border-top:1px solid #CCC;
+    padding-top:10px;
+}
+
+.about-contacts
+{
+    width:168px;
+    direction:ltr;
+    float:left;
+    vertical-align: middle;
+}
+
+ .about-contacts div,  .about-contacts a
+{
+    padding-left:20px;
+    line-height:28px;
+    display:block;
+    margin:0;
+    
+    
+}
+
+ .about-contacts .email
+{
+    vertical-align: middle;
+    
+}
 /********************************** ASK QUESTION FORM ***********************/
 
 #forum_question_subject
@@ -4201,3 +4234,4 @@ div.event a {  }
 	color:#808080;
 	margin-top:-10px; 
 }
+
