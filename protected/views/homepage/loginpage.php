@@ -99,7 +99,7 @@
 </div>
 
 <div class="clearfix">
-    <label for="regpass">
+    <label for="regmail">
 	אימייל:
     </label>
     <div class="input">
