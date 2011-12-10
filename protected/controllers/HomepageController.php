@@ -2,14 +2,34 @@
 
 class HomepageController extends Controller
 {
-    
+    const POSTS_ON_HOMEPAGE = 8;
    
     public function actionIndex()
     {
-        $this->addscripts('ui'); 
-        $this->render('index' ,array (
-	    'articles' => Article::model()->newest()->findAll(), 
-	    'qnas' => QnaQuestion::model()->findAll(array('limit' => 7, 'order' => 'time DESC'))) );
+        
+        $page = 0;
+        $qnas = array();
+        
+        if(isset($_GET['page']))
+        {
+            $page = intval($_GET['page']) - 1;
+            if($page < 0) $page = 0;
+        }
+        
+        if($page == 0)
+        {
+            $qnas = QnaQuestion::model()->findAll(array('limit' => 7, 'order' => 'time DESC'));
+        }
+        
+        $this->addscripts('ui', 'paginator3000'); 
+        $this->render('index' ,
+            array 
+            (
+        	    'articles'     => Article::model()->byPage($page, self::POSTS_ON_HOMEPAGE)->findAll(), 
+        	    'qnas'         => &$qnas, 
+                'pagination'   => array('total_pages' => ceil(Article::model()->countByAttributes(array('approved' => 1))/self::POSTS_ON_HOMEPAGE) , 'current_page' => $page+1)
+            )
+        );
     }
         
 
@@ -53,7 +73,7 @@ class HomepageController extends Controller
         $this->render('rss' ,
             array
             (
-                'articles'   => Article::model()->newest(10)->findAll()
+                'articles'   => Article::model()->byPage(0, 10)->findAll()
             )
          );
     }

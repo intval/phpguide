@@ -1,4 +1,6 @@
-<h3>
+<? if($qnas): ?>
+
+<h3 style="color: #BC1D35;">
     שאלות אחרונות
 </h3>
 
@@ -12,3 +14,5 @@
     ?>
     <div class='clear'></div>
 </section>
+
+<? endif; ?>

@@ -105,15 +105,14 @@ class Article extends CActiveRecord
         }
 
         
-        public function newest($count = 8)
+        public function byPage($page = 0, $per_page = 8)
         {
-           $this->getDbCriteria()->mergeWith( array('limit' => $count) );
-           return $this;
-            
+            $this->getDbCriteria()->mergeWith( array('limit' => $per_page, 'offset' => $page * $per_page) );
+            return $this;
         }
   
         
-        public function by_cat($name)
+        public function byCat($name)
         {
             $this->getDbCriteria()->mergeWith
             (
