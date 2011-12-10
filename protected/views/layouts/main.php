@@ -16,15 +16,6 @@
 
 
 
-</div>
-<div class="row footer">
-
-    <div class="about-contacts" >
-        <div class="email" >Alex<!-- >@. -->@<!-- >@. -->phpguide<!-- >@. -->.<!-- >@. -->co.il</div>
-        <a class="msn" href="msnim:chat?contact=c1424095@pjjkp.com">c1424095@pjjkp.com</a>
-		<a class="skype" href="skype:raskin.alex?chat">raskin.alex</a>
-        <a class="jabber" href="xmpp:phpg@jabber.ru">phpg@jabber.ru</a>
-    </div>
 
 </div>
 </div>
