@@ -31,12 +31,14 @@ Database Setup
 
 - Adjust the path to the framework directory in `localize.php`
 
+- If you want facebook connect -> create facebook application, *copy * `services.example.php` and rename into `services.php`
+  change the appid & appsecret to those of your application and you are good to go.
 
 If you put "framework" directory in public_html - it should be somethig like
 
   `$conf['params']['PATH_TO_YII'] = dirname(__FILE__).'/../../framework';`
 
-- Import DB.SQL via PHPMyAdmin
+- Import DB.SQL via PHPMyAdmin (default username: admin, password: admin)
 
 
 What's next
