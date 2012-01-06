@@ -8,6 +8,7 @@
     <meta name="description" content="<?=e($this->vars['description'])?>" />
     <meta name="keywords" content="<?=e($this->vars['keywords'])?>" />
     <meta name="author" content="<?=e($this->vars['page_author'])?>" />
+    
     <? if ($this->facebook): ?>
     <meta property="og:title" content="<?=e($this->vars['title'])?>"/>
     <meta property="og:description" content="<?=e($this->vars['description'])?>"/>
@@ -23,7 +24,7 @@
     <link href="<?=bu("static/styles/style.css")?>" rel="stylesheet" />
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
     <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style.css")?>" rel="stylesheet" /><![endif]-->
-    <script src="<?=bu('static/scripts/jquery.js')?>" type="text/javascript"></script>
+    <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 </head>
 
 <body dir='rtl' >
@@ -39,9 +40,6 @@
        <ul class='header' id="headernav">
             <li><a href='<?=bu('qna')?>' title='שאלות ותשובות' style="color:orangered;font-weight:bold;" class='forum' >שאלות PHP</a></li>
             <li><a href='<?=bu('phplive')?>' class="phplive" title='הפעלת קוד PHP און ליין' >php און-ליין</a></li>
-            <li><a href="<?=bu('chat')?>" class="chat" title="צאט מפתחים" >צ'אט PHP
-                    <div><?= ChatController::count_online_members()?></div>
-                </a>
 	</ul>
     </nav>
 

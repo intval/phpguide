@@ -2760,19 +2760,6 @@ input, textarea { font-size:14px; font-family: Arial;}
 	display:block;
 }
 
-#header ul.header li a.chat { position: relative; }
-#header ul.header li a.chat div
-{
-    position:absolute;
-    font-size: 11px;
-    color:red;
-    background:white;
-    border:1px solid black;
-    top: 0;
-    right:10px;
-    padding: 2px 3px;
-    text-decoration: none;
-}
 
 
 /******************************** Facebook Like button *******************/
