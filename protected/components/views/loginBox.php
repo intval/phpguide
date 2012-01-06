@@ -1,35 +1,42 @@
+    <?php
+    $user = & Yii::app()->user;
+    $email = $user->isGuest ? '' : $user->email;
+    ?>
+
 <div class="user_info">
         
   
-        <img src="<?=e($user->avatar)?>" alt="תמונה" width="50" height="50" class="right"/>
-        <p class="right">
-         
+        <?php $this->widget('GravatarWidget', array('size' => 50, 'email' => $email)); ?>
+        
+    <p class="right">
+    
+
+    <?php
+
+    
+    if($user ->isGuest)
+    {
+        $this->widget('ext.eauth.EAuthWidget', array('action' => 'login/externalLogin'));
+    }
+    else 
+    {
+        ?>
+            
             שלום
           
-            <span dir="ltr" ><b id="user_name"><?=e($user->member_name)?></b></span> <br/>
-            
-            <? if($user->is_registered): ?>
+            <span dir="ltr" id="user_name"><?=e($user->login)?></span> <br/>
+
             ברוך הבא ללמוד PHP
 	    <br/><br/>
             <div class="logout-link" title="התנתק">
-                <a href="<?=bu('Login/logout')?>" title="התנתק">x</a>
+                <a href="<?= Yii::app()->createUrl('Login/logout')?>" title="התנתק">x</a>
             </div>
 
-            <? else: ?>
-            ברוך הבא ללמוד PHP
-            <br/>
-            <a href="<?=bu('login')?>" onclick="show_reg_form()">
-        בחר לעצמך שם משתמש
-            </a>
-            <br/>
-            
-
-            <? endif; ?>
-
-            
+        
+        <?php
+    }
+    ?>     
         </p>
         <div class="clear"></div>
-        
-        
-        
     </div>
+   

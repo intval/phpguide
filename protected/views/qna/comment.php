@@ -2,9 +2,9 @@
 
 <div class="answer">
 	<span class="userinfo" >
-	    <img src="<?=e($answer->author->avatar)?>" height="20" width="20" class="avatar"/>
+            <? $this->widget('GravatarWidget', array('email' => $answer->author->email, 'size' => 20, 'htmlOptions' => 'class="avatar"')); ?>
 	    ענה
-	    <?=e($answer->author->member_name)?>
+	    <?=e($answer->author->login)?>
 	   ב-
 	   <span  style="font-size:10px"> <?= Helpers::date2heb($time, 1) ?> </span>
 	   <a id="answer_<?=$answer->aid?>" href="<?= Yii::app()->request->requestUri . "#answer_" . $answer->aid?>">#</a>

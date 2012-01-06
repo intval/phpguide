@@ -73,7 +73,7 @@ class QnaQuestion extends CActiveRecord
                 (
                     'author' => array
                     (
-                        'select'   => array('full_name','member_name', 'avatar')
+                        'select'   => array('real_name','login', 'email')
                     )
                 )
             );

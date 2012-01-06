@@ -5,8 +5,8 @@
     
     <!-- publisher -->
     <div id="content-publishing-info">
-        <div class="right"><?=e($article->author->full_name);?>, </div>
-        <div class="right">&nbsp;<time datetime="<?=Helpers::date2rfc($article->pub_date)?>" pubdate dir="rtl"><?=Helpers::date2heb($article->pub_date);?></time></div>
+        <div class="right"><?=e($article->author->real_name);?>, </div>
+        <div class="right">&nbsp;<time datetime="<?=Helpers::date2rfc($article->pub_date)?>" pubdate="pubdate" dir="rtl"><?=Helpers::date2heb($article->pub_date);?></time></div>
         <div class="clear"></div>
     </div>
 
@@ -34,17 +34,18 @@
    
     <div style="margin-top:15px;">
         <div class="right" style="padding:5px; font-size: 85%;line-height: 16px; margin-bottom: 25px;  width:400px">
-        <img src="/static/images/pixel.gif" title="<?=e($article->author->avatar)?>" alt="<?=e($article->author->member_name)?>" width="50" height="50" class="right"/>
+           
+        <img src="/static/images/pixel.gif" title="<? $this->widget('GravatarWidget', array('email' => $article->author->email, 'size' => 50, 'linkOnly' => true)); ?>" alt="<?=e($article->author->login)?>" width="50" height="50" class="right"/>
         <p style=" margin-right:10px; width:245px" class="right">
             על המחבר:
           
-            <b><?=e($article->author->full_name)?></b> 
-            <span dir="ltr">(<?=e($article->author->member_name)?>)</span>
+            <b><?=e($article->author->real_name)?></b> 
+            <span dir="ltr">(<?=e($article->author->login)?>)</span>
    
             <br/>
-            <span style="color:gray; font-size:97%"> <? if($article->author->about != null) echo e($article->author->about->value); ?> </span>
+            
             <br/>
-            <a href="/forum/index.php?action=profile;u=<?=e($article->author->id_member)?>" style="font-size:95%">פרופיל משתמש</a>
+            <a href="/forum/index.php?action=profile;u=<?=e($article->author->id)?>" style="font-size:95%">פרופיל משתמש</a>
             
         </p>
         <div class="clear"></div>

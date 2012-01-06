@@ -24,8 +24,13 @@ return array(
         (
 		'application.models.*',
 		'application.components.*',
-        'application.controllers.*',
-        'application.sources.*'
+                'application.components.identities.*',
+                'application.controllers.*',
+                'application.sources.*',
+                'ext.eoauth.*',
+                'ext.eoauth.lib.*',
+                'ext.loid.*',
+                'ext.eauth.services.*'
 	),
 
 
@@ -35,34 +40,58 @@ return array(
 		'session'       => array( 'autoStart' => true),
 		'db'            => $GLOBALS['db_connection_config'],
 		'errorHandler'  => array( 'errorAction'=>'homepage/error' ),
-        'request'       => array('enableCsrfValidation' => true),
-        'log'           => array
-        (
-            'class' => 'CLogRouter',
-            'routes' => array
-            (
-                array
+                'request'       => array('enableCsrfValidation' => true),
+                'user'          => array( 'class' => 'WebUser'),
+                'log'           => array
                 (
-                    'class' => 'CFileLogRoute',
-                    'levels' => 'error', 
-                    'categories' => '500.*'
+                    'class' => 'CLogRouter',
+                    'routes' => array
+                    (
+                        array
+                        (
+                            'class' => 'CFileLogRoute',
+                            'levels' => 'error', 
+                            'categories' => '500.*'
+                        )
+                    )
+                ),
+                'urlManager'    => array
+                (
+                    'urlFormat'=>'path',
+                    'showScriptName'=>false,
+                    'rules'=>array
+                    (
+                        '' => 'homepage/index',
+                        '<article_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Article/index',
+                        'cat/<cat_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Category/index',
+                        '<controller:[a-z]+>/<action:\w+>'          => '<controller>/<action>',
+                        'rss'                                       => 'Homepage/rss'
+                    )
+                ),
+            
+                'loid' => array(
+                    'class' => 'ext.loid.loid',
+                ),
+                'eauth' => array(
+                    'class' => 'ext.eauth.EAuth',
+                    'popup' => false, // Use the popup window instead of redirecting.
+                    'services' => require 'services.php',
+                ),
+                'widgetFactory' => array
+                (
+                    'widgets' => array
+                    (
+                        'GravatarWidget' => array
+                        (
+                            'hashed' => false,
+                            'default' => 'identicon',
+                            'size' => 20,
+                            'rating' => 'g',
+                            'htmlOptions' => array('class'=>"right")
+                        )
+                    )
                 )
-            )
-        ),
-        'urlManager'    => array
-        (
-            'urlFormat'=>'path',
-            'showScriptName'=>false,
-            'rules'=>array
-            (
-                '' => 'homepage/index',
-                '<article_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Article/index',
-                'cat/<cat_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'  => 'Category/index',
-                '<controller:[a-z]+>/<action:\w+>'          => '<controller>/<action>',
-                'rss'                                       => 'Homepage/rss',
-                'phplive'                                   => 'Phplive/index'
-            )
-		)
+                
 	),
 
 	// application-level parameters that can be accessed
@@ -70,6 +99,7 @@ return array(
 	'params'=>array
         (
             'adminEmail'=>'Alex@phpguide.co.il',
+            'login_remember_me_duration' => 31536000,
             /******************************************************/
             /**** This is production path, above public_html ******/
             /**** Edit the path in local_config.php, not here******/

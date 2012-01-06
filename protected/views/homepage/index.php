@@ -8,8 +8,8 @@
 
     <a id="guides_cats"></a>
     <div>
-        <h4 width="250px" class="right">מדריכים מתקדמים לפי קטגוריה</h4>
-        <a class="btn success left" href="<?=bu('add')?>">הוסף מדריך</a>
+        <h4  class="right">מדריכים מתקדמים לפי קטגוריה</h4>
+        <?php if(!Yii::app()->user->isGuest): ?><a class="btn success left" href="<?=bu('add')?>">הוסף מדריך</a><?php endif;?>
         <div class="clear"></div>
     </div>
     <div class="right" style="width:49%;">
@@ -37,12 +37,12 @@
 
 
 
-<?  $this->renderPartial('//list/homepageArticlesList', array('articles' =>  array_slice($articles, 0, 2) )); ?>
+<?  $this->renderPartial('//article/homepageArticlesList', array('articles' =>  array_slice($articles, 0, 2) )); ?>
 <div class="homepage-banner">
     פרסם כאן
 </div>
 <?  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
-<?  $this->renderPartial('//list/homepageArticlesList', array('articles' =>  array_slice($articles, 2) )); ?>
+<?  $this->renderPartial('//article/homepageArticlesList', array('articles' =>  array_slice($articles, 2) )); ?>
 
 <div class="paginator" id="paginator3" dir="ltr"></div>
 <script type="text/javascript">

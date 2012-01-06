@@ -25,8 +25,8 @@ class HomepageController extends Controller
         $this->render('index' ,
             array 
             (
-        	    'articles'     => Article::model()->byPage($page, self::POSTS_ON_HOMEPAGE)->findAll(), 
-        	    'qnas'         => &$qnas, 
+                'articles'     => Article::model()->byPage($page, self::POSTS_ON_HOMEPAGE)->findAll(), 
+                'qnas'         => &$qnas, 
                 'pagination'   => array('total_pages' => ceil(Article::model()->countByAttributes(array('approved' => 1))/self::POSTS_ON_HOMEPAGE) , 'current_page' => $page+1)
             )
         );
@@ -48,7 +48,7 @@ class HomepageController extends Controller
                 }
                 else
                 {
-                    $alternatives = Article::model()->newest(8)->findAll();
+                    $alternatives = Article::model()->findAll(array('limit' => 8, 'order' => 'pub_date DESC'));
                 }
 		
                 $this->render('error_404', array('alternatives' => $alternatives));
@@ -77,5 +77,11 @@ class HomepageController extends Controller
                 'articles'   => Article::model()->byPage(0, 10)->findAll()
             )
          );
+    }
+    
+    public function actionTest()
+    {
+        echo 'isguest: '; var_dump(Yii::app()->user->isGuest);
+        if(!Yii::app()->user->isGuest) { echo '<br/>login: ';        var_dump(Yii::app()->user->login); }
     }
 }

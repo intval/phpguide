@@ -8,10 +8,10 @@
  * @author Alex Raskin (Alex@phpguide.co.il)
  */
 
-class LoginUser extends CWidget
+class LoginBox extends CWidget
 {
     public function run()
     {
-        $this->render('loginBox', array('user' => User::get_current_user()));
+        $this->render('loginBox');
     }
 }

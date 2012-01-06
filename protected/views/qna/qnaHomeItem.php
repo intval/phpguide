@@ -19,7 +19,7 @@
         <div class="userinfo">
             שאל
             
-                <?=e($qna->author->member_name)?>
+                <?=e($qna->author->login)?>
 
             ,
             <span class="relativetime" style="display:inline-block;">

@@ -14,11 +14,21 @@ class AddController extends Controller
         private $_articlesModel;
         private $_plainModel;
         private $_articlesCategories;
-        private $_articlesAuthor;
+   
+        
+        
         
 	/** Show edit form */
 	public function actionIndex()
 	{
+            
+            if(Yii::app()->user->isGuest)
+            {
+                Yii::app()->user->setFlash('401', 'רק למשתמשים רשומים יש אפשרות להוסיף כתבות חדשות');
+                $this->redirect(array('homepage/index'));
+            }
+            
+            
             // Set's class' members to hold the editted article or instances of new one
             $this->load_current_article();
             
@@ -26,13 +36,12 @@ class AddController extends Controller
             (
                 'article'  => $this->_articlesModel,
                 'plain'  => $this->_plainModel,
-                'author' => $this->_articlesAuthor,
                 'editting_id'   => $this->_articlesModel->id,
                 'categories'    => $this->_articlesCategories,
                 'allCategories' => self::tranform_categories_key_value( Category::model()->findAll() )
             );
 
-            $this->addscripts('http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js', 'bbcode', 'ui', 'addpage');
+            $this->addscripts('jquery-tools', 'bbcode', 'ui', 'addpage');
             $this->render('//article/AddForm',$view_data);
         }
         
@@ -55,10 +64,10 @@ class AddController extends Controller
             if(($id = filter_input(INPUT_GET, 'edit', FILTER_VALIDATE_INT)) > 1)
             {
                 $article = Article::model()->with('plain', 'author', 'categories')->findByPk($id);
-                $curuser = User::get_current_user();
-
+                $curuser = Yii::app()->user;
+                
                 // Either such article wasn't found, or teh user doesnt have enough privileges for editing it
-                if( $article === null || ($article->author_id != $curuser->id_member && !$curuser->is_blog_admin ) )
+                if( $article === null || ($article->author_id != $curuser->id && !$curuser->is_admin ) )
                 {
                    throw new CHttpException(404);
                 }
@@ -66,7 +75,6 @@ class AddController extends Controller
                 {
                     $this->_articlesModel       = & $article;
                     $this->_plainModel          = & $article->plain;
-                    $this->_articlesAuthor      = & $article->author;
                     $this->_articlesCategories  =   $article->categories;
                 }
             }
@@ -75,7 +83,6 @@ class AddController extends Controller
                 $this->_articlesModel       = new Article;
                 $this->_plainModel          = new ArticlePlainText();
                 $this->_articlesCategories  = new Category();
-                $this->_articlesAuthor      = User::get_current_user();
             }
         }
 
@@ -91,7 +98,7 @@ class AddController extends Controller
             }
             
             // Get editor's info
-            $curuser = User::get_current_user();
+            $curuser = Yii::app()->user;
 
             // fails if id is not defined, or filter wouldnt validate, or id = 0
             $id = filter_input(INPUT_POST, 'edit', FILTER_VALIDATE_INT);
@@ -118,7 +125,7 @@ class AddController extends Controller
                 }
 
                 // Dont have privileges for editting posts ?
-                if ( $article->author_id != $curuser->id_member && !$curuser->is_blog_admin )
+                if ( $article->author_id != $curuser->id && !$curuser->is_admin )
                 {
                     throw new CHttpException(404, 'Insuffient privileges');
                 }
@@ -148,25 +155,20 @@ class AddController extends Controller
 
 
             // Automatically approve admins posts
-            $article->approved = User::get_current_user()->is_blog_admin;
+            $article->approved = $curuser->is_admin;
 
+            
             // If this is a new post. An edited post would have it's original author
-            if( is_null($article->author_id ))
+            if( null === $article->author_id )
             {
-                $article->author_id  = $curuser->id_member;
+                $article->author_id  = $curuser->id;
             }
 
+            
 
             $trans = Yii::app()->db->beginTransaction();
             try
             {
-
-                // Remember the real persons name. Dont care that much if it fails
-                if(!empty($_POST['Author']['full_name']) && empty($curuser->full_name ))
-                {
-                    $curuser->full_name = $_POST['Author']['full_name'];
-                    $curuser->save();
-                }
 
                 $article->saveWithRelated('categories');
                 $articlePlain->id = $article->id;
@@ -184,7 +186,7 @@ class AddController extends Controller
             catch (Exception $e)
             {
                 $trans->rollback();
-                throw new Exception('Failed to save data, proly because of repeating PK in plainblog tbl');
+                throw new Exception('Failed to save data, proly because of repeating PK in plainblog tbl', 0, $e);
             }
 
         }
@@ -192,7 +194,6 @@ class AddController extends Controller
 
         private function show_form_on_failure(&$article, &$plain)
         {
-            $this->_articlesAuthor =  $article->author;
             $this->_articlesModel  = & $article;
             $this->_plainModel     = & $plain;
             $this->_articlesCategories =  $article->categories;
@@ -212,7 +213,7 @@ class AddController extends Controller
                 // Assign post data
                 $article      ->attributes  =  $_POST['Article'];
                 $articlePlain ->attributes  =  $_POST['ArticlePlainText'];
-                $article->author = User::get_current_user();
+                $article -> author = Yii::app()->user;
                 
                 if($articlePlain->validate() && $article->validate())
                 {

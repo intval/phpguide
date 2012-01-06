@@ -20,7 +20,7 @@ class QnaController extends Controller
             $model = new QnaQuestion();
             $model->attributes = $_POST['QnaQuestion'];
 
-            $model->authorid = User::get_current_user()->id_member;
+            $model->authorid = Yii::app()->user->id;
             $model->html_text = bbcodes::bbcode($model->bb_text, $model->subject);
 
             if( $model->validate() )
@@ -42,7 +42,7 @@ class QnaController extends Controller
 	
         if($qna)
         {
-	       $this->addscripts('qna','bbcode'); 
+	    $this->addscripts('qna','bbcode'); 
             $qna->views++;
             $this->render('//qna/viewQna', array('qna' => &$qna));
             $qna->save();
@@ -65,7 +65,7 @@ class QnaController extends Controller
         		$comment = new QnaComment();
         		$comment->attributes = $_POST['QnaComment'];
         
-        		$comment->authorid = User::get_current_user()->id_member;
+        		$comment->authorid = Yii::app()->user->id;
         		$comment->html_text = bbcodes::bbcode($comment->bb_text, '');
         
         		if( !$comment->validate())

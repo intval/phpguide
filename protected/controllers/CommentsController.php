@@ -34,9 +34,9 @@ class CommentsController extends Controller
                 $model->attributes=$_POST['Comment'];
 
                 $model->approved    = 1;
-                $model->author      = User::get_current_user()->member_name;
+                $model->author      = Yii::app()->user->login;
                 $model->date        = new CDbExpression('NOW()');
-                $model->postingip   = User::get_current_user()->member_ip;
+                $model->postingip   = Yii::app()->request->userHostAddress;
 
                 try
                 {
@@ -69,7 +69,7 @@ class CommentsController extends Controller
                 (
                     array
                     (
-                        'ip' => User::get_current_user()->member_ip,
+                        'ip' => Yii::app()->request->userHostAddress,
                         'delay' => self::ANTISPAM_DELAY
                     )
                 ) < 1;

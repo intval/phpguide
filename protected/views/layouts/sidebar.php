@@ -9,7 +9,7 @@
 </form>
     
 
-    <? $this->widget('application.components.LoginUser') ?>
+    <? $this->widget('application.components.LoginBox') ?>
 
     <? $this->widget('application.components.RecentEvents') ?>
 
@@ -17,7 +17,7 @@
     
     
     <div class="blog-links-block">
-        <a href='http://feeds.feedburner.com/phpguideblog' class='rssfeed' rel='rss' title='RSS Feed'>הירשם לעדכונים בRSS</a>
+        <a href='http://feeds.feedburner.com/phpguideblog' class='rssfeed' rel='alternate' title='RSS Feed'>הירשם לעדכונים בRSS</a>
         
     <form 
 	style="text-align:center;padding:3px;" 
