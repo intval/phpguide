@@ -9,7 +9,7 @@ class Helpers
     
     public static function date2rfc(DateTime $date)
     {
-        return $date->format('Y-m-dTH:i:s');
+        return $date->format('Y-m-d\TH:i:sP');
     }
 
     public static function dateStr2heb($date, $long = false)
@@ -38,7 +38,7 @@ class Helpers
             $string_containing_urls  =    str_replace("\\n\\r","\n\r",$string_containing_urls);
 
             $pattern = '@(https?://(?:idea\.)?phpguide\.co\.il\S+[[:alnum:]]/?)@si';
-            return preg_replace_callback($pattern, array('self', 'decodeurls') ,$string_containing_urls);
+            return preg_replace_callback($pattern, array('static', 'decodeurls') ,$string_containing_urls);
     }
 
     private static function decodeurls(array $regexp_matches)
@@ -47,39 +47,6 @@ class Helpers
     }
     
     
-    /**
-     * Sends an message to 
-     * @param type $message 
-     */
-    public static function jabber($message, $to = 'alex.raskin@jabber.ru')
-    {
-        @file_get_contents
-        (
-            'http://phpguide.co.il/tools/jabber/index.php?no_proxy&m='.urlencode($message).'&to='.  urlencode($to), 
-            false, 
-            stream_context_create(array('http' => array('timeout' => 0.3)))
-        );
-    }
-
-
-
-    /**
-     * Gets user's ip address from environment and server variables
-     * @return string $ip — user's IP adderss
-     */
-    public static function getip()
-    {
-        static $ip;
-        if( $ip !== null) return $ip;
-        
-        if( getenv("HTTP_CLIENT_IP"))              $ip = getenv("HTTP_CLIENT_IP");
-        elseif( getenv("HTTP_X_FORWARDED_FOR"))    $ip = getenv("HTTP_X_FORWARDED_FOR");
-        elseif( getenv("REMOTE_ADDR"))             $ip = getenv("REMOTE_ADDR");
-        elseif(isset($_SERVER['REMOTE_ADDR']))     $ip = $_SERVER['REMOTE_ADDR'];
-        
-        return $ip;
-    }
-    
     
     /**
      * @param int $length length of the desired string
@@ -87,7 +54,14 @@ class Helpers
      */
     public static function randString($length = 4)
     {
-        return substr(str_shuffle('abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890') , 0, $length);
+        static $dictionary = 'abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $result = '';
+        
+        for($i = 0; $i < $length; $i++)
+        {
+            $result .= $dictionary[rand(0, 60)];
+        }
+        return $result;
     }
     
 }
