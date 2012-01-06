@@ -26,7 +26,7 @@ class QnaController extends Controller
             if( $model->validate() )
             {
                 $model->save();
-                $this->renderPartial('//qna/qnaHomeItem', array('qna' => &$model));
+                echo $model->qid;
             }
             else
             {
