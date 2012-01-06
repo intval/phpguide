@@ -78,27 +78,50 @@ class Article extends CActiveRecord
         
         
         
-        
-        
-        
-        
-  
-        
-        
-        
-        
-        
+        public function afterFind()
+        {
+            $this->pub_date = new DateTime($this->pub_date);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public function defaultScope()
         {
+            $condition = 'approved=1';
+            
+            // allow poster to see his post
+            $userid = Yii::app()->user->id;
+            (null === $userid) ?: $condition .= " OR author_id = $userid";
+            
+            // admins can see anything
+            if($userid && Yii::app()->user->is_admin) $condition = '';
+            
             return array
             ( 
-                'condition' =>  'approved=1' ,
+                'condition' =>  $condition  ,
                 'order'     =>  'pub_date DESC',
                 'with'      => array
                 (
                     'author' => array
                     (
-                        'select'   => array('full_name','member_name', 'avatar')
+                        'select'   => array('real_name','login','email')
                     )
                 )
             );
