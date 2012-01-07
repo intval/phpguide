@@ -59,42 +59,44 @@ class QnaController extends Controller
     	if(isset($_POST['QnaComment']))
     	{
     	    $transaction = YII::app()->db->beginTransaction();
-    	    sleep(5);
+    	    
     	    try
     	    {
-        		$comment = new QnaComment();
-        		$comment->attributes = $_POST['QnaComment'];
-        
-        		$comment->authorid = Yii::app()->user->id;
-        		$comment->html_text = bbcodes::bbcode($comment->bb_text, '');
-        
-        		if( !$comment->validate())
-        		{
-        		    throw new InvalidArgumentException("Some submitted data for QnaANswer didnt pass validation");
-        		}
-        		
-        		$question = QnaQuestion::model()->findByPk($comment->qid);
-        		
-        		if($question === null)
-        		{
-        		    throw new OutOfRangeException("QnaAnswer claims to belong to inexisting Question");
-        		}
-        		
-        		
-        		$question->answers++;
-        		
-        		if(!$comment->save() || !$question->save())
-        		{
-        		    throw new ErrorException("Failed to save QnaComment, or increment answers counter though all data has passed validation. bug?!");
-        		}
-        
-        		$transaction->commit();
-        		$this->renderPartial('//qna/comment', array('answer' => &$comment));
+                $comment = new QnaComment();
+                $comment->attributes = $_POST['QnaComment'];
+
+                $comment->authorid = Yii::app()->user->id;
+                $comment->html_text = bbcodes::bbcode($comment->bb_text, '');
+
+                if( !$comment->validate())
+                {
+                    throw new InvalidArgumentException("Some submitted data for QnaANswer didnt pass validation");
+                }
+
+                $question = QnaQuestion::model()->findByPk($comment->qid);
+
+                if($question === null)
+                {
+                    throw new OutOfRangeException("QnaAnswer claims to belong to inexisting Question");
+                }
+
+
+                $question->answers++;
+
+                if(!$comment->save() || !$question->save())
+                {
+                    throw new ErrorException("Failed to save QnaComment, or increment answers counter though all data has passed validation. bug?!");
+                }
+
+                $transaction->commit();
+                $comment->author = Yii::app()->user;
+                $this->renderPartial('//qna/comment', array('answer' => &$comment ));
     	    }
     	    catch(Exception $e)
     	    {
-        		echo ':err:';
-        		$transaction->rollback();
+                echo ':err:'; 
+                if(YII_DEBUG || Yii::app()->user->is_admin) echo $e->getMessage();
+                $transaction->rollback();
     	    }
     	    
     	    
