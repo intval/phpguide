@@ -45,7 +45,7 @@
             
            
 
-            <? if ($article->url !== null && $author->is_admin): ?>
+            <? if ($article->url !== null && $is_editor_admin): ?>
             <br/><br/><label>
                 <input type="checkbox" name="change_permalink"/>
                 לשנות קישור קיים?</label><br/>             

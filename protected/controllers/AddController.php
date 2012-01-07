@@ -38,6 +38,7 @@ class AddController extends Controller
                 'plain'  => $this->_plainModel,
                 'editting_id'   => $this->_articlesModel->id,
                 'categories'    => $this->_articlesCategories,
+                'is_editor_admin'        => !Yii::app()->user->isGuest && Yii::app()->user->is_admin, 
                 'allCategories' => self::tranform_categories_key_value( Category::model()->findAll() )
             );
 
