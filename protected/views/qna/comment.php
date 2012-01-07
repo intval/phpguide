@@ -2,7 +2,7 @@
 
 <div class="answer">
 	<span class="userinfo" >
-            <? $this->widget('GravatarWidget', array('email' => $answer->author->email, 'size' => 20, 'htmlOptions' => 'class="avatar"')); ?>
+            <? $this->widget('GravatarWidget', array('email' => $answer->author->email, 'size' => 20, 'htmlOptions' => array('class'=>"avatar"))); ?>
 	    ענה
 	    <?=e($answer->author->login)?>
 	   ב-
