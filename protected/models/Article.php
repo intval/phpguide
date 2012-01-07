@@ -157,7 +157,7 @@ class Article extends CActiveRecord
             
             $this->getDbCriteria()->mergeWith(array(
                 'select'    => array('description', 'title', 'url'),
-                'condition' => "id IN 
+                'condition' => "t.id IN 
                     (
                     SELECT id FROM blog_plain WHERE 
                     MATCH(plain_content, plain_description) AGAINST(:url)
