@@ -18,6 +18,7 @@
  * @property string $twitterid
  * @property integer $points
  * @property bool $is_admin
+ * @property bool $is_registered
  *
  * The followings are the available model relations:
  * @property Blog[] $blogposts
@@ -26,6 +27,20 @@
  */
 class User extends CActiveRecord
 {
+    
+        /**
+         * Indicates whether the current user is registered user, with email, chosen login and password
+         * or not (one automatically created by the system for every logon)
+         * @var bool
+         */
+        public $is_registered = false;
+        
+        /**
+         * email used for automatically created (non registered) user accounts
+         */
+        const unregistered_guest_mail = 'anonymous@phpguide.co.il';
+    
+        
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return User the static model class
@@ -72,22 +87,35 @@ class User extends CActiveRecord
 	}
         
         
-        public function beforeSave() 
+        
+        protected function afterFind() 
         {
-            if($this->isNewRecord)
-            {
-                if(null === $this->ip)
-                {
-                    $this->ip = Yii::app()->request->getUserHostAddress();
-                }
-
-                if(null === $this->reg_date)
-                {
-                    $this->reg_date = new CDbExpression('NOW()');
-                }
-            }
+            $this->is_registered = $this->email !== $this->id . static::unregistered_guest_mail;
+            return parent::afterFind();
+        }
+        
+        /**
+         * Creates new guest user account 
+         */
+        public static function createNewAnonymousUser()
+        {
+            $nextid = Yii::app()->db
+                    ->createCommand( "SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_schema = (SELECT DATABASE()) AND table_name = :tbl")
+                    ->queryScalar(array('tbl' => static::model()->tableName()));
             
-            return parent::beforeSave();
+            $user = new User();
+            
+            $user->login = 'משתמש_' . $nextid;
+            $user->email = $nextid . static::unregistered_guest_mail;
+            $user->password = 'abc';
+            $user->salt = 'abcabcabcabcabcabcabca';
+            $user->ip = Yii::app()->request->getUserHostAddress();
+            $user->is_registered = false;
+            $user->real_name = '';
+            
+            $user->save();
+            
+            return $user;
         }
 
 }

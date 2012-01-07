@@ -68,7 +68,7 @@ class QnaComment extends CActiveRecord
                 (
                     'author' => array
                     (
-                        'select'   => array('real_name','login', 'id')
+                        'select'   => array('real_name','login', 'id', 'email')
                     )
                 )
             );

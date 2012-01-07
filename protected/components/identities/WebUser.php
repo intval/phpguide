@@ -49,8 +49,22 @@ class WebUser extends CWebUser
     {
         if(!$this->hasState('user') )
         {
-            $this->setState('user', User::model()->findByPk($this->getId ()));
+            $userid = $this->getId();
+            
+            if( null === $userid )
+            {
+                $user = User::createNewAnonymousUser();
+                $identity = new AuthorizedIdentity($user);
+                $identity->authenticate();
+                $this->login($identity ,  Yii::app()->params['login_remember_me_duration']); // calls this->setState internally
+            }
+            else
+            {
+                $user = User::model()->findByPk($userid);
+                $this->setState('user', $user);
+            }
         }
+        
         return $this->getState('user');
     }
 
@@ -136,7 +150,7 @@ class WebUser extends CWebUser
     private function password_algorithm_upgrade( &$password)
     {
         $attributes = array();
-        if(mb_strlen($this->user->salt) !== 22)
+        if(22 !== mb_strlen($this->user->salt))
         {
             $salt = Helpers::randString(22);
             $attributes['salt'] = $salt;

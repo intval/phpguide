@@ -153,7 +153,7 @@ class LoginController extends Controller
         
         try
         {               
-            $user = new User();
+            $user = User::model()->findByPk(Yii::app()->user->id);
 
             $user->attributes = array('login' => $username, 'password' => $password, 'email' => $email);
             $user->reg_date = new CDbExpression('NOW()');
@@ -191,7 +191,7 @@ class LoginController extends Controller
         }
         catch (UsernameAlreadyTaken $e)
         {
-            echo  'שם משתמש זה טפוס';
+            echo  'שם משתמש זה תפוס';
         }
         catch (Exception $e)
         {

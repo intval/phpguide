@@ -22,13 +22,6 @@ class AddController extends Controller
 	public function actionIndex()
 	{
             
-            if(Yii::app()->user->isGuest)
-            {
-                Yii::app()->user->setFlash('401', 'רק למשתמשים רשומים יש אפשרות להוסיף כתבות חדשות');
-                $this->redirect(array('homepage/index'));
-            }
-            
-            
             // Set's class' members to hold the editted article or instances of new one
             $this->load_current_article();
             
