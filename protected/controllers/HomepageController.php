@@ -58,6 +58,7 @@ class HomepageController extends Controller
                 $this->render('error_500');
                 Yii::log($error, CLogger::LEVEL_ERROR, '500');
                 //var_dump($error);
+                if(YII_DEBUG || Yii::app()->user->is_admin) echo $error['message'];
             }
 
         }
@@ -68,20 +69,12 @@ class HomepageController extends Controller
 
     }
 
+    /**
+     * Displays site posts as RSS feed 
+     */
     public function actionRss()
     {
         $this->layout = '/';
-        $this->render('rss' ,
-            array
-            (
-                'articles'   => Article::model()->byPage(0, 10)->findAll()
-            )
-         );
-    }
-    
-    public function actionTest()
-    {
-        echo 'isguest: '; var_dump(Yii::app()->user->isGuest);
-        if(!Yii::app()->user->isGuest) { echo '<br/>login: ';        var_dump(Yii::app()->user->login); }
+        $this->render('rss' ,array('articles'   => Article::model()->byPage(0, 10)->findAll()));
     }
 }
