@@ -38,7 +38,7 @@ return array(
 	'components'=>array
          (
 		'session'       => array( 'autoStart' => true),
-		'db'            => $GLOBALS['db_connection_config'],
+		'db'            => require 'dbconnection.php',
 		'errorHandler'  => array( 'errorAction'=>'homepage/error' ),
                 'request'       => array('enableCsrfValidation' => true),
                 'user'          => array( 'class' => 'WebUser'),
