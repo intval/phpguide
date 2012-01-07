@@ -1,5 +1,4 @@
 
-
     <a href="index.php" class='blog_entry_back' rel="up">&rarr; <span>חזרה למדריכי PHP</span></a>
     <h1 class='content-title'><span></span><?=e($article->title);?></h1>
     
@@ -41,11 +40,7 @@
           
             <b><?=e($article->author->real_name)?></b> 
             <span dir="ltr">(<?=e($article->author->login)?>)</span>
-   
-            <br/>
-            
-            <br/>
-            <a href="/forum/index.php?action=profile;u=<?=e($article->author->id)?>" style="font-size:95%">פרופיל משתמש</a>
+  	<!--<br/><br/><a href="/forum/index.php?action=profile;u=<?=e($article->author->id)?>" style="font-size:95%">פרופיל משתמש</a>-->
             
         </p>
         <div class="clear"></div>
