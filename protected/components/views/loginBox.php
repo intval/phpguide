@@ -1,30 +1,31 @@
-    <?php
-    $user = & Yii::app()->user;
-    $email = $user->isGuest ? '' : $user->email;
-    ?>
+<?php $user = & Yii::app()->user; ?>
 
 <div class="user_info">
         
   
-        <?php $this->widget('GravatarWidget', array('size' => 50, 'email' => $email)); ?>
+        <?php $this->widget('GravatarWidget', array('size' => 50, 'email' => $user->email)); ?>
         
     <p class="right">
     
+            שלום
+          
+            <span dir="ltr" id="user_name"><?=e($user->login)?></span> <br/>
 
     <?php
 
     
-    if($user ->isGuest)
+    if(!$user->is_registered && null === Yii::app()->session['provider'])
     {
         $this->widget('ext.eauth.EAuthWidget', array('action' => 'login/externalLogin'));
+    }
+    elseif(!$user->is_registered)
+    {
+    	echo CHtml::link('בחר לעצצך שם אחר', array('login/index'));
     }
     else 
     {
         ?>
             
-            שלום
-          
-            <span dir="ltr" id="user_name"><?=e($user->login)?></span> <br/>
 
             ברוך הבא ללמוד PHP
 	    <br/><br/>

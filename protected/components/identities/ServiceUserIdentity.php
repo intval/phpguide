@@ -32,7 +32,7 @@ class ServiceUserIdentity extends CUserIdentity
     {
         
         $userInfo  = $this->provider->getAttributes();
-        $dbfield = self::$service2fieldMap[$this->provider->serviceName];
+        $dbfield = static::$service2fieldMap[$this->provider->serviceName];
         
         $user = User::model()->findByAttributes(array($dbfield => $userInfo['id']));
         if($user === null)

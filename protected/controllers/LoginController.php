@@ -160,6 +160,7 @@ class LoginController extends Controller
 
             $user->salt = Helpers::randString(22);
             $user->password = WebUser::encrypt_password($password, $user->salt);
+            $user->is_registered = true;
 
             try
             {
@@ -185,7 +186,6 @@ class LoginController extends Controller
             {
                 $identity = new AuthorizedIdentity($user);
                 Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
-                
                 echo 'ok';
             }
         }
@@ -195,7 +195,8 @@ class LoginController extends Controller
         }
         catch (Exception $e)
         {
-            echo $e->getMessage();
+            echo 'שגיאת שרת בתהליך ההרשמה. אנה נסו במועד מאוחר יותר';
+            if(YII_DEBUG) echo $e->getMessage();
         }
         
 

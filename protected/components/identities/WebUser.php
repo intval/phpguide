@@ -38,7 +38,7 @@ class WebUser extends CWebUser
     public function __get($key) 
     {
         $user = $this->getUser(); 
-        return isset($user[$key]) ? $user[$key] : parent::__get($key);
+        return isset($user->{$key}) ? $user->{$key} : parent::__get($key);
     }
 
     /**
@@ -46,7 +46,7 @@ class WebUser extends CWebUser
      * @return User
      */
     protected function getUser()
-    {
+    { 
         if(!$this->hasState('user') )
         {
             $userid = $this->getId();
@@ -150,7 +150,7 @@ class WebUser extends CWebUser
     private function password_algorithm_upgrade( &$password)
     {
         $attributes = array();
-        if(22 !== mb_strlen($this->user->salt))
+        if(null !== $this->plain_password && 22 !== mb_strlen($this->user->salt))
         {
             $salt = Helpers::randString(22);
             $attributes['salt'] = $salt;

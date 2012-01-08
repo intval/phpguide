@@ -29,7 +29,7 @@
     margin-right:5px;
     
 }
-.auth-bar-google { background-image: url("../images/google_login.png"); }
+.auth-bar-google { background-image: url("../images/google_login.png"); margin-top:10px;}
 .auth-bar-facebook { background-image: url("../images/facebook_login.png"); }
 .auth-bar-password {background-image: url("../images/password_login.png"); }
 
@@ -37,6 +37,8 @@ a.auth-bar:last-child
 {
     margin-bottom:0;
 }
+
+
 
 
 :hover .auth-icon i,
