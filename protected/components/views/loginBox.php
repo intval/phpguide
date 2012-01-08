@@ -18,7 +18,7 @@
     {
         $this->widget('ext.eauth.EAuthWidget', array('action' => 'login/externalLogin'));
     }
-    elseif(!$user->is_registered)
+    elseif(!$user->is_registered && null !== Yii::app()->session['provider'])
     {
     	echo CHtml::link('בחר לעצצך שם אחר', array('login/index'));
     }
