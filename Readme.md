@@ -24,7 +24,7 @@ Database Setup
 
 - Make a *COPY* of `dbconnection.example.php` and rename it into `dbconnection.php`
 
-- Make a *COPY* of `localize.example.php` as `localize.php`
+- Make a *COPY* of `local_config.example.php` as `local_config.php`
 
 - Update `dbconnection.php` with your database connection info
 
