@@ -18,7 +18,6 @@
  * @property string $twitterid
  * @property integer $points
  * @property bool $is_admin
- * @property bool $is_registered
  *
  * The followings are the available model relations:
  * @property Blog[] $blogposts
