@@ -12,7 +12,6 @@ Installation
 
 - Download [YiiFramework](http://www.yiiframework.com/)
 
-
 - Extract the Yii archive and copy "framework" directory to your server
 
 - Download [this code](https://github.com/intval/phpguide/zipball/master) and put it on your server
@@ -38,8 +37,13 @@ If you put "framework" directory in public_html - it should be somethig like
 
   `$conf['params']['PATH_TO_YII'] = dirname(__FILE__).'/../../framework';`
 
-- Import DB.SQL via PHPMyAdmin (default username: admin, password: admin)
+- Import protected/data/DB.SQL via PHPMyAdmin 
 
+- Apply YII migrations. on windows do:
+	`cd C:\path\to\phpguide\protected`
+	`yiic.bat migrate`
+	
+Go to the website. Username: admin, pass: admin
 
 What's next
 -----------
