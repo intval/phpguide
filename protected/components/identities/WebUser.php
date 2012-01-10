@@ -51,18 +51,17 @@ class WebUser extends CWebUser
         {
             $userid = $this->getId();
             
-            if( null === $userid )
+            if( null !== $userid )
             {
-                $user = User::createNewAnonymousUser();
-                $identity = new AuthorizedIdentity($user);
-                $identity->authenticate();
-                $this->login($identity ,  Yii::app()->params['login_remember_me_duration']); // calls this->setState internally
+            	$user = User::model()->findByPk($userid);
             }
-            else
+            
+            if( null === $userid || null === $user )
             {
-                $user = User::model()->findByPk($userid);
-                $this->setState('user', $user);
+            	$user = User::createNewAnonymousUser();
             }
+            
+            $this->setState('user', $user);
         }
         
         return $this->getState('user');

@@ -25,21 +25,22 @@ class DbUserIdentity extends CUserIdentity
             throw new BruteForceException();
         }
         
-        $user = User::model()->find("login=:login", array('login' => $this->username ));
+        $this->user = User::model()->find("login=:login", array('login' => $this->username ));
         
-        if($user === null)
+        if($this->user === null)
         {
             $this->errorCode = static::ERROR_USERNAME_INVALID;
             self::log_failed_attempt();
-        }
-        else if($user->password !== $this->get_expected_password($user))
+        }      
+               //  db stored password !== expected_password(based on provided inputs)
+        else if($this->user->password !== $this->get_expected_password())
         {
             $this->errorCode = static::ERROR_PASSWORD_INVALID;
+            $this->user = null;
             self::log_failed_attempt();
         }
         else
         {
-            $this->user = $user;
             $this->errorCode = static::ERROR_NONE;
         }
         
@@ -74,18 +75,17 @@ class DbUserIdentity extends CUserIdentity
     /**
      * Returns the password we expect to be in the DB for the corresponding user
      * Depends whether he is still using the old SHA1 algorithm, or whether his password has been already updated to blowfish
-     * @param User $user instance of the User model
      * @return string password we expect to be in the db 
      */
-    private function get_expected_password(User $user)
+    private function get_expected_password()
     {
-        if(22 !== mb_strlen($user->salt))
+        if(22 !== mb_strlen($this->user->salt))
         {
             $expected_db_password = sha1(mb_strtolower($this->username). $this->password);
         }
         else
         {
-            $expected_db_password = WebUser::encrypt_password($this->password, $user->salt);
+            $expected_db_password = WebUser::encrypt_password($this->password, $this->user->salt);
         }
         
         return $expected_db_password;
