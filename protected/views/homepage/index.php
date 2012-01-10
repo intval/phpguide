@@ -45,8 +45,7 @@
 <?  $this->renderPartial('//article/homepageArticlesList', array('articles' =>  array_slice($articles, 2) )); ?>
 
 <div class="paginator" id="paginator3" dir="ltr"></div>
-<script type="text/javascript">
-	jQuery(document).ready(function(){
-	   pag3 = new Paginator('paginator3', <?=$pagination['total_pages']?> /*total*/, 15, <?=$pagination['current_page']?> /*current*/, "?page=");
-	}) ;
-</script>
+
+<?php 
+Yii::app()->clientScript->registerScript('paginator', "pag3 = new Paginator('paginator3', ".$pagination['total_pages'] . " /*total*/, 15, " . $pagination['current_page'] ." /*current*/, '?page=');", CClientScript::POS_READY);
+?>

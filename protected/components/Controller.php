@@ -103,7 +103,8 @@ class Controller extends CController
                 $this->facebook['current_page_url'] = 'http://' . $_SERVER['HTTP_HOST'] . (isset($_SERVER["REDIRECT_URL"]) ? $_SERVER["REDIRECT_URL"] : $_SERVER["REQUEST_URI"]);
                 $this->facebook['image'] = 'http://' . $_SERVER['HTTP_HOST'] . '/static/images/logo.jpg';
             }
-
+			$this->pageTitle = $this->vars['title'];
+			Yii::app()->clientScript->coreScriptPosition = CClientScript::POS_END;
             parent::__construct($id, $module);
         }
         

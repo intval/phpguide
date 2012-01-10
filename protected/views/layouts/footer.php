@@ -2,6 +2,10 @@
 
 
 
+
+</body>
+
+
 <script type='text/javascript'>
     var scr = false, _gaq;
     function load(js)
@@ -16,6 +20,5 @@
    load('http://www.google-analytics.com/ga.js');
 </script>
 
-</body>
 
 </html>

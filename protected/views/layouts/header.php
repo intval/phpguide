@@ -3,7 +3,7 @@
 <head>
     <base href="<?=bu()."/"?>" />
     <meta charset="utf-8" />
-    <title><?=e($this->vars['title'])?></title>
+    
 
     <meta name="description" content="<?=e($this->vars['description'])?>" />
     <meta name="keywords" content="<?=e($this->vars['keywords'])?>" />
@@ -24,6 +24,7 @@
     <link href="<?=bu("static/styles/style.css")?>" rel="stylesheet" />
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
     <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style.css")?>" rel="stylesheet" /><![endif]-->
+    <title></title>
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 </head>
 
