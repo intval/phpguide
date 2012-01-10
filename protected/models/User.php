@@ -81,7 +81,7 @@ class User extends CActiveRecord
 		return array(
 			'blogposts' => array(self::HAS_MANY, 'Blog', 'author_id'),
 			'qnaAnswers' => array(self::HAS_MANY, 'QnaAnswers', 'authorid'),
-			'qnaQuestions' => array(self::HAS_MANY, 'QnaQuestions', 'authorid'),
+			'qnaQuestions' => array(self::HAS_MANY, 'QnaQuestion', 'authorid'),
 		);
 	}
         
@@ -111,6 +111,8 @@ class User extends CActiveRecord
             $user->ip = Yii::app()->request->getUserHostAddress();
             $user->is_registered = false;
             $user->real_name = '';
+            $user->last_login = new CDbExpression('NOW()');
+            $user->reg_date = null;
             
             $user->save();
             
