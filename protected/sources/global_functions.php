@@ -13,7 +13,7 @@
  */
 function e($data)
 {
-    return htmlSpecialChars($data, ENT_QUOTES, 'UTF-8');
+    return htmlSpecialChars($data, ENT_QUOTES);
 }
 
 /**
