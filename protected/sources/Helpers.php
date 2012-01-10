@@ -64,4 +64,21 @@ class Helpers
         return $result;
     }
     
+    
+    /**
+     * Sends an email with proper headers
+     * @param string $to recipient's email
+     * @param string $subject mail's subject
+     * @param string $content mail's html content
+     */
+    public static function sendMail($to, $subject, $content)
+    {
+    	$headers = "From: PHPGuide <noreply@phpguide.co.il>\r\n";
+    	$headers .= "MIME-Version: 1.0\r\n";
+    	$headers .= "Content-type: text/html; charset=utf-8\r\n";
+    	
+    	@mail($to, "=?utf-8?B?".base64_encode($subject)."?=", $content, $headers);
+
+    }
+    
 }

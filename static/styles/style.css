@@ -2711,6 +2711,23 @@ a:visited
 }
 
 
+
+
+
+
+
+
+
+
+
+
+.hidden
+{
+	display:none;
+}
+
+
+
 input, textarea { font-size:14px; font-family: Arial;}
 
 /**************************** Header section ********************/
