@@ -39,3 +39,6 @@ publish
 
 #zend debugger
 dummmy.php
+
+#phing
+build.xml
