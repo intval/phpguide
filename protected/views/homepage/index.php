@@ -1,5 +1,5 @@
-
 <? $this->renderPartial('//qna/newQuestionForm') ?>
+<? $this->pageTitle = "phpguide - Home Page"; ?>
 
 
 
