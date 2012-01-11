@@ -70,6 +70,7 @@ class LoginController extends Controller
     			catch(Exception $e)
     			{
     				echo 'חלה שגיאה לא מוכרת כלשהי. נסו שוב מאוחר יותר';
+    				Yii::log("Password recovery error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
     			}
     		}
     	}
@@ -161,6 +162,7 @@ class LoginController extends Controller
             catch(Exception $e)
             {
             	echo 'חלה תקלה בתהליך ההזדהות. נסו שום בעוד כמה דקות';
+            	Yii::log("Login error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
             }
         }
     }
@@ -294,7 +296,7 @@ class LoginController extends Controller
         catch (Exception $e)
         {
             echo 'שגיאת שרת בתהליך ההרשמה. אנה נסו במועד מאוחר יותר';
-            if(YII_DEBUG) echo $e->getMessage();
+            Yii::log("Signup error : " . $e->getMessage(), CLogger::LEVEL_ERROR);
         }
         
 
