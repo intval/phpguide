@@ -13,15 +13,25 @@ var field = document.getElementById('data') || document.getElementById('forum_qu
 // Принимает индекс тега в массиве bbtags
 /*-------------------------------------------------------------------------*/
 
-function bbstyle(tag)
+function bbstyle(tag, field2)
 {
 	var selection = false;
+	
+	if( typeof(field2) !== 'undefined' )
+	{
+		if(typeof(field2) === 'string') inpfield = document.getElementById(field2);
+		else inpfield = field2;
+	}
+	else inpfield = field;
+	
+	
+	
 
 	if(is_mozilla) // находим скролл
 	{
-		var scrollTop = field.scrollTop;
-		var scrollLeft = field.scrollLeft;
-		selection = field.value.substring(field.selectionStart, field.selectionEnd);
+		var scrollTop = inpfield.scrollTop;
+		var scrollLeft = inpfield.scrollLeft;
+		selection = inpfield.value.substring(inpfield.selectionStart, inpfield.selectionEnd);
 	}
 
 
@@ -35,22 +45,22 @@ function bbstyle(tag)
 		var stored_range = range.duplicate();
 		if(range.text !='')
 		{
-			stored_range.moveToElementText( field );
+			stored_range.moveToElementText( inpfield );
 			stored_range.setEndPoint( 'EndToEnd', range );
-			field.selectionStart = stored_range.text.length - range.text.length;
-			field.selectionEnd = field.selectionStart + range.text.length;
+			inpfield.selectionStart = stored_range.text.length - range.text.length;
+			inpfield.selectionEnd = inpfield.selectionStart + range.text.length;
 		}
 		else
 		{
-			field.selectionStart = field.value.length + 15;
-			field.selectionEnd = field.value.length + 15;
+			inpfield.selectionStart = inpfield.value.length + 15;
+			inpfield.selectionEnd = inpfield.value.length + 15;
 		}
 	}
 
 
 	//Get the selection bounds
-	var start = field.selectionStart;
-	var end = field.selectionEnd;
+	var start = inpfield.selectionStart;
+	var end = inpfield.selectionEnd;
 
 
 	if ( selection === false && document.selection)  selection = document.selection.createRange().text;
@@ -61,7 +71,7 @@ function bbstyle(tag)
 
 
 	//Break up the text by selection
-	var text = field.value;
+	var text = inpfield.value;
 	var pre = text.substring(0, start);
 	var post = text.substring(end);
 	var closed = false;
@@ -89,23 +99,23 @@ function bbstyle(tag)
 
 
 	//Put the text in the textarea
-	field.value = text;
+	inpfield.value = text;
 
 	if(!is_ie)
 	{
 		//Re-establish the selection, adjusted for the added characters.
-		field.selectionStart = (start  + tag.length + 2);
-		field.selectionEnd = start + (tag.length +2) + selection.length;
+		inpfield.selectionStart = (start  + tag.length + 2);
+		inpfield.selectionEnd = start + (tag.length +2) + selection.length;
                 //console.log(start +' '+tag.length);
 	}
 
 
 	if(is_mozilla)  // Возвращаем скролл на место
 	{
-		field.scrollTop = scrollTop;
-		field.scrollLeft = scrollLeft;
+		inpfield.scrollTop = scrollTop;
+		inpfield.scrollLeft = scrollLeft;
 	}
 
-	field.focus();
+	inpfield.focus();
 
 }

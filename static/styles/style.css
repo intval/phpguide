@@ -4044,7 +4044,9 @@ margin-top:20px;
     font-size: 90%;
     display:block;
     margin-bottom:5px;
-    
+	width:90%;
+    float:right;
+	
 }
 
 .answer .avatar
@@ -4053,9 +4055,19 @@ margin-top:20px;
 }
 
 
+.answer a.qna-answer-edit , .answer a.qna-answer-delete
+{
+	display:block; 
+	width:16px;
+	height:16px;
+	float:left;
+	cursor:pointer;
+}
 
-
-         
+.answer a.qna-answer-edit
+{
+	margin-right:5px;
+}         
 /************************** Error pages *******************/
 div.error-page 
 {
