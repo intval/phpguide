@@ -34,7 +34,7 @@ class Helpers
     {
             // clear url
             $string_containing_urls  =    str_replace("\\r","\r",$string_containing_urls);
-            $string_containing_urls  =    str_replace("\\n","\n<BR>",$string_containing_urls);
+            $string_containing_urls  =    str_replace("\\n","\n<br />",$string_containing_urls);
             $string_containing_urls  =    str_replace("\\n\\r","\n\r",$string_containing_urls);
 
             $pattern = '@(https?://(?:idea\.)?phpguide\.co\.il\S+[[:alnum:]]/?)@si';
