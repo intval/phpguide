@@ -10,14 +10,14 @@
     <meta name="author" content="<?=e($this->vars['page_author'])?>" />
     
     <? if ($this->facebook): ?>
-    <meta property="og:title" content="<?=e($this->vars['title'])?>"/>
-    <meta property="og:description" content="<?=e($this->vars['description'])?>"/>
-    <meta property="og:type" content="<?=e($this->facebook['type'])?>"/>
-    <meta property="og:image" content="<?=e($this->facebook['image'])?>"/>
-    <meta property="og:url" content="<?=e($this->facebook['current_page_url'])?>"/>
+    <meta property="og:title" content="<?=e($this->vars['title'])?>" />
+    <meta property="og:description" content="<?=e($this->vars['description'])?>" />
+    <meta property="og:type" content="<?=e($this->facebook['type'])?>" />
+    <meta property="og:image" content="<?=e($this->facebook['image'])?>" />
+    <meta property="og:url" content="<?=e($this->facebook['current_page_url'])?>" />
     <meta property="og:site_name" content="<?=e($this->facebook['site_name'])?>" />
-    <meta property="fb:admins" content="<?=e($this->facebook['admins'])?>"/>
-    <meta property="fb:app_id" content="<?=e($this->facebook['app_id'])?>"/>
+    <meta property="fb:admins" content="<?=e($this->facebook['admins'])?>" />
+    <meta property="fb:app_id" content="<?=e($this->facebook['app_id'])?>" />
     <? endif; ?>
 
     <link rel="shortcut icon" href="<?=bu("static/images/favicon.ico")?>" />
@@ -33,7 +33,7 @@
 <div id='header' >
 	
     <div>
-    <a href='index.php' title="מדריך לימוד PHP" class='homepage-link' rel="start"></a>
+    	<a href='index.php' title="מדריך לימוד PHP" class='homepage-link' rel="start"></a>
     </div>
    
     <div class="social-buttons" id="social_buttons"><!-- populated on page's load complete with js --></div>
