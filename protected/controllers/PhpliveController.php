@@ -15,13 +15,12 @@ class PhpliveController extends Controller
                 if( $livecode !== null ) $code = $livecode->code;
             }
             
-            $this->vars = array
-            (
-                    'title'         => 'קוד php online', 
-                    'keywords'      => 'php, online, live, try, קוד, אונליין, שרת', 
-                    'page_author'   => 'phpguide.co.il', 
-                    'description'   => "אפשרות לכתוב ולנסות קוד php און-ליין בלי שרת או איחסון", 
-            );
+
+            $this->pageTitle    = 'ביצוע קוד php online';
+            $this->keywords     = 'php, online, live, try, קוד, אונליין, שרת';
+            $this->pageAuthor   = 'phpguide.co.il';
+            $this->description  = "הפעלת קוד php און-ליין בלי שרת או איחסון";
+            
             
             $this->addscripts('ui', 'phplive');
             $this->render('index', array('code' => $code));

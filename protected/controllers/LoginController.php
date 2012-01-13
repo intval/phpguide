@@ -13,6 +13,11 @@ class LoginController extends Controller
         $return_location = Yii::app()->request->getQuery('redir',   Yii::app()->homeUrl );
         $this->addscripts('jquery-tools', 'ui', 'login');
 
+        $this->pageTitle = 'הזדהות לאתר לימוד PHP';
+        $this->description = 'עמוד הזדהות וכניסה למערכת';
+        $this->keywords = 'הזדהות';
+        
+        
         if(isset(Yii::app()->session['provider']))
         {
             $provider = Yii::app()->session['provider'];
@@ -76,6 +81,11 @@ class LoginController extends Controller
     	}
     	else
     	{
+    		
+    		$this->pageTitle = 'שחזור סיסמה';
+    		$this->description = 'שחזור סיסמה באתר לימוד PHP';
+    		$this->keywords = 'שחזור, סיסמה';
+    		
     		$this->addscripts('login');
     		$this->render('passwordRecovery');
     	}

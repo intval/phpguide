@@ -5,13 +5,13 @@
     <meta charset="utf-8" />
     
 
-    <meta name="description" content="<?=e($this->vars['description'])?>" />
-    <meta name="keywords" content="<?=e($this->vars['keywords'])?>" />
-    <meta name="author" content="<?=e($this->vars['page_author'])?>" />
+    <meta name="description" content="<?=e($this->description)?>" />
+    <meta name="keywords" content="<?=e($this->keywords)?>" />
+    <meta name="author" content="<?=e($this->pageAuthor)?>" />
     
     <? if ($this->facebook): ?>
-    <meta property="og:title" content="<?=e($this->vars['title'])?>" />
-    <meta property="og:description" content="<?=e($this->vars['description'])?>" />
+    <meta property="og:title" content="<?=e($this->pageTitle)?>" />
+    <meta property="og:description" content="<?=e($this->description)?>" />
     <meta property="og:type" content="<?=e($this->facebook['type'])?>" />
     <meta property="og:image" content="<?=e($this->facebook['image'])?>" />
     <meta property="og:url" content="<?=e($this->facebook['current_page_url'])?>" />
@@ -24,8 +24,13 @@
     <link href="<?=bu("static/styles/style.css")?>" rel="stylesheet" />
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
     <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style.css")?>" rel="stylesheet" /><![endif]-->
-    <title></title>
+    
+    <title><?=e($this->pageTitle)?></title>
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
+    
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
+    <link rel="pingback" href="http://learnphp.co.il/xmlrpc.php" />
+    
 </head>
 
 <body dir='rtl' >

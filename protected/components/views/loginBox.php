@@ -5,7 +5,7 @@
   
         <?php $this->widget('GravatarWidget', array('size' => 50, 'email' => $user->email)); ?>
         
-    <p class="right">
+    <div class="userinfop right">
     
             שלום
           
@@ -37,7 +37,7 @@
         <?php
     }
     ?>     
-        </p>
+        </div>
         <div class="clear"></div>
     </div>
    

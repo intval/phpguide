@@ -17,9 +17,9 @@ class CategoryController extends Controller
             throw new CHttpException(404);
         }
 
-        $this->vars['title']        =  $cat_url . ' — מדריכי PHP';
-        $this->vars['keywords']     =  $cat_url . ' מדריכים וכתבתות PHP';
-        $this->vars['description']  =  $cat_url . ' מדריכי PHP ותכנות אתרים' ;
+        $this->pageTitle        =  $cat_url . ' | לימוד PHP | מדריכי PHP';
+        $this->keywords     =  $cat_url . ' מדריכים, לימוד וכתבתות PHP';
+        $this->description  =  $cat_url . ' לימוד PHP ותכנות אתרים' ;
 
         $this->addscripts('ui');
         $this->render('//article/articlesInCategory', array('category' => $category));

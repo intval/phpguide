@@ -5,6 +5,10 @@ class QnaController extends Controller
     
     public function actionIndex()
     {
+    	$this->pageTitle = 'שאלות ותשובות PHP | עזרה עם PHP | לימוד PHP';
+    	$this->keywords = 'לימוד, עזרה, שאלה, PHP, MySQL, Apache, תשובה';
+    	$this->description = 'שאלות ותשובות לימוד PHP. יש לך שאלה? תשאל!';
+    	
         $this->addscripts('ui', 'qna'); 
         $this->render('index' ,array
             (
@@ -42,6 +46,12 @@ class QnaController extends Controller
 	
         if($qna)
         {
+        	
+        	$this->pageTitle = $qna->subject . ' | שאלת לימוד PHP';
+        	$this->description = 'שאלה ' . $qna->subject;
+        	$this->keywords = 'שאלה, עזרה' ;
+        	$this->pageAuthor = $qna->author->login;
+        	
 	    	$this->addscripts('qna','bbcode'); 
             $qna->views++;
             $qna->save();

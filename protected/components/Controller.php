@@ -37,17 +37,30 @@ class Controller extends CController
             'type' => 'blog'
         );
         
+       
         /**
-         * Used to populate meta tags and title
-         * @var array $vars
+         * <meta> keywords
+         * @var string
          */
-        public $vars = array
-        (
-                'title'=>'מדריכי לימוד PHP', 
-                'keywords'=>'מדריך, לימוד, PHP', 
-                'page_author'=>'אלכסנדר רסקין', 
-                'description'=>'מדריכים, כתבות, פרסומים, מאמרים ולימוד שיעורי PHP, Apache, Mysql', 
-        );
+        public $keywords = 'מדריך, לימוד, PHP';
+        
+        /**
+         * <meta> author
+         * @var string
+         */
+        public $pageAuthor = 'אלכסנדר רסקין';
+        
+        /**
+         * <meta> description
+         * @var string
+         */
+        public $description = "לימוד PHP, מדריכי בניית אתרים, לימוד SQL";
+        
+        /**
+         * <title> of the page, overrides CController->pageTitle
+         * @var string
+         */
+        public $pageTitle = 'לימוד PHP | מדריכי PHP | שאלות PHP';
         
         /**
          * This is the action to handle external exceptions.
@@ -103,7 +116,7 @@ class Controller extends CController
                 $this->facebook['current_page_url'] = 'http://' . $_SERVER['HTTP_HOST'] . (isset($_SERVER["REDIRECT_URL"]) ? $_SERVER["REDIRECT_URL"] : $_SERVER["REQUEST_URI"]);
                 $this->facebook['image'] = 'http://' . $_SERVER['HTTP_HOST'] . '/static/images/logo.jpg';
             }
-			$this->pageTitle = $this->vars['title'];
+
 			Yii::app()->clientScript->coreScriptPosition = CClientScript::POS_END;
             parent::__construct($id, $module);
         }

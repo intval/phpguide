@@ -2829,7 +2829,7 @@ input, textarea { font-size:14px; font-family: Arial;}
     width: 230px;
 }
 
-.user_info p
+.user_info div.userinfop
 {
     margin-right:10px; 
     width:135px;

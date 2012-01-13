@@ -35,6 +35,9 @@ class AddController extends Controller
                 'allCategories' => self::tranform_categories_key_value( Category::model()->findAll() )
             );
 
+            $this->pageTitle = $this->description = 'הוספת מדריך לימוד PHP חדש';
+            $this->keywords = 'חדש, לימוד, PHP'; 
+            
             $this->addscripts('jquery-tools', 'bbcode', 'ui', 'addpage');
             $this->render('//article/AddForm',$view_data);
         }

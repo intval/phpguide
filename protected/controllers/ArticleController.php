@@ -24,10 +24,9 @@ class ArticleController extends Controller
         
         $this->pageTitle = $article->title;
         
-        $this->vars['title']        =  $article->title;
-        $this->vars['keywords']     =  $article->keywords;
-        $this->vars['description']  =  $article->description;
-        $this->vars['page_author']  =  $article->author->login;
+        $this->keywords     =  $article->keywords;
+        $this->description  =  $article->description;
+        $this->pageAuthor  =  $article->author->login;
 
 
 
