@@ -66,8 +66,17 @@ class QnaController extends Controller
         	$this->pageAuthor = $qna->author->login;
         	
 	    	$this->addscripts('qna','bbcode'); 
-            $qna->views++;
-            $qna->save();
+
+            $viewids=explode(';', Yii::app()->session['qnaids']);
+            
+            if (!in_array($qna->qid, $viewids))
+            {
+                $qna->views++;
+                $qna->save();
+                
+                $viewids[]=$qna->qid;
+                Yii::app()->session['qnaids']=implode(';', $viewids);
+            }
 
             $this->render('//qna/viewQna', array('qna' => &$qna));            
         }
