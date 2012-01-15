@@ -2,6 +2,7 @@
 
 class QnaController extends Controller
 {
+    const POSTS_ON_QNA = 15;
     
     public function actionIndex()
     {
@@ -9,11 +10,23 @@ class QnaController extends Controller
     	$this->keywords = 'לימוד, עזרה, שאלה, PHP, MySQL, Apache, תשובה';
     	$this->description = 'שאלות ותשובות לימוד PHP. יש לך שאלה? תשאל!';
     	
-        $this->addscripts('ui', 'qna'); 
+        $this->addscripts('ui', 'qna', 'paginator3000');
+        
+        $page = 0;
+        
+        if(isset($_GET['page']))
+        {
+            $page = intval($_GET['page']) - 1;
+            if($page < 0) $page = 0;
+        }
+        
+        $qnas=QnaQuestion::model()->findAll();
+        
         $this->render('index' ,array
             (
-            'qnas' => QnaQuestion::model()->with('author')->findAll()
-            ) 
+            'qnas' => QnaQuestion::model()->byPage($page, self::POSTS_ON_QNA)->findAll(),
+            'pagination' => array('total_pages' => ceil(sizeof($qnas)/self::POSTS_ON_QNA) , 'current_page' => $page+1)
+            )
         );
     }
     
