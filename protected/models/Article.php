@@ -44,6 +44,7 @@ class Article extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title, image, keywords, description', 'required'),
+            array('image', 'url'),
 			array('title', 'length', 'max'=>150),
 			array('url, image', 'length', 'max'=>255)
 		);

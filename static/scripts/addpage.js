@@ -1,19 +1,26 @@
+var needToAsk = false;
 
 window.onbeforeunload = function(e)
 {
-    if(!e) e = window.event;
-    e.cancelBubble = true;
-    e.returnValue = 'You sure you want to leave?';
-    if (e.stopPropagation)
+    if (needToAsk)
     {
-        e.stopPropagation();
-        e.preventDefault();
+        if(!e) e = window.event;
+        e.cancelBubble = true;
+        e.returnValue = 'You sure you want to leave?';
+        if (e.stopPropagation)
+        {
+            e.stopPropagation();
+            e.preventDefault();
+        }
     }
 }
 
 
 $(document).ready(function() {
     
+    $("#newPostForm :input").change(function() {
+       needToAsk = true;
+    });
 
     jQuery('#submit' ).click( function() { submit_newpost_form('_self', 'save') });
     jQuery('#preview').click( function() { submit_newpost_form('blank', 'preview') });
@@ -47,6 +54,8 @@ function submit_newpost_form( target , action)
     var action = action || 'save';
     
     if(!validate_newpost_form()) return;
+    
+    needToAsk = false;
     
     jQuery('#newPostForm').attr('action','Add/'+action).attr('target', target); 
     jQuery("#hiddenSubmit").trigger("click");
