@@ -2,7 +2,6 @@ var needToAsk = false;
 
 window.onbeforeunload = function(e)
 {
-    
     if (needToAsk)
     {
         if(!e) e = window.event;

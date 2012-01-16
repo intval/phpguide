@@ -15,7 +15,7 @@ function apply_local_changes_to_config(&$conf)
 {
     
     /**** EDIT THIS TO POINT the "framework' directory ***************/
-    $conf['params']['PATH_TO_YII'] = dirname(__FILE__).'/../../../../server/framework';
+    $conf['params']['PATH_TO_YII'] = dirname(__FILE__).'/../../../framework';
     
 
     

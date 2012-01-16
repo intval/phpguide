@@ -104,7 +104,7 @@ return array(
             /**** This is production path, above public_html ******/
             /**** Edit the path in local_config.php, not here******/
             /******************************************************/
-            'PATH_TO_YII' => dirname(__FILE__).'/../../../framework',
+            'PATH_TO_YII' => dirname(__FILE__).'/../../../../framework',
             /******************************************************/
             /******************************************************/
 	),
