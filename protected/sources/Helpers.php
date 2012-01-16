@@ -81,7 +81,6 @@ class Helpers
 
     }
     
-    
     public static function checkSessionCounter($key, $id, $force=true)
     {
         if (!isset(Yii::app()->session[$key]))
