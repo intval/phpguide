@@ -92,7 +92,6 @@ class Helpers
             }
             return false;
         }
-        
         if (!in_array($id, Yii::app()->session[$key]))
         {
             if ($force)
@@ -103,7 +102,6 @@ class Helpers
             }
             return false;
         }
-        
         return true;
     }
 }
