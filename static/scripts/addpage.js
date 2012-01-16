@@ -2,6 +2,7 @@ var needToAsk = false;
 
 window.onbeforeunload = function(e)
 {
+    
     if (needToAsk)
     {
         if(!e) e = window.event;
@@ -21,7 +22,7 @@ $(document).ready(function() {
     $("#newPostForm :input").change(function() {
        needToAsk = true;
     });
-
+    
     jQuery('#submit' ).click( function() { submit_newpost_form('_self', 'save') });
     jQuery('#preview').click( function() { submit_newpost_form('blank', 'preview') });
     
