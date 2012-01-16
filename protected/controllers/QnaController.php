@@ -4,6 +4,35 @@ class QnaController extends Controller
 {
     const POSTS_ON_QNA = 15;
     
+    /**
+     * Check if viewed qna page. add $addToVisitedList param for add in array.
+     * @param int $id
+     * @param boolean $addToVisitedList
+     * @return boolean 
+     */
+    private function isQuestionViewedEarlier($id, $addToVisitedList=true)
+    {
+        if (!isset(Yii::app()->session['qnaids']))
+        {
+            if ($addToVisitedList)
+            {
+                Yii::app()->session['qnaids']=array($id);
+            }
+            return false;
+        }
+        if (!in_array($id, Yii::app()->session['qnaids']))
+        {
+            if ($addToVisitedList)
+            {
+                $tempSession=Yii::app()->session['qnaids'];
+                array_push($tempSession, $id);
+                Yii::app()->session['qnaids']=$tempSession;
+            }
+            return false;
+        }
+        return true;
+    }
+    
     public function actionIndex()
     {
     	$this->pageTitle = 'שאלות ותשובות PHP | עזרה עם PHP | לימוד PHP';
@@ -67,7 +96,7 @@ class QnaController extends Controller
         	
 	    	$this->addscripts('qna','bbcode'); 
             
-            if (!Helpers::checkSessionCounter('qnaidss', $qna->qid))
+            if (!$this->isQuestionViewedEarlier($qna->qid))
             {
                 $qna->views++;
                 $qna->save();

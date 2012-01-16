@@ -80,27 +80,4 @@ class Helpers
     	@mail($to, "=?utf-8?B?".base64_encode($subject)."?=", $content, $headers);
 
     }
-    
-    public static function checkSessionCounter($key, $id, $force=true)
-    {
-        if (!isset(Yii::app()->session[$key]))
-        {
-            if ($force)
-            {
-                Yii::app()->session[$key]=array($id);
-            }
-            return false;
-        }
-        if (!in_array($id, Yii::app()->session[$key]))
-        {
-            if ($force)
-            {
-                $tempSession=Yii::app()->session[$key];
-                array_push($tempSession, $id);
-                Yii::app()->session[$key]=$tempSession;
-            }
-            return false;
-        }
-        return true;
-    }
 }

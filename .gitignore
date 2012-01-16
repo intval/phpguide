@@ -42,3 +42,4 @@ dummmy.php
 
 #phing
 build.xml
+/protected/config/
