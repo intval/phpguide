@@ -1,4 +1,3 @@
-
 <?php $this->renderPartial('//layouts/header'); ?>
 
 <?php

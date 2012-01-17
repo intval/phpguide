@@ -2,6 +2,36 @@
 
 class QnaController extends Controller
 {
+    const POSTS_ON_QNA = 15;
+    
+    /**
+     * Check if viewed qna page. add $addToVisitedList param for add in array.
+     * @param int $id
+     * @param boolean $addToVisitedList
+     * @return boolean 
+     */
+    private function isQuestionViewedEarlier($id, $addToVisitedList=true)
+    {
+        if (!isset(Yii::app()->session['qnaids']))
+        {
+            if ($addToVisitedList)
+            {
+                Yii::app()->session['qnaids']=array($id);
+            }
+            return false;
+        }
+        if (!in_array($id, Yii::app()->session['qnaids']))
+        {
+            if ($addToVisitedList)
+            {
+                $tempSession=Yii::app()->session['qnaids'];
+                array_push($tempSession, $id);
+                Yii::app()->session['qnaids']=$tempSession;
+            }
+            return false;
+        }
+        return true;
+    }
     
     public function actionIndex()
     {
@@ -9,11 +39,23 @@ class QnaController extends Controller
     	$this->keywords = 'לימוד, עזרה, שאלה, PHP, MySQL, Apache, תשובה';
     	$this->description = 'שאלות ותשובות לימוד PHP. יש לך שאלה? תשאל!';
     	
-        $this->addscripts('ui', 'qna'); 
+        $this->addscripts('ui', 'qna', 'paginator3000');
+        
+        $page = 0;
+        
+        if(isset($_GET['page']))
+        {
+            $page = intval($_GET['page']) - 1;
+            if($page < 0) $page = 0;
+        }
+        
+        $qnas=QnaQuestion::model()->findAll();
+        
         $this->render('index' ,array
             (
-            'qnas' => QnaQuestion::model()->with('author')->findAll()
-            ) 
+            'qnas' => QnaQuestion::model()->byPage($page, self::POSTS_ON_QNA)->findAll(),
+            'pagination' => array('total_pages' => ceil(sizeof($qnas)/self::POSTS_ON_QNA) , 'current_page' => $page+1)
+            )
         );
     }
     
@@ -53,8 +95,12 @@ class QnaController extends Controller
         	$this->pageAuthor = $qna->author->login;
         	
 	    	$this->addscripts('qna','bbcode'); 
-            $qna->views++;
-            $qna->save();
+            
+            if (!$this->isQuestionViewedEarlier($qna->qid))
+            {
+                $qna->views++;
+                $qna->save();
+            }
 
             $this->render('//qna/viewQna', array('qna' => &$qna));            
         }

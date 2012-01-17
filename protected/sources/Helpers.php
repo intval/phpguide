@@ -80,5 +80,4 @@ class Helpers
     	@mail($to, "=?utf-8?B?".base64_encode($subject)."?=", $content, $headers);
 
     }
-    
 }
