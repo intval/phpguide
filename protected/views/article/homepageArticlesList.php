@@ -1,7 +1,7 @@
 <div class="homepage_posts" >
 
     
-<?  $i = 0; foreach ($articles as $article):  ?>
+<? foreach ($articles as $article):  ?>
 
     <div class="blogpost">
 
@@ -16,7 +16,7 @@
                     <?=$article->html_desc_paragraph;?>
                     <br/>
                     <div class="submited">
-                        <div class="right"><?=e($article->author->real_name);?>, </div>
+                        <div class="right"><?=e($article->author->real_name ?: $article->author->login);?>, </div>
                         <div class="right">&nbsp;<?=Helpers::date2heb($article->pub_date);?></div>
                         <div class="clear"></div>
                     </div>
