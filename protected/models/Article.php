@@ -81,10 +81,17 @@ class Article extends CActiveRecord
         public function afterFind()
         {
             $this->pub_date = new DateTime($this->pub_date);
+        	return parent::afterFind();
         }
-
-
-
+        
+        protected function beforeSave()
+        {
+        	if(is_a($this->pub_date, 'DateTime'))
+        	{
+        		$this->pub_date = $this->pub_date->format('Y-m-d H:i:s');
+        	}
+        	return parent::beforeSave();
+        }
 
 
 

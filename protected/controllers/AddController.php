@@ -148,17 +148,16 @@ class AddController extends Controller
             $article->url = preg_replace("/[^a-z0-9_\s".'א-ת'."]/ui", '', $article->title);
             $article->html_content = bbcodes::bbcode($articlePlain->plain_content, $article->title);
             $article->html_desc_paragraph = bbcodes::bbcode($articlePlain->plain_description, $article->title);
-            $article->pub_date = new CDbExpression('NOW()');
-
-
-            // Automatically approve admins posts
-            $article->approved = $curuser->is_admin;
 
             
-            // If this is a new post. An edited post would have it's original author
+            // If post had no author => this is a new post. An edited post would have it's original author
             if( null === $article->author_id )
             {
                 $article->author_id  = $curuser->id;
+                $article->pub_date = new DateTime();
+                
+                // Automatically approve admins posts
+                $article->approved = $curuser->is_admin;
             }
 
             
@@ -171,7 +170,7 @@ class AddController extends Controller
                 $articlePlain->id = $article->id;
                 
                 // Since this one is MyISAM - transactions wouldnt affect it
-                // therefore it's the last to be touched
+                // therefore it's the first to take save attempt on
                 if(!$articlePlain->save())
                 {
                     throw new Exception("Couldnt save article's plain represantation");
