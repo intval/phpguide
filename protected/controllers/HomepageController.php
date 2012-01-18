@@ -77,4 +77,54 @@ class HomepageController extends Controller
         $this->layout = '/';
         $this->render('rss' ,array('articles'   => Article::model()->byPage(0, 10)->findAll()));
     }
+    
+    /**
+     * Generates sitemap. available only via webcron from localhost
+     */
+    public function actionSitemap()
+    {
+    	// available only in debug mode for localhost
+    	if(!YII_DEBUG) return;
+    	
+    	$items = Yii::app()->db->createCommand("
+    			
+	    			SELECT 
+	    				'article' as 'type', 
+	    				id, 
+	    				url as 'loc', 
+	    				DATE_FORMAT(`pub_date`,'%Y-%m-%d') as 'lastmod', 
+	    				0.9 as 'priority', 
+	    				'monthly' as 'freq' 
+	    			FROM `blog` WHERE `approved`=1
+    			
+    			UNION
+    			
+    				SELECT 
+    					'qna' as 'type', 	
+    					qid as 'id', 
+    					subject as 'loc', 
+    					DATE_FORMAT(`time`,'%Y-%m-%d') as 'lastmod', 
+    					0.4 as 'priority', 
+    					'daily' as 'freq' 
+    				FROM qna_questions WHERE time >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+    			
+    			UNION
+    			
+    				SELECT 
+    					'qna' as 'type', 
+    					qid as 'id', 
+    					subject as 'loc', 
+    					DATE_FORMAT(`time`,'%Y-%m-%d') as 'lastmod', 
+    					0.4 as 'priority', 
+    					'monthly' as 'freq' 
+    				FROM qna_questions WHERE time < DATE_SUB(NOW(), INTERVAL 7 DAY)
+    			
+    			")->queryAll();
+    	
+    	
+    	$sitemap = $this->renderPartial('sitemap', array('items' => $items), true);
+    	file_put_contents(Yii::app()->getBasePath().'/../static/sitemap.xml' , $sitemap);
+    	echo $sitemap; 
+    }
+    
 }

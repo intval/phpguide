@@ -1,248 +1,545 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
 <url>
-	<loc>http://phpguide.co.il/%D7%9B%D7%9E%D7%94_%D7%98%D7%99%D7%A4%D7%99%D7%9D_%D7%91%D7%91%D7%99%D7%A6%D7%95%D7%A2%D7%99%D7%9D.htm</loc>
-	<lastmod>2010-09-23</lastmod>
+	<loc>http://local.phpguide.co.il/%D7%9B%D7%9E%D7%94+%D7%98%D7%99%D7%A4%D7%99%D7%9D+%D7%91%D7%91%D7%99%D7%A6%D7%95%D7%A2%D7%99%D7%9D.html</loc>
+	<lastmod>2011-09-05</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/mvc_%D7%9E%D7%A4%D7%A8%D7%99%D7%93%D7%99%D7%9D_html_%D7%9E_php.htm</loc>
+	<loc>http://local.phpguide.co.il/mvc_%D7%9E%D7%A4%D7%A8%D7%99%D7%93%D7%99%D7%9D_html_%D7%9E_php.html</loc>
+	<lastmod>2010-09-30</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/Can_not_send_session_cookie_headers_already_sent.html</loc>
 	<lastmod>2010-10-01</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%91%D7%93%D7%99%D7%A7%D7%AA_%D7%A2%D7%95%D7%9E%D7%A1_%D7%9C%D7%90%D7%AA%D7%A8.htm</loc>
-	<lastmod>2010-12-11</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.9</priority>
-</url>
-<url>
-	<loc>http://phpguide.co.il/UTF_8_%D7%A7%D7%99%D7%93%D7%95%D7%93_%D7%95%D7%A1%D7%99%D7%9E%D7%A0%D7%99_%D7%A9%D7%90%D7%9C%D7%94.htm</loc>
+	<loc>http://local.phpguide.co.il/UTF_8_%D7%A7%D7%99%D7%93%D7%95%D7%93_%D7%95%D7%A1%D7%99%D7%9E%D7%A0%D7%99_%D7%A9%D7%90%D7%9C%D7%94.html</loc>
 	<lastmod>2010-10-07</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/Can_not_send_session_cookie_headers_already_sent.htm</loc>
-	<lastmod>2010-10-01</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.9</priority>
-</url>
-<url>
-	<loc>http://phpguide.co.il/%D7%91%D7%93%D7%99%D7%A7%D7%AA_%D7%AA%D7%A7%D7%99%D7%A0%D7%95%D7%AA_%D7%90%D7%99%D7%9E%D7%99%D7%99%D7%9C_%D7%91_php.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%91%D7%93%D7%99%D7%A7%D7%AA_%D7%AA%D7%A7%D7%99%D7%A0%D7%95%D7%AA_%D7%90%D7%99%D7%9E%D7%99%D7%99%D7%9C_%D7%91_php.html</loc>
 	<lastmod>2010-10-08</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/Supplied_argument_is_not_a_valid_mysql_result_resource.htm</loc>
+	<loc>http://local.phpguide.co.il/Supplied_argument_is_not_a_valid_mysql_result_resource.html</loc>
 	<lastmod>2010-10-11</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%90%D7%99%D7%A4%D7%94_%D7%A0%D7%9E%D7%A6%D7%90_phpini.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%90%D7%99%D7%A4%D7%94_%D7%A0%D7%9E%D7%A6%D7%90_phpini.html</loc>
 	<lastmod>2010-10-30</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%9E%D7%A6%D7%99%D7%99%D7%A8%D7%99%D7%9D_%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA_%D7%A2%D7%9D_php.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%9E%D7%A6%D7%99%D7%99%D7%A8%D7%99%D7%9D_%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA_%D7%A2%D7%9D_php.html</loc>
 	<lastmod>2010-11-05</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/php_%D7%A7%D7%95%D7%91%D7%A5_%D7%9C%D7%94%D7%95%D7%A8%D7%93%D7%94.htm</loc>
+	<loc>http://local.phpguide.co.il/php_%D7%A7%D7%95%D7%91%D7%A5_%D7%9C%D7%94%D7%95%D7%A8%D7%93%D7%94.html</loc>
 	<lastmod>2010-11-11</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/GET_in_JavaScript.htm</loc>
+	<loc>http://local.phpguide.co.il/GET_in_JavaScript.html</loc>
 	<lastmod>2010-11-19</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%A9%D7%99%D7%A4%D7%95%D7%A8_%D7%91%D7%99%D7%A6%D7%95%D7%A2%D7%99_%D7%9E%D7%A1%D7%93_%D7%A2%D7%9D_MySQLI.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%A9%D7%99%D7%A4%D7%95%D7%A8_%D7%91%D7%99%D7%A6%D7%95%D7%A2%D7%99_%D7%9E%D7%A1%D7%93_%D7%A2%D7%9D_MySQLI.html</loc>
 	<lastmod>2010-11-26</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%98%D7%95%D7%A4%D7%A1_%D7%99%D7%A6%D7%99%D7%A8%D7%AA_%D7%A7%D7%A9%D7%A8_%D7%A9%D7%9C%D7%99%D7%97%D7%AA_%D7%90%D7%99%D7%9E%D7%99%D7%99%D7%9C.htm</loc>
-	<lastmod>2010-12-05</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.9</priority>
-</url>
-<url>
-	<loc>http://phpguide.co.il/Javacscript_%D7%9B%D7%95%D7%AA%D7%91%D7%99%D7%9D_OOP_%D7%91%D7%A2%D7%96%D7%A8%D7%AA_JSON.htm</loc>
+	<loc>http://local.phpguide.co.il/Javacscript_%D7%9B%D7%95%D7%AA%D7%91%D7%99%D7%9D_OOP_%D7%91%D7%A2%D7%96%D7%A8%D7%AA_JSON.html</loc>
 	<lastmod>2010-11-27</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%94%D7%A6%D7%A4%D7%A0%D7%AA_%D7%A0%D7%AA%D7%95%D7%A0%D7%99%D7%9D_%D7%91_mysql.htm</loc>
-	<lastmod>2011-04-17</lastmod>
+	<loc>http://local.phpguide.co.il/%D7%98%D7%95%D7%A4%D7%A1_%D7%99%D7%A6%D7%99%D7%A8%D7%AA_%D7%A7%D7%A9%D7%A8_%D7%A9%D7%9C%D7%99%D7%97%D7%AA_%D7%90%D7%99%D7%9E%D7%99%D7%99%D7%9C.html</loc>
+	<lastmod>2010-12-05</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/30_%D7%98%D7%99%D7%A4%D7%99%D7%9D_%D7%9C%D7%A7%D7%99%D7%93%D7%95%D7%9D_%D7%90%D7%AA%D7%A8%D7%99%D7%9D.htm</loc>
+	<loc>http://local.phpguide.co.il/30_%D7%98%D7%99%D7%A4%D7%99%D7%9D_%D7%9C%D7%A7%D7%99%D7%93%D7%95%D7%9D_%D7%90%D7%AA%D7%A8%D7%99%D7%9D.html</loc>
 	<lastmod>2010-12-11</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%9C%D7%94%D7%97%D7%91%D7%99%D7%90_%D7%A7%D7%95%D7%93_%D7%9E%D7%A7%D7%95%D7%A8.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%91%D7%93%D7%99%D7%A7%D7%AA_%D7%A2%D7%95%D7%9E%D7%A1_%D7%9C%D7%90%D7%AA%D7%A8.html</loc>
+	<lastmod>2010-12-11</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%9C%D7%94%D7%97%D7%91%D7%99%D7%90_%D7%A7%D7%95%D7%93_%D7%9E%D7%A7%D7%95%D7%A8.html</loc>
 	<lastmod>2011-01-01</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%A8%D7%90%D7%AA%D7%94_%D7%90%D7%95%D7%A8_MYSQL_558.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%A8%D7%90%D7%AA%D7%94_%D7%90%D7%95%D7%A8_MYSQL_558.html</loc>
 	<lastmod>2011-01-01</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%A9%D7%9C%D7%99%D7%97%D7%AA_%D7%9E%D7%99%D7%99%D7%9C_%D7%9E_php_%D7%93%D7%A8%D7%9A_gmail_smtp.htm</loc>
-	<lastmod>2011-01-10</lastmod>
+	<loc>http://local.phpguide.co.il/6_%D7%A6%D7%A2%D7%93%D7%99%D7%9D_%D7%A7%D7%A6%D7%A8%D7%99%D7%9D_%D7%9C%D7%A2%D7%93%D7%9B%D7%95%D7%9F_%D7%92%D7%A8%D7%A1%D7%AA_php_%D7%91_wamp.html</loc>
+	<lastmod>2011-05-31</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%99%D7%A6%D7%90%D7%94_PHP_5216_%D7%94%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%94_%D7%91%D7%9E%D7%A9%D7%A4%D7%97%D7%AA_52.htm</loc>
-	<lastmod>2010-12-21</lastmod>
+	<loc>http://local.phpguide.co.il/%D7%9E%D7%94_%D7%96%D7%94_SSL_%D7%95%D7%90%D7%99%D7%9A_%D7%9C%D7%94%D7%A4%D7%A2%D7%99%D7%9C_HTTPS.html</loc>
+	<lastmod>2011-01-03</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%9E%D7%94_%D7%96%D7%94_SSL_%D7%95%D7%90%D7%99%D7%9A_%D7%9C%D7%94%D7%A4%D7%A2%D7%99%D7%9C_HTTPS.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%91%D7%9C%D7%99_www.html</loc>
 	<lastmod>2011-01-04</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%91%D7%9C%D7%99_www.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%94%D7%A7%D7%98%D7%A0%D7%AA_%D7%AA%D7%9E%D7%95%D7%A0%D7%94_%D7%95%D7%94%D7%92%D7%93%D7%9C%D7%AA_%D7%AA%D7%9E%D7%95%D7%A0%D7%94.html</loc>
 	<lastmod>2011-01-04</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%94%D7%A7%D7%98%D7%A0%D7%AA_%D7%AA%D7%9E%D7%95%D7%A0%D7%94_%D7%95%D7%94%D7%92%D7%93%D7%9C%D7%AA_%D7%AA%D7%9E%D7%95%D7%A0%D7%94.htm</loc>
-	<lastmod>2011-01-05</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.9</priority>
-</url>
-<url>
-	<loc>http://phpguide.co.il/%D7%94%D7%AA%D7%A7%D7%A0%D7%AA_PHP_Apache_MySQL.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%94%D7%AA%D7%A7%D7%A0%D7%AA_PHP_Apache_MySQL.html</loc>
 	<lastmod>2010-11-26</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%9C%D7%A7%D7%95%D7%97_%D7%A9%D7%A8%D7%AA_%D7%9C%D7%A7%D7%95%D7%97.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%9C%D7%A7%D7%95%D7%97_%D7%A9%D7%A8%D7%AA_%D7%9C%D7%A7%D7%95%D7%97.html</loc>
 	<lastmod>2011-01-01</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%90%D7%95%D7%A4%D7%A8%D7%98%D7%95%D7%A8%D7%99%D7%9D.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%90%D7%95%D7%A4%D7%A8%D7%98%D7%95%D7%A8%D7%99%D7%9D.html</loc>
 	<lastmod>2011-01-01</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%9E%D7%A9%D7%AA%D7%A0%D7%99%D7%9D_%D7%95%D7%A1%D7%95%D7%92%D7%99_%D7%A0%D7%AA%D7%95%D7%A0%D7%99%D7%9D.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%9E%D7%A9%D7%AA%D7%A0%D7%99%D7%9D_%D7%95%D7%A1%D7%95%D7%92%D7%99_%D7%A0%D7%AA%D7%95%D7%A0%D7%99%D7%9D.html</loc>
 	<lastmod>2011-01-01</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%A2%D7%91%D7%95%D7%93%D7%94_%D7%A2%D7%9D_%D7%A7%D7%91%D7%A6%D7%99%D7%9D.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%A2%D7%91%D7%95%D7%93%D7%94_%D7%A2%D7%9D_%D7%A7%D7%91%D7%A6%D7%99%D7%9D.html</loc>
 	<lastmod>2011-01-01</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%91%D7%99%D7%98%D7%95%D7%99%D7%99%D7%9D_%D7%A8%D7%92%D7%95%D7%9C%D7%A8%D7%99%D7%99%D7%9D.htm</loc>
-	<lastmod>2011-03-18</lastmod>
+	<loc>http://local.phpguide.co.il/%D7%91%D7%99%D7%98%D7%95%D7%99%D7%99%D7%9D_%D7%A8%D7%92%D7%95%D7%9C%D7%A8%D7%99%D7%99%D7%9D.html</loc>
+	<lastmod>2011-03-17</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%90%D7%91%D7%98%D7%97%D7%AA_php.htm</loc>
-	<lastmod>2011-01-02</lastmod>
+	<loc>http://local.phpguide.co.il/%D7%A9%D7%9C%D7%99%D7%97%D7%AA_%D7%9E%D7%99%D7%99%D7%9C_%D7%9E_php_%D7%93%D7%A8%D7%9A_gmail_smtp.html</loc>
+	<lastmod>2011-01-10</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%94%D7%A2%D7%9C%D7%90%D7%AA_%D7%A7%D7%91%D7%A6%D7%99%D7%9D.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%94%D7%A2%D7%9C%D7%90%D7%AA_%D7%A7%D7%91%D7%A6%D7%99%D7%9D.html</loc>
 	<lastmod>2011-01-12</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%9B%D7%9E%D7%94_%D7%9E%D7%97%D7%95%D7%91%D7%A8%D7%99%D7%9D_%D7%A2%D7%9B%D7%A9%D7%99%D7%95_%D7%91%D7%90%D7%AA%D7%A8.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%9B%D7%9E%D7%94_%D7%9E%D7%97%D7%95%D7%91%D7%A8%D7%99%D7%9D_%D7%A2%D7%9B%D7%A9%D7%99%D7%95_%D7%91%D7%90%D7%AA%D7%A8.html</loc>
 	<lastmod>2011-01-22</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%97%D7%9C%D7%95%D7%A7%D7%94_%D7%9C%D7%A2%D7%9E%D7%95%D7%93%D7%99%D7%9D.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%97%D7%9C%D7%95%D7%A7%D7%94_%D7%9C%D7%A2%D7%9E%D7%95%D7%93%D7%99%D7%9D.html</loc>
 	<lastmod>2011-02-16</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%A7%D7%A8%D7%95%D7%9F_%D7%9C%D7%94%D7%A4%D7%A2%D7%99%D7%9C_%D7%A1%D7%A7%D7%A8%D7%99%D7%A4%D7%98_%D7%91%D7%96%D7%9E%D7%9F_%D7%9E%D7%A1%D7%95%D7%99%D7%9D.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%A7%D7%A8%D7%95%D7%9F_%D7%9C%D7%94%D7%A4%D7%A2%D7%99%D7%9C_%D7%A1%D7%A7%D7%A8%D7%99%D7%A4%D7%98_%D7%91%D7%96%D7%9E%D7%9F_%D7%9E%D7%A1%D7%95%D7%99%D7%9D.html</loc>
 	<lastmod>2011-03-04</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%A1%D7%95%D7%92%D7%99_%D7%98%D7%91%D7%9C%D7%90%D7%95%D7%AA_%D7%95%D7%94%D7%91%D7%93%D7%9C%D7%9D_MyISAM_InnoDB.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%A1%D7%95%D7%92%D7%99_%D7%98%D7%91%D7%9C%D7%90%D7%95%D7%AA_%D7%95%D7%94%D7%91%D7%93%D7%9C%D7%9D_InnoDB_InnoDB.html</loc>
 	<lastmod>2011-03-09</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%94%D7%AA%D7%90%D7%9E%D7%AA_%D7%A2%D7%99%D7%A6%D7%95%D7%91_%D7%9C%D7%A2%D7%91%D7%A8%D7%99%D7%AA_rtl.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%94%D7%AA%D7%90%D7%9E%D7%AA_%D7%A2%D7%99%D7%A6%D7%95%D7%91_%D7%9C%D7%A2%D7%91%D7%A8%D7%99%D7%AA_rtl.html</loc>
 	<lastmod>2011-03-13</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%97%D7%99%D7%A4%D7%95%D7%A9_%D7%91%D7%9E%D7%A1%D7%93_%D7%98%D7%A7%D7%A1%D7%98_%D7%9E%D7%9C%D7%90.htm</loc>
-	<lastmod>2011-04-16</lastmod>
+	<loc>http://local.phpguide.co.il/%D7%97%D7%99%D7%A1%D7%95%D7%A8+%D7%AA%D7%90%D7%A8%D7%99%D7%9B%D7%99%D7%9D+%D7%9B%D7%9E%D7%94+%D7%96%D7%9E%D7%9F+%D7%A0%D7%A9%D7%90%D7%A8.html</loc>
+	<lastmod>2011-04-28</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%9E%D7%99%D7%95%D7%9F_%D7%9E%D7%A2%D7%A8%D7%9B%D7%99%D7%9D.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%9E%D7%99%D7%95%D7%9F_%D7%9E%D7%A2%D7%A8%D7%9B%D7%99%D7%9D.html</loc>
 	<lastmod>2011-04-12</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%A9%D7%9C%D7%99%D7%A4%D7%AA_%D7%A9%D7%95%D7%A8%D7%95%D7%AA_%D7%A8%D7%A0%D7%93%D7%95%D7%9E%D7%9C%D7%99%D7%AA_%D7%91_mysql.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%A9%D7%9C%D7%99%D7%A4%D7%AA_%D7%A9%D7%95%D7%A8%D7%95%D7%AA_%D7%A8%D7%A0%D7%93%D7%95%D7%9E%D7%9C%D7%99%D7%AA_%D7%91_mysql.html</loc>
 	<lastmod>2011-04-13</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%91%D7%99%D7%A6%D7%99_%D7%A4%D7%A1%D7%97%D7%90_%D7%91_php.htm</loc>
+	<loc>http://local.phpguide.co.il/%D7%97%D7%99%D7%A4%D7%95%D7%A9_%D7%91%D7%9E%D7%A1%D7%93_%D7%98%D7%A7%D7%A1%D7%98_%D7%9E%D7%9C%D7%90.html</loc>
+	<lastmod>2011-04-16</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%94%D7%A6%D7%A4%D7%A0%D7%AA_%D7%A0%D7%AA%D7%95%D7%A0%D7%99%D7%9D_%D7%91_mysql.html</loc>
+	<lastmod>2011-04-16</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%91%D7%99%D7%A6%D7%99_%D7%A4%D7%A1%D7%97%D7%90_%D7%91_php.html</loc>
 	<lastmod>2011-04-21</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.9</priority>
 </url>
 <url>
-	<loc>http://phpguide.co.il/%D7%A2%D7%99%D7%A6%D7%95%D7%91%D7%99%D7%9D_%D7%9C%D7%94%D7%95%D7%A8%D7%93%D7%94</loc>
+	<loc>http://local.phpguide.co.il/%D7%98%D7%A2%D7%99%D7%A0%D7%AA+%D7%A1%D7%A7%D7%A8%D7%99%D7%A4%D7%98%D7%99%D7%9D+%D7%9C%D7%A4%D7%99+%D7%93%D7%A8%D7%99%D7%A9%D7%94+autoload.html</loc>
+	<lastmod>2011-05-09</lastmod>
 	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
+	<priority>0.9</priority>
 </url>
+<url>
+	<loc>http://local.phpguide.co.il/database_singleton.html</loc>
+	<lastmod>2011-05-12</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%94%D7%A6%D7%A4%D7%A0%D7%94_%D7%93%D7%95_%D7%9B%D7%99%D7%95%D7%95%D7%A0%D7%99%D7%AA_%D7%91_php.html</loc>
+	<lastmod>2011-05-14</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%9B%D7%9C_%D7%94%D7%90%D7%9E%D7%AA_%D7%A2%D7%9C_%D7%A7%D7%95%D7%A7%D7%99%D7%A1.html</loc>
+	<lastmod>2011-05-15</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/5_%D7%9E%D7%99%D7%AA%D7%95%D7%A1%D7%99%D7%9D_%D7%A2%D7%9C_md5.html</loc>
+	<lastmod>2011-05-23</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/4+%D7%A9%D7%9C%D7%91%D7%99%D7%9D+%D7%9C%D7%90%D7%99%D7%A4%D7%95%D7%A1+%D7%A1%D7%99%D7%A1%D7%9E%D7%AA+root+mysql.html</loc>
+	<lastmod>2011-05-25</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%91%D7%90%D7%99%D7%96%D7%94_%D7%A2%D7%95%D7%A8%D7%9A_%D7%98%D7%A7%D7%A1%D7%98_%D7%90%D7%AA%D7%94_%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9.html</loc>
+	<lastmod>2011-05-29</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/6+%D7%A1%D7%99%D7%91%D7%95%D7%AA+%D7%9C%D7%94%D7%97%D7%9C%D7%99%D7%A3+%D7%A2%D7%95%D7%A8%D7%9A+%D7%98%D7%A7%D7%A1%D7%98+%D7%9C+IDE.html</loc>
+	<lastmod>2011-05-30</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%98%D7%99%D7%A4%D7%95%D7%9C_%D7%91%D7%A9%D7%92%D7%99%D7%90%D7%95%D7%AA.html</loc>
+	<lastmod>2011-06-02</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/SESSION.html</loc>
+	<lastmod>2011-06-07</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%A7%D7%95%D7%9E%D7%A4%D7%99%D7%99%D7%9C%D7%A8_net_%D7%9C_javascript.html</loc>
+	<lastmod>2011-06-08</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%98%D7%99%D7%A4%D7%99%D7%9D_%D7%91%D7%91%D7%99%D7%A6%D7%95%D7%A2%D7%99%D7%9D_%D7%9E%D7%92%D7%95%D7%92%D7%9C.html</loc>
+	<lastmod>2011-06-09</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/10_%D7%A8%D7%A2%D7%99%D7%95%D7%A0%D7%95%D7%AA_%D7%9C%D7%90%D7%AA%D7%A8%D7%99%D7%9D.html</loc>
+	<lastmod>2011-06-11</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%A2%D7%91%D7%95%D7%93%D7%94_%D7%A2%D7%9D_JSON.html</loc>
+	<lastmod>2011-06-14</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA_%D7%A0%D7%99%D7%94%D7%95%D7%9C_%D7%AA%D7%95%D7%9B%D7%9F.html</loc>
+	<lastmod>2011-06-15</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%A1%D7%99%D7%A0%D7%95%D7%A0%D7%99_%D7%A7%D7%9C%D7%98%D7%99%D7%9D_%D7%95%D7%A0%D7%AA%D7%95%D7%A0%D7%99%D7%9D_%D7%97%D7%9C%D7%A7_%D7%90.html</loc>
+	<lastmod>2011-06-21</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/SQL_Injection.html</loc>
+	<lastmod>2011-06-22</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%94%D7%96%D7%A8%D7%A7%D7%AA_%D7%A7%D7%95%D7%91%D7%A5_%D7%91%D7%94%D7%A2%D7%9C%D7%90%D7%AA_%D7%A7%D7%91%D7%A6%D7%99%D7%9D.html</loc>
+	<lastmod>2011-06-23</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/Cross_Site_Scripting.html</loc>
+	<lastmod>2011-06-23</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/AJAX+%D7%99%D7%99%D7%91%D7%95%D7%90+%D7%A7%D7%95%D7%91%D7%A5.html</loc>
+	<lastmod>2011-06-24</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%9E%D7%A4%D7%AA%D7%97%D7%95%D7%AA+primary+unique+index.html</loc>
+	<lastmod>2011-06-26</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/cURL.html</loc>
+	<lastmod>2011-06-27</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%97%D7%93%D7%A9_php54.html</loc>
+	<lastmod>2011-07-01</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/Traits.html</loc>
+	<lastmod>2011-07-02</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%A1%D7%A7%D7%A8_%D7%A9%D7%A2%D7%95%D7%AA_%D7%91%D7%A0%D7%99%D7%99%D7%AA_%D7%90%D7%AA%D7%A8%D7%99%D7%9D_%D7%91%D7%99%D7%95%D7%9D.html</loc>
+	<lastmod>2011-07-01</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%9B%D7%9E%D7%95%D7%AA_%D7%90%D7%A8%D7%92%D7%95%D7%9E%D7%A0%D7%98%D7%99%D7%9D_%D7%9E%D7%A9%D7%AA%D7%A0%D7%94_%D7%9C%D7%A4%D7%95%D7%A0%D7%A7%D7%A6%D7%99%D7%94.html</loc>
+	<lastmod>2011-07-04</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/buffered+file+cache.html</loc>
+	<lastmod>2011-07-05</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%96%D7%9E%D7%9F+%D7%98%D7%A2%D7%99%D7%A0%D7%AA+%D7%94%D7%A2%D7%9E%D7%95%D7%93+microtime.html</loc>
+	<lastmod>2011-07-06</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%A0%D7%9E%D7%A0%D7%A2%D7%99%D7%9D+%D7%9E%D7%A9%D7%92%D7%99%D7%90%D7%95%D7%AA.html</loc>
+	<lastmod>2011-07-08</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/Smarty_Template_Engine.html</loc>
+	<lastmod>2011-07-08</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/mod_rewrite+%D7%95%D7%A7%D7%99%D7%A9%D7%95%D7%A8%D7%99%D7%9D+%D7%91%D7%A2%D7%91%D7%A8%D7%99%D7%AA.html</loc>
+	<lastmod>2011-07-17</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%94%D7%94%D7%99%D7%A1%D7%98%D7%95%D7%A8%D7%99%D7%94+%D7%A9%D7%9C+PHP.html</loc>
+	<lastmod>2011-07-17</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%9B%D7%A0%D7%A1+%D7%9E%D7%A4%D7%AA%D7%97%D7%99+PHP+%D7%A8%D7%90%D7%A9%D7%95%D7%9F.html</loc>
+	<lastmod>2011-07-18</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/%D7%A9%D7%9C%D7%99%D7%97%D7%AA+%D7%90%D7%99%D7%9E%D7%99%D7%99%D7%9C+%D7%9C%D7%95%D7%A7%D7%90%D7%9C%D7%99+wamp.html</loc>
+	<lastmod>2011-07-22</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/aoeuaoeu.html</loc>
+	<lastmod>2011-12-11</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/oeuoeu.html</loc>
+	<lastmod>2012-01-17</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q13/euoeu.htm</loc>
+	<lastmod>2012-01-18</lastmod>
+	<changefreq>daily</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q14/%D7%A9%D7%9C%D7%95%D7%9D1.htm</loc>
+	<lastmod>2012-01-18</lastmod>
+	<changefreq>daily</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q15/%D7%9E%D7%9E%D7%A6%D7%91+%D7%99%D7%90+%D7%90%D7%97+%D7%A9%D7%9B%D7%9E%D7%95%D7%9A%3F.htm</loc>
+	<lastmod>2012-01-18</lastmod>
+	<changefreq>daily</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q16/%D7%93%D7%92%D7%9B%D7%93%D7%92%D7%9B.htm</loc>
+	<lastmod>2012-01-18</lastmod>
+	<changefreq>daily</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q17/%D7%96%D7%A1%D7%91%D7%94%D7%96%D7%A1%D7%91%D7%94.htm</loc>
+	<lastmod>2012-01-18</lastmod>
+	<changefreq>daily</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q18/%D7%96%D7%A1%D7%91%D7%94%D7%96%D7%A1%D7%91%D7%94.htm</loc>
+	<lastmod>2012-01-18</lastmod>
+	<changefreq>daily</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q19/%D7%A9%D7%93%D7%92%D7%9B%D7%A9%D7%93%D7%92%D7%9B.htm</loc>
+	<lastmod>2012-01-18</lastmod>
+	<changefreq>daily</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q20/%3Bqj%3Bqj.htm</loc>
+	<lastmod>2012-01-18</lastmod>
+	<changefreq>daily</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q1/%D7%90%D7%99%D7%9A+%D7%A2%D7%95%D7%A9%D7%99%D7%9D+%D7%90%D7%99%D7%96%D7%94+%D7%A9%D7%98%D7%95%D7%AA%3F.htm</loc>
+	<lastmod>2011-10-22</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q4/%D7%94%D7%A2%D7%99%D7%A6%D7%95%D7%91+%D7%A0%D7%93%D7%A4%D7%A7+%3A%5C.htm</loc>
+	<lastmod>2011-11-13</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q6/%D7%94%D7%A2%D7%99%D7%A6%D7%95%D7%91+%D7%A0%D7%93%D7%A4%D7%A7+%3A%5C.htm</loc>
+	<lastmod>2011-11-13</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q8/%D7%94%D7%A2%D7%99%D7%A6%D7%95%D7%91+%D7%A0%D7%93%D7%A4%D7%A7+%3A%5C.htm</loc>
+	<lastmod>2011-11-13</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q10/%D7%94%D7%A2%D7%99%D7%A6%D7%95%D7%91+%D7%A0%D7%93%D7%A4%D7%A7+%3A%5C.htm</loc>
+	<lastmod>2011-11-13</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>http://local.phpguide.co.il/q12/aoeuaoeu.htm</loc>
+	<lastmod>2012-01-06</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.4</priority>
+</url>
+
 </urlset>
