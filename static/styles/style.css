@@ -3848,6 +3848,10 @@ div.addform .errors
     width: 100%;
 }
 
+.qna-home-row:nth-child(even) {
+	background-color: #FDFDFD;
+}
+
 .qna-home-row .counts {
     float: left;
     margin-right: 0;
@@ -3865,6 +3869,7 @@ div.addform .errors
 .qna-home-row h2
 {
     line-height: 24px;
+	max-width:460px;
 }
 
 
