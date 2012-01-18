@@ -61,6 +61,13 @@ class QnaQuestion extends CActiveRecord
 		    'comments' =>  array(self::HAS_MANY, 'QnaComment', 'qid')
 		);
 	}
+    
+    
+    public function byPage($page = 0, $per_page = 15)
+    {
+        $this->getDbCriteria()->mergeWith( array('limit' => $per_page, 'offset' => $page * $per_page) );
+        return $this;
+    }
 
 
         public function defaultScope()
