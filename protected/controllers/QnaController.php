@@ -2,6 +2,13 @@
 
 class QnaController extends Controller
 {
+	
+	/**
+	 * the session key of the viewed qnas array
+	 * @var string
+	 */
+	const viewed_qnas_session_key = 'viewed_qna_ids';
+	
     
     public function actionIndex()
     {
@@ -53,8 +60,13 @@ class QnaController extends Controller
         	$this->pageAuthor = $qna->author->login;
         	
 	    	$this->addscripts('qna','bbcode'); 
-            $qna->views++;
-            $qna->save();
+	    	
+	    	if(!static::isQnaViewedEarlier($qna))
+	    	{
+	            $qna->views++;
+	            $qna->save();
+	            static::addQnaToViewedList($qna);
+	    	}
 
             $this->render('//qna/viewQna', array('qna' => &$qna));            
         }
@@ -62,6 +74,29 @@ class QnaController extends Controller
         {
             throw new CHttpException(404, "aww");
         }
+    }
+    
+    
+    /**
+     * Returns whether the currently logged in user had already viewed this qna page earlier today
+     * @param QnaQuestion $qna instance of the question.
+     */
+    protected static function isQnaViewedEarlier($qna)
+    {
+    	return 
+    		is_array(Yii::app()->session[static::viewed_qnas_session_key]) && 
+    		in_array($qna->qid, Yii::app()->session[static::viewed_qnas_session_key]);
+    }
+    
+    /**
+     * Add's the qna's id to the list of qna's already viewed by the user
+     * @param QnaQuestion $qid instance of the question
+     */
+    protected static function addQnaToViewedList($qna)
+    {
+    	$tempSession=Yii::app()->session[static::viewed_qnas_session_key] ?: array();
+    	array_push($tempSession, $qna->qid);
+    	Yii::app()->session[static::viewed_qnas_session_key]=$tempSession;
     }
     
     

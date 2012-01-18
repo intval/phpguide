@@ -45,7 +45,7 @@ class QnaQuestion extends CActiveRecord
 		return array(
 			array('subject, bb_text', 'required'),
 			array('subject', 'length', 'max'=>255, 'min'=>5),
-			array('bb_text', 'length', 'min'=>5)
+			array('bb_text', 'length', 'min'=>5, 'allowEmpty' => true)
 		);
 	}
 
