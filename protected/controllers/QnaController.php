@@ -9,6 +9,11 @@ class QnaController extends Controller
 	 */
 	const viewed_qnas_session_key = 'viewed_qna_ids';
 
+	/**
+	 * Number of questions on each page
+	 * @var int
+	 */
+	const QNAS_ON_PAGE = 30;
     
     public function actionIndex()
     {
@@ -30,8 +35,8 @@ class QnaController extends Controller
         
         $this->render('index' ,array
             (
-            'qnas' => QnaQuestion::model()->byPage($page, self::POSTS_ON_QNA)->findAll(),
-            'pagination' => array('total_pages' => ceil(sizeof($qnas)/self::POSTS_ON_QNA) , 'current_page' => $page+1)
+            'qnas' => QnaQuestion::model()->byPage($page, static::QNAS_ON_PAGE)->findAll(),
+            'pagination' => array('total_pages' => ceil(sizeof($qnas)/self::QNAS_ON_PAGE) , 'current_page' => $page+1)
             )
         );
     }
