@@ -29,7 +29,6 @@
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     
     <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <link rel="pingback" href="http://learnphp.co.il/xmlrpc.php" />
     
 </head>
 

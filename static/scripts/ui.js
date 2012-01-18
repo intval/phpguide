@@ -141,8 +141,8 @@ function new_question_submitted_callback(response)
     jQuery('#forum_question_text').prop('disabled', false);
     jQuery('#forum_question_subject').prop('disabled', false);
     
-    if(isNaN(response)) alert(response);
-    else document.location =  "qna/view/id/"+response; 
+    if ( response.substr(0, 5) === 'err::') alert(response.substr(5));
+    else document.location =  response; 
 }
 
 

@@ -80,4 +80,10 @@ class QnaQuestion extends CActiveRecord
         }
 
 
+   public function getUrl()
+   {
+   		$url = str_pad( preg_replace("/[^a-z0-9_\s".'א-ת'."]/ui", '', $this->subject), '2', 'x');
+   		return Yii::app()->createUrl('qna/view', array('id' => $this->qid, 'subj' => $url));
+   }
+
 }

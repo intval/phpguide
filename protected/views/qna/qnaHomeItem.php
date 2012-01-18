@@ -15,7 +15,7 @@
     </div>
 
     <div class="question-summary-wrapper">
-        <h2><a href="/qna/view/id/<?=$qna->qid?>" title="<?=e(strip_tags(mb_substr($qna->html_text, 0, 500)))?>"><?=e($qna->subject)?></a></h2>
+        <h2><a href="<?=  $qna->getUrl() ?>" title="<?=e(strip_tags(mb_substr($qna->html_text, 0, 500)))?>"><?=e($qna->subject)?></a></h2>
         <div class="userinfo">
             שאל
             

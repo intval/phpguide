@@ -30,7 +30,7 @@ class QnaController extends Controller
             if( $model->validate() )
             {
                 $model->save();
-                echo $model->qid;
+                echo $model->getUrl();
             }
             else
             {
