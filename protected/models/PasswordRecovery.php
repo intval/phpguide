@@ -13,7 +13,7 @@
  * The followings are the available model relations:
  * @property Users $user
  */
-class PasswordRecovery extends CActiveRecord
+class PasswordRecovery extends DTActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.

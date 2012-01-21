@@ -2,24 +2,24 @@
 
 class Helpers
 {
-    public static function date2heb(DateTime $date, $long = false)
+    public static function date2heb(SDateTime $date, $long = false)
     { 
         return self::translateDate( $date->format('d לM Y' . ($long ? ' H:i' : '')) );
     }
     
-    public static function date2rfc(DateTime $date)
+    public static function date2rfc(SDateTime $date)
     {
         return $date->format('Y-m-d\TH:i:sP');
     }
 
     public static function dateStr2heb($date, $long = false)
     {
-        return self::date2heb(new DateTime($date), $long);
+        return self::date2heb(new SDateTime($date), $long);
     }
 
     public static  function dateStr2rfc($date)
     {
-        return self::date2rfc(new DateTime($date));
+        return self::date2rfc(new SDateTime($date));
     }
 
     public static function translateDate($strDate)

@@ -10,14 +10,22 @@
  * @property string $html_text
  * @property integer $authorid
  * @property string $time
+ * @property Datetime $last_answer_time
  * @property integer $views
  * @property integer $answers
  *
  * The followings are the available model relations:
  * @property User $author
  */
-class QnaQuestion extends CActiveRecord
+class QnaQuestion extends DTActiveRecord
 {
+	/**
+	 * Indicates whether this question has any new answers since last user's visit
+	 * @var bool
+	 */
+	public $has_new_answers_since_last_visit = false;
+	
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return QnaQuestion the static model class
@@ -75,7 +83,7 @@ class QnaQuestion extends CActiveRecord
             return array
             (
                 'condition' =>  'status!="hidden"' ,
-                'order'     =>  'time DESC',
+                'order'     =>  'COALESCE(last_answer_time,time) DESC',
                 'with'      => array
                 (
                     'author' => array
@@ -92,5 +100,6 @@ class QnaQuestion extends CActiveRecord
    		$url = str_pad( preg_replace("/[^a-z0-9_\s".'א-ת'."]/ui", '', $this->subject), '2', 'x');
    		return Yii::app()->createUrl('qna/view', array('id' => $this->qid, 'subj' => $url));
    }
+
 
 }

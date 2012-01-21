@@ -36,9 +36,6 @@ class Post2cat extends CActiveRecord
 		return array(
 			array('postid, catid', 'required'),
 			array('postid, catid', 'numerical', 'integerOnly'=>true),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('postid, catid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,33 +50,4 @@ class Post2cat extends CActiveRecord
 		);
 	}
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'postid' => 'Postid',
-			'catid' => 'Catid',
-		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('postid',$this->postid);
-		$criteria->compare('catid',$this->catid);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
 }

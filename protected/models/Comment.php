@@ -12,7 +12,7 @@
  * @property integer $approved
  * @property string $postingip
  */
-class Comment extends CActiveRecord
+class Comment extends DTActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.

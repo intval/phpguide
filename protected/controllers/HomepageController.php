@@ -21,6 +21,8 @@ class HomepageController extends Controller
             $qnas = QnaQuestion::model()->findAll(array('limit' => 7, 'order' => 'time DESC'));
         }
         
+        QnaController::storeQnasWithNewAnswersSinceLastVisitInSession($qnas);
+        
 
         $this->addscripts('ui', 'paginator3000'); 
         $this->render('index' ,

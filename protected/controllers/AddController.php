@@ -154,7 +154,7 @@ class AddController extends Controller
             if( null === $article->author_id )
             {
                 $article->author_id  = $curuser->id;
-                $article->pub_date = new DateTime();
+                $article->pub_date = new SDateTime();
                 
                 // Automatically approve admins posts
                 $article->approved = $curuser->is_admin;
@@ -215,7 +215,7 @@ class AddController extends Controller
                 {
                     $article->html_content = bbcodes::bbcode($articlePlain->plain_content, $article->title);
                     $article->html_desc_paragraph = bbcodes::bbcode($articlePlain->plain_description, $article->title);
-                    $article->pub_date = new DateTime();
+                    $article->pub_date = new SDateTime();
                     
                     $this->addscripts('ui');
                     $this->render('//article/index', array('article' => &$article));

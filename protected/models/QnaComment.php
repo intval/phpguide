@@ -12,10 +12,10 @@
  * @property Datetime $time
  *
  * The followings are the available model relations:
- * @property ZzsmfMembers $author
+ * @property User $author
  * @property QnaQuestions $question
  */
-class QnaComment extends CActiveRecord
+class QnaComment extends DTActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -74,20 +74,5 @@ class QnaComment extends CActiveRecord
                 )
             );
         }
-
-    protected function afterFind()
-    {
-    	$this->time = new Datetime($this->time);
-    	return parent::afterFind();
-    }
-    
-    protected function beforeSave()
-    {
-    	if(is_a($this->time, 'DateTime'))
-    	{
-    		$this->time = $this->time->format('Y-m-d H:i:s');
-    	}
-    	return parent::beforeSave();
-    }
     
 }

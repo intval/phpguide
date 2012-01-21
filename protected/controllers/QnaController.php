@@ -32,6 +32,7 @@ class QnaController extends Controller
         }
         
         $qnas=QnaQuestion::model()->findAll();
+        QnaController::storeQnasWithNewAnswersSinceLastVisitInSession($qnas);
         
         $this->render('index' ,array
             (
@@ -85,7 +86,8 @@ class QnaController extends Controller
 	            static::addQnaToViewedList($qna);
 	    	}
 
-            $this->render('//qna/viewQna', array('qna' => &$qna));            
+            $this->render('//qna/viewQna', array('qna' => &$qna));      
+            QnaController::removeQnaFromListOfNewAnswers($qna);
         }
         else
         {
@@ -143,7 +145,7 @@ class QnaController extends Controller
     	    	$answer->author = Yii::app()->user;
     	    	$answer->authorid = Yii::app()->user->id;
     	    	$answer->html_text = bbcodes::bbcode($answer->bb_text, '');
-    	    	if( null === $answer->time ) $answer->time = new DateTime();
+    	    	if( null === $answer->time ) $answer->time = new SDateTime();
     	    	
     	    	
 
@@ -160,7 +162,7 @@ class QnaController extends Controller
                 $transaction->commit();   
 
                 
-                if('string' === gettype($answer->time)) $answer->time = new DateTime($answer->time); 
+                if('string' === gettype($answer->time)) $answer->time = new SDateTime($answer->time); 
                 $this->renderPartial('//qna/comment', array('answer' => &$answer ));
                 
     	    }
@@ -205,6 +207,55 @@ class QnaController extends Controller
     		if(null !== $id) QnaComment::model()->deleteByPk($id);
     	}
     }
+    
+    
+    
+    
+    /**
+     * Stores id's of qna's that have answers published after user's previous visit
+     * @param array prev_visit  */
+    public static function storeQnasWithNewAnswersSinceLastVisitInSession(array $qnas)
+    {
+    	
+    	$prev_visit = Yii::app()->user->prev_visit;
+		
+		$new = array();
+    	foreach($qnas as $qna)
+    	{
+    		if(null !== $qna->last_answer_time && $qna->last_answer_time > $prev_visit)
+    		{
+    			$new[$qna->qid] = $qna->qid;
+    		}
+    	}
+    	
+    	$already_known_to_have_new_answers = Yii::app()->user->getState('qnas_with_new_answers', array());
+    	$list_of_qnas_with_new_answers = $already_known_to_have_new_answers + $new;
+    	Yii::app()->user->setState('qnas_with_new_answers', $list_of_qnas_with_new_answers);
+    }
+    
+    
+    /**
+     * Returns whether this question has answers posted after users prev. visit
+     * @param QnaQuestion $qna
+     */
+    public static function doesQnaHaveNewAnswersSinceLastVisit(QnaQuestion $qna)
+    {
+    	$questions_with_new_answers = Yii::app()->user->getState('qnas_with_new_answers', array());
+    	return in_array($qna->qid, $questions_with_new_answers);
+    }
+    
+    
+    /**
+     * Removes question from the list of qid that have new answers since prev. user's visit
+     * @param QnaQuestion $qna
+     */
+    public static function removeQnaFromListOfNewAnswers(QnaQuestion $qna)
+    {
+    	$questions_with_new_answers = Yii::app()->user->getState('qnas_with_new_answers', array());
+    	unset($questions_with_new_answers[$qna->qid]);
+    	Yii::app()->user->setState('qnas_with_new_answers', $questions_with_new_answers);
+    }
+    
     
     
 }
