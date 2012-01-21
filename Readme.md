@@ -28,7 +28,7 @@ Database Setup
 
 - Update `dbconnection.php` with your database connection info
 
-- Adjust the path to the framework directory in `localize.php`
+- Adjust the path to the framework directory in `local_config.php`
 
 - If you want facebook connect -> create facebook application, *copy * `services.example.php` and rename into `services.php`
   change the appid & appsecret to those of your application and you are good to go.
@@ -45,10 +45,11 @@ If you put "framework" directory in public_html - it should be somethig like
 	
 Go to the website. Username: admin, pass: admin
 
+
 What's next
 -----------
 
-Help available at [phpguide forum](http://phpguide.co.il/forum/)
+Help available at [phpguide](http://phpguide.co.il/)
 
 Write your code, push it and help building the community.
 
