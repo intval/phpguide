@@ -25,21 +25,24 @@
     </div>
 
 
-	<h1 class="title">כותרת</h1>
-
+	<h1 class="title">הוספת מדריך/מאמר</h1>
+            <br />
+            <p>לאחר שהמדיכים והמאמרים יפורסמו, הם יעברו הגהה לשונית (אך יהיו נגישים לכולם כבר לפני כן). במידה ועריכה כלשהי של מדריך/מאמר שפרסמתם לא מוצאת חן בעיניכם, אתם מוזמנים לכתוב מה בדיוק לא בסדר בתור תגובה באותו המאמר/מדריך ואנו נשתדל לתקן בהקדם.</p>
+            <br />
+            כותרת: 
             <input type="hidden" name="edit" value="<?=$editting_id?>" />
             
             <?= $form->textField($article,'title', array('class' => 'name', 'placeholder' => 'כותרת', 'tabindex' => '1')); ?><br />
- <br/>
             <br/>
-                        תמונה(75x75):
+            <br/>
+            תמונה (75x75): 
             <?= $form->textField($article, 'image', array('tabindex'=>"3", 'dir'=>"ltr", 'class'=>"name", 'style'=>"width:350px",
                    'title'=>"קישור לתמונה בגודל 75 על 75 שתופיע ליד הכתבה בעמוד הראשי")); ?>
             <br/>
             
             
             <br/><br/>
-            תיאור בעמוד הראשי:  (בשני משפטים)
+            תיאור בשני משפטים שיופיע בעמוד הראשי ובתחילת הכתבה: 
             <br/><br/>
             <?= $form->textArea($plain, "plain_description", array('rows'=>"2", 'tabindex'=>"2", 'style'=>"width:100%")); ?>
             
@@ -83,7 +86,7 @@
 
 
 
-            <b>מנועי חיפוש:</b><br/><br/>
+            <b>מנועי חיפוש: </b><br/><br/>
             <div>
             מילות מפתח: 
             <?= $form->textField($article, 'keywords', array('class' => 'name', 'tabindex' => '7', 'title' => 'meta keywords למנועי החיפוש')) ?> 
