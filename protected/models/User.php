@@ -7,7 +7,7 @@
  * @property string $id
  * @property string $login
  * @property string $real_name
- * @property string $last_login
+ * @property SDateTime $last_visit
  * @property string $reg_date
  * @property string $ip
  * @property string $email
@@ -24,7 +24,7 @@
  * @property QnaAnswers[] $qnaAnswers
  * @property QnaQuestions[] $qnaQuestions
  */
-class User extends CActiveRecord
+class User extends DTActiveRecord
 {
     
         /**
@@ -92,6 +92,7 @@ class User extends CActiveRecord
             $this->is_registered = $this->email !== $this->id . static::unregistered_guest_mail;
             return parent::afterFind();
         }
+ 
         
         /**
          * Creates new guest user account 
@@ -110,11 +111,14 @@ class User extends CActiveRecord
             $user->salt = 'abcabcabcabcabcabcabca';
             $user->ip = Yii::app()->request->getUserHostAddress();
             $user->is_registered = false;
+            $user->last_visit = new SDateTime();
             $user->real_name = '';
-            $user->last_login = new CDbExpression('NOW()');
             $user->reg_date = null;
             
-            $user->save();
+            if(!$user->save()) 
+            {
+            	throw new Exception('Couldn\'t create anonymous user. Errors:' . print_r($user->getErrors() , 1));
+            }
             
             return $user;
         }

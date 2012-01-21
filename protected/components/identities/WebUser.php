@@ -18,6 +18,13 @@ class WebUser extends CWebUser
     public $guestName='מישהו לא מוכר';
     public $allowAutoLogin = true;
     
+    
+    /**
+     * Every request(f5 press) the user makes we update last_visit time in the db for him
+     * since we want to do it once per request, this indicates whether we had done it already this request or not
+     * @var bool
+     */
+    private $was_last_visit_time_updated = false;
 
     
     /**
@@ -29,8 +36,8 @@ class WebUser extends CWebUser
     public function login( $identity, $duration = 0)
     {
         $this->setState('user', $identity->user);
-        $this->setState('login_time', new DateTime);
         $this->plain_password = $identity->password;
+
         return parent::login($identity, $duration);
     }
     
@@ -50,18 +57,34 @@ class WebUser extends CWebUser
         if(!$this->hasState('user') )
         {
             $userid = $this->getId();
+            $user = null;
             
             if( null !== $userid )
             {
             	$user = User::model()->findByPk($userid);
             }
             
-            if( null === $userid || null === $user )
+            if( null === $user )
             {
             	$user = User::createNewAnonymousUser();
-            }
+            }        
             
-            $this->setState('user', $user);
+            $identity = new AuthorizedIdentity($user);
+            $this->login($identity, Yii::app()->params['login_remember_me_duration']);    
+        }
+        // User instance comes from session.
+        else if(!$this->was_last_visit_time_updated)
+        {
+        	
+        	$user = $this->getState('user');
+
+        	$this->setState('prev_visit', $user->last_visit);
+        	$this->was_last_visit_time_updated = true;
+        	
+        	$user->last_visit = new SDateTime;
+        	$this->setState('user', $user);
+        	
+        	User::model()->updateByPk($user->id, array('last_visit' => $user->last_visit ));
         }
         
         return $this->getState('user');
@@ -70,7 +93,9 @@ class WebUser extends CWebUser
     
     protected function afterLogin($fromCookie)
     {
+    	$this->setState('prev_visit', $this->user->last_visit);
         $this->updateUserDataOnLoginSuccess($fromCookie);
+        $this->was_last_visit_time_updated = true;
         return parent::afterLogin($fromCookie);
     }
     
@@ -106,7 +131,7 @@ class WebUser extends CWebUser
         return array
         (
             'ip' => Yii::app()->request->getUserHostAddress(),
-            'last_login' => new CDbExpression('NOW()')
+            'last_visit' => new SDateTime()
         );
     }
     
@@ -196,6 +221,10 @@ class WebUser extends CWebUser
         if(!$restored)
         {
             parent::restoreFromCookie();
+        }
+        else
+        {
+        	$this->afterLogin(true);
         }
         
     }
