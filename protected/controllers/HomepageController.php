@@ -85,8 +85,14 @@ class HomepageController extends Controller
      */
     public function actionSitemap()
     {
-    	// available only in debug mode for localhost
-    	if(!YII_DEBUG) return;
+    	// available only when browsing from servers addr
+    	// Amazon's server ip, hardcoded. Not the best solution, but
+    	// this script is ran by webcron (since I can't use console application for it, which is not aware of controllers, nor of createUrl functions)
+    	// and $_SERVER['SERVER_ADDR'] returns the internal amazons IP and not the external one, used by curl/wget.
+    	/**
+    	 * @todo get a better solution
+    	 */
+    	if(!YII_DEBUG && Yii::app()->request->getUserHostAddress() !== '176.34.245.11' ) return;
     	
     	$items = Yii::app()->db->createCommand("
     			
