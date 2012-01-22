@@ -85,8 +85,8 @@ class HomepageController extends Controller
      */
     public function actionSitemap()
     {
-    	// available only in debug mode for localhost
-    	if(!YII_DEBUG) return;
+    	// available only when browsing from servers addr
+    	if( Yii::app()->request->getUserHostAddress() !== $_SERVER["SERVER_ADDR"] ) return;
     	
     	$items = Yii::app()->db->createCommand("
     			
