@@ -26,8 +26,7 @@
 
 
 	<h1 class="title">הוספת מדריך/מאמר</h1>
-            <br />
-            <p>לאחר שהמדיכים והמאמרים יפורסמו, הם יעברו הגהה לשונית (אך יהיו נגישים לכולם כבר לפני כן). במידה ועריכה כלשהי של מדריך/מאמר שפרסמתם לא מוצאת חן בעיניכם, אתם מוזמנים לכתוב מה בדיוק לא בסדר בתור תגובה באותו המאמר/מדריך ואנו נשתדל לתקן בהקדם.</p>
+           
             <br />
             כותרת: 
             <input type="hidden" name="edit" value="<?=$editting_id?>" />
@@ -99,9 +98,11 @@
             <div class="clear"></div>
             
             <div id="newpost_error_text"/>
-<span style="color:red">
-            יש למלא את כל השדות
-</span>
+				<span style="color:red">
+				            יש למלא את כל השדות
+				</span>
+
+				<p>במקרים מסוימים המאמרים עוברים שינויים קוסמטיים והגעה לשונית אחרי הפרסום. לא להיבהל :)</p>
             </div>
             <input type="button" name="submit"  id="submit"  class="submit" value="Submit"  />
             <input type="button" name="preview" id="preview" class="submit" value="Preview" />
