@@ -26,6 +26,11 @@ class WebUser extends CWebUser
      */
     private $was_last_visit_time_updated = false;
 
+    /**
+     * Holds instance of the currently authorized user
+     * @var User
+     */
+    private $user = null;
     
     /**
      * Stores user's plain text password for later hashing algorithm upgrade
@@ -35,6 +40,7 @@ class WebUser extends CWebUser
     
     public function login( $identity, $duration = 0)
     {
+    	$this->user = $identity->user;
         $this->setState('user', $identity->user);
         $this->plain_password = $identity->password;
 
@@ -54,7 +60,11 @@ class WebUser extends CWebUser
      */
     protected function getUser()
     { 
-        if(!$this->hasState('user') )
+    	if( null !== $this->user )
+    	{
+    		return $this->user;
+    	}
+        else if(!$this->hasState('user') )
         {
             $userid = $this->getId();
             $user = null;
@@ -77,6 +87,7 @@ class WebUser extends CWebUser
         {
         	
         	$user = $this->getState('user');
+        	
 
         	$this->setState('prev_visit', $user->last_visit);
         	$this->was_last_visit_time_updated = true;
@@ -93,7 +104,7 @@ class WebUser extends CWebUser
     
     protected function afterLogin($fromCookie)
     {
-    	$this->setState('prev_visit', $this->user->last_visit);
+    	$this->setState('prev_visit', $this->getUser()->last_visit);
         $this->updateUserDataOnLoginSuccess($fromCookie);
         $this->was_last_visit_time_updated = true;
         return parent::afterLogin($fromCookie);
@@ -149,12 +160,12 @@ class WebUser extends CWebUser
             $provider = Yii::app()->session['provider'];
             $provider_dbcolumn_name = ServiceUserIdentity::$service2fieldMap[$provider->serviceName];
 
-            if(empty($this->user->{$provider_dbcolumn_name}))
+            if(empty($this->{$provider_dbcolumn_name}))
             {
                 $userInfo = $provider->getAttributes();
                 $attributes[ $provider_dbcolumn_name ] = $userInfo['id'];
                 
-                if(empty($this->user->real_name))
+                if(empty($this->real_name))
                 {
                     $attributes['real_name'] = $userInfo['name'];
                 }
@@ -174,7 +185,7 @@ class WebUser extends CWebUser
     private function password_algorithm_upgrade( &$password)
     {
         $attributes = array();
-        if(null !== $this->plain_password && 22 !== mb_strlen($this->user->salt))
+        if(null !== $this->plain_password && 22 !== mb_strlen($this->salt))
         {
             $salt = Helpers::randString(22);
             $attributes['salt'] = $salt;
