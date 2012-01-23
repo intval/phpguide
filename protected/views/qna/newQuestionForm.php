@@ -3,7 +3,7 @@
 <div class="new_question_form" >
     <div style="margin:0 auto;width:90%;">
         <h4 >
-            יש לך שאלה ב php/sql ? תשאל!
+            יש לך שאלה ב-PHP, SQL, או בקיצור: פיתוח אינטרנט? שאל!
         </h4>
         <?php echo 
             CHtml::beginForm() ,
