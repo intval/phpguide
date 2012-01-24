@@ -28,7 +28,7 @@
 	<h1 class="title">הוספת מדריך/מאמר</h1>
            
             <br />
-            כותרת: 
+            כותרת (שם המאמר/מדריך): 
             <input type="hidden" name="edit" value="<?=$editting_id?>" />
             
             <?= $form->textField($article,'title', array('class' => 'name', 'placeholder' => 'כותרת', 'tabindex' => '1')); ?><br />
@@ -102,7 +102,7 @@
 				            יש למלא את כל השדות
 				</span>
 
-				<p>במקרים מסוימים המאמרים עוברים שינויים קוסמטיים והגעה לשונית אחרי הפרסום. לא להיבהל :)</p>
+				<p>במקרים מסוימים המאמרים עוברים שינויים קוסמטיים והגהה לשונית אחרי הפרסום. לא להיבהל. :)</p>
             </div>
             <input type="button" name="submit"  id="submit"  class="submit" value="Submit"  />
             <input type="button" name="preview" id="preview" class="submit" value="Preview" />
