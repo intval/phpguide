@@ -100,12 +100,18 @@ class AddController extends Controller
             // fails if id is not defined, or filter wouldnt validate, or id = 0
             $id = filter_input(INPUT_POST, 'edit', FILTER_VALIDATE_INT);
 
+            /**
+             * Indicates whether this record we are currently manipulating on is a new record or editted existing one
+             * @var bool
+             */
+            $isNew = false;
 
             if( !$id )
             {
                 // Create new instances
                 $article        = new Article();
                 $articlePlain   = new ArticlePlainText();
+                $isNew =true;
             }
             else
             {
@@ -145,21 +151,29 @@ class AddController extends Controller
 
 
             // Prepare some custom field values
-            $article->url = preg_replace("/[^a-z0-9_\s".'א-ת'."]/ui", '', $article->title);
             $article->html_content = bbcodes::bbcode($articlePlain->plain_content, $article->title);
             $article->html_desc_paragraph = bbcodes::bbcode($articlePlain->plain_description, $article->title);
-
             
-            // If post had no author => this is a new post. An edited post would have it's original author
-            if( null === $article->author_id )
+            if( $isNew )
             {
                 $article->author_id  = $curuser->id;
                 $article->pub_date = new SDateTime();
                 
                 // Automatically approve admins posts
                 $article->approved = $curuser->is_admin;
+                
+                // seo url based on title
+                $article->url = preg_replace("/[^a-z0-9_\s".'א-ת'."]/ui", '', $article->title);
+                
             }
-
+            
+			
+            if( $isNew || isset($_POST['change_permalink']))
+			{
+				// seo url based on title
+				$article->url = preg_replace("/[^a-z0-9_\s".'א-ת'."]/ui", '', $article->title);
+			}
+            
             
 
             $trans = Yii::app()->db->beginTransaction();
