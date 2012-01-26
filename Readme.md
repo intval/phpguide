@@ -16,6 +16,14 @@ Installation
 
 - Download [this code](https://github.com/intval/phpguide/zipball/master) and put it on your server
 
+Requirments
+-----------
+
+- MySQL > 5.1
+
+- PHP > 5.3.3
+
+- *short_open_tags On* !!!!!
 
 Database Setup
 --------------
