@@ -17,7 +17,7 @@
 
 
 // determine whether this is production environment
-$production = $_SERVER['REMOTE_ADDR'] != '127.0.0.1';
+$production = !in_array( $_SERVER['REMOTE_ADDR'] , array('::1', '127.0.0.1'));
 
 // Config path
 $config = include dirname(__FILE__).'/protected/config/config.php';
