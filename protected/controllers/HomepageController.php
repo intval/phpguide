@@ -18,7 +18,7 @@ class HomepageController extends Controller
         
         if($page == 0)
         {
-            $qnas = QnaQuestion::model()->findAll(array('limit' => 7, 'order' => 'time DESC'));
+            $qnas = QnaQuestion::model()->findAll(array('limit' => 7));
         }
         
         QnaController::storeQnasWithNewAnswersSinceLastVisitInSession($qnas);
