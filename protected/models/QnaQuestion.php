@@ -10,7 +10,7 @@
  * @property string $html_text
  * @property integer $authorid
  * @property string $time
- * @property Datetime $last_answer_time
+ * @property SDateTime $last_activity
  * @property integer $views
  * @property integer $answers
  *
@@ -19,12 +19,7 @@
  */
 class QnaQuestion extends DTActiveRecord
 {
-	/**
-	 * Indicates whether this question has any new answers since last user's visit
-	 * @var bool
-	 */
-	public $has_new_answers_since_last_visit = false;
-	
+
 	
 	/**
 	 * Returns the static model of the specified AR class.
@@ -83,7 +78,7 @@ class QnaQuestion extends DTActiveRecord
             return array
             (
                 'condition' =>  'status!="hidden"' ,
-                'order'     =>  'COALESCE(last_answer_time,time) DESC',
+                'order'     =>  'last_activity DESC',
                 'with'      => array
                 (
                     'author' => array

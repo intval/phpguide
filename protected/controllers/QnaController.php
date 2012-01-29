@@ -222,7 +222,7 @@ class QnaController extends Controller
 		$new = array();
     	foreach($qnas as $qna)
     	{
-    		if(null !== $qna->last_answer_time && $qna->last_answer_time > $prev_visit)
+    		if( $qna->last_activity > $prev_visit)
     		{
     			$new[$qna->qid] = $qna->qid;
     		}
