@@ -48,7 +48,7 @@ class QnaController extends Controller
         {
             $model = new QnaQuestion();
             $model->attributes = $_POST['QnaQuestion'];
-
+			$model->last_activity = new SDateTime();
             $model->authorid = Yii::app()->user->id;
             $model->html_text = bbcodes::bbcode($model->bb_text, $model->subject);
 
