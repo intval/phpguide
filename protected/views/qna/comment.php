@@ -5,7 +5,7 @@
 		    ענה
 		    <?=e($answer->author->login)?>
 		   ב-
-		   <span  style="font-size:10px"> <?= Helpers::date2heb($answer->time, false) ?> </span>
+		   <span  style="font-size:10px"> <?= $answer->time->date2heb( false) ?> </span>
 		   <a id="answer_<?=$answer->aid?>" href="<?= Yii::app()->request->requestUri . "#answer_" . $answer->aid?>">#</a>
 		</span>
 		

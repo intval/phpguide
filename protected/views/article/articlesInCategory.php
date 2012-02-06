@@ -36,7 +36,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <time datetime="<?=Helpers::date2rfc($article->pub_date);?>" pubdate="pubdate"></time>         
+            <time datetime="<?=$article->pub_date->date2rfc();?>" pubdate="pubdate"></time>         
         </article>
     </div>
 <?endforeach;?>

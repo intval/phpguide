@@ -17,13 +17,13 @@
                     <br/>
                     <div class="submited">
                         <div class="right"><?=e($article->author->real_name ?: $article->author->login);?>, </div>
-                        <div class="right">&nbsp;<?=Helpers::date2heb($article->pub_date);?></div>
+                        <div class="right">&nbsp;<?=$article->pub_date->date2heb();?></div>
                         <div class="clear"></div>
                     </div>
                 </div>
                 <div class="clear"></div>
             </div>
-            <time datetime="<?=Helpers::date2rfc($article->pub_date);?>" pubdate="pubdate"></time>
+            <time datetime="<?=$article->pub_date->date2rfc();?>" pubdate="pubdate"></time>
         </article>
     </div>
 <? endforeach; ?>

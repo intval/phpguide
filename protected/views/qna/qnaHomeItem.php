@@ -23,14 +23,10 @@
 
             ,
             <span class="relativetime" style="display:inline-block;">
-                <?= Helpers::date2heb($qna->time)  ?>
-                <? if( QnaController::doesQnaHaveNewAnswersSinceLastVisit($qna) ) : ?><span style='color:blue; font-style:italic;padding-right:15px;'>new</span><?php endif; ?>
-	        </span>
-            
-
-        </div>
-
+            	<?= $qna->time->date2heb() ?>
+            	<? if( QnaController::doesQnaHaveNewAnswersSinceLastVisit($qna)) : ?><span style='color:blue; font-style:italic; padding-right:15px;'>חדש</span><?php endif; ?>
+            </span>
+		</div>
+	
     </div>
-
 </div>
-
