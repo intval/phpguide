@@ -92,7 +92,7 @@ class HomepageController extends Controller
     	/**
     	 * @todo get a better solution
     	 */
-    	if(!YII_DEBUG && Yii::app()->request->getUserHostAddress() !== '176.34.245.11' ) return;
+    	if(!YII_DEBUG && Yii::app()->request->getUserHostAddress() !== '::ffff:176.34.245.11' ) return;
 
     	
     	$items = Yii::app()->db->createCommand("
