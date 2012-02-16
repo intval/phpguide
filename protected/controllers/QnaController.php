@@ -18,7 +18,7 @@ class QnaController extends Controller
     public function actionIndex()
     {
     	$this->pageTitle = 'שאלות ותשובות PHP | עזרה עם PHP | לימוד PHP';
-    	$this->keywords = 'לימוד, עזרה, שאלה, PHP, MySQL, Apache, תשובה';
+    	$this->keywords = 'שאלות ותשובות, PHP, פיתוח אינטרנט';
     	$this->description = 'שאלות ותשובות לימוד PHP. יש לך שאלה? תשאל!';
     	
         $this->addscripts('ui', 'qna', 'paginator3000');
