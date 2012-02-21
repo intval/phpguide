@@ -58,10 +58,11 @@ class Article extends DTActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-                    'author'     => array(self::BELONGS_TO, 'User',     'author_id'),
-                    'comments'   => array(self::HAS_MANY,   'Comment',  'blogid'),
-                    'plain'      => array(self::HAS_ONE,    'ArticlePlainText', 'id') ,
-                    'categories' => array(self::MANY_MANY,  'Category', 'blog_post2cat(postid, catid)')
+                    'author'        => array(self::BELONGS_TO, 'User',     'author_id'),
+                    'comments'      => array(self::HAS_MANY,   'Comment',  'blogid'),
+                    'plain'         => array(self::HAS_ONE,    'ArticlePlainText', 'id'),
+                    'categories'    => array(self::MANY_MANY,  'Category', 'blog_post2cat(postid, catid)'),
+                    'commentsCount' => array(self::STAT,        'Comment',  'blogid')
 		);
 	}
 
