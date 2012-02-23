@@ -9,8 +9,8 @@
     <managingEditor><?=Yii::app()->params['adminEmail']?></managingEditor>
 
     <generator><?=bu(null, true)?></generator>
-    <pubDate><?=new SDateTime($articles[0]->pub_date)->date2rfc()?></pubDate>
-    <lastBuildDate><?=new SDateTime($articles[0]->pub_date)->date2rfc()?></lastBuildDate>
+    <pubDate><?=$articles[0]->pub_date->date2rfc()?></pubDate>
+    <lastBuildDate><?=$articles[0]->pub_date->date2rfc()?></lastBuildDate>
 
 
     <? foreach( $articles as $item ): ?>
@@ -29,7 +29,7 @@
                     </table>
 
                 </div>]]></description>
-            <pubDate><?=new SDateTime($item->pub_date)->date2rfc()?></pubDate>
+            <pubDate><?=$item->pub_date->date2rfc()?></pubDate>
             <category><?=bu(null, true)?></category>
         </item>
     <? endforeach; ?>
