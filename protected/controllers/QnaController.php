@@ -77,7 +77,7 @@ class QnaController extends Controller
         	$this->keywords = 'שאלה, עזרה' ;
         	$this->pageAuthor = $qna->author->login;
         	
-	    	$this->addscripts('qna','bbcode'); 
+	    	$this->addscripts('ui', 'qna','bbcode'); 
 	    	
 	    	if(!static::isQnaViewedEarlier($qna))
 	    	{
