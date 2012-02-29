@@ -2822,7 +2822,7 @@ input, textarea { font-size:14px; font-family: Arial;}
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    padding:10px 10px 0;
+    padding:10px;
     
     margin-bottom:30px;
     position:relative;

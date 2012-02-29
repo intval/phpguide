@@ -20,7 +20,7 @@
     }
     elseif(!$user->is_registered && null !== Yii::app()->session['provider'])
     {
-    	echo CHtml::link('בחר לעצצך שם אחר', array('login/index'));
+    	echo CHtml::link('בחר לעצמך שם אחר', array('login/index'));
     }
     else 
     {
