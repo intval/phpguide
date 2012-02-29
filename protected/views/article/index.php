@@ -46,8 +46,14 @@
         <div class="clear"></div>
     </div>
         
-       <div  id="like_for_concrete_post" class="left" style="margin:10px  0 0 10px;"></div>
+        <div  id="like_for_concrete_post" class="left" style="margin:10px  0 0 10px;"></div>
         <div class='clear'></div>
+    
+    	<?php  if($article->author->id === Yii::app()->user->id || Yii::app()->user->is_admin):  ?>
+	        <div><a href="<?= bu('Add?edit='.$article->id)?>">Edit this article</a></div>
+	        <div class='clear'></div>
+        <?php endif; ?>
+        
     </div>
     
  
