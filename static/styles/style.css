@@ -594,6 +594,7 @@ h3,
 h4,
 h5,
 h6 {
+	clear: both;
   font-weight: bold;
   color: #404040;
 }
@@ -3072,8 +3073,8 @@ color: #4979A2;
 
 
 /*Image floatings*/
-.content-image-floatright { float:right; margin-left:15px; }
-.content-image-floatleft  { float:left;  margin-right:15px; }
+.content-image-floatright { float:right; margin-left:15px;  margin-bottom: 15px;}
+.content-image-floatleft  { float:left;  margin-right:15px; margin-bottom: 15px;}
 
 
 
@@ -3149,9 +3150,9 @@ h1.category-title
 .codeblock
 {
     background:#E8F3FF;
-    margin:15px -40px 15px -55px;
-    padding:10px 55px;
-    font-size:13px;
+	clear: both;
+	padding: 10px 20px; 
+	font-size:13px;
     font-family: Courier, "Courier New", monospace;
     line-height:19px;
     direction:ltr;
