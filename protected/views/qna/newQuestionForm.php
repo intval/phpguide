@@ -2,8 +2,8 @@
 
 <div class="new_question_form" >
     <div style="margin:0 auto;width:90%;">
-        <h4 >
-            יש לך שאלה ב php/sql ? תשאל!
+        <h4>
+        יש לך שאלה בפיתוח אינטרנט (<span dir="rtl">HTML</span>, <span dir="rtl">CSS</span>, <span dir="rtl">PHP</span>, <span dir="rtl">MySQL</span> וכו')? שאל/י!
         </h4>
         <?php echo 
             CHtml::beginForm() ,
