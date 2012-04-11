@@ -28,9 +28,9 @@ Class bbcodes
             Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[s]','[/s]','[h1]',
             '[/h1]','[h2]','[/h2]','[h3]','[/h3]','[ltr]','[/ltr]',
             '[left]','[/left]'),
-
-            Array('<strong>','</strong>','<em>','</em>','<span class="underline">','</span>','<s>','</s>','<h3>',
-            '</h3>','<h4>','</h4>','<h5>','</h5>','<span dir="ltr">','</span>',
+            
+            Array('<strong>','</strong>','<em>','</em>','<span class="underline">','</span>','<s>','</s>','<h2>',
+            '</h2>','<h3>','</h3>','<h4>','</h4>','<span dir="ltr">','</span>',
             '<span class="dirleft">','</span>'),
 
             e($string) //htmlspecialchars it
