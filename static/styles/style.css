@@ -3150,7 +3150,8 @@ h1.category-title
 {
     background:#E8F3FF;
     margin:15px -40px 15px -55px;
-    padding:10px 55px;
+    clear: both;
+    padding: 10px 20px;
     font-size:13px;
     font-family: Courier, "Courier New", monospace;
     line-height:19px;
