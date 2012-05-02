@@ -18,14 +18,13 @@
     <meta property="og:site_name" content="<?=e($this->facebook['site_name'])?>" />
     <meta property="fb:admins" content="<?=e($this->facebook['admins'])?>" />
     <meta property="fb:app_id" content="<?=e($this->facebook['app_id'])?>" />
+    <meta name="medium" content="blog" />
     <? endif; ?>
 
     <link rel="shortcut icon" href="<?=bu("static/images/favicon.ico")?>" />
     <link href="<?=bu("static/styles/style.css")?>" rel="stylesheet" />
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style.css")?>" rel="stylesheet" /><![endif]-->
     
     <title><?=e($this->pageTitle)?></title>
