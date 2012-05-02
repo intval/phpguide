@@ -22,10 +22,11 @@
     <? endif; ?>
 
     <link rel="shortcut icon" href="<?=bu("static/images/favicon.ico")?>" />
-    <link href="<?=bu("static/styles/style.css")?>" rel="stylesheet" />
+    <link href="<?=bu("static/styles/style.".filemtime(getcwd().'/static/styles/style.css').".css")?>" rel="stylesheet" />
+    <link href="<?=bu("static/styles/images.".filemtime(getcwd().'/static/styles/images.css').".css")?>" rel="stylesheet" />
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style.css")?>" rel="stylesheet" /><![endif]-->
+    <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style".filemtime(getcwd().'/static/styles/ie_style.css').".css")?>" rel="stylesheet" /><![endif]-->
     
     <title><?=e($this->pageTitle)?></title>
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>

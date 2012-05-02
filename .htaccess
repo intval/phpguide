@@ -332,6 +332,12 @@ Options +FollowSymLinks -Indexes
     RewriteRule ^google7fdd21603b37dc36\.html$ /static/google7fdd21603b37dc36.html [L,NC]
     RewriteRule ^favicon\.ico$ /static/images/favicon.ico [L,NC]
 
+
+	RewriteRule ^static/styles/([^/]*)\.[0-9]*\.css$ /static/styles/$1.css [L,NC]
+	RewriteRule ^static/images/([^/]*)\.[0-9]*\.(png|gif|jpg|jpeg)$ /static/images/$1.$2 [L,NC]
+	RewriteRule ^static/scripts/([^/]*)\.[0-9]*\.js$ /static/scripts/$1.js [L,NC]
+
+
 	# if a directory or a file exists, use it directly
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d

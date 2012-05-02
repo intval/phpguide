@@ -90,7 +90,7 @@ class Controller extends CController
             {
                 if (mb_substr($url, 0, 7) != "http://")
                 {
-                    $url = bu("static/scripts/$url.js");
+                    $url = bu("static/scripts/$url.".filemtime(getcwd()."/static/scripts/$url.js").".js");
                 }
                 Yii::app()->clientScript->registerScriptFile($url, CClientScript::POS_END);
             }
