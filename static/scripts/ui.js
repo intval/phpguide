@@ -130,6 +130,12 @@ function expand_forum_question_textarea(e)
 
 function disable_new_question_form()
 {
+	if( $.trim(jQuery('#forum_question_subject').val()).length < 5 )
+	{
+		alert('נושא השאלה חייב להיות בעורך של חמישה תווים לפחות');
+		return false;
+	}
+	
     jQuery('#forum_question_text').prop('disabled', true);
     jQuery('#forum_question_subject').prop('disabled', true);
 }

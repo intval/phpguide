@@ -7,7 +7,7 @@
     <a id="guides_cats"></a>
     <div>
         <h4  class="right">מדריכים מתקדמים לפי קטגוריה</h4>
-        <?php if(!Yii::app()->user->isGuest): ?><a class="btn success left" href="<?=bu('add')?>">הוסף מדריך</a><?php endif;?>
+        <?php if(!Yii::app()->user->isGuest): ?><a class="btn left" style='color:black' href="<?=bu('add')?>">הוסף מדריך</a><?php endif;?>
         <div class="clear"></div>
     </div>
     <div class="right" style="width:49%;">

@@ -46,7 +46,7 @@ class QnaQuestion extends DTActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('subject, bb_text', 'required'),
+			array('subject', 'required'),
 			array('subject', 'length', 'max'=>255, 'min'=>5),
 			array('bb_text', 'length', 'min'=>5, 'allowEmpty' => true)
 		);
