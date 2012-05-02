@@ -22,19 +22,22 @@ Class bbcodes
         }
 
         // The easy part
+        /*
         $string = str_replace
         (
             Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[s]','[/s]','[h1]',
             '[/h1]','[h2]','[/h2]','[h3]','[/h3]','[ltr]','[/ltr]',
             '[left]','[/left]'),
-
-            Array('<strong>','</strong>','<em>','</em>','<span class="underline">','</span>','<s>','</s>','<h3>',
-            '</h3>','<h4>','</h4>','<h5>','</h5>','<span dir="ltr">','</span>',
+            
+            Array('<strong>','</strong>','<em>','</em>','<span class="underline">','</span>','<s>','</s>','<h2>',
+            '</h2>','<h3>','</h3>','<h4>','</h4>','<span dir="ltr">','</span>',
             '<span class="dirleft">','</span>'),
 
             e($string) //htmlspecialchars it
         );
+        */
 
+        
 
         $string = strtr($string, array("\r\n" => '<br />', "\r" => '<br />', "\n" => '<br />'));
         $string = self::put_code_back($string);
@@ -43,6 +46,16 @@ Class bbcodes
 
         $patterns = Array
         (
+            '/\[b\](.*?)\[\/b\]/i', 
+            '/\[i\](.*?)\[\/i\]/i', 
+            '/\[u\](.*?)\[\/u\]/i', 
+            '/\[s\](.*?)\[\/s\]/i', 
+            //'/\[h([1-3]{1,1})\](.*?)\[\/h\\1\]/i', 
+            '/\[h1\](.*?)\[\/h1\]/i', 
+            '/\[h2\](.*?)\[\/h2\]/i', 
+            '/\[h3\](.*?)\[\/h3\]/i', 
+            '/\[ltr\](.*?)\[\/ltr\]/i', 
+            '/\[left\](.*?)\[\/left\]/i', 
             '/\[url\="?(.*?)"?\](.*?)\[\/url\]/i', 
             '/\[img\s?(left|right)?\](.*?)\[\/img\]/i',
             '@\[color=([a-z0-9#]+)\](.*)\[/color\]@iU', 
@@ -51,6 +64,16 @@ Class bbcodes
 
         $rep = Array
         (
+            '<strong>\\1</strong>',
+            '<em>\\1</em>',
+            '<span class="underline">\\1</span>',
+            '<s>\\1</s>',
+            //'<h\\1>\\2</h\\1>',
+            '<h3>\\1</h3>',
+            '<h4>\\1</h4>',
+            '<h5>\\1</h5>',
+            '<span dir="ltr">\\1</span>',
+            '<span class="dirleft">\\1</span>',
             '<a href="\\1">\\2</a>', 
             '<img src="/static/images/pixel.gif" alt="'.$page_title.'" title="\\2" class="content-image-float\\1"/>',
             '<span style="color:\\1;">\\2</span>',
