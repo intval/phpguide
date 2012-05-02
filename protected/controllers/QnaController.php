@@ -142,8 +142,8 @@ class QnaController extends Controller
     	    	
     	    	
     	    	$answer->attributes = $_POST['QnaComment'];
-    	    	$answer->author = Yii::app()->user;
-    	    	$answer->authorid = Yii::app()->user->id;
+    	    	$answer->author = $answer->author ?:  Yii::app()->user;
+    	    	$answer->authorid = $answer->authorid ?: Yii::app()->user->id;
     	    	$answer->html_text = bbcodes::bbcode($answer->bb_text, '');
     	    	if( null === $answer->time ) $answer->time = new SDateTime();
     	    	
@@ -188,7 +188,7 @@ class QnaController extends Controller
     		$commentid = Yii::app()->request->getQuery('id');
     		$model = null;
     		
-    		if( null !== $commentid ) $model = QnaComment::model()->findByPk($commentid, 'authorid = ' . Yii::app()->user->id);
+    		if( null !== $commentid ) $model = QnaComment::model()->findByPk($commentid, Yii::app()->user->is_admin ? '' : 'authorid = ' . Yii::app()->user->id);
     		if( null === $model ) $model = new QnaComment();
     		$this->renderPartial('commentsForm', array('model' => $model));
     	}

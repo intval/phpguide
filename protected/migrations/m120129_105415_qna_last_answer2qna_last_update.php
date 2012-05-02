@@ -17,7 +17,7 @@ class m120129_105415_qna_last_answer2qna_last_update extends CDbMigration
 		after DELETE ON qna_answers FOR EACH ROW
 		BEGIN
 			UPDATE qna_questions SET answers = answers -1, last_activity = 
-		 	COALESCE((SELECT MAX (time) FROM qna_answers WHERE qna_answers.qid = OLD.qid), qna_questions.time)
+		 	COALESCE((SELECT MAX(time) FROM qna_answers WHERE qna_answers.qid = OLD.qid), qna_questions.time)
 			WHERE qna_questions.qid = OLD.qid;
 		END
 		";
