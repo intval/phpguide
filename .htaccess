@@ -203,6 +203,11 @@ AddType text/x-vcard                   vcf
 # FileETag None is not enough for every server.
 <IfModule mod_headers.c>
   Header unset ETag
+  
+  <FilesMatch "\.(js|css|xml|gz|png|gif|jpg|jpeg|bmp)$">
+    Header append Vary Accept-Encoding
+  </FilesMatch>
+  
 </IfModule>
 
 # Since we're sending far-future expires, we don't need ETags for

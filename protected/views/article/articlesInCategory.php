@@ -36,7 +36,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <time datetime="<?=$article->pub_date->date2rfc();?>" pubdate="pubdate"></time>         
+            <time datetime="<?=$article->pub_date->date2rfc();?>"></time>         
         </article>
     </div>
 <?endforeach;?>

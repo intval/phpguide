@@ -5,7 +5,7 @@
     <!-- publisher -->
     <div id="content-publishing-info">
         <div class="right"><?=e($article->author->real_name ?: $article->author->login);?>, </div>
-        <div class="right">&nbsp;<time datetime="<?=$article->pub_date->date2rfc()?>" pubdate="pubdate" dir="rtl"><?=$article->pub_date->date2heb();?></time></div>
+        <div class="right">&nbsp;<time datetime="<?=$article->pub_date->date2rfc()?>"  dir="rtl"><?=$article->pub_date->date2heb();?></time></div>
         <div class="clear"></div>
     </div>
 
