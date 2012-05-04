@@ -11,7 +11,7 @@ class LoginController extends Controller
     public function actionIndex()
     {
         $return_location = Yii::app()->request->getQuery('redir',   Yii::app()->homeUrl );
-        $this->addscripts('jquery-tools', 'ui', 'login');
+        $this->addscripts('jquerytools', 'ui', 'login');
 
         $this->pageTitle = 'הזדהות לאתר לימוד PHP';
         $this->description = 'עמוד הזדהות וכניסה למערכת';

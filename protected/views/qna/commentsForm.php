@@ -12,12 +12,12 @@
     
     
     <div class='controls_holder'>
-	<a title="bold text" href="javascript:bbstyle('b', '<?=$fieldid?>');" class="abold"><b>B</b></a>
-	<a title="italic text" href="javascript:bbstyle('i', '<?=$fieldid?>')" class="aitalic"><i>I</i></a>
-	<a title="underlined" href="javascript:bbstyle('u', '<?=$fieldid?>')" class="aunderline"><u>U</u></a>
-	<a title="block of code" href="javascript:bbstyle('php', '<?=$fieldid?>')" class="acode">PHP</a>
-	<a title="image" href="javascript:bbstyle('img', '<?=$fieldid?>')" class="aimage">img</a>
-	<a title="link to url" href="javascript:bbstyle('url', '<?=$fieldid?>')" class="alink">A</a>
+	<a title="bold text" href="javascript:$('#<?=$fieldid?>').bbcode('b');" class="abold"><b>B</b></a>
+	<a title="italic text" href="javascript:$('#<?=$fieldid?>').bbcode('i')" class="aitalic"><i>I</i></a>
+	<a title="underlined" href="javascript:$('#<?=$fieldid?>').bbcode('u')" class="aunderline"><u>U</u></a>
+	<a title="block of code" href="javascript:$('#<?=$fieldid?>').bbcode('php')" class="acode">PHP</a>
+	<a title="image" href="javascript:$('#<?=$fieldid?>').bbcode('img')" class="aimage">img</a>
+	<a title="link to url" href="javascript:$('#<?=$fieldid?>').bbcode('url')" class="alink">A</a>
 	<div class="clear" ></div>
     </div>
     

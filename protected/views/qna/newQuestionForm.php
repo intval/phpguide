@@ -22,11 +22,11 @@
             
             
             <div class="left">
-                <a title="bold text" href="javascript:bbstyle('b');"><b>B</b></a>
-                <a title="italic text" href="javascript:bbstyle('i')"><i>I</i></a>
-                <a title="underlined" href="javascript:bbstyle('u')"><u>U</u></a>
-                <a title="block of code" href="javascript:bbstyle('php')">PHP</a>
-                <a title="link to url" href="javascript:bbstyle('url')">A</a>
+                <a title="bold text" href="javascript:$('#forum_question_text').bbcode('b');"><b>B</b></a>
+                <a title="italic text" href="javascript:$('#forum_question_text').bbcode('i')"><i>I</i></a>
+                <a title="underlined" href="javascript:$('#forum_question_text').bbcode('u')"><u>U</u></a>
+                <a title="block of code" href="javascript:$('#forum_question_text').bbcode('php')">PHP</a>
+                <a title="link to url" href="javascript:$('#forum_question_text').bbcode('url')">A</a>
             </div>
             <div class="clear"></div>
         </div>

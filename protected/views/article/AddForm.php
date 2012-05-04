@@ -53,19 +53,19 @@
                 לשנות קישור קיים?</label><br/>             
             <? endif; ?>
             <div class="buttons" dir="rtl" >
-                <a href="javascript:bbstyle('b');" title="bold text"  class="bold-text">B</a>
-                <a href="javascript:bbstyle('i')" title="italic text"  class="italic-text">I</a>
-                <a href="javascript:bbstyle('u')" title="underlined"  class="underline-text">U</a>
-                <a href="javascript:bbstyle('s')" title="striked out"  class="through-text">S</a>
-                <a href="javascript:bbstyle('h1')" title="header1"  class="h1-text">H1</a>
-                <a href="javascript:bbstyle('h2')" title="header2"  class="h2-text">H2</a>
-                <a href="javascript:bbstyle('h3')" title="header3"  class="h3-text">H3</a>
-                <a href="javascript:bbstyle('php')" title="block of code"  class="php-text">PHP</a>
-                <a href="javascript:bbstyle('left')" title="div dir-ltr"  class="ltr-text">L.</a>
-                <a href="javascript:bbstyle('ltr')" title="span dir-ltr"  class="ltr-text">LTR</a>
-                <a href="javascript:bbstyle('img')" title="image"  class="img-text">IMG</a>
-                <a href="javascript:bbstyle('youtube')" title="youtube vid"  class="emb-text">EMB</a>
-                <a href="javascript:bbstyle('url')" title="link to url"  class="a-text">A</a>
+                <a href="javascript:$('#data').bbcode('b');" title="bold text"  class="bold-text">B</a>
+                <a href="javascript:$('#data').bbcode('i')" title="italic text"  class="italic-text">I</a>
+                <a href="javascript:$('#data').bbcode('u')" title="underlined"  class="underline-text">U</a>
+                <a href="javascript:$('#data').bbcode('s')" title="striked out"  class="through-text">S</a>
+                <a href="javascript:$('#data').bbcode('h1')" title="header1"  class="h1-text">H1</a>
+                <a href="javascript:$('#data').bbcode('h2')" title="header2"  class="h2-text">H2</a>
+                <a href="javascript:$('#data').bbcode('h3')" title="header3"  class="h3-text">H3</a>
+                <a href="javascript:$('#data').bbcode('php')" title="block of code"  class="php-text">PHP</a>
+                <a href="javascript:$('#data').bbcode('left')" title="div dir-ltr"  class="ltr-text">L.</a>
+                <a href="javascript:$('#data').bbcode('ltr')" title="span dir-ltr"  class="ltr-text">LTR</a>
+                <a href="javascript:$('#data').bbcode('img')" title="image"  class="img-text">IMG</a>
+                <a href="javascript:$('#data').bbcode('youtube')" title="youtube vid"  class="emb-text">EMB</a>
+                <a href="javascript:$('#data').bbcode('url')" title="link to url"  class="a-text">A</a>
                 <a href="javascript:anylinkmenu.nullfunc()" class="a-color" rel='colorsMenu[click]'>color</a>
                 <div class="anylinkmenu"></div>
             </div>

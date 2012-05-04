@@ -38,7 +38,7 @@ class AddController extends Controller
             $this->pageTitle = $this->description = 'הוספת מדריך לימוד PHP חדש';
             $this->keywords = 'חדש, לימוד, PHP'; 
             
-            $this->addscripts('jquery-tools', 'bbcode', 'ui', 'addpage');
+            $this->addscripts('jquerytools', 'bbcode', 'ui', 'addpage');
             $this->render('//article/AddForm',$view_data);
         }
         
