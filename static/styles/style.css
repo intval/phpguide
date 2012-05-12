@@ -2870,7 +2870,35 @@ input, textarea { font-size:14px; font-family: Arial;}
 
 
 
- 
+
+/********************************* Rating Table ****************************/
+
+.ratingTable td:nth-child(2)
+{
+	text-align:left;
+}
+
+.ratingTable span
+{
+	display:inline-block;
+	width:140px !important;
+	overflow:hidden;
+}
+
+
+.ratingWidgetHeader h5
+{
+	color:#BE30DA;
+	cursor: help;
+}
+
+
+.ratingWidgetHelp
+{
+	display:none;
+	position:absolute;
+
+}
 
 
 /********************************** FOOTER ***********************************/
@@ -4389,3 +4417,16 @@ ol.luck-read-more li
 }
 
 
+
+
+
+
+
+
+
+
+.yiiLog, .yiiLog *
+{
+	direction:ltr;
+	text-align:left;
+}

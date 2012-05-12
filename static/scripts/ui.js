@@ -253,6 +253,17 @@ function getStyle(a,b){var c=jQuery(a);if(c.currentStyle)return c.currentStyle[b
     );
 
 
+    (function(){
+    	var position = jQuery('#ratingWidgetTableTitle').position();
+    	$('#ratingWidgetHelp').css({top:(position.top+50)+'px', left:(position.left-300)+'px'});
+    	
+    	jQuery('#ratingWidgetTableTitle').hover
+        (
+        		function(ev){$('#ratingWidgetHelp').fadeIn(); },
+        		function(){$('#ratingWidgetHelp').fadeOut();}
+        );
+    	
+    })();
 
 
 

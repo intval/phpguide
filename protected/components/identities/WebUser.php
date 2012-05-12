@@ -60,45 +60,26 @@ class WebUser extends CWebUser
      */
     protected function getUser()
     { 
-    	if( null !== $this->user )
+    	if( null === $this->user )
     	{
-    		return $this->user;
-    	}
-        else if(!$this->hasState('user') )
-        {
-            $userid = $this->getId();
-            $user = null;
-            
-            if( null !== $userid )
-            {
-            	$user = User::model()->findByPk($userid);
-            }
-            
-            if( null === $user )
-            {
-            	$user = User::createNewAnonymousUser();
-            }        
-            
-            $identity = new AuthorizedIdentity($user);
-            $this->login($identity, Yii::app()->params['login_remember_me_duration']);    
-        }
-        // User instance comes from session.
-        else if(!$this->was_last_visit_time_updated)
-        {
-        	
-        	$user = $this->getState('user');
-        	
+    		// fetch user by id
+			$this->user = User::model()->findByPk($this->getId());
+	           
+			// if this user does not exist, create one
+			if( null === $this->user ) $this->user = User::createNewAnonymousUser();
+			// otherwise, just update the last login time of the user
+	        else
+	        {
+	        	$this->user->last_visit = new SDateTime();
+	        	User::model()->updateByPk($this->user->id, array('last_visit' =>  $this->user->last_visit));
+	        }
 
-        	$this->setState('prev_visit', $user->last_visit);
-        	$this->was_last_visit_time_updated = true;
-        	
-        	$user->last_visit = new SDateTime;
-        	$this->setState('user', $user);
-        	
-        	User::model()->updateByPk($user->id, array('last_visit' => $user->last_visit ));
-        }
+	        // authorize the user
+			$identity = new AuthorizedIdentity($this->user);
+			$this->login($identity, Yii::app()->params['login_remember_me_duration']);    
+     	}
         
-        return $this->getState('user');
+        return $this->user;
     }
 
     

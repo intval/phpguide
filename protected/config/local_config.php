@@ -35,11 +35,15 @@ function apply_local_changes_to_config(&$conf)
         'class'=>'CLogRouter',
         'routes'=>array
         (
-            array
-            (
-                'class'=>'CFileLogRoute',
-                'levels'=>'error, warning',
-            ),
+        	/*
+            'web'=>array
+        	(
+				'class'=>'CWebLogRoute',
+				'levels'=>'trace, info, error, warning',
+				'categories'=>'system.db.*',
+				'showInFireBug'=>false //true/falsefirebug only - turn off otherwise
+			),
+        	*/
             // uncomment the following to show log messages on web pages     
             /*
             array(

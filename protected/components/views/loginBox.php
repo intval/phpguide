@@ -28,7 +28,9 @@
             
 
             ברוך הבא ללמוד PHP
-	    <br/><br/>
+	    <br/>
+	    רייטינג: <?=$user->points?>
+	    <br/>
             <div class="logout-link" title="התנתק">
                 <a href="<?= Yii::app()->createUrl('Login/logout')?>" title="התנתק">x</a>
             </div>

@@ -160,7 +160,6 @@ class QnaController extends Controller
                 }
 
                 $transaction->commit();   
-
                 
                 if('string' === gettype($answer->time)) $answer->time = new SDateTime($answer->time); 
                 $this->renderPartial('//qna/comment', array('answer' => &$answer ));
