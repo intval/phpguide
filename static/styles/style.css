@@ -2093,9 +2093,7 @@ footer {
   color: #333;
   text-decoration: none;
 }
-.btn:focus {
-  outline: 1px dotted #666;
-}
+
 .btn.primary {
   color: #ffffff;
   background-color: #0064cd;
@@ -4414,15 +4412,7 @@ ol.luck-read-more li
     width:750px;
     margin-bottom:-30px;
 }
-
-
-
-
-
-
-
-
-
+}
 
 .yiiLog, .yiiLog *
 {
