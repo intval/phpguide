@@ -7,7 +7,7 @@
 
 $icons = array('&#x265b;', '&#x265a;', '&#x2654;', '','');
 
-for($i = 0; $i < $usersNum; $i++): 
+for($i = 0, $L = sizeof($users); $i < $L; $i++): 
 ?>
 
 <tr>
