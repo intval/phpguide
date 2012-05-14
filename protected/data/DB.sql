@@ -18,7 +18,6 @@ DELIMITER $$
 -- Functions
 --
 
-
 CREATE PROCEDURE `pointsToAddAfterBlogUpdate`(IN oldApprovalStatus TINYINT, IN newApprovalStatus TINYINT, OUT pointsToChange INT) DETERMINISTIC NO SQL SQL SECURITY INVOKER
 BEGIN
 
