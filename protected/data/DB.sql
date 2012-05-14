@@ -11,11 +11,15 @@ SET time_zone = "+00:00";
 -- Database: `phpguide`
 --
 
+DROP FUNCTION IF EXISTS `pointsToAddAfterBlogUpdate`;
+DROP PROCEDURE IF EXISTS `pointsToAddAfterBlogUpdate`;
 DELIMITER $$
 --
 -- Functions
 --
-CREATE FUNCTION `pointsToAddAfterBlogUpdate`(oldApprovalStatus TINYINT, newApprovalStatus TINYINT) RETURNS int(10)
+
+
+CREATE PROCEDURE `pointsToAddAfterBlogUpdate`(IN oldApprovalStatus TINYINT, IN newApprovalStatus TINYINT, OUT pointsToChange INT) DETERMINISTIC NO SQL SQL SECURITY INVOKER
 BEGIN
 
 
@@ -34,13 +38,14 @@ BEGIN
 
         
 
-        RETURN r;
+        SET pointsToChange = r;
 
 
 
   END$$
 
 DELIMITER ;
+
 
 -- --------------------------------------------------------
 
@@ -77,7 +82,7 @@ CREATE TRIGGER `blog_ondelete` AFTER DELETE ON `blog`
 
         	DECLARE pointsAddition INT(10);
 
-		SET pointsAddition = pointsToAddAfterBlogUpdate( OLD.approved, 0 );
+			CALL pointsToAddAfterBlogUpdate( OLD.approved, 0 , pointsAddition);
 
         	UPDATE users SET points = points + pointsAddition WHERE id = OLD.author_id;
 
@@ -93,7 +98,7 @@ CREATE TRIGGER `blog_oninsert` AFTER INSERT ON `blog`
 
 	DECLARE pointsAddition INT(10);
 
-	SET pointsAddition = pointsToAddAfterBlogUpdate( 0, NEW.approved );
+		CALL pointsToAddAfterBlogUpdate( 0, NEW.approved,  pointsAddition);
 
         IF pointsAddition != 0 THEN BEGIN
 
