@@ -51,7 +51,7 @@ If you put "framework" directory in public_html - it should be somethig like
 	`cd C:\path\to\phpguide\protected`
 	`yiic.bat migrate`
 	
-Go to the website. Username: admin, pass: admin
+Go to the website. Username: **admin**, pass: **admin**
 
 
 What's next
