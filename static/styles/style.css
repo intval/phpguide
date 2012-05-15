@@ -3048,6 +3048,10 @@ span.underline
 }
 
 
+.homepage-top2-articles .blogpost:nth-child(2)
+{
+	margin-bottom:-30px !important;
+}
 
 .homepage_posts .blogpost:nth-of-type(even)
 {
@@ -3106,7 +3110,7 @@ color: #4979A2;
 .homepage-banner
 {
     text-align:center;
-    margin:-70px 0 40px 0;
+    margin:30px 0 40px 0;
     border: 1px dotted #233A4B;
     padding: 20px 0;
 }
