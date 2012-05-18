@@ -117,7 +117,7 @@ CREATE TRIGGER `blog_onupdate` AFTER UPDATE ON `blog`
 
 	DECLARE pointsAddition INT(10);
 
-	SET pointsAddition = pointsToAddAfterBlogUpdate( OLD.approved, NEW.approved );
+	CALL pointsToAddAfterBlogUpdate( 0, NEW.approved,  pointsAddition);
 
         IF pointsAddition != 0 THEN BEGIN
 
