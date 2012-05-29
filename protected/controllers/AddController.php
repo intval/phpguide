@@ -150,9 +150,14 @@ class AddController extends Controller
             }
 
 
+            
             // Prepare some custom field values
-            $article->html_content = bbcodes::bbcode($articlePlain->plain_content, $article->title);
-            $article->html_desc_paragraph = bbcodes::bbcode($articlePlain->plain_description, $article->title);
+            
+            $contentBBencoder = new BBencoder($articlePlain->plain_content, $article->title, $curuser->is_admin);
+            $descriptionBBencoder = new BBencoder($articlePlain->plain_description, $article->title, $curuser->is_admin);
+            
+            $article->html_content = $contentBBencoder->GetParsedHtml();
+            $article->html_desc_paragraph = $descriptionBBencoder->GetParsedHtml();
             
             if( $isNew )
             {
@@ -227,8 +232,11 @@ class AddController extends Controller
                 
                 if($articlePlain->validate() && $article->validate())
                 {
-                    $article->html_content = bbcodes::bbcode($articlePlain->plain_content, $article->title);
-                    $article->html_desc_paragraph = bbcodes::bbcode($articlePlain->plain_description, $article->title);
+                	$contentBBencoder = new BBencoder($article->plain_content, $artcile->title, Yii::app()->user->is_admin);
+                	$descriptionBBencoder = new BBencoder($articlePlain->plain_description, $article->title, Yii::app()->user->is_admin);
+                	
+                    $article->html_content = $contentBBencoder->GetParsedHtml();
+                    $article->html_desc_paragraph = $descriptionBBencoder -> GetParsedHtml();
                     $article->pub_date = new SDateTime();
                     
                     $this->addscripts('ui');
