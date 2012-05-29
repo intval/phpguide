@@ -80,7 +80,7 @@ Class bbcodes
             '<iframe width="480" height="390" src="http://www.youtube.com/embed/\\1?rel=0" frameborder="0" allowfullscreen></iframe>'
         );
 
-        return trim(preg_replace($patterns, $rep, $string));
+        return trim(preg_replace($patterns, $rep, htmlspecialchars($string, ENT_QUOTES, "UTF-8")));
     }
 
 
