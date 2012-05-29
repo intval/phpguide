@@ -227,8 +227,11 @@ class AddController extends Controller
                 
                 if($articlePlain->validate() && $article->validate())
                 {
-                    $article->html_content = bbcodes::bbcode($articlePlain->plain_content, $article->title);
-                    $article->html_desc_paragraph = bbcodes::bbcode($articlePlain->plain_description, $article->title);
+                	$contentBBencoder = new BBencoder($article->plain_content, $artcile->title, false);
+                	$descriptionBBencoder = new BBencoder($articlePlain->plain_description, $article->title, false);
+                	
+                    $article->html_content = $contentBBencoder->GetParsedHtml();
+                    $article->html_desc_paragraph = $descriptionBBencoder -> GetParsedHtml();
                     $article->pub_date = new SDateTime();
                     
                     $this->addscripts('ui');

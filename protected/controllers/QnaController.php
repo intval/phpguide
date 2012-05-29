@@ -50,7 +50,9 @@ class QnaController extends Controller
             $model->attributes = $_POST['QnaQuestion'];
 			$model->last_activity = new SDateTime();
             $model->authorid = Yii::app()->user->id;
-            $model->html_text = bbcodes::bbcode($model->bb_text, $model->subject);
+            
+            $contentBBencoder = new BBencoder($model->bb_text, $model->subject);
+            $model->html_text = $contentBBencoder->GetParsedHtml();
 
             if( $model->validate() )
             {
@@ -141,10 +143,13 @@ class QnaController extends Controller
     	    	}
     	    	
     	    	
+    	    	
     	    	$answer->attributes = $_POST['QnaComment'];
     	    	$answer->author = $answer->author ?:  Yii::app()->user;
     	    	$answer->authorid = $answer->authorid ?: Yii::app()->user->id;
-    	    	$answer->html_text = bbcodes::bbcode($answer->bb_text, '');
+    	    	
+    	    	$contentBBencoder = new BBencoder($answer->bb_text, '');
+    	    	$answer->html_text = $contentBBencoder->GetParsedHtml();
     	    	if( null === $answer->time ) $answer->time = new SDateTime();
     	    	
     	    	
