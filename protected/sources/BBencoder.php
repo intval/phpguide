@@ -138,7 +138,7 @@ Class BBencoder
     
     private function PutCodeAndHtmlBack() 
     {
-        if( sizeof($this->cuts) === 0)
+        if( sizeof($this->cuts) > 0)
         {
         	$this->string = str_replace(array_keys($this->cuts), $this->cuts, $this->string);
         }

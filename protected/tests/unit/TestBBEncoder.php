@@ -43,5 +43,12 @@ TEST;
 	
 		$this->assertContains('<span class="underline">aoeu</span>', $result);
 	}
+	
+	public function testColorizedCodePresense()
+	{
+		$encoder = new BBencoder($this->exampleData, 'yo title', false);
+		$result = $encoder -> GetParsedHtml();
+		$this->assertContains('<div class="php codeblock">', $result);
+	}
 }
 
