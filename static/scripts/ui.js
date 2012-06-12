@@ -305,13 +305,13 @@ window.onload = function()
         {
             jQuery('#like_for_concrete_post').html
             (
-                '<iframe  class="fb-like-frame" src="' + 
+                '<iframe  class="fb-like-frame fb-like-frame-box" src="' + 
                 'http://www.facebook.com/plugins/like.php?href=' + encodeURIComponent(loc + '/' + window.location.pathname).
 
                 replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').
                 replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+') +
 
-                '&amp;layout=button_count&amp;show_faces=false&amp;width=150&amp;locale=en_US&amp;' + 
+                '&amp;layout=box_count&amp;show_faces=false&amp;width=150&amp;locale=en_US&amp;' + 
                 'action=like&amp;font&amp;colorscheme=light&amp;height=21"' +
                 '></iframe>'
             );

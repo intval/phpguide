@@ -2791,6 +2791,11 @@ input, textarea { font-size:14px; font-family: Arial;}
     background-color:transparent;
 }
 
+.fb-like-frame-box
+{
+	height: 65px !important;
+}
+
 
 /**************************** Sidebar formatting *****************************/
 
