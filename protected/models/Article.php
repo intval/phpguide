@@ -43,8 +43,8 @@ class Article extends DTActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, image, keywords, description', 'required'),
-            array('image', 'url'),
+			array('title, keywords, description', 'required'),
+                        array('image', 'url', 'allowEmpty' => true),
 			array('title', 'length', 'max'=>150),
 			array('url, image', 'length', 'max'=>255)
 		);

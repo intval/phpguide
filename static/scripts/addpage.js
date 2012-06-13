@@ -51,14 +51,14 @@ $(document).ready(function() {
 
 function submit_newpost_form( target , action)
 {
-    var target = target || 'blank';
-    var action = action || 'save';
+    var target1 = target || 'blank';
+    var action1 = action || 'save';
     
     if(!validate_newpost_form()) return;
     
     needToAsk = false;
     
-    jQuery('#newPostForm').attr('action','Add/'+action).attr('target', target); 
+    jQuery('#newPostForm').attr('action','Add/'+action1).attr('target', target1); 
     jQuery("#hiddenSubmit").trigger("click");
 }
 
@@ -67,9 +67,10 @@ function validate_newpost_form()
 {
     var all_valid = true;
     var iterator = function(index, field)
-    {    
+    {
+        var id = jQuery(field).attr('id');
         // color empty field's borders
-        if( 'data' !== jQuery(field).attr('id') && '' === jQuery.trim(jQuery(field).val()) )
+        if( 'data' !==  id && id !== 'Article_image' && '' === jQuery.trim(jQuery(field).val()) )
         {
             jQuery(field).css('border', '1px solid pink').bind('change', unmark_field_on_change);
             all_valid = false;

@@ -233,8 +233,8 @@ class AddController extends Controller
                 if($articlePlain->validate() && $article->validate())
                 {
 
-                	$contentBBencoder = new BBencoder($article->plain_content, $artcile->title, Yii::app()->user->is_admin);
-                	$descriptionBBencoder = new BBencoder($articlePlain->plain_description, $article->title, Yii::app()->user->is_admin);
+                    $contentBBencoder = new BBencoder($articlePlain->plain_content, $article->title, Yii::app()->user->is_admin);
+                    $descriptionBBencoder = new BBencoder($articlePlain->plain_description, $article->title, Yii::app()->user->is_admin);
 
                     $article->html_content = $contentBBencoder->GetParsedHtml();
                     $article->html_desc_paragraph = $descriptionBBencoder -> GetParsedHtml();
