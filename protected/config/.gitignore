@@ -1,3 +1,4 @@
 dbconnection\.php
 local_config\.php
 services\.php
+#config\.php
