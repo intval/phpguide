@@ -145,9 +145,6 @@ return array(
             'adminEmail'=>'some1@localhost',
             'login_remember_me_duration' => 31536000,
             
-            // used to integrate capybar chat. To register with capybar please wisit http://capybar.com/webmasters2/
-            'capybar_api_key' => '',
-            
             /******************************************************/
             /**** This is production path, above public_html ******/
             /**** Edit the path in local_config.php, not here******/
