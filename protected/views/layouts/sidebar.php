@@ -15,4 +15,4 @@
 
 <? $this->widget('application.components.RatingWidget'); ?>
 
-<? $this->widget('application.components.recentEvents'); ?>
+<? $this->widget('application.components.RecentEvents'); ?>
