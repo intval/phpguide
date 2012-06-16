@@ -34,7 +34,7 @@ var login =
 		}
 		else
 		{
-		    window.location = redirect_to;
+		    window.location = redirect_after_login_to;
 		}
     },
     
@@ -43,7 +43,6 @@ var login =
     {
 		if( 
 		    $.trim($('#regname').val()) == '' || 
-		    $.trim($('#regpass').val()) == '' ||
 		    $.trim($('#regmail').val()) == '' 
 		)
 		{

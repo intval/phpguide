@@ -7,7 +7,7 @@
  * @property string $cid
  * @property integer $blogid
  * @property string $date
- * @property string $author
+ * @property string $authorid
  * @property string $text
  * @property integer $approved
  * @property string $postingip
@@ -32,9 +32,6 @@ class Comment extends DTActiveRecord
 	}
 
         
-        
-        
-        
         public function rules()
         {
             return array
@@ -43,4 +40,38 @@ class Comment extends DTActiveRecord
                 array('blogid', 'numerical', 'min' => 0)
             );
         }
+
+        
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+            return array(
+				'Article' => array(self::BELONGS_TO, 'Article', 'blogid'),
+                'CommentAuthor' => array(self::BELONGS_TO, 'user', 'authorid')
+            );
+	}
+        
+        
+	/**
+	 * fetches the last X comments 
+	 * @param int $limit how many comments to fetch
+	 */
+	public function RecentComments($limit = 8)
+	{
+		$this->getDbCriteria() ->mergeWith
+		(
+			array
+			(
+				'with' => array
+				(
+					'CommentAuthor' => array('select' => 'login, email'),
+					'Article' => array('select' => 'title, url')
+				),
+				'limit' => $limit
+			)  
+		);
+		return  $this;
+	}
 }

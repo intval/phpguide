@@ -154,10 +154,25 @@ class LoginController extends Controller
         {
             try
             {
-                $identity = new DbUserIdentity($username, $password); if(isset($_GET['a'])) echo 'attempting at ', $username, ' ', $password;
+                $identity = new DbUserIdentity($username, $password); 
                 if($identity->authenticate())
                 {
                     Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
+                    
+                    // if authentication takes place after external auth, we want to attach the external Id to the account we are authenticating
+                    if(isset(Yii::app()->session['externalAuth']))
+                    {
+                    	$data = array();
+                    	
+						foreach(Yii::app()->session['externalAuth'] as $key => $id)
+						{
+							$data[ ServiceUserIdentity::$service2fieldMap[$key] ] = $id;
+						}
+							
+						                     	
+                    	$user = User::model()->updateByPk(Yii::app()->user->id, $data);
+                    }
+                    
                     echo 'ok';
                 }
                 else 
@@ -173,6 +188,7 @@ class LoginController extends Controller
             {
             	echo 'חלה תקלה בתהליך ההזדהות. נסו שום בעוד כמה דקות';
             	Yii::log("Login error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
+            	var_dump($e);
             }
         }
     }
@@ -187,6 +203,7 @@ class LoginController extends Controller
      */
     public function actionExternalLogin()
     {
+    	
         if (isset($_GET['service'])) 
         {
             $this->authWithExternalProvider($_GET['service']);
@@ -228,7 +245,7 @@ class LoginController extends Controller
        $data = $provider->getAttributes();
        
        // Did someone use this external ID in the past?
-       if($identity ->isKnownUser())
+       if($identity ->isKnownUser() && $identity->user->is_registered)
        {
            Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
            $this->redirect(array('homepage/index'));
@@ -236,24 +253,36 @@ class LoginController extends Controller
        // external auth succeeded, but we don't know whom do this external ID belongs to
        else
        {
-           Yii::app()->session['provider'] = $provider;
-           $this->redirect(array('login/index'));
+       	
+       		$userInfo = $provider->getAttributes();
+       		$sessionProviders = Yii::app()->session->get('externalAuth');
+       		
+       		if(!$sessionProviders) $sessionProviders = array();
+       		$sessionProviders[$provider -> serviceName] = $userInfo['id'];
+       		Yii::app()->session->add('externalAuth', $sessionProviders);
+       		
+       		$return_location = Yii::app()->request->getQuery('redir',   Yii::app()->homeUrl );
+       		$this->addscripts('jquerytools', 'ui', 'login');
+       		
+			$this->render('changeNameForm', array('provider' => $provider->serviceName, 'name' => $userInfo['name'], 'return_location' => $return_location));
        }
     }
     
     private function externalAuthFailed(IAuthService $serviceAuthenticator)
     {
         Yii::app()->user->setFlash('externalAuthFail', 'הזדהות באמצעות ' . $serviceAuthenticator->getServiceName() . ' נכשלה');
-        $this->redirect(array('homepage/index'));
+        $this->redirect(array('login/index'));
     }
-    
 
+    
+    
     public function actionLogout()
     {
         Yii::app()->user->logout();
         $this->redirect(array('homepage/index'));
     }
 
+    
     public function actionRegister()
     {
         $username = Yii::app()->request->getPost('reguser');
@@ -269,6 +298,7 @@ class LoginController extends Controller
             $user->reg_date = new CDbExpression('NOW()');
 
             $user->salt = Helpers::randString(22);
+            if(empty($password)) $password = Helpers::randString(22);
             $user->password = WebUser::encrypt_password($password, $user->salt);
             $user->is_registered = true;
 

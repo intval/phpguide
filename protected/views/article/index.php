@@ -1,10 +1,9 @@
 
-    <a href="index.php" class='blog_entry_back' rel="up">&rarr; <span>חזרה למדריכי PHP</span></a>
     <h1 class='content-title'><span></span><?=e($article->title);?></h1>
     
     <!-- publisher -->
     <div id="content-publishing-info">
-        <div class="right"><?=e($article->author->real_name ?: $article->author->login);?>, </div>
+        <div class="right"><?=e($article->author->login);?>, </div>
         <div class="right">&nbsp;<time datetime="<?=$article->pub_date->date2rfc()?>"  dir="rtl"><?=$article->pub_date->date2heb();?></time></div>
         <div class="clear"></div>
     </div>
@@ -64,7 +63,7 @@
 
     
         
-        
+    <a name='comments_form' ></a>    
 	<div class="comment-table" id="comments_form">
             <b style="color:green">
             פרגן, מה אכפת לך :)
@@ -79,7 +78,7 @@
 		    <label for="textarea">תגובה</label>
 		    <?= CHtml::textArea("Comment[text]", '', array('id' => 'commenttext')) ?>
 		</div>
-		<div class="actions">
+		<div class="form-actions">
 	
 אל תתבייש, חשוב לנו לדעת מה אתה חושב -->	    
 
@@ -87,7 +86,7 @@
 			    'שלח תגובה!'
 			    ,bu('comments/add') ,
 			    array('success' => 'comment_sumbitted_callback', 'beforeSend' => 'sendcomment'), 
-			    array('class'=> 'btn primary'))?>
+			    array('class'=> 'btn btn-primary', 'id' => 'addCommentBtn'))?>
 
 		</div>
 		<?php echo CHtml::endForm();?>

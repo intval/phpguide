@@ -21,23 +21,27 @@
 ?>
 
 
-<div class="container">
-<div class="row">
+
+<div >
+
+
     
-    <section id="sidebar" class="span4_5" >
+    <section id="content" >
+        <?=$content; ?> 
+    </section> <!-- /content -->
+    
+    <section id="sidebar">
         <?php $this->renderPartial('//layouts/sidebar'); ?>
     </section>
 
 
-    <section id="content" class="span11 offset0_5">
-        <?=$content; ?> 
-    </section> <!-- /content -->
+
 
 
 
 </div>
 
-</div>
+
 
 
     

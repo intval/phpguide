@@ -1,143 +1,78 @@
 
-<div class="row" >
-<div class="offset1" id="reg_form_holder">
+<div id="reg_form_holder">
 
-<?= CHtml::beginForm('','post',array('id'=>"regForm", 'dir'=>"rtl", 'onsubmit' => 'return false;')) ?>
+	
+	
+	<br/>
+	<h1>הזדהות</h1>
+	<br/>
+	    
+	ההזדהות באתר אפשרית על ידי חשבון הפייסבוק או חשבון הגימייל שלך.
+	<br/>
+	לחץ על אחד הכפתורים הללו על מנת להזדהות
+	
+	<br/><br/>
+	<a href='<?= Yii::app() ->createUrl('login/externalLogin', array('service' => 'facebook')); ?>' class='sign_in_with_facebook_long'></a>
+	<br/>
+	<a href='<?= Yii::app() ->createUrl('login/externalLogin', array('service' => 'google')); ?>' class='sign_in_with_google_long'></a>
 
+	<br/>
+	<b><u>פרטיות המידע</u></b>
+	<br/>
+	המידע היחידי שהאתר מקבל מפייסבוק הוא האידי שלך בפייסבוק ושמך. שום דבר מזה לא מוצג באף מקום באתר ומשמש רק אותך בביקורך הבא באתר. שום מידע פרטי אחר, כגון כתובת, חברים, תמונות, שם הכלב וכו' אינו ידוע לנו.
+	
 
-
-<legend><h4>
-עדיין לא בחרתי שם משתמש
-</h4></legend>
-
-    
-    <div class="alert-message warning" id="regResult"></div>
-    
-<div class="clearfix">
-    <label for="regname">
-	שם משתמש:
-    </label>
-    <div class="input">
-	<?= CHtml::textField('reguser',null, array('tabindex'=>"5", 'id'=>"regname",'title' => 'בשם הזה יקירו אתכם המשתמשים האחרים'));?>
-    </div>
-</div>
-
-<div class="clearfix">
-    <label for="regpass">
-	סיסמה:
-    </label>
-    <div class="input">
-	<?= CHtml::passwordField('regpass',null,array('tabindex'=>"6", 'id'=>"regpass"));?>
-    </div>
-</div>
-
-<div class="clearfix">
-    <label for="regmail">
-	אימייל:
-    </label>
-    <div class="input">
-        <input type="email" name="regemail" tabindex="7" id="regmail" title="אנחנו לא שולחים מיילים, פרסומות, ספאם או ויאגרה בלי שתבקש. אנחנו רק מציגים את האוואטר שלך מ-gravatar.com ומאפשרים לך לשחזר סיסמה. בעצם אתה יכול לראות בעצמך כל מה שאנחנו עושים, הקוד של האתר פתוח." />
-    </div>
-</div>
-    
-<?=CHtml::ajaxSubmitButton(
-	'כניסה'
-	, bu('login/Register'), 
-	array('beforeSend' => 'login.regSubmitted', 'success' => 'login.regSuccess'), 
-	array('class' => 'btn', 'id' => 'regSubmitBtn', 'tabindex'=>'8')
-	)?>
-
-    
-    
-<?=CHtml::endForm()?>
-
-
-</div>
+	<br/><br/>
+	&larr; &nbsp; <a href="javascript:jQuery('#login_popup').show()">כבר יש לי שם משתמש וסיסמה לאתר</a>
+	<br/>
+	&larr; &nbsp; <a href="#">אין לי פייסבוק וגימייל ובכלל אני חי במאדים</a>
+	
 </div>
 
 
 
-<script type="text/javascript">
-  $(document).ready(function(){
-      
-      $('#loginname').focus();
-      
-      var tooltip_options = {
+	<!--  Login popup  -->
+	<div id='login_popup'>
+		<div class="auth_window_background" id='auth_window_background' style="cursor: pointer; display: block; opacity: 0.4;"></div>
+		<div class="auth_window" style="z-index: 9999; top: 160px; left: 50%; position: fixed; display: block">
+			<div class="head-wind">
+				<span>הזדהות</span>
+				<a class="close_auth_window"  onclick='return false' href="#" id="close_auth_window"></a>
+			</div>
+			<div class="enter-block">
+				
+				    <div class="alert alert-warning" id="loginResult" style="margin-bottom:-10px; display:none;">
+					    שם משתמש או סיסמה לא נכונים
+					</div>
 
-        // place tooltip on the right edge
-        position: "center left",
+				<?= CHtml::beginForm('','post',array('id'=>"authPop", 'dir'=>"rtl", 'onsubmit' => 'return false;')) ?>
 
-        // a little tweaking of the position
-        offset: [-2, 10],
-
-        // use the built-in fadeIn/fadeOut effect
-        effect: "fade",
-
-        // custom opacity setting
-        opacity: 0.7
-
-    };
+					<div class="col ">
+						<label>שם משתמש:</label>
+						<?= CHtml::textField('user',null, array('tabindex'=>"2", 'id'=>"loginname", 'class'=>"txt-field"));?>
+					</div>
+					<div class="col ">
+						<label>סיסמה:</label>
+						<?= CHtml::passwordField('pass',null,array('tabindex'=>"3", 'id'=>"loginpass", 'class'=>"txt-field", 'type' => 'password'));?>
+						
+						<div class="save_me">
+						<label><input type="checkbox" checked='checked'> &nbsp; לזכור אותי</label>
+						</div>
+						<?=CHtml::ajaxSubmitButton(
+							'כניסה'
+							, bu('login/Login'), 
+							array('beforeSend' => 'login.submitted', 'success' => 'login.xhrSuccess'), 
+							array('class' => 'submit', 'id' => 'loginSubmitBtn', 'tabindex' => '4')
+							)?>
+							
+						<a href="<?= Yii::app() ->createUrl('login/recover'); ?>">שכחתי סיסמה</a>
+					</div>
+					
+				<?=CHtml::endForm()?>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">redirect_after_login_to = '<?=bu(e($return_location))?>';</script>
     
-  // select all desired input fields and attach tooltips to them
-    $("#reg_form_holder input[type=email]").tooltip(tooltip_options);    
-    $("#reg_form_holder input[type=text]").tooltip(tooltip_options);    
-  });
-</script>
-
-
-
-
-
-
-<div class="row" style="margin-top:50px;">
-    <div class="offset1">  
-        
-        <?= CHtml::beginForm('','post',array('id'=>"loginForm", 'dir'=>"rtl", 'onsubmit' => 'return false;')) ?>
-
-        
-<legend><h4>
-    יש לי משתמש רשום
-</h4></legend>
-
-    
-        
-    <div class="alert-message warning" id="loginResult">
-    שם משתמש או סיסמה לא נכונים
-</div>
-    
-<div class="clearfix">
-    <label for="loginname">
-	שם משתמש:
-    </label>
-    <div class="input">
-	<?= CHtml::textField('user',null, array('tabindex'=>"2", 'id'=>"loginname"));?>
-    </div>
-</div>
-
-<div class="clearfix">
-    <label for="loginpass">
-	סיסמה:
-    </label>
-    <div class="input">
-	<?= CHtml::passwordField('pass',null,array('tabindex'=>"3", 'id'=>"loginpass"));?>
-    </div>
-</div>
-
-<?=CHtml::ajaxSubmitButton(
-	'כניסה'
-	, bu('login/Login'), 
-	array('beforeSend' => 'login.submitted', 'success' => 'login.xhrSuccess'), 
-	array('class' => 'btn', 'id' => 'loginSubmitBtn', 'tabindex' => '4')
-	)?>
-
-    
-    
-<?=CHtml::endForm()?>
-
-    <script type="text/javascript">
-	redirect_to = '<?=bu(e($return_location))?>';
-    </script>
-
-        
-    </div>
-</div>
+	<!-- / Login popup -->

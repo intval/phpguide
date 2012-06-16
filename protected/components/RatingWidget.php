@@ -15,7 +15,8 @@ class RatingWidget extends CWidget
     			'select' => 'login, points'		
     	));
     	$topUsers = User::model()->findAll($criteria);
-
-        $this->render('RatingWidget', array('users' => $topUsers));
+		
+		if(sizeof($topUsers) > 0)
+        	$this->render('RatingWidget', array('users' => $topUsers));
     }
 }

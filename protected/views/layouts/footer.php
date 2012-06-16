@@ -1,8 +1,10 @@
 
+<footer id='footer'>
+
+</footer>
 
 
-
-
+</div> <!-- /container -->
 
 
 
@@ -20,8 +22,7 @@
    load('http://www.google-analytics.com/ga.js');
 </script>
 
-<!--  fork me on github ribbon -->
-<a href="http://phpguide.co.il/phpguide+קוד+פתוח.htm"><img style="position: absolute; top: 0; left: 0; border: 0;" src="http://ncdn.phpguide.co.il/images/forkme.png" alt="Fork me on GitHub"></a>
+
 
 </body>
 </html>
