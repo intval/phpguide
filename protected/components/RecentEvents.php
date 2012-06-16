@@ -15,7 +15,7 @@ Class RecentEvents Extends CWidget
         $comments = Comment::model()->RecentComments()->findAll();
         
         if(sizeof($comments) > 0)
-            $this->render('recentEvents',array('comments'=> $comments ));
+            $this->render('RecentEvents',array('comments'=> $comments ));
     }
 }
 
