@@ -4,7 +4,6 @@
     <base href="<?=bu()."/"?>" />
     <meta charset="utf-8" />
     
-
     <meta name="description" content="<?=e($this->description)?>" />
     <meta name="keywords" content="<?=e($this->keywords)?>" />
     <meta name="author" content="<?=e($this->pageAuthor)?>" />
@@ -22,34 +21,33 @@
     <? endif; ?>
 
     <link rel="shortcut icon" href="<?=bu("static/images/favicon.ico")?>" />
+    <link href='<?=bu("static/styles/bootstrap.".filemtime(getcwd().'/static/styles/bootstrap.css').".css")?>' rel='stylesheet' />
     <link href="<?=bu("static/styles/style.".filemtime(getcwd().'/static/styles/style.css').".css")?>" rel="stylesheet" />
     <link href="<?=bu("static/styles/images.".filemtime(getcwd().'/static/styles/images.css').".css")?>" rel="stylesheet" />
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <!--[if lte IE 7]><link href="<?=bu("/static/styles/ie_style".filemtime(getcwd().'/static/styles/ie_style.css').".css")?>" rel="stylesheet" /><![endif]-->
     
     <title><?=e($this->pageTitle)?></title>
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     
-    <link rel="profile" href="http://gmpg.org/xfn/11" />
-    
 </head>
 
 <body dir='rtl' >
+<div class='page-container'>
     
-<div id='header' >
-	
-    <div>
-    	<a href='index.php' title="מדריך לימוד PHP" class='homepage-link' rel="start"></a>
-    </div>
-   
-    <div class="social-buttons" id="social_buttons"><!-- populated on page's load complete with js --></div>
-    <nav >
-       <ul class='header' id="headernav">
-            <li><a href='<?=bu('qna')?>' title='שאלות ותשובות' style="color:orangered;font-weight:bold;" class='forum' >שאלות PHP</a></li>
-            <li><a href='<?=bu('phplive')?>' class="phplive" title='הפעלת קוד PHP און ליין' >php און-ליין</a></li>
-	</ul>
-    </nav>
-
-</div> <!-- /header -->
+    <section id='header' >
+            
+        <div>
+            <a href='index.php' title="מדריך לימוד PHP" class='homepage-link' rel="start"></a>
+        </div>
+       
+        <div class="social-buttons" id="social_buttons"><!-- populated on page's load complete with js --></div>
+        <nav >
+           <ul class='header' id="headernav">
+                <li><a href='<?=bu('qna')?>' title='שאלות ותשובות' style="color:orangered;font-weight:bold;" class='forum' >שאלות PHP</a></li>
+                <li><a href='<?=bu('phplive')?>' class="phplive" title='הפעלת קוד PHP און ליין' >php און-ליין</a></li>
+            </ul>
+        </nav>
+    
+    </section> <!-- /header -->
 

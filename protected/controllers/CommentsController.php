@@ -9,11 +9,11 @@ class CommentsController extends Controller
 	public $layout='/';
 
 
-        /** Num of seconds required to pass between two comment posts*/
-        const ANTISPAM_DELAY = 15;
+	/** Num of seconds required to pass between two comment posts*/
+	const ANTISPAM_DELAY = 15;
 
 
-        /**
+     /**
 	 * Creates a new comment.
 	 * @todo A proper solution would be to serve an error message regarding time limit
 	 */
@@ -34,14 +34,14 @@ class CommentsController extends Controller
                 $model->attributes=$_POST['Comment'];
 
                 $model->approved    = 1;
-                $model->author      = Yii::app()->user->login;
+                $model->authorid    = Yii::app()->user->id;
                 $model->date        = new CDbExpression('NOW()');
                 $model->postingip   = Yii::app()->request->userHostAddress;
 
                 try
                 {
                     $model->save();
-		    $model->date = 'now';
+		    		$model->date = 'now';
                     $this->renderPartial('//article/singleComment', array('comment' => &$model));
                 }
                 catch( Exception $e)

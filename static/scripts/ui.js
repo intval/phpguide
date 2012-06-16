@@ -2,27 +2,21 @@
 /**************************** BLOG POST COMMENTS ******************************/
 /******************************************************************************/
 
-// Stores the comments text, while it's being posted, to later append it to the page
-var submitted_comment;
 
 
-function submit_comment_on_ctrl_enter(keyup_event)
-{
-    if(keyup_event.ctrlKey && (keyup_event.keyCode == 10 || keyup_event.keyCode == 13) )
-    {
-        sendcomment();
-    }
-}
 
+
+// ran from yii ajax submit button on the 'beforesubmit' event
 function sendcomment(xhr)
 {
+	console.log(xhr);
     show_comments_alert('', 'hide');
     
     if(jQuery.trim(jQuery('#commenttext').val()) == '')
     {
         jQuery('#commenttext').addClass('error');
         xhr.abort();
-	return;
+        return;
     }
 
     
@@ -55,12 +49,13 @@ function comment_sumbitted_callback(response)
     }
     else
     {
-	show_comments_alert('תגובתך נוספה! תודה', 'ok');
+    	show_comments_alert('תגובתך נוספה! תודה', 'ok');
         jQuery('#post_comments').append ( response  );
         jQuery('#commenttext').val('');
     }
     
     jQuery('#comments_form').show();
+    document.location.hash = 'comments_form';
 }
 
 
@@ -74,14 +69,14 @@ function show_comments_alert(message, type)
             break;
 
         case 'warn':
-            jQuery('#comments_alert').text(message).attr('class','alert-message warning').fadeIn();
+            jQuery('#comments_alert').text(message).attr('class','alert alert-warning').fadeIn();
             break;
 
         case 'error':
-            jQuery('#comments_alert').text(message).attr('class','alert-message error').fadeIn("slow");
+            jQuery('#comments_alert').text(message).attr('class','alert alert-error').fadeIn("slow");
             break;
 	case 'ok':
-	    jQuery('#comments_alert').text(message).attr('class','alert-message success').fadeIn("slow");
+	    jQuery('#comments_alert').text(message).attr('class','alert alert-success').fadeIn("slow");
 	    break;
     }
 }
@@ -241,8 +236,12 @@ function getStyle(a,b){var c=jQuery(a);if(c.currentStyle)return c.currentStyle[b
     // If there is a comment text box, attachk ctrl entre behavior
     if(jQuery('#commenttext').length > 0)
     {
-        jQuery('#commenttext').keyup(function (e){if(e.ctrlKey && (e.keyCode == 10 || e.keyCode == 13) )sendcomment();});
+        jQuery('#commenttext').keyup(function (e){if(e.ctrlKey && (e.keyCode == 10 || e.keyCode == 13) ) jQuery('#addCommentBtn').click();});
     }
+    
+    jQuery('#close_auth_window').add('#auth_window_background').click(function(){
+    	$('#login_popup').hide();
+    });
 
     
     // the X logout button to display only when mousevore userinfo block

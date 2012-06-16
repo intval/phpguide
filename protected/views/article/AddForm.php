@@ -25,25 +25,27 @@
     </div>
 
 
-	<h1 class="title">הוספת מדריך/מאמר</h1>
+	<h1 class="title">הוספת פוסט</h1>
            
             <br />
-            כותרת (שם המאמר/מדריך): 
+            כותרת:
+            <br/>
             <input type="hidden" name="edit" value="<?=$editting_id?>" />
             
             <?= $form->textField($article,'title', array('class' => 'name', 'placeholder' => 'כותרת', 'tabindex' => '1')); ?><br />
             <br/>
-            <br/>
-            תמונה (75x75): 
+            
+            תמונה (75x75) <i>לא חובה</i> :
+            <br/> 
             <?= $form->textField($article, 'image', array('tabindex'=>"3", 'dir'=>"ltr", 'class'=>"name", 'style'=>"width:350px",
                    'title'=>"קישור לתמונה בגודל 75 על 75 שתופיע ליד הכתבה בעמוד הראשי")); ?>
             <br/>
             
             
-            <br/><br/>
-            תיאור בשני משפטים שיופיע בעמוד הראשי ובתחילת הכתבה: 
-            <br/><br/>
-            <?= $form->textArea($plain, "plain_description", array('rows'=>"2", 'tabindex'=>"2", 'style'=>"width:100%")); ?>
+            <br/>
+            תיאור בשני משפטים שיופיע בעמוד הראשי ובתחילת הפוסט: 
+            <br/>
+            <?= $form->textArea($plain, "plain_description", array('rows'=>"2", 'tabindex'=>"2", 'style'=>"width:600px")); ?>
             
            
 

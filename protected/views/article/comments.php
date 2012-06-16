@@ -4,7 +4,7 @@
 	<h2>תגובות לכתבה:</h2>
         <? foreach($comments as $comment) 
 	    {
-		$this->renderPartial('//article/singleComment', array('comment' => &$comment));
+			$this->renderPartial('//article/singleComment', array('comment' => &$comment));
 	    } 
 	?>
         

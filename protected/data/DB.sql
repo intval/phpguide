@@ -154,15 +154,21 @@ CREATE TABLE IF NOT EXISTS `blog_comments` (
   `cid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `blogid` smallint(5) unsigned NOT NULL,
   `date` datetime NOT NULL,
-  `postingip` varchar(15) NOT NULL,
-  `author` varchar(25) NOT NULL,
+  `postingip` varchar(35) NOT NULL,
+  `authorid` bigint(20) unsigned NOT NULL,
   `text` text NOT NULL,
   `approved` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`cid`),
   KEY `date` (`date`),
   KEY `postingip` (`postingip`),
-  KEY `blogid` (`blogid`)
+  KEY `blogid` (`blogid`),
+  KEY `authorid` (`authorid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `blog_comments`
+--
+
 
 -- --------------------------------------------------------
 
@@ -338,11 +344,12 @@ DELIMITER ;
 -- Table structure for table `unauth`
 --
 
+
 CREATE TABLE IF NOT EXISTS `unauth` (
-  `ip` varchar(15) NOT NULL,
+  `ip` varchar(35) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   KEY `ip` (`ip`,`time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -363,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `fbid` varchar(30) DEFAULT NULL,
   `googleid` varchar(100) DEFAULT NULL,
   `twitterid` varchar(30) DEFAULT NULL,
-  `points` smallint(11) unsigned NOT NULL DEFAULT '0',
+  `points` smallint(11)  NOT NULL DEFAULT '0',
   `is_admin` tinyint(1) unsigned NOT NULL DEFAULT '0',
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `login` (`login`)
@@ -372,6 +379,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 -- Constraints for dumped tables
 --
+
+
+ALTER TABLE `blog_comments`
+	ADD FOREIGN KEY(author) REFERENCES `users` (`id`) 
 
 --
 -- Constraints for table `blog`

@@ -5,6 +5,7 @@
  * @link http://phpguide.co.il
  * @author Alex Raskin (Alex@phpguide.co.il)
  * Based on YiiFramework {@link http://yiiframework.com}
+ * @license    BSD Licence as stated in Readme.md
  */
 
 

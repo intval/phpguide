@@ -1,7 +1,7 @@
-<div class="container"><div class="row">
 
-<section id="sidebar" class="phplive-sidebar span4">
-    
+
+<section id="sidebar" class="phplive-sidebar ">
+    <br/>
     <h3>הוראות:</h3>
 
     
@@ -26,7 +26,7 @@
 
 </section>	<!-- /sidebar -->
 
-<section id="content" class="span12">
+<section id="content" >
 
     <?= CHtml::beginForm('http://sandbox.phpguide.co.il/sandbox.php', 'post', array('name'=>"sandboxform", 'id'=>"sandboxform", 'target'=>"xmlFrame", 'dir'=>"rtl")) ?>
         <div dir="ltr">&nbsp;&lt;?php </div>
@@ -51,4 +51,3 @@
     
 </section>
 
-</div></div>

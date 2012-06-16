@@ -1,5 +1,3 @@
-<div class="row" >
-<div class="offset1">
 
 <div class="qna_view_question">
     
@@ -35,7 +33,3 @@ $model->qid = $qna->qid;
 $this->renderPartial('commentsForm', array('model' => $model)); 
 
 ?>
-
-
-</div>
-</div>

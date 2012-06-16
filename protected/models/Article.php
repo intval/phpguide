@@ -77,10 +77,11 @@ class Article extends DTActiveRecord
             );
         }
         
+        
 
         public function defaultScope()
         {
-            $condition = 'approved=1';
+            $condition = 't.approved=1';
             
             // allow poster to see his post
             $userid = Yii::app()->user->id;
@@ -102,6 +103,8 @@ class Article extends DTActiveRecord
                 )
             );
         }
+        
+        
 
         
         public function byPage($page = 0, $per_page = 8)

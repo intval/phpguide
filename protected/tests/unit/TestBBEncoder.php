@@ -60,5 +60,15 @@ TEST;
         $this->assertNotContains("[left]", $result);
         $this->assertContains("dirleft", $result);
     }
+    
+    public function testLeft2()
+    {
+    	$encoder = new BBencoder("[left]
+    			aoeuaoeu
+    			[/left]", 'yo title', false);
+    	$result = $encoder -> GetParsedHtml();
+    	$this->assertNotContains("[left]", $result);
+    	$this->assertContains("dirleft", $result);
+    }
 }
 
