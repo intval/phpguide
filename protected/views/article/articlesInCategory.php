@@ -4,7 +4,7 @@
 <div class="category_bread_crumbs">
     <a href="">phpguide</a> 
     &raquo;
-    <a href="<?=bu('Article/All')?>#guides_cats">כתבות ומדריכים</a>
+    <a href="<?=bu('Article/All')?>">כתבות ומדריכים</a>
     &raquo;
 מדריכים בנושא 
     <?=e($category->name)?>
