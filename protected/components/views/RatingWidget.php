@@ -20,7 +20,7 @@
 	</table>
 	
 	
-	
+	<!--  repositioning of this div happens onload in ui.js -->
 	<div id='ratingWidgetHelp' class='ratingWidgetHelp alert alert-info'>
 		<b>רייטינג משתמשים</b><br/><br/>
 		נקודות הרייטינג מתקבלות על ידי פעולות המשתמש באתר, <br/>
