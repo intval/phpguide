@@ -8,6 +8,7 @@
     פרסם כאן
 </div>
 
-<div class='homepage-top2-articles'>
-<?  $this->renderPartial('//article/homepageArticlesList', array('articles' =>  array_slice($articles, 0, 2) )); ?>
+<div class='homepage-articles'>
+<?  $this->renderPartial('//article/homepageArticlesList', array('articles' =>  $articles )); ?>
+&larr; <a href='<?=bu('Article/All')?>'>כל הפוסטים</a>
 </div>

@@ -738,15 +738,6 @@ span.underline
 }
 
 
-.homepage-top2-articles .blogpost:nth-child(2)
-{
-	margin-bottom:-30px !important;
-}
-
-.homepage_posts .blogpost:nth-of-type(even)
-{
-    margin-bottom:100px;
-}
 
 
 .homepage_posts .blogpost h1

@@ -13,7 +13,7 @@ class HomepageController extends Controller
         $this->render('index' ,
             array 
             (
-                'articles'     => Article::model()->byPage(0, 2)->findAll(), 
+                'articles'     => Article::model()->byPage(0, 4)->findAll(), 
                 'qnas'         => &$qnas, 
             )
         );
