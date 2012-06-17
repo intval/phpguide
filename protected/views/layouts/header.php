@@ -45,6 +45,7 @@
         <nav >
            <ul class='header' id="headernav">
                 <li><a href='<?=bu('qna')?>' title='שאלות ותשובות' style="color:orangered;font-weight:bold;" class='forum' >שאלות PHP</a></li>
+                <li><a href='<?=bu('Article/All')?>' class="study" title='מדריכי PHP' >מדריכי PHP</a></li>
                 <li><a href='<?=bu('phplive')?>' class="phplive" title='הפעלת קוד PHP און ליין' >php און-ליין</a></li>
             </ul>
         </nav>

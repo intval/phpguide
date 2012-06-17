@@ -81,7 +81,7 @@ class Article extends DTActiveRecord
 
         public function defaultScope()
         {
-            $condition = 't.approved=1';
+            $condition = 'blog.approved=1';
             
             // allow poster to see his post
             $userid = Yii::app()->user->id;
@@ -94,6 +94,7 @@ class Article extends DTActiveRecord
             ( 
                 'condition' =>  $condition  ,
                 'order'     =>  'pub_date DESC',
+            	'alias'		=> 'blog',
                 'with'      => array
                 (
                     'author' => array

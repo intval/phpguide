@@ -33,6 +33,30 @@ class ArticleController extends Controller
         $this->addscripts('ui');
         $this->render('index', array('article' => &$article));
     }
+    
+    
+    public function actionAll()
+    {
+    	$posts_per_page = 10;
+    	$page = 0;
+   	
+    	if(isset($_GET['page']))
+    	{
+    		$page = intval($_GET['page']) - 1;
+    		if($page < 0) $page = 0;
+    	}
+
+    	
+    	$this->addscripts('ui', 'paginator3000');
+    	$this->render('allArticles' ,
+    			array
+    			(
+    					'articles'     => Article::model()->byPage($page, $posts_per_page)->findAll(),
+    					'pagination'   => array('total_pages' => ceil(Article::model()->countByAttributes(array('approved' => 1))/$posts_per_page) , 'current_page' => $page+1)
+    			)
+    	);
+    	
+    }
 
 
 }

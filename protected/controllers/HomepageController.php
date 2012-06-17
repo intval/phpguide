@@ -2,35 +2,19 @@
 
 class HomepageController extends Controller
 {
-    const POSTS_ON_HOMEPAGE = 8;
    
     public function actionIndex()
     {
         
-        $page = 0;
-        $qnas = array();
-        
-        if(isset($_GET['page']))
-        {
-            $page = intval($_GET['page']) - 1;
-            if($page < 0) $page = 0;
-        }
-        
-        if($page == 0)
-        {
-            $qnas = QnaQuestion::model()->findAll(array('limit' => 7));
-        }
-        
+        $qnas = QnaQuestion::model()->findAll(array('limit' => 7));
         QnaController::storeQnasWithNewAnswersSinceLastVisitInSession($qnas);
-        
 
         $this->addscripts('ui', 'paginator3000'); 
         $this->render('index' ,
             array 
             (
-                'articles'     => Article::model()->byPage($page, self::POSTS_ON_HOMEPAGE)->findAll(), 
+                'articles'     => Article::model()->byPage(0, 2)->findAll(), 
                 'qnas'         => &$qnas, 
-                'pagination'   => array('total_pages' => ceil(Article::model()->countByAttributes(array('approved' => 1))/self::POSTS_ON_HOMEPAGE) , 'current_page' => $page+1)
             )
         );
     }
