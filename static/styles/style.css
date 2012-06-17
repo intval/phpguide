@@ -308,16 +308,26 @@ input, textarea { font-size:14px; font-family: Arial;}
 
 #userinfo .ava nav {
 
-	margin-right: 70px;
-	height: 35px;
+	margin-right: 15px;
+	margin-top:10px;
 }
 
-#userinfo .ava a.username {
+#userinfo .ava .userinfo
+{
 	display: block;
 	margin: 5px 70px 15px 0 ; 
+}
+
+#userinfo .ava .userpoints
+{
+	font-size:10px;
+}
+#userinfo .ava a.username {
 	font: 14px Verdana;
 	font-weight: bold;
 	color: #4f5555;
+	padding-right:15px;
+padding-bottom:10px;
 }
 
 #userinfo .ava nav a {
