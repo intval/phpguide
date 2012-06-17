@@ -136,8 +136,9 @@ class Article extends DTActiveRecord
         {
             
             $this->getDbCriteria()->mergeWith(array(
+            	'alias' => 'blog',
                 'select'    => array('description', 'title', 'url'),
-                'condition' => "t.id IN 
+                'condition' => "blog.id IN 
                     (
                     SELECT id FROM blog_plain WHERE 
                     MATCH(plain_content, plain_description) AGAINST(:url)
