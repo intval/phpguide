@@ -4,14 +4,11 @@
 	<table dir="ltr" class="table ratingTable">
 	
 	<?php 
-	
-	$icons = array('&#x265b;', '&#x265a;', '&#x2654;', '','');
-	
 	for($i = 0, $L = sizeof($users); $i < $L; $i++): 
 	?>
 	
 	<tr>
-		<td><?=$icons[$i];?></td>
+		<td width='14'> </td>
 		<td><span><?=e($users[$i]->login)?></span></td>
 		<td><?=e($users[$i]->points)?></td>
 	</tr>
