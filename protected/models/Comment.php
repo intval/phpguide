@@ -69,6 +69,7 @@ class Comment extends DTActiveRecord
 					'CommentAuthor' => array('select' => 'login, email'),
 					'Article' => array('select' => 'title, url')
 				),
+				'order' => 'date DESC',
 				'limit' => $limit
 			)  
 		);
