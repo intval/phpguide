@@ -44,6 +44,7 @@ class ArticleController extends Controller
     	{
     		$page = intval($_GET['page']) - 1;
     		if($page < 0) $page = 0;
+    		if($page > 100000) $page = 0;
     	}
 
     	
