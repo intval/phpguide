@@ -159,12 +159,14 @@ class LoginController extends Controller
                 {
                     Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
                     
+                    
                     // if authentication takes place after external auth, we want to attach the external Id to the account we are authenticating
-                    if(isset(Yii::app()->session['externalAuth']))
+                    $sess = Yii::app()->session['externalAuth'];
+                    if($sess !== null)
                     {
                     	$data = array();
                     	
-						foreach(Yii::app()->session['externalAuth'] as $key => $id)
+						foreach($sess as $key => $id)
 						{
 							$data[ ServiceUserIdentity::$service2fieldMap[$key] ] = $id;
 						}
@@ -188,7 +190,7 @@ class LoginController extends Controller
             {
             	echo 'חלה תקלה בתהליך ההזדהות. נסו שום בעוד כמה דקות';
             	Yii::log("Login error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
-            	var_dump($e);
+            	
             }
         }
     }
@@ -255,11 +257,12 @@ class LoginController extends Controller
        {
        	
        		$userInfo = $provider->getAttributes();
-       		$sessionProviders = Yii::app()->session->get('externalAuth');
+       		$sessionProviders = Yii::app()->session['externalAuth'];
        		
-       		if(!$sessionProviders) $sessionProviders = array();
+       		if($sessionProviders === null) $sessionProviders = array();
        		$sessionProviders[$provider -> serviceName] = $userInfo['id'];
-       		Yii::app()->session->add('externalAuth', $sessionProviders);
+       		Yii::app()->session['externalAuth'] = $sessionProviders;
+       		
        		
        		$return_location = Yii::app()->request->getQuery('redir',   Yii::app()->homeUrl );
        		$this->addscripts('jquerytools', 'ui', 'login');
@@ -326,6 +329,21 @@ class LoginController extends Controller
             {
                 $identity = new AuthorizedIdentity($user);
                 Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
+                
+                $sess = Yii::app()->session['externalAuth'];
+                if($sess !== null)
+                {
+                	$data = array();
+                	 
+                	foreach($sess as $key => $id)
+                	{
+                		$data[ ServiceUserIdentity::$service2fieldMap[$key] ] = $id;
+                	}
+                		
+                
+                	$user = User::model()->updateByPk(Yii::app()->user->id, $data);
+                }
+                
                 echo 'ok';
             }
         }

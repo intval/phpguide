@@ -66,7 +66,7 @@ var login =
 		}
 		else
 		{
-		    window.location = redirect_to;
+		    window.location = redirect_after_login_to ;
 		}
     },
     
