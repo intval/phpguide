@@ -39,11 +39,11 @@
 				</tr>
 				<tr>
 					<td>נרשם:</td>
-					<td><?=e($user->reg_date->date2heb(1))?></td>
+					<td><?if($user->reg_date != null)e($user->reg_date->date2heb(1))?></td>
 				</tr>
 				<tr>
 					<td>ביקר:</td>
-					<td><?=e($user->last_visit->date2heb(1))?></td>
+					<td><? if($user->last_visit != null) echo e($user->last_visit->date2heb(1))?></td>
 				</tr>
 			</table>
 		  
