@@ -1962,6 +1962,51 @@ body.error-page
 
 
 
+/*************************************** USERS page ********************************************/
+
+
+/* Viewing profile */
+
+.viewing_profile 
+{
+	margin-top:35px;
+}
+
+.viewing_profile .nick_and_rating
+{
+	margin-right:30px;
+}
+
+.viewing_profile .nick_and_rating .nick
+{
+	font-size:24px;
+}
+
+.viewing_profile .nick_and_rating span
+{
+	color:green;
+}
+
+.viewing_profile .tabs
+{
+	margin-top:30px;
+}
+
+.viewing_profile .whois_info td:first-child
+{
+	text-align:left;
+	padding-left:20px;
+	color:gray;
+	font-size:85%;
+}
+
+/* End Viewing profile */
+
+
+
+
+
+
 
 /*************************************** STICKY NOTES *******************************************/
 

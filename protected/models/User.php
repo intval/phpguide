@@ -79,9 +79,10 @@ class User extends DTActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'blogposts' => array(self::HAS_MANY, 'Blog', 'author_id'),
+			'blogposts' => array(self::HAS_MANY, 'Article', 'author_id'),
 			'qnaAnswers' => array(self::HAS_MANY, 'QnaAnswers', 'authorid'),
 			'qnaQuestions' => array(self::HAS_MANY, 'QnaQuestion', 'authorid'),
+			'info'		=>	array(self::HAS_ONE, 'UsersInfo', 'uid')
 		);
 	}
         

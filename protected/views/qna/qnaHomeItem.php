@@ -19,7 +19,7 @@
         <div class="userinfo">
             שאל
             
-                <?=e($qna->author->login)?>
+                <a href='<?=bu('users/').urlencode($qna->author->login)?>'><?=e($qna->author->login)?></a>
 
             ,
             <span class="relativetime" style="display:inline-block;">
