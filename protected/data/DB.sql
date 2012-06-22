@@ -370,8 +370,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `fbid` varchar(30) DEFAULT NULL,
   `googleid` varchar(100) DEFAULT NULL,
   `twitterid` varchar(30) DEFAULT NULL,
-  `points` smallint(11)  NOT NULL DEFAULT '0',
+  `points` smallint(11) NOT NULL DEFAULT '0',
   `is_admin` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `gender` enum('male','female') NOT NULL DEFAULT 'male',
+  `birthdate` datetime DEFAULT NULL,
+  `city` varchar(40) DEFAULT NULL,
+  `site` varchar(255) DEFAULT NULL,
+  `about` text,
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -379,6 +384,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 -- Constraints for dumped tables
 --
+
+
+
+
 
 
 ALTER TABLE `blog_comments`

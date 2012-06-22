@@ -18,26 +18,20 @@
  * @property string $twitterid
  * @property integer $points
  * @property bool $is_admin
+ * @property string $gender
+ * @property string $birthdate
+ * @property string $city
+ * @property string $site
+ * @property string $about
  *
  * The followings are the available model relations:
  * @property Blog[] $blogposts
+ * @property BlogComments[] $blogComments
  * @property QnaAnswers[] $qnaAnswers
  * @property QnaQuestions[] $qnaQuestions
  */
 class User extends DTActiveRecord
 {
-    
-        /**
-         * Indicates whether the current user is registered user, with email, chosen login and password
-         * or not (one automatically created by the system for every logon)
-         * @var bool
-         */
-        public $is_registered = false;
-        
-        /**
-         * email used for automatically created (non registered) user accounts
-         */
-        const unregistered_guest_mail = 'anonymous@phpguide.co.il';
     
         
 	/**
@@ -80,48 +74,11 @@ class User extends DTActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'blogposts' => array(self::HAS_MANY, 'Article', 'author_id'),
+			'blogComments' => array(self::HAS_MANY, 'BlogComments', 'authorid'),
 			'qnaAnswers' => array(self::HAS_MANY, 'QnaAnswers', 'authorid'),
-			'qnaQuestions' => array(self::HAS_MANY, 'QnaQuestion', 'authorid'),
-			'info'		=>	array(self::HAS_ONE, 'UsersInfo', 'uid')
+			'qnaQuestions' => array(self::HAS_MANY, 'QnaQuestion', 'authorid')
 		);
 	}
         
-        
-        
-        protected function afterFind() 
-        {
-            $this->is_registered = $this->email !== $this->id . static::unregistered_guest_mail;
-            return parent::afterFind();
-        }
- 
-        
-        /**
-         * Creates new guest user account 
-         */
-        public static function createNewAnonymousUser()
-        {
-            $nextid = Yii::app()->db
-                    ->createCommand( "SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_schema = (SELECT DATABASE()) AND table_name = :tbl")
-                    ->queryScalar(array('tbl' => static::model()->tableName()));
-            
-            $user = new User();
-            
-            $user->login = 'משתמש_' . $nextid;
-            $user->email = $nextid . static::unregistered_guest_mail;
-            $user->password = 'abc';
-            $user->salt = 'abcabcabcabcabcabcabca';
-            $user->ip = Yii::app()->request->getUserHostAddress();
-            $user->is_registered = false;
-            $user->last_visit = new SDateTime();
-            $user->real_name = '';
-            $user->reg_date = null;
-            
-            if(!$user->save()) 
-            {
-            	throw new Exception('Couldn\'t create anonymous user. Errors:' . print_r($user->getErrors() , 1));
-            }
-            
-            return $user;
-        }
 
 }

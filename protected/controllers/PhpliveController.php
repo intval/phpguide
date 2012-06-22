@@ -22,7 +22,7 @@ class PhpliveController extends Controller
             $this->description  = "הפעלת קוד php און-ליין בלי שרת או איחסון";
             
             
-            $this->addscripts('ui', 'phplive');
+            $this->addscripts( 'phplive');
             $this->render('index', array('code' => $code));
 	}
         

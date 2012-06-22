@@ -29,7 +29,7 @@
     
     <title><?=e($this->pageTitle)?></title>
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
-    
+	<?php $this->addScripts( 'plugins', 'ui'); ?>    
 </head>
 
 <body dir='rtl' >

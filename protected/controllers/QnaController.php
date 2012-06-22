@@ -21,7 +21,7 @@ class QnaController extends Controller
     	$this->keywords = 'שאלות ותשובות, PHP, פיתוח אינטרנט';
     	$this->description = 'שאלות ותשובות לימוד PHP. יש לך שאלה? תשאל!';
     	
-        $this->addscripts('ui', 'qna', 'paginator3000');
+        $this->addscripts( 'qna');
         
         $page = 0;
         
@@ -47,6 +47,12 @@ class QnaController extends Controller
     {
         if(isset($_POST['QnaQuestion']))
         {
+        	if(Yii::app()->user->isguest)
+        	{
+        		echo 'רק משתמשים רשומים יכולים לקבל תשובות לשאלותיהם';
+        		return;
+        	}
+        	
             $model = new QnaQuestion();
             $model->attributes = $_POST['QnaQuestion'];
 			$model->last_activity = new SDateTime();
@@ -80,7 +86,7 @@ class QnaController extends Controller
         	$this->keywords = 'שאלה, עזרה' ;
         	$this->pageAuthor = $qna->author->login;
         	
-	    	$this->addscripts('ui', 'qna','bbcode'); 
+	    	$this->addscripts( 'qna','bbcode'); 
 	    	
 	    	if(!static::isQnaViewedEarlier($qna))
 	    	{
@@ -126,6 +132,13 @@ class QnaController extends Controller
     {
     	if(isset($_POST['QnaComment']))
     	{
+    		
+    		if(Yii::app()->user->isguest)
+    		{
+    			echo 'רק משתמשים רשומים יכולים לענות לשאלות';
+    			return;
+    		}
+    		
     	    $transaction = YII::app()->db->beginTransaction();
     	    
     	    try
@@ -221,6 +234,8 @@ class QnaController extends Controller
      * @param array prev_visit  */
     public static function storeQnasWithNewAnswersSinceLastVisitInSession(array $qnas)
     {
+    	
+    	if(Yii::app()->user->isguest) return;
     	
     	$prev_visit = Yii::app()->user->prev_visit;
 		

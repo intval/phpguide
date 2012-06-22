@@ -4,7 +4,7 @@
 		<?php $this->widget('GravatarWidget', array('size' => 85, 'email' => $user->email)); ?>
 		<div class='right nick_and_rating'>
 			<div class='nick'><?=e($user->login)?></div>
-			<div class='name'><?/*=e($user->info->name) /* Should ask user's permission to display this */?></div>
+			<div class='name'><?/*=e($user->name) /* Should ask user's permission to display this */?></div>
 			<div class='points'>רייטינג: <span><?=e($user->points)?></span></div>
 		</div>
 		<div class='clear'></div>
@@ -13,8 +13,8 @@
 	<div class='tabs'>
 		<ul class="nav nav-tabs">
 		  <li class='active'><a href="#whois" data-toggle="tab">Whois</a></li>
-		  <li><a href="#posts" data-toggle="tab">מה כתב</a></li>
-		  <li><a href="#about" data-toggle="tab">מספר על עצמו</a></li>
+		  <li><a href="#posts" data-toggle="tab">מה כתב<?if($user->gender === 'female') echo 'ה';?></a></li>
+		  <li><a href="#about" data-toggle="tab"><?= $user->gender === 'male' ? 'מספר על עצמו' : 'מספרת על עצמה' ?></a></li>
 		</ul>
 		
 		<div class="tab-content">
@@ -23,19 +23,19 @@
 			<table class='whois_info'>
 				<tr>
 					<td>מין:</td>
-					<td><?=e($user->info->gender)?></td>
+					<td><?=$user->gender === 'male' ? 'גבר' : 'בחורה מקסימה'?></td>
 				</tr>
 				<tr>
 					<td>יום הולדת:</td>
-					<td><?=e($user->info->birthdate)?></td>
+					<td><?=e($user->birthdate)?></td>
 				</tr>
 				<tr>
 					<td>עיר:</td>
-					<td><?=e($user->info->city)?></td>
+					<td><?=e($user->city)?></td>
 				</tr>
 				<tr>
 					<td>אתר:</td>
-					<td><?=e($user->info->site)?></td>
+					<td><?=e($user->site)?></td>
 				</tr>
 				<tr>
 					<td>נרשם:</td>
@@ -63,7 +63,7 @@
 		  	<? endforeach; ?>
 		  
 		  </div>
-		  <div class="tab-pane" id="about"><?=e($user->info->about)?></div>
+		  <div class="tab-pane" id="about"><?=e($user->about)?></div>
 		</div>
 		 
 		 

@@ -24,8 +24,7 @@
 
 	<br/><br/>
 	&larr; &nbsp; <a href="#" onclick="jQuery('#login_popup').show(); return false;">כבר יש לי שם משתמש וסיסמה לאתר</a>
-	<br/>
-	&larr; &nbsp; <a href="#">אין לי פייסבוק וגימייל ובכלל אני חי במאדים</a>
+
 	
 </div>
 

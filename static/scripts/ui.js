@@ -9,7 +9,14 @@
 // ran from yii ajax submit button on the 'beforesubmit' event
 function sendcomment(xhr)
 {
-	console.log(xhr);
+	
+	if(isguest)
+	{
+		xhr.abort();
+		unauth_message('comment');
+		return false;
+	}
+	
     show_comments_alert('', 'hide');
     
     if(jQuery.trim(jQuery('#commenttext').val()) == '')
@@ -123,8 +130,16 @@ function expand_forum_question_textarea(e)
 
 
 
-function disable_new_question_form()
+function disable_new_question_form(xhr)
 {
+	if(isguest)
+	{
+		xhr.abort();
+		unauth_message('qnaQuestion');
+		return false;
+	}
+	
+	
 	if( $.trim(jQuery('#forum_question_subject').val()).length < 5 )
 	{
 		alert('נושא השאלה חייב להיות בעורך של חמישה תווים לפחות');
@@ -138,9 +153,8 @@ function disable_new_question_form()
 
 function new_question_submitted_callback(response)
 {
-    
-    jQuery('#forum_question_text').prop('disabled', false);
-    jQuery('#forum_question_subject').prop('disabled', false);
+    jQuery('#forum_question_text').prop('disabled', false).val('');
+    jQuery('#forum_question_subject').prop('disabled', false).val('');
     
     if ( response.substr(0, 5) === 'err::') alert(response.substr(5));
     else document.location =  response; 
@@ -149,9 +163,41 @@ function new_question_submitted_callback(response)
 
 
 
+/*************************************************************************************/
+/******************** Unauthorized operations for guest ******************************/
+/*************************************************************************************/
+
+function unauth_message(type)
+{
+	var comment = 'להוסיף את התגובה שלך';
+	var article = 'לפרסם את המדריך שלך';
+	var qnaQuestion = 'לקבל תשובות לשאלה שלך';
+	var qnaAnswer = 'לענות על השאלה';
+	var vote = 'לדרג';
+	var default1 = 'לעשות את זה';
+	
+	switch (type)
+	{
+		case 'comment' 		: show_unauth_message(comment, true); break;
+		case 'article' 		: show_unauth_message(article, true); break;
+		case 'qnaQuestion'	: show_unauth_message(qnaQuestion, true); break;
+		case 'qnaAnswer'	: show_unauth_message(qnaAnswer, true); break;
+		case 'vote' 		: show_unauth_message(vote, false); break;
+		default				: show_anauth_message(default1, true); 
+	}
+}
 
 
-
+function show_unauth_message(text, show_preserving_forms_message)
+{
+	$('#unauth_operation_description').text(text);
+	var preserve = $('#unauth_operation_form_preserving_info');
+	
+	if(show_preserving_forms_message) preserve.show();
+	else preserve.hide();
+	
+	$('#only_auth_users_allowed_popup').show();
+}
 
 
 
@@ -239,8 +285,9 @@ function getStyle(a,b){var c=jQuery(a);if(c.currentStyle)return c.currentStyle[b
         jQuery('#commenttext').keyup(function (e){if(e.ctrlKey && (e.keyCode == 10 || e.keyCode == 13) ) jQuery('#addCommentBtn').click();});
     }
     
-    jQuery('#close_auth_window').add('#auth_window_background').click(function(){
-    	$('#login_popup').hide();
+    // attach close handlers to login popups and auth asking popup
+    jQuery('.auth_window_background, .auth_window a.close_auth_window').click(function(){
+    	$('#login_popup, #only_auth_users_allowed_popup').hide();
     });
 
     
@@ -261,6 +308,15 @@ function getStyle(a,b){var c=jQuery(a);if(c.currentStyle)return c.currentStyle[b
         		function(ev){$('#ratingWidgetHelp').stop(true, true).fadeIn(); },
         		function(){$('#ratingWidgetHelp').stop(true, true).fadeOut();}
         );
+    	
+    	
+    	// protect all form inputs with sisyphus
+    	$('form').sisyphus({onRestore: function(){
+    		
+    		if($('#forum_question_subject').length > 0) 
+    			expand_forum_question_textarea();
+    		
+    	}});
     	
     })();
 

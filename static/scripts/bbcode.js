@@ -85,7 +85,6 @@
 				//Re-establish the selection, adjusted for the added characters.
 				field.selectionStart = (start  + tag.length + 2);
 				field.selectionEnd = start + (tag.length +2) + selection.length;
-		        //console.log(start +' '+tag.length);
 			}
 
 

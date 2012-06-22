@@ -3,6 +3,13 @@ var qna =
 {
     answerSent : function(xhr)
     {
+    	if(isguest)
+    	{
+    		xhr.abort();
+    		unauth_message('qnaAnswer');
+    		return false;
+    	}
+    	
 		if( $('#message').val() == '') xrh.abort();
 		qna.disableSubmitButton();
     },

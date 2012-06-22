@@ -342,7 +342,7 @@ padding-bottom:10px;
 
 
 /********************************************** Authorization ***********************************/
-#login_popup { display:none; }
+#login_popup, #only_auth_users_allowed_popup { display:none; }
 
 .auth_window_background {
 	background: none repeat scroll 0 0 #000000;
