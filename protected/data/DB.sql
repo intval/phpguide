@@ -379,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `about` text,
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Constraints for dumped tables
@@ -465,4 +465,7 @@ INSERT INTO `blog_categories` (`cat_id`, `name`) VALUES
 
 INSERT INTO `users` (`id`, `login`, `real_name`, `last_visit`, `reg_date`, `ip`, `email`, `password`, `salt`, `fbid`, `googleid`, `twitterid`, `points`, `is_admin`) VALUES
 (1, 'admin', 'Julius Administratorus', '1970-01-01 00:00:01', '1970-01-01 00:00:01', '127.0.0.1', 'admin@localhost', '$2a$06$abcabcabcabcabcabcabcO67uPHzHvftukncfCrskwpUd3yffAJKq', 'abcabcabcabcabcabcabca', NULL, NULL, NULL, 0, 1);
+
+INSERT INTO `users` (`id`, `login`, `real_name`, `last_visit`, `reg_date`, `ip`, `email`, `password`, `salt`, `fbid`, `googleid`, `twitterid`, `points`, `is_admin`) VALUES
+(7, 'אנונימי', 'anonymous', '1970-01-01 00:00:01', '1970-01-01 00:00:01', '127.0.0.1', 'anony@localhost', '$2a$06$abcabcabcabcabcabcabcO67uPHzHvftukncfCrskwpUd3yffAJKq', 'abcabcabcabcabcabcabca', NULL, NULL, NULL, 0, 1);
   

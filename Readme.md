@@ -34,12 +34,13 @@ Database Setup
 
 - Make a *COPY* of `local_config.example.php` as `local_config.php`
 
+- Make a *COPY* of `services.example.php` as `services.php`
+
 - Update `dbconnection.php` with your database connection info
 
-- Adjust the path to the framework directory in `local_config.php`
+- Set write permissions for `protected/runtime`, `protected/assets`
 
-- If you want facebook connect -> create facebook application, *copy * `services.example.php` and rename into `services.php`
-  change the appid & appsecret to those of your application and you are good to go.
+- Adjust the path to the framework directory in `local_config.php`
 
 If you put "framework" directory in public_html - it should be somethig like
 
