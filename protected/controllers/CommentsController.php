@@ -29,6 +29,12 @@ class CommentsController extends Controller
                     echo 'spam';
                     return;
                 }
+                
+                if(Yii::app()->user->isguest)
+                {
+                	echo 'only registered users can submit comments';
+                	return;
+                }
 
                 $model=new Comment;
                 $model->attributes=$_POST['Comment'];

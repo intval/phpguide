@@ -42,7 +42,7 @@ class Helpers
         
         for($i = 0; $i < $length; $i++)
         {
-            $result .= $dictionary[rand(0, 60)];
+            $result .= $dictionary[mt_rand(0, 60)];
         }
         return $result;
     }

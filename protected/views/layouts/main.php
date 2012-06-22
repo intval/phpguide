@@ -5,7 +5,6 @@
     $flashes = Yii::app()->user->getFlashes();
     if(count($flashes) > 0)
     {
-        $this->addScripts('sticky');
         Yii::app()->clientScript->registerScript('flashes', '$("#flashes div").sticky()', CClientScript::POS_LOAD);
         
         ?>

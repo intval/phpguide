@@ -30,7 +30,6 @@ class ArticleController extends Controller
 		if($this->facebook) $this->facebook['image'] = $article->image;
 
 
-        $this->addscripts('ui');
         $this->render('index', array('article' => &$article));
     }
     
@@ -47,8 +46,7 @@ class ArticleController extends Controller
     		if($page > 100000) $page = 0;
     	}
 
-    	
-    	$this->addscripts('ui', 'paginator3000');
+
     	$this->render('allArticles' ,
     			array
     			(

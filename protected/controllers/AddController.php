@@ -38,7 +38,7 @@ class AddController extends Controller
             $this->pageTitle = $this->description = 'הוספת מדריך לימוד PHP חדש';
             $this->keywords = 'חדש, לימוד, PHP'; 
             
-            $this->addscripts('jquerytools', 'bbcode', 'ui', 'addpage');
+            $this->addscripts( 'bbcode', 'addpage');
             $this->render('//article/AddForm',$view_data);
         }
         
@@ -88,6 +88,12 @@ class AddController extends Controller
         
         public function actionSave()
         {
+        	if(Yii::app()->user->isguest)
+        	{
+        		echo 'רק משתמשים רשומים יכולים לכתוב ולערוך מדריכים';
+        		return;
+        	}
+        	
             if(!isset($_POST['Article'], $_POST['Article']['categories'], $_POST['ArticlePlainText']))
             {
                 $this->actionIndex();
@@ -153,8 +159,8 @@ class AddController extends Controller
             
             // Prepare some custom field values
             
-            $contentBBencoder = new BBencoder($articlePlain->plain_content, $article->title, $curuser->is_admin);
-            $descriptionBBencoder = new BBencoder($articlePlain->plain_description, $article->title, $curuser->is_admin);
+            $contentBBencoder = new BBencoder($articlePlain->plain_content, $article->title, !$curuser->isguest && $curuser->is_admin);
+            $descriptionBBencoder = new BBencoder($articlePlain->plain_description, $article->title, !$curuser->isguest && $curuser->is_admin);
             
             $article->html_content = $contentBBencoder->GetParsedHtml();
             $article->html_desc_paragraph = $descriptionBBencoder->GetParsedHtml();
@@ -228,19 +234,19 @@ class AddController extends Controller
                 // Assign post data
                 $article      ->attributes  =  $_POST['Article'];
                 $articlePlain ->attributes  =  $_POST['ArticlePlainText'];
-                $article -> author = Yii::app()->user;
+                $article -> author = Yii::app()->user->isguest ? User::model()->findByPk(7) : Yii::app()->user;
                 
                 if($articlePlain->validate() && $article->validate())
                 {
 
-                    $contentBBencoder = new BBencoder($articlePlain->plain_content, $article->title, Yii::app()->user->is_admin);
-                    $descriptionBBencoder = new BBencoder($articlePlain->plain_description, $article->title, Yii::app()->user->is_admin);
+                    $contentBBencoder = new BBencoder($articlePlain->plain_content, $article->title, !Yii::app()->user->isguest && Yii::app()->user->is_admin);
+                    $descriptionBBencoder = new BBencoder($articlePlain->plain_description, $article->title, !Yii::app()->user->isguest && Yii::app()->user->is_admin);
 
                     $article->html_content = $contentBBencoder->GetParsedHtml();
                     $article->html_desc_paragraph = $descriptionBBencoder -> GetParsedHtml();
                     $article->pub_date = new SDateTime();
                     
-                    $this->addscripts('ui');
+
                     $this->render('//article/index', array('article' => &$article));
                 }
                 else

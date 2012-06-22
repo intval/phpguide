@@ -21,7 +21,7 @@ class CategoryController extends Controller
         $this->keywords     =  $cat_url . ' מדריכים, לימוד וכתבתות PHP';
         $this->description  =  $cat_url . ' לימוד PHP ותכנות אתרים' ;
 
-        $this->addscripts('ui');
+
         $this->render('//article/articlesInCategory', array('category' => $category));
     }
 

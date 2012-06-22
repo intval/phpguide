@@ -11,12 +11,11 @@ class LoginController extends Controller
     public function actionIndex()
     {
         $return_location = Yii::app()->request->getQuery('redir',   Yii::app()->homeUrl );
-        $this->addscripts('jquerytools', 'ui', 'login');
+        $this->addscripts('login');
 
         $this->pageTitle = 'הזדהות לאתר לימוד PHP';
         $this->description = 'עמוד הזדהות וכניסה למערכת';
         $this->keywords = 'הזדהות';
-        
         
         if(isset(Yii::app()->session['provider']))
         {
@@ -119,7 +118,7 @@ class LoginController extends Controller
     
     public function actionChangepw()
     {
-    	if(Yii::app()->request->getIsAjaxRequest() && Yii::app()->user->is_registered)
+    	if(Yii::app()->request->getIsAjaxRequest() && !Yii::app()->user->isguest)
     	{
     		$password = Yii::app()->request->getPost('pass');
     		if(empty($password)) return;
@@ -208,6 +207,9 @@ class LoginController extends Controller
     	
         if (isset($_GET['service'])) 
         {
+        	$backto = Yii::app()->request->getQuery('backto');
+        	if($backto) Yii::app()->session['backto'] =  $backto;
+        		
             $this->authWithExternalProvider($_GET['service']);
         }
         else
@@ -247,10 +249,10 @@ class LoginController extends Controller
        $data = $provider->getAttributes();
        
        // Did someone use this external ID in the past?
-       if($identity ->isKnownUser() && $identity->user->is_registered)
+       if($identity ->isKnownUser() )
        {
-           Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
-           $this->redirect(array('homepage/index'));
+           Yii::app()->user->login($identity);
+           $this->redirect(Yii::app()->session['backto'] ?: array('homepage/index'));
        }
        // external auth succeeded, but we don't know whom do this external ID belongs to
        else
@@ -260,13 +262,12 @@ class LoginController extends Controller
        		$sessionProviders = Yii::app()->session['externalAuth'];
        		
        		if($sessionProviders === null) $sessionProviders = array();
-       		$sessionProviders[$provider -> serviceName] = $userInfo['id'];
+       		$sessionProviders[$provider -> serviceName] = $userInfo;
        		Yii::app()->session['externalAuth'] = $sessionProviders;
        		
        		
-       		$return_location = Yii::app()->request->getQuery('redir',   Yii::app()->homeUrl );
-       		$this->addscripts('jquerytools', 'ui', 'login');
-       		
+       		$return_location = Yii::app()->session['backto'] ?: Yii::app()->request->getQuery('redir',   Yii::app()->homeUrl );
+       		$this->addscripts('login');       		
 			$this->render('changeNameForm', array('provider' => $provider->serviceName, 'name' => $userInfo['name'], 'return_location' => $return_location));
        }
     }
@@ -289,21 +290,29 @@ class LoginController extends Controller
     public function actionRegister()
     {
         $username = Yii::app()->request->getPost('reguser');
-        $password = Yii::app()->request->getPost('regpass');
         $email = Yii::app()->request->getPost('regemail');
         
         
         try
-        {               
-            $user = User::model()->findByPk(Yii::app()->user->id);
-
-            $user->attributes = array('login' => $username, 'password' => $password, 'email' => $email);
-            $user->reg_date = new CDbExpression('NOW()');
-
+        {              
+        	$externalAuthData = Yii::app()->session['externalAuth'];
+        	
+        	// Allow registration only using oAuth external services
+        	if($externalAuthData == null)
+        	{
+        		echo 'הרשמה ניתנן באמצעות פייסבוק';
+        		return;
+        	}
+        	
+        	// registration of new user means taking the existing, unregistered one and updating his name and info
+            $user = new User();
+            $user->attributes = array('login' => $username, 'email' => $email);
+            $user->reg_date = new SDateTime();
+            $user->last_visit = new SDateTime();
             $user->salt = Helpers::randString(22);
-            if(empty($password)) $password = Helpers::randString(22);
-            $user->password = WebUser::encrypt_password($password, $user->salt);
-            $user->is_registered = true;
+            $user->password = WebUser::encrypt_password( Helpers::randString(22), $user->salt);
+            $user->ip = Yii::app()->request->getUserHostAddress();
+            
 
             try
             {
@@ -330,18 +339,18 @@ class LoginController extends Controller
                 $identity = new AuthorizedIdentity($user);
                 Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
                 
-                $sess = Yii::app()->session['externalAuth'];
-                if($sess !== null)
-                {
-                	$data = array();
-                	 
-                	foreach($sess as $key => $id)
-                	{
-                		$data[ ServiceUserIdentity::$service2fieldMap[$key] ] = $id;
-                	}
-                		
                 
-                	$user = User::model()->updateByPk(Yii::app()->user->id, $data);
+                if($externalAuthData !== null)
+                {
+                	$userUpdateData = array();
+                	$userInfoUpdateData = array();
+                	 
+                	foreach($externalAuthData as $key => $userinfo)
+                	{
+                		$userUpdateData[ ServiceUserIdentity::$service2fieldMap[$key] ] = $userinfo['id'];
+                		$userInfoUpdateData['name'] = $userinfo['name'];
+                	}
+                	$user = User::model()->updateByPk(Yii::app()->user->id, $userUpdateData);
                 }
                 
                 echo 'ok';
@@ -355,6 +364,7 @@ class LoginController extends Controller
         {
             echo 'שגיאת שרת בתהליך ההרשמה. אנה נסו במועד מאוחר יותר';
             Yii::log("Signup error : " . $e->getMessage(), CLogger::LEVEL_ERROR);
+            var_dump($e);
         }
         
 
