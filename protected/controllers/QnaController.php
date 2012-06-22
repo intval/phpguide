@@ -58,7 +58,7 @@ class QnaController extends Controller
 			$model->last_activity = new SDateTime();
             $model->authorid = Yii::app()->user->id;
             
-            $contentBBencoder = new BBencoder($model->bb_text, $model->subject, Yii::app()->user->is_admin);
+            $contentBBencoder = new BBencoder($model->bb_text, $model->subject, !Yii::app()->user->isguest &&  Yii::app()->user->is_admin);
             $model->html_text = $contentBBencoder->GetParsedHtml();
 
             if( $model->validate() )
@@ -187,7 +187,7 @@ class QnaController extends Controller
     	    catch(Exception $e)
     	    {
                 echo ':err:'; 
-                if(YII_DEBUG || Yii::app()->user->is_admin) echo $e->getMessage();
+                if(YII_DEBUG || (!Yii::app()->user->isguest &&  Yii::app()->user->is_admin)) echo $e->getMessage();
                 $transaction->rollback();
                 Yii::log("Couldn't save qnaAnswer \r\n" . $e->getMessage() , CLogger::LEVEL_ERROR);
     	    }
@@ -206,7 +206,7 @@ class QnaController extends Controller
     		$commentid = Yii::app()->request->getQuery('id');
     		$model = null;
     		
-    		if( null !== $commentid ) $model = QnaComment::model()->findByPk($commentid, Yii::app()->user->is_admin ? '' : 'authorid = ' . Yii::app()->user->id);
+    		if( null !== $commentid ) $model = QnaComment::model()->findByPk($commentid,  (!Yii::app()->user->isguest &&  Yii::app()->user->is_admin) ? '' : 'authorid = ' . Yii::app()->user->id);
     		if( null === $model ) $model = new QnaComment();
     		$this->renderPartial('commentsForm', array('model' => $model));
     	}
@@ -219,7 +219,7 @@ class QnaController extends Controller
      */
     public function actionDelete()
     {
-    	if(Yii::app()->request->getIsAjaxRequest() && Yii::app()->user->is_admin)
+    	if(Yii::app()->request->getIsAjaxRequest() && !Yii::app()->user->isguest && Yii::app()->user->is_admin)
     	{
     		$id = Yii::app()->request->getQuery('id');
     		if(null !== $id) QnaComment::model()->deleteByPk($id);

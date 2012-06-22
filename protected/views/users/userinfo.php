@@ -54,7 +54,7 @@
 		  
 		  	<? foreach($user->blogposts as $post): ?>
 		  	
-		  		<a href='' title='<?=str_replace( "'", "#39;", $post->html_desc_paragraph)?>'><?=e($post->title)?></a><br/>
+		  		<a href="<?=bu(e(urlencode($post->url)));?>.htm" title='<?=str_replace( "'", "#39;", $post->html_desc_paragraph)?>'><?=e($post->title)?></a><br/>
 		  		
 		  		
 		  		<br/>
