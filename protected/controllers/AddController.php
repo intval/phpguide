@@ -64,7 +64,7 @@ class AddController extends Controller
                 $curuser = Yii::app()->user;
                 
                 // Either such article wasn't found, or teh user doesnt have enough privileges for editing it
-                if( $article === null || ($article->author_id != $curuser->id && !$curuser->is_admin ) )
+                if( $article === null || Yii::app()->user->isguest || ($article->author_id != $curuser->id && !$curuser->is_admin ) )
                 {
                    throw new CHttpException(404);
                 }
@@ -134,7 +134,7 @@ class AddController extends Controller
                 }
 
                 // Dont have privileges for editting posts ?
-                if ( $article->author_id != $curuser->id && !$curuser->is_admin )
+                if (Yii::app()->user->isguest || (  $article->author_id != $curuser->id && !$curuser->is_admin ))
                 {
                     throw new CHttpException(404, 'Insuffient privileges');
                 }
@@ -171,7 +171,7 @@ class AddController extends Controller
                 $article->pub_date = new SDateTime();
                 
                 // Automatically approve admins posts
-                $article->approved = $curuser->is_admin;
+                $article->approved = !$curuser->isguest && $curuser->is_admin;
                 
                 // seo url based on title
                 $article->url = preg_replace("/[^a-z0-9_\s".'א-ת'."]/ui", '', $article->title);

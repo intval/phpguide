@@ -9,8 +9,8 @@
 		   <a id="answer_<?=$answer->aid?>" href="<?= Yii::app()->request->requestUri . "#answer_" . $answer->aid?>">#</a>
 		</span>
 		
-		<?php if(Yii::app()->user->is_admin || $answer->authorid === Yii::app()->user->id) { ?><a class="qna-answer-edit" title='ערוך תשובה'></a><?php } ?>
-		<?php if(Yii::app()->user->is_admin) { ?><a class="qna-answer-delete" title='מחק תשובה'></a><?php } ?>
+		<?php if((!Yii::app()->user->isguest &&  Yii::app()->user->is_admin) || $answer->authorid === Yii::app()->user->id) { ?><a class="qna-answer-edit" title='ערוך תשובה'></a><?php } ?>
+		<?php if(!Yii::app()->user->isguest && Yii::app()->user->is_admin) { ?><a class="qna-answer-delete" title='מחק תשובה'></a><?php } ?>
 		<div class="clear"></div>
 	</div>
 	

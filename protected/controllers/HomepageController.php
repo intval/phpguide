@@ -43,7 +43,7 @@ class HomepageController extends Controller
             {
                 $this->render('error_500');
                 Yii::log($error['message'], CLogger::LEVEL_ERROR, '500');
-                if(YII_DEBUG || Yii::app()->user->is_admin ) echo $error['message'];
+                if(YII_DEBUG || ( !Yii::app()->user->isguest &&  Yii::app()->user->is_admin )) echo $error['message'];
             }
 
         }
