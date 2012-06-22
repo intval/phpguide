@@ -40,6 +40,8 @@ class WebUser extends CWebUser
     
     public function login( $identity, $duration = 31536000)
     {
+    	echo 'ident';
+    	var_dump($identity->user); die();
     	$this->user = $identity->user;
         $this->setState('user', $identity->user);
         $this->plain_password = $identity->password;
@@ -53,8 +55,8 @@ class WebUser extends CWebUser
      */ 
     public function __get($key) 
     {
-    	$user = $this->getUser();
-    	return isset($user->{$key}) ? $user->{$key} : parent::__get($key);
+    	$user = $this->getUser(); 
+     	return isset($user->{$key}) ? $user->{$key} : parent::__get($key);
     }
 
 

@@ -85,10 +85,10 @@ class Article extends DTActiveRecord
             
             // allow poster to see his post
             $userid = Yii::app()->user->id;
-            (null === $userid) ?: $condition .= " OR author_id = $userid";
+            (Yii::app()->user->isguest || null === $userid) ?: $condition .= " OR author_id = $userid";
             
             // admins can see anything
-            if($userid && Yii::app()->user->is_admin) $condition = '';
+            if(!Yii::app()->user->isguest && Yii::app()->user->is_admin) $condition = '';
             
             return array
             ( 
