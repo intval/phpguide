@@ -40,8 +40,6 @@ class WebUser extends CWebUser
     
     public function login( $identity, $duration = 31536000)
     {
-    	echo 'ident';
-    	var_dump($identity->user); die();
     	$this->user = $identity->user;
         $this->setState('user', $identity->user);
         $this->plain_password = $identity->password;

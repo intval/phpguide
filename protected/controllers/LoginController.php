@@ -364,7 +364,7 @@ class LoginController extends Controller
         {
             echo 'שגיאת שרת בתהליך ההרשמה. אנה נסו במועד מאוחר יותר';
             Yii::log("Signup error : " . $e->getMessage(), CLogger::LEVEL_ERROR);
-            var_dump($e);
+            
         }
         
 
