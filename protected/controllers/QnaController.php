@@ -111,9 +111,8 @@ class QnaController extends Controller
      */
     protected static function isQnaViewedEarlier($qna)
     {
-    	return 
-    		is_array(Yii::app()->session[static::viewed_qnas_session_key]) && 
-    		in_array($qna->qid, Yii::app()->session[static::viewed_qnas_session_key]);
+    	$d = Yii::app()->session[static::viewed_qnas_session_key]; 
+    	return is_array($d) && in_array($qna->qid, $d);
     }
     
     /**
@@ -236,20 +235,16 @@ class QnaController extends Controller
     {
     	
     	if(Yii::app()->user->isguest) return;
-    	
     	$prev_visit = Yii::app()->user->prev_visit;
-		
+			
 		$new = array();
+		
     	foreach($qnas as $qna)
-    	{
     		if( $qna->last_activity > $prev_visit)
-    		{
-    			$new[$qna->qid] = $qna->qid;
-    		}
-    	}
+    			$new[] = $qna->qid;
     	
-    	$already_known_to_have_new_answers = Yii::app()->user->getState('qnas_with_new_answers', array());
-    	$list_of_qnas_with_new_answers = $already_known_to_have_new_answers + $new;
+    	$already_known_to_have_new_answers = Yii::app()->user->getState('qnas_with_new_answers');
+    	$list_of_qnas_with_new_answers = array_unique(array_merge($already_known_to_have_new_answers , $new));
     	Yii::app()->user->setState('qnas_with_new_answers', $list_of_qnas_with_new_answers);
     }
     
@@ -272,8 +267,11 @@ class QnaController extends Controller
     public static function removeQnaFromListOfNewAnswers(QnaQuestion $qna)
     {
     	$questions_with_new_answers = Yii::app()->user->getState('qnas_with_new_answers', array());
-    	unset($questions_with_new_answers[$qna->qid]);
-    	Yii::app()->user->setState('qnas_with_new_answers', $questions_with_new_answers);
+    	if(false !== ($key = array_search($qna->qid, $questions_with_new_answers, true)))
+    	{
+    		unset($questions_with_new_answers[$key]);
+    		Yii::app()->user->setState('qnas_with_new_answers', $questions_with_new_answers);
+    	}
     }
     
     

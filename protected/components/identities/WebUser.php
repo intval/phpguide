@@ -64,7 +64,12 @@ class WebUser extends CWebUser
     		return $this->user;
     	
     	if( null !== ($user = $this->getState('user')))
+    	{
     		$this->user = $user;
+    		$this->user->last_visit = new SDateTime();
+    		$this->setState('prev_visit', $user->last_visit);
+    		User::model()->updateByPk($this->user->id, array('last_visit' =>  $this->user->last_visit));    		
+    	}
     	
     	return $user;
     }
