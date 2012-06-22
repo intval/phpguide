@@ -391,7 +391,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 
 ALTER TABLE `blog_comments`
-	ADD FOREIGN KEY(author) REFERENCES `users` (`id`) 
+	ADD FOREIGN KEY(authorid) REFERENCES `users` (`id`) ;
 
 --
 -- Constraints for table `blog`
@@ -402,40 +402,39 @@ ALTER TABLE `blog`
 --
 -- Constraints for table `blog_comments`
 --
-ALTER TABLE `blog_comments`
-  ADD CONSTRAINT `blog_comments_ibfk_1` FOREIGN KEY (`blogid`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE  `blog_comments` ADD FOREIGN KEY (  `blogid` ) REFERENCES  `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE ;
 
 --
 -- Constraints for table `blog_likes`
 --
 ALTER TABLE `blog_likes`
-  ADD CONSTRAINT `blogid2blogs` FOREIGN KEY (`postid`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD FOREIGN KEY (`postid`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `blog_post2cat`
 --
 ALTER TABLE `blog_post2cat`
-  ADD CONSTRAINT `blog_post2cat_ibfk_1` FOREIGN KEY (`postid`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `blog_post2cat_ibfk_2` FOREIGN KEY (`catid`) REFERENCES `blog_categories` (`cat_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD FOREIGN KEY (`postid`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD FOREIGN KEY (`catid`) REFERENCES `blog_categories` (`cat_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `password_recovery`
 --
 ALTER TABLE `password_recovery`
-  ADD CONSTRAINT `user2users` FOREIGN KEY (`userid`) REFERENCES `users` (`id`);
+  ADD  FOREIGN KEY (`userid`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `qna_answers`
 --
 ALTER TABLE `qna_answers`
-  ADD CONSTRAINT `qna_answers_ibfk_1` FOREIGN KEY (`qid`) REFERENCES `qna_questions` (`qid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `qna_answers_ibfk_2` FOREIGN KEY (`authorid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD  FOREIGN KEY (`qid`) REFERENCES `qna_questions` (`qid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD  FOREIGN KEY (`authorid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `qna_questions`
 --
 ALTER TABLE `qna_questions`
-  ADD CONSTRAINT `qna_questions_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD FOREIGN KEY (`authorid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 
