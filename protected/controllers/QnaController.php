@@ -243,7 +243,8 @@ class QnaController extends Controller
     		if( $qna->last_activity > $prev_visit)
     			$new[] = $qna->qid;
     	
-    	$already_known_to_have_new_answers = Yii::app()->user->getState('qnas_with_new_answers');
+    	$already_known_to_have_new_answers = Yii::app()->user->getState('qnas_with_new_answers', array());
+    	if(!is_array($already_known_to_have_new_answers)) $already_known_to_have_new_answers = array();
     	$list_of_qnas_with_new_answers = array_unique(array_merge($already_known_to_have_new_answers , $new));
     	Yii::app()->user->setState('qnas_with_new_answers', $list_of_qnas_with_new_answers);
     }

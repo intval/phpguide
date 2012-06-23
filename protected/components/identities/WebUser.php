@@ -60,14 +60,19 @@ class WebUser extends CWebUser
 
     private function getUser()
     {
+    	
     	if(null !== $this->user) 
     		return $this->user;
     	
-    	if( null !== ($user = $this->getState('user')))
+    	
+    		
+    	
+    	if( null !== ($user = $this->getState('user'))   ||  ($this->getId() &&  null !== ($user = User::model()->findByPk($this->getId())) ))
     	{
     		$this->user = $user;
     		$this->user->last_visit = new SDateTime();
     		$this->setState('prev_visit', $user->last_visit);
+    		Yii::app()->session['loggedin_userid'] = $this->user->id;
     		User::model()->updateByPk($this->user->id, array('last_visit' =>  $this->user->last_visit));    		
     	}
     	

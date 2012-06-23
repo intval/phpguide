@@ -3,10 +3,8 @@
 class LoginController extends Controller
 {
 
-    
-    
     /**
-     * Displays Log-in / Registration form 
+     * Displays Log-in page
      */
     public function actionIndex()
     {
@@ -16,18 +14,8 @@ class LoginController extends Controller
         $this->pageTitle = 'הזדהות לאתר לימוד PHP';
         $this->description = 'עמוד הזדהות וכניסה למערכת';
         $this->keywords = 'הזדהות';
-        
-        if(isset(Yii::app()->session['provider']))
-        {
-            $provider = Yii::app()->session['provider'];
-            $userInfo = $provider->getAttributes();
-            $this->render('externalRegistration', array('return_location' => $return_location, 'provider' => $provider->serviceName, 'name' => $userInfo['name']));
-        }
-        else
-        {
-            $this->render('form', array('return_location' => $return_location));
-        }
-        
+
+        $this->render('login', array('return_location' => $return_location));  
     }
 
     
@@ -89,8 +77,7 @@ class LoginController extends Controller
     		$this->render('passwordRecovery');
     	}
     }
-    
-    
+
     
     /**
      * Action to be called when a user clicks recover password link in the mail
@@ -104,6 +91,7 @@ class LoginController extends Controller
     	
     	if( null === $pwr || null === $pwr->user)
     	{
+    		$pwr->delete();
     		$this->redirect(Yii::app()->homeUrl);
     	}
     	
@@ -130,6 +118,7 @@ class LoginController extends Controller
     		Yii::app()->user->setFlash('successPwChange', 'סיסמתך שונת בהצלחה');    
     	}
     }
+    
     
     /**
      * Regular log-in action, called via ajax submit from the login form.
@@ -158,21 +147,8 @@ class LoginController extends Controller
                 {
                     Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
                     
-                    
                     // if authentication takes place after external auth, we want to attach the external Id to the account we are authenticating
-                    $sess = Yii::app()->session['externalAuth'];
-                    if($sess !== null)
-                    {
-                    	$data = array();
-                    	
-						foreach($sess as $key => $id)
-						{
-							$data[ ServiceUserIdentity::$service2fieldMap[$key] ] = $id;
-						}
-							
-						                     	
-                    	$user = User::model()->updateByPk(Yii::app()->user->id, $data);
-                    }
+                    $this->updateExternalAuthInfo();
                     
                     echo 'ok';
                 }
@@ -200,7 +176,7 @@ class LoginController extends Controller
     
     
      /**
-     * Action to use as a callback to external-provider authentication attempt 
+     * Fired when the user decides to login with external auth provider.  
      */
     public function actionExternalLogin()
     {
@@ -209,7 +185,6 @@ class LoginController extends Controller
         {
         	$backto = Yii::app()->request->getQuery('backto');
         	if($backto) Yii::app()->session['backto'] =  $backto;
-        		
             $this->authWithExternalProvider($_GET['service']);
         }
         else
@@ -257,18 +232,17 @@ class LoginController extends Controller
        // external auth succeeded, but we don't know whom do this external ID belongs to
        else
        {
-       	
        		$userInfo = $provider->getAttributes();
-       		$sessionProviders = Yii::app()->session['externalAuth'];
+       		$externalAuthProviders = Yii::app()->session['externalAuth'];
        		
-       		if($sessionProviders === null) $sessionProviders = array();
-       		$sessionProviders[$provider -> serviceName] = $userInfo;
-       		Yii::app()->session['externalAuth'] = $sessionProviders;
-       		
+       		if($externalAuthProviders === null) $externalAuthProviders = array();
+       		$externalAuthProviders[$provider -> serviceName] = $userInfo;
+       		Yii::app()->session['externalAuth'] = $externalAuthProviders;
        		
        		$return_location = Yii::app()->session['backto'] ?: Yii::app()->request->getQuery('redir',   Yii::app()->homeUrl );
-       		$this->addscripts('login');       		
-			$this->render('changeNameForm', array('provider' => $provider->serviceName, 'name' => $userInfo['name'], 'return_location' => $return_location));
+       		$this->addscripts('login');
+       		$this->render('chooseNameAfterExternalLogin', array('provider' => $provider->serviceName, 'name' => $userInfo['name'], 'return_location' => $return_location));
+       		
        }
     }
     
@@ -298,7 +272,7 @@ class LoginController extends Controller
         	$externalAuthData = Yii::app()->session['externalAuth'];
         	
         	// Allow registration only using oAuth external services
-        	if($externalAuthData == null)
+        	if(!is_array($externalAuthData) || sizeof($externalAuthData) < 1)
         	{
         		echo 'הרשמה ניתנן באמצעות פייסבוק';
         		return;
@@ -338,21 +312,7 @@ class LoginController extends Controller
             {
                 $identity = new AuthorizedIdentity($user);
                 Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
-                
-                
-                if($externalAuthData !== null)
-                {
-                	$userUpdateData = array();
-                	$userInfoUpdateData = array();
-                	 
-                	foreach($externalAuthData as $key => $userinfo)
-                	{
-                		$userUpdateData[ ServiceUserIdentity::$service2fieldMap[$key] ] = $userinfo['id'];
-                		$userInfoUpdateData['name'] = $userinfo['name'];
-                	}
-                	$user = User::model()->updateByPk(Yii::app()->user->id, $userUpdateData);
-                }
-                
+                $this->updateExternalAuthInfo();               
                 echo 'ok';
             }
         }
@@ -368,6 +328,33 @@ class LoginController extends Controller
         }
         
 
+    }
+    
+    
+    /**
+     * Takes external auth data from session 
+     * and updates the user record with the corresponding external ID's
+     */
+    private function updateExternalAuthInfo()
+    {
+    	$externalAuthenticatedProviders = Yii::app()->session['externalAuth'];
+    	if(is_array($externalAuthenticatedProviders) && sizeof($externalAuthenticatedProviders) > 0)
+    	{
+    		$userUpdateData = array();
+    		$userInfoUpdateData = array();
+    	
+    		foreach($externalAuthenticatedProviders as $serviceName => $userinfo)
+    		{
+    			$userUpdateData[ ServiceUserIdentity::$service2fieldMap[$serviceName] ] = $userinfo['id'];
+    			$userInfoUpdateData['real_name'] = $userinfo['name'];
+    		}
+    		$user = User::model()->updateByPk(Yii::app()->user->id, $userUpdateData);
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
     }
 
 }
