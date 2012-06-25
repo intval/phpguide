@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" itemscope itemtype="http://schema.org/<?=e($this->metaType)?>">
 <head>
     <base href="<?=bu()."/"?>" />
     <meta charset="utf-8" />
@@ -30,6 +30,10 @@
     <title><?=e($this->pageTitle)?></title>
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 	<?php $this->addScripts( 'plugins', 'ui'); ?>    
+	
+	<meta itemprop="name" content="<?=e($this->pageTitle)?>">
+	<meta itemprop="description" content="<?=e($this->description)?>">
+	
 </head>
 
 <body dir='rtl' >

@@ -27,6 +27,7 @@ class ArticleController extends Controller
         $this->keywords     =  $article->keywords;
         $this->description  =  $article->description;
         $this->pageAuthor  =  $article->author->login;
+        $this->metaType    = 'Article';
 		if($this->facebook) $this->facebook['image'] = $article->image;
 
 

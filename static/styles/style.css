@@ -958,6 +958,15 @@ h1.content-title span
 }
 
 
+.likeus
+{
+	width:173px; 
+	height:32px; 
+	position:absolute;
+	top:-45px; 
+	left:0;
+}
+
 /******************************** BLOG COMMENTS **********************/
 
 

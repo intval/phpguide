@@ -62,6 +62,16 @@ class Controller extends CController
          */
         public $pageTitle = 'לימוד PHP | מדריכי PHP | שאלות PHP';
         
+        
+        /**
+         * defines the meta microformat schema for the document. 
+         * Could be: Artile, Blog, Book, Person, Product, Review, Other, Event, Organization, LocalBusiness,
+         * @see http://schema.org/docs/schemas.html
+         * @var string
+         */
+        public $metaType = 'Blog';
+        
+        
         /**
          * This is the action to handle external exceptions.
          */

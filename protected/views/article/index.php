@@ -30,22 +30,22 @@
     
     <hr/>
    
-    <div style="margin-top:15px;">
+   
+    <div style="margin-top:15px;position:relative;">
+    	<div class='likeus'></div>
         <div class="right" style="padding:5px; font-size: 85%;line-height: 16px; margin-bottom: 25px;  width:400px">
            
         <img src="/static/images/pixel.gif" title="<? $this->widget('GravatarWidget', array('email' => $article->author->email, 'size' => 50, 'linkOnly' => true)); ?>" alt="<?=e($article->author->login)?>" width="50" height="50" class="right"/>
         <p style=" margin-right:10px; width:245px" class="right">
             על המחבר:
           
-            <b><?=e($article->author->real_name)?></b> 
-            <span dir="ltr">(<?=e($article->author->login)?>)</span>
-  	<!--<br/><br/><a href="/forum/index.php?action=profile;u=<?=e($article->author->id)?>" style="font-size:95%">פרופיל משתמש</a>-->
-            
+            <b><a href='<?=bu('users/').urlencode($article->author->login)?>'><?=e($article->author->login)?></a></b>             
         </p>
         <div class="clear"></div>
     </div>
         
-        <div  id="like_for_concrete_post" class="left" style="margin:10px  0 0 10px;"></div>
+        <div  id="like_for_concrete_post" class="left" style="margin:10px  0 0 10px;width:50px;"></div>
+        <div  id="plusone_for_concrete_post" class="left" style="margin:10px  0 0 10px;"></div>
         <div class='clear'></div>
     
     	<?php  if(!Yii::app()->user->isguest && ($article->author->id === Yii::app()->user->id || Yii::app()->user->is_admin)):  ?>

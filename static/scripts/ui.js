@@ -344,7 +344,7 @@ window.onload = function()
 
         jQuery('#social_buttons').html
         (
-            '<g:plusone size="medium" href="'+loc+'"></g:plusone><br/>' +
+        	'<div class="g-plusone" data-size="medium" data-href="'+loc+'"></div><br/>'+
             '<iframe  class="fb-like-frame" src="' + 
             'http://www.facebook.com/plugins/like.php?href=' + encodeURIComponent(loc).
 
@@ -373,6 +373,8 @@ window.onload = function()
                 'action=like&amp;font&amp;colorscheme=light&amp;height=21"' +
                 '></iframe>'
             );
+            
+            jQuery('#plusone_for_concrete_post').html('<div class="g-plusone" data-size="tall" data-href="'+loc+'"></div>');
         }
 
 

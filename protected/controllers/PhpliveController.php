@@ -2,7 +2,7 @@
 
 class PhpliveController extends Controller
 {
-        public $layout = '//layouts/withoutSidebar';
+	public $layout = '//layouts/withoutSidebar';
     
 	public function actionIndex()
 	{
@@ -20,7 +20,7 @@ class PhpliveController extends Controller
             $this->keywords     = 'php, online, live, try, קוד, אונליין, שרת';
             $this->pageAuthor   = 'phpguide.co.il';
             $this->description  = "הפעלת קוד php און-ליין בלי שרת או איחסון";
-            
+            $this->metaType		= 'Product';
             
             $this->addscripts( 'phplive');
             $this->render('index', array('code' => $code));
