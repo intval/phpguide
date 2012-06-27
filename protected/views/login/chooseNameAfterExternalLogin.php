@@ -55,7 +55,7 @@
 
 
 <br/><br/>
-	&larr; &nbsp; <a href="javascript:jQuery('#existingUserAfterExternalAuth').show()">כבר יש לי שם משתמש באתר. אני רוצה לחבר את חשבון ה- <?= $provider ?> אליו</a>
+	&larr; &nbsp; <a href="#" onclick="jQuery('#existingUserAfterExternalAuth').show(); return false;">כבר יש לי שם משתמש באתר. אני רוצה לחבר את חשבון ה- <?= $provider ?> אליו</a>
 <br/><br/>	
 	
 <div id='existingUserAfterExternalAuth' style='display:none' >
