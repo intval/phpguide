@@ -52,7 +52,13 @@
 	        <div><a href="<?= bu('Add?edit='.$article->id)?>">Edit this article</a></div>
 	        <div class='clear'></div>
         <?php endif; ?>
-        
+
+        <?php  if(!Yii::app()->user->isguest && Yii::app()->user->is_admin):  
+        	$action =  $article->approved ? 'disapprove' : 'approve';
+        ?>
+            <div><a href="<?= bu('Add/'.$action.'?id='.$article->id)?>"><?=ucfirst($action)?> the publication</a></div>
+            <div class='clear'></div>
+        <?php endif; ?>
     </div>
     
  

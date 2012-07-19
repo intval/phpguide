@@ -9,13 +9,11 @@
 class AddController extends Controller
 {
 
-        public $vars;
+    public $vars;
 
-        private $_articlesModel;
-        private $_plainModel;
-        private $_articlesCategories;
-   
-        
+    private $_articlesModel;
+    private $_plainModel;
+    private $_articlesCategories;    
         
         
 	/** Show edit form */
@@ -279,5 +277,41 @@ class AddController extends Controller
 
             return $result;
         }
+
+
+
+
+
+
+		/**
+		 * Marks the article as approved
+		 */
+        public function actionApprove()
+        {
+            $this->ApproveOrDisapprove(true);
+        }
+        
+        /**
+         * Marks the article as disapproved
+         */
+        public function actionDisapprove()
+        {
+        	$this->ApproveOrDisapprove(false);
+        }
+        
+        /**
+         * changes article's approval status 
+         * article's id arrives from the query string
+         * @param bool $approvalStatus (true to display the article, false to not)
+         */
+        private function ApproveOrDisapprove($approvalStatus = 1)
+        {
+        	$id = Yii::app()->request->getQuery('id');
+        	if(null === $id) return;
+        	if(Yii::app()->user->isguest || !Yii::app()->user->is_admin) return;
+        	Article::model()->updateByPk($id, array('approved' => $approvalStatus));
+        	$this->redirect(Yii::app()->request->urlReferrer );
+        }
+
 
 }
