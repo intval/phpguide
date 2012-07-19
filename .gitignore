@@ -19,6 +19,7 @@
 .buildpath
 nbproject
 Thumbs.db
+*.sublime-*
 
 # Dreamweaver added files
 _notes
