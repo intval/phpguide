@@ -5,7 +5,7 @@
         <input type="checkbox"  name="sitesearch" style="display:none" value="phpguide.co.il" checked />
         
         <input type="text" class="search_form" placeholder="חיפוש" name="q" id="search_field"/>
-        <input type="submit" value="" title="לפחש"> 
+        <input type="submit" value="" title="לחפש"> 
         
     </form>
 </section>
