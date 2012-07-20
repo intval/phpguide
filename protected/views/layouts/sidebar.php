@@ -14,7 +14,5 @@
 <? $this->widget('application.components.LoginBox') ?>
 
 <? $this->widget('application.components.RatingWidget'); ?>
-
-<? $this->widget('application.components.BannerWidget', array('type' => 'sidebar')); ?>
 			
 <? $this->widget('application.components.RecentEvents'); ?>
