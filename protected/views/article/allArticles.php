@@ -14,10 +14,11 @@
 	<a href="/cat/%D7%9B%D7%9C%D7%99%D7%9D+%D7%A9%D7%99%D7%9E%D7%95%D7%A9%D7%99%D7%99%D7%9D.htm">כלים שימושיים</a><br>
 	<a href="/cat/%D7%9E%D7%91%D7%A0%D7%94+%D7%94%D7%A1%D7%A7%D7%A8%D7%99%D7%A4%D7%98.htm">מבנה הסקריפט</a><br>
 	<a href="/cat/%D7%9E%D7%93%D7%A8%D7%99%D7%9B%D7%99%20YII.htm"><b style="color:orangered">מדריכי YII</b> של אליהו בסה</a><br>
+	<a href="/cat/codeigniter.htm"><b style="color:orangered">מדריכי CodeIgniter</b> של אלון נגר</a><br>
 
     </div><div class="right" style="width:49%;">
 
-
+	<a href="/cat/חדשות+ועדכונים.htm">חדשות ועדכונים</a><br/>
 	<a href="/cat/%D7%A0%D7%95%D7%A9%D7%90%D7%99%D7%9D+%D7%9B%D7%9C%D7%9C%D7%99%D7%99%D7%9D.htm">נושאים כלליים</a><br>
 	<a href="/cat/%D7%A4%D7%AA%D7%A8%D7%95%D7%A0%D7%95%D7%AA+%D7%A0%D7%A4%D7%95%D7%A6%D7%99%D7%9D.htm">פתרונות נפוצים</a><br>
 	<a href="/cat/%D7%A8%D7%A9%D7%AA+%D7%95%D7%A4%D7%A8%D7%95%D7%98%D7%95%D7%A7%D7%95%D7%9C%D7%99%D7%9D.htm">רשת ופרוטוקולים</a><br>
