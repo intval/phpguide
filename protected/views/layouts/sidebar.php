@@ -16,3 +16,8 @@
 <? $this->widget('application.components.RatingWidget'); ?>
 			
 <? $this->widget('application.components.RecentEvents'); ?>
+
+<section class="logos">
+	<a href="https://github.com/intval/phpguide" title='phpguide is open source. Help us!' class='github'></a>
+	<a href="http://feeds.feedburner.com/phpguideblog" title='All new blog posts via RSS' class='rss'></a>
+</section>
