@@ -46,6 +46,9 @@ $(document).ready(function() {
 
     jQuery(".chzn-select").chosen();
     
+    jQuery('#data').autogrow();
+    jQuery('#ArticlePlainText_plain_description').autogrow();
+    
 });
 
 

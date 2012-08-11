@@ -1109,6 +1109,7 @@ div.addform .third-name {
 div.addform .text {
 	width:591px;
 	height:364px;
+	min-height:364px;
 }
 
 div.addform .buttons {
