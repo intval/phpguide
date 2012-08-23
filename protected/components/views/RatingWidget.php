@@ -8,7 +8,7 @@
 	?>
 	
 	<tr>
-		<td width='14'> </td>
+		<td style="width:14px"> </td>
 		<td><span><?=e($users[$i]->login)?></span></td>
 		<td><?=e($users[$i]->points)?></td>
 	</tr>

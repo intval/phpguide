@@ -1708,24 +1708,24 @@ div.addform .errors
 	word-wrap: break-word;
 }
 
-#qnaCommentForm
+.qnaCommentForm
 {
 /*    display:none;*/
 margin-top:20px;
 }
 
-#qnaCommentForm textarea
+.qnaCommentForm textarea
 {
     width:100%;
     height:100px;
 }
 
-#qnaCommentForm .btn
+.qnaCommentForm .btn
 {
     margin-top:5px;
 }
 
-#qnaCommentForm .controls_holder
+.qnaCommentForm .controls_holder
 {
     background:#EEEEEE; 
     border:1px solid #C0CAD5; 
@@ -1735,7 +1735,7 @@ margin-top:20px;
     margin-bottom:3px;
 }
 
-#qnaCommentForm .controls_holder a
+.qnaCommentForm .controls_holder a
 {
     display:block;  
     text-indent: -10000px; 
@@ -1746,37 +1746,37 @@ margin-top:20px;
     margin-right:10px;
 }
 
-#qnaCommentForm .controls_holder a.abold
+.qnaCommentForm .controls_holder a.abold
 {
     
     background-image: url('http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/bold.png') ;
 }
-#qnaCommentForm .controls_holder a.aitalic
+.qnaCommentForm .controls_holder a.aitalic
 {
     background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/italic.png");
 }
 
-#qnaCommentForm .controls_holder a.astrike
+.qnaCommentForm .controls_holder a.astrike
 {
     background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/stroke.png");
 }
 
-#qnaCommentForm .controls_holder a.aunderline
+.qnaCommentForm .controls_holder a.aunderline
 {
     background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/underline.png");
 }
 
-#qnaCommentForm .controls_holder a.acode
+.qnaCommentForm .controls_holder a.acode
 {
     background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/code.png");
 }
 
-#qnaCommentForm .controls_holder a.aimage
+.qnaCommentForm .controls_holder a.aimage
 {
      background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/picture.png");
 }
 
-#qnaCommentForm .controls_holder a.alink
+.qnaCommentForm .controls_holder a.alink
 {
     background-image: url("http://demo.livestreetcms.com/standart/engine/lib/external/jquery/markitup/sets/default/images/link.png");
 }
@@ -1809,7 +1809,8 @@ margin-top:20px;
 }
 
 
-.answer a.qna-answer-edit , .answer a.qna-answer-delete
+.answer a.qna-answer-edit , .answer a.qna-answer-delete , 
+.qna_view_question a.qna-question-edit , .qna_view_question a.qna-question-delete
 {
 	display:block; 
 	width:16px;
@@ -1818,7 +1819,7 @@ margin-top:20px;
 	cursor:pointer;
 }
 
-.answer a.qna-answer-edit
+.answer a.qna-answer-edit, .qna_view_question a.qna-question-edit 
 {
 	margin-right:5px;
 }         

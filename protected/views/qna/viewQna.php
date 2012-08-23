@@ -1,12 +1,18 @@
 
-<div class="qna_view_question">
+<div class="qna_view_question" id="qnaQuestionHolder">
     
     <? $this->renderPartial('//qna/qnaHomeItem', array('qna' => &$qna)) ?>
     <div class="clear"></div>
     
-    <div style="border-top:1px dashed #D1D1D1; margin-top:10px; padding-top:10px; " class="qnapost">
+    <?php if((!Yii::app()->user->isguest &&  Yii::app()->user->is_admin) || $qna->authorid === Yii::app()->user->id) { ?><a class="qna-question-edit" title='ערוך תשובה'></a><?php } ?>
+	<?php if(!Yii::app()->user->isguest && Yii::app()->user->is_admin) { ?><a class="qna-question-delete" title='מחק תשובה'></a><?php } ?>
+    
+    
+    <div style="border-top:1px dashed #D1D1D1; margin-top:10px; padding-top:10px; " class="qnapost" id='questionText<?=$qna->qid?>'>
 	<?=  $qna->html_text ?>
     </div>
+    
+    
     
 </div>
 

@@ -52,6 +52,7 @@ var qna =
     
     // currently editted id
     editedId : 0,
+    questionIdEdited : 0,
     
     startEditting: function(id)
     {
@@ -64,27 +65,65 @@ var qna =
     
     editSent: function(xhr)
     {
-    	if ('' === $.trim('#editmessage') ) 
+    	
+    	if ('' === $.trim($('#editmessage'+qna.editedId.replace('answer', '')).val()) ) 
     	{
     		xhr.abort();
-    		$('#' + qna.editedId).show().replace(data);
-        	$('#qnaCommentForm').remove();
-    		return;
+    		$('#' + qna.editedId).show();
+        	$('.qnaCommentForm').remove();
+    		return false;
 		}
     	
     	$('.btnEditAnswer').attr('disabled', 'disabled');
-    	
+    	return true;
     },
     
     editSuccess: function(data, status, xhr)
     {
-    	$('#qnaCommentForm').remove();
+    	$('.qnaCommentForm').remove();
     	$('#' + qna.editedId).show().replaceWith(data);
     	qna.editedId = false;
     	
     },
     
     
+    startEdittingQuestion : function (textElem)
+    {
+    	
+    	var id = textElem.attr('id').replace('questionText', '');
+    	questionIdEdited = id;
+    	
+    	$.get('qna/getQuestionEditForm' , {'id' : id} , function(result){
+    		textElem.hide().after(result);
+    	});
+    	
+    	var h2TitleContainer = jQuery('.question-summary-wrapper h2');
+    	h2TitleContainer.html('<input type="text" id="editQuestionTitle" ' +  
+    						  ' style="width:400px" value="'+h2TitleContainer.find('a').text()+'"/>')
+    },
+    
+    editQuestionSent: function ()
+    {
+    	
+    	$('#editQuestionSubjectHidden').val($('#editQuestionTitle').val());
+    	
+    	if ('' === $.trim($('#editedQuestion').val()) || '' === $.trim($('#editQuestionTitle').val()) ) 
+    	{
+    		xhr.abort();
+    		$('#' + questionIdEdited).show().replaceWith(data);
+        	$('.qnaCommentForm').remove();
+    		return false;
+		}
+    	
+    	
+    	$('.btnEditAnswer').attr('disabled', 'disabled');
+    	return true;
+    },
+    
+    editQuestionSuccess : function(data, status, xhr)
+    {
+    	document.location  = data;
+    },
     
     activateEditingButton: function()
     {
@@ -103,9 +142,42 @@ var qna =
 			}
     	})
     	.on('click','.btnEditAnswer', function(){
+    		
     		jQuery.ajax({
-    			'success':qna.editSuccess,'beforeSend':qna.editSent,'type':'POST','url':'/Qna/answer','cache':false,'data':jQuery(this).parents("form").serialize()});return false;
+    			'success':qna.editSuccess,
+    			'beforeSend':qna.editSent,
+    			'type':'POST','url':'/Qna/answer','cache':false,
+    			'data':jQuery(this).parents("form").serialize()});
+    		
+    		return false;
     	});
+    	
+    	
+    	$('#qnaQuestionHolder')
+    	.on('click', 'a.qna-question-edit',  function(item){
+    		qna.startEdittingQuestion($(this).nextAll('div.qnapost'));
+    	})
+    	.on('click', 'a.qna-question-delete',  function(item){
+    		if(confirm('sure?'))
+			{
+    			var id = $(this).nextAll('div.qnapost').attr('id').replace('questionText', '');
+	    		$.get('qna/deleteQuestion', {id: id});
+	    		document.location = '/qna';
+			}
+    	})
+    	.on('click','.btnEditQuestion', function(){
+    		if(qna.editQuestionSent())
+    		{
+	    		jQuery.ajax({
+	    			'success':qna.editQuestionSuccess,
+	    			'type':'POST','url':'/Qna/new',
+	    			'cache':false,'data':jQuery(this).parents("form").serialize()});
+    		}
+    		return false;
+    	});
+    	
+    	
+    	
     }
     
 }

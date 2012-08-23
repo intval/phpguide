@@ -1,4 +1,4 @@
-<div id="qnaCommentForm">
+<div class="qnaCommentForm">
         
 
     <?php 

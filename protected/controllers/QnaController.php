@@ -53,7 +53,25 @@ class QnaController extends Controller
         		return;
         	}
         	
-            $model = new QnaQuestion();
+            $model = null;
+            
+            if(isset($_POST['QnaQuestion']['qid']))
+            {
+            	$condition = '';
+            	if(!Yii::app()->user->is_admin) $condition = ' authorid="'.Yii::app()->user->id.'" ';
+            	$model = QnaQuestion::model()->findByPk($_POST['QnaQuestion']['qid'], $condition);
+            }
+            else
+            {
+            	$model = new QnaQuestion();
+            }
+            
+            if($model === null) 
+            {
+            	echo 'aww';
+            	return;
+            }
+            
             $model->attributes = $_POST['QnaQuestion'];
 			$model->last_activity = new SDateTime();
             $model->authorid = Yii::app()->user->id;
@@ -72,7 +90,6 @@ class QnaController extends Controller
             }
         }
     }
-
 
     public function actionView($id)
     {
@@ -148,6 +165,8 @@ class QnaController extends Controller
     	    	if(isset($_POST['QnaComment']['aid']))
     	    	{
     	    		$answer = QnaComment::model()->findByPk($_POST['QnaComment']['aid']);
+    	    		if(!Yii::app()->user->is_admin && Yii::app()->user->id !== $answer->authorid)
+    	    			throw new Exception("Not enough permissions to edit this post");
     	    	}
     	    	
     	    	if(null === $answer)
@@ -212,20 +231,54 @@ class QnaController extends Controller
     }
     
     
-    
     /**
-     * Deletes the answer
+     * Renders CActiveForm for QNaQuestion by specified GET[id] in ajax requests only
      */
-    public function actionDelete()
+    public function actionGetQuestionEditForm()
     {
-    	if(Yii::app()->request->getIsAjaxRequest() && !Yii::app()->user->isguest && Yii::app()->user->is_admin)
+    	if(Yii::app()->request->getIsAjaxRequest())
     	{
-    		$id = Yii::app()->request->getQuery('id');
-    		if(null !== $id) QnaComment::model()->deleteByPk($id);
+    		$questionid = Yii::app()->request->getQuery('id');
+    		$model = null;
+    
+    		if( null !== $questionid ) $model = QnaQuestion::model()->findByPk($questionid,  (!Yii::app()->user->isguest &&  Yii::app()->user->is_admin) ? '' : 'authorid = ' . Yii::app()->user->id);
+    		if( null === $model ) 
+    		{
+    			echo 'aw';
+    			return;
+    		}
+    		$this->renderPartial('lightQuestionForm', array('model' => $model));
     	}
     }
     
     
+    
+    /**
+     * Deletes the answer
+     */
+    public function actionDelete($id)
+    {
+    	$id = intval($id);
+    	
+    	if(Yii::app()->request->getIsAjaxRequest() && $id > 0)
+    	{
+			$condition = '';
+			if(!Yii::app()->user->is_admin) $condition = ' authorid="'.Yii::app()->user->id.'" ';
+			QnaComment::model()->deleteByPk($id, $condition);
+    	}
+    }
+    
+    public function actionDeleteQuestion($id)
+    {
+    	$id = intval($id);
+    	 
+    	if(Yii::app()->request->getIsAjaxRequest() && $id > 0)
+    	{
+    		$condition = '';
+    		if(!Yii::app()->user->is_admin) $condition = ' authorid="'.Yii::app()->user->id.'" ';
+    		QnaQuestion::model()->deleteByPk($id, $condition);
+    	}
+    }
     
     
     /**
