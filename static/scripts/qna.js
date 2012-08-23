@@ -162,7 +162,8 @@ var qna =
 			{
     			var id = $(this).nextAll('div.qnapost').attr('id').replace('questionText', '');
 	    		$.get('qna/deleteQuestion', {id: id});
-	    		document.location = '/qna';
+	    		// if we relocate immidiately, the ajax request might not be sent
+	    		window.setTimeout("document.location = '/qna'", 30);
 			}
     	})
     	.on('click','.btnEditQuestion', function(){
