@@ -48,7 +48,7 @@ class QnaQuestion extends DTActiveRecord
 		return array(
 			array('subject', 'required'),
 			array('subject', 'length', 'max'=>255, 'min'=>5),
-			array('bb_text', 'length', 'min'=>5, 'allowEmpty' => true)
+			array('bb_text', 'length', 'min'=>5, 'allowEmpty' => false)
 		);
 	}
 
