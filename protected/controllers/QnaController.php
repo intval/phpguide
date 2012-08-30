@@ -73,7 +73,10 @@ class QnaController extends Controller
             }
             
             $model->attributes = $_POST['QnaQuestion'];
-			$model->last_activity = $model->last_activity ? $model->last_activity : new SDateTime();
+            
+            if(gettype($model->last_activity) !== 'object')
+				$model->last_activity = new SDateTime();
+            
             $model->authorid = $model->authorid ? $model->authorid : Yii::app()->user->id;
             
             $contentBBencoder = new BBencoder($model->bb_text, $model->subject, !Yii::app()->user->isguest &&  Yii::app()->user->is_admin);

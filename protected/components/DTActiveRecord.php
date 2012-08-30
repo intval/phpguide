@@ -32,7 +32,8 @@ class DTActiveRecord extends CActiveRecord
 	*/
 	protected function afterFind()
 	{
-		return $this->convert_datetime_fields_into_DateTime() && parent::afterFind();
+		$this->convert_datetime_fields_into_DateTime();
+		return parent::afterFind();
 	}
 	/*
 	protected function afterSave()
