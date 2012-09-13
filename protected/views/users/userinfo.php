@@ -63,7 +63,7 @@
 		  </div>
 		  
 		  <div class="tab-pane" id="about">
-			 <?= e($user->about); ?>	  
+			 <?= nl2br(e($user->about)); ?>	  
 		  </div>
 
 		  <?php if(!Yii::app()->user->isGuest && Yii::app()->user->id == $user->id) :?>
