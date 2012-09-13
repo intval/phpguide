@@ -15,6 +15,9 @@
 		  <li class='active'><a href="#whois" data-toggle="tab">Whois</a></li>
 		  <li><a href="#posts" data-toggle="tab">מה כתב<?if($user->gender === 'female') echo 'ה';?></a></li>
 		  <li><a href="#about" data-toggle="tab"><?= $user->gender === 'male' ? 'מספר על עצמו' : 'מספרת על עצמה' ?></a></li>
+		  <?php if(!Yii::app()->user->isGuest && Yii::app()->user->id == $user->id) :?>
+		  <li><a href="#edit" data-toggle="tab">עריכת פרטים</a></li>
+		  <?php endif; ?>
 		</ul>
 		
 		<div class="tab-content">
@@ -35,7 +38,7 @@
 				</tr>
 				<tr>
 					<td>אתר:</td>
-					<td><?=e($user->site)?></td>
+					<td><a href='<?=e($user->site)?>'><?=e($user->site)?></a></td>
 				</tr>
 				<tr>
 					<td>נרשם:</td>
@@ -52,18 +55,23 @@
 		  </div>
 		  <div class="tab-pane" id="posts">
 		  
-		  	<? foreach($user->blogposts as $post): ?>
-		  	
+		  	<?php foreach($user->blogposts as $post): ?>
 		  		<a href="<?=bu(e(urlencode($post->url)));?>.htm" title='<?=str_replace( "'", "#39;", $post->html_desc_paragraph)?>'><?=e($post->title)?></a><br/>
-		  		
-		  		
 		  		<br/>
-		  	
-		  	
-		  	<? endforeach; ?>
+		  	<?php endforeach; ?>
 		  
 		  </div>
-		  <div class="tab-pane" id="about"><?=e($user->about)?></div>
+		  
+		  <div class="tab-pane" id="about">
+			 <?= e($user->about); ?>	  
+		  </div>
+
+		  <?php if(!Yii::app()->user->isGuest && Yii::app()->user->id == $user->id) :?>
+		  <div class="tab-pane" id="edit" style='margin-right:100px'>
+		 		 <?php $this->renderPartial('infoform', array('user'=> &$user)); ?>
+		  </div>
+		  <?php endif; ?>
+		</div>
 		</div>
 		 
 		 

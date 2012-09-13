@@ -19,7 +19,7 @@
  * @property integer $points
  * @property bool $is_admin
  * @property string $gender
- * @property string $birthdate
+ * @property SDateTime $birthdate
  * @property string $city
  * @property string $site
  * @property string $about
@@ -56,12 +56,20 @@ class User extends DTActiveRecord
 	 */
 	public function rules()
 	{
+		$checkmx = !defined('YII_DEBUG');
+		
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
-                        array('email', 'email', 'checkMX' => true, 'allowEmpty' => false, 'message' => 'אתה בטוח שהאימייל כתוב נכון? אולי תנסה אימייל אחר?'),
-                        array('login', 'length', 'min' => 3, 'max'=>20, 'allowEmpty' => false, 'tooLong' => 'בחר שם משתמש קצר יותר, 20 תווים לכל היותר', 'tooShort' => 'בחר שם משתמש ארוך יותר, 3 תווים לפחות'),
-                        array('password', 'required', 'message' => 'ומה עם הסיסמה?')
+		return array
+		(
+            array('email', 'email', 'checkMX' => $checkmx, 'allowEmpty' => false, 'message' => 'אתה בטוח שהאימייל כתוב נכון? אולי תנסה אימייל אחר?'),
+            array('login', 'length', 'min' => 3, 'max'=>20, 'allowEmpty' => false, 'on' => 'registration', 'tooLong' => 'בחר שם משתמש קצר יותר, 20 תווים לכל היותר', 'tooShort' => 'בחר שם משתמש ארוך יותר, 3 תווים לפחות'),
+            array('password', 'required', 'message' => 'ומה עם הסיסמה?'),
+			array('city', 'length', 'min'=>2, 'max'=>30),
+			array('site', 'url', 'allowEmpty' => true),
+			array('about', 'length'),
+			array('birthdate', 'match', 'pattern' => '#\d{1,2}/\d{1,2}/(19|20)\d{2}#'),
+			array('gender', 'in', 'range' => array('male', 'female'), 'allowEmpty' => false)
 		);
 	}
 

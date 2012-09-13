@@ -280,6 +280,7 @@ class LoginController extends Controller
         	
         	// registration of new user means taking the existing, unregistered one and updating his name and info
             $user = new User();
+            $user->scenario = 'register';
             $user->attributes = array('login' => $username, 'email' => $email);
             $user->reg_date = new SDateTime();
             $user->last_visit = new SDateTime();
