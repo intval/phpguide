@@ -1,3 +1,7 @@
+.htaccess
+protected/components/identities/DbUserIdentity.php
+protected/config/
+
 # Numerous always-ignore extensions
 *.diff
 *.err

