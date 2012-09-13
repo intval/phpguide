@@ -15,6 +15,10 @@
 		  <li class='active'><a href="#whois" data-toggle="tab">Whois</a></li>
 		  <li><a href="#posts" data-toggle="tab">מה כתב<?if($user->gender === 'female') echo 'ה';?></a></li>
 		  <li><a href="#about" data-toggle="tab"><?= $user->gender === 'male' ? 'מספר על עצמו' : 'מספרת על עצמה' ?></a></li>
+		<? if(Yii::app()->user->id == $user->id) :?>
+		<li><a href="#edit" data-toggle="tab">עריכת פרטים</a></li>
+		<? endif; ?>
+		
 		</ul>
 		
 		<div class="tab-content">
@@ -63,7 +67,22 @@
 		  	<? endforeach; ?>
 		  
 		  </div>
-		  <div class="tab-pane" id="about"><?=e($user->about)?></div>
+		  <div class="tab-pane" id="about">
+		  	<div class="tab-content" style="padding-right: 100px;">
+
+			 <?= e($user->about); ?>	  
+			  </div>
+		  </div>
+		  
+		  <? if(Yii::app()->user->id == $user->id) :?>
+		  <div class="tab-pane" id="edit">
+		  	<div class="tab-content" style="padding-right: 100px;">
+		 		 <? 
+		  		$this->renderPartial('//users/infoform', array('model' => $model, 'user'=>$user));
+			 ?>
+			  </div>
+		  </div>
+		  <? endif; ?>
 		</div>
 		 
 		 

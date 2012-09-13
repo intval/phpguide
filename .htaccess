@@ -359,3 +359,4 @@ Options -MultiViews
 	RewriteRule . index.php
 
 </IfModule>
+
