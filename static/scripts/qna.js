@@ -1,4 +1,3 @@
-
 var qna = 
 {
     answerSent : function(xhr)
@@ -99,7 +98,7 @@ var qna =
     	
     	var h2TitleContainer = jQuery('.question-summary-wrapper h2');
     	h2TitleContainer.html('<input type="text" id="editQuestionTitle" ' +  
-    						  ' style="width:400px" value="'+h2TitleContainer.find('a').text()+'"/>')
+    						  ' style="width:400px" value="'+escapeHtml(h2TitleContainer.find('a').text())+'"/>')
     },
     
     editQuestionSent: function ()
@@ -184,3 +183,13 @@ var qna =
 }
 
 $(document).ready(qna.activateEditingButton);
+
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
