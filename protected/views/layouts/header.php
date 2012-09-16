@@ -33,7 +33,7 @@
 	
 	<meta itemprop="name" content="<?=e($this->pageTitle)?>">
 	<meta itemprop="description" content="<?=e($this->description)?>">
-	
+	<script type="text/javascript" src="/assets/da427f3b/jquery.js"></script>
 </head>
 
 <body dir='rtl' >

@@ -26,11 +26,23 @@
     <?php 
 	foreach($qna->comments as $answer)
 	{
-	    $this->renderPartial('//qna/comment', array('answer' => &$answer));
+	    $this->renderPartial('//qna/comment', array('answer' => &$answer,'is_qna_answered'=>$is_qna_answered));
 	}
     ?>
 </section>
+<script>
 
+	 $(".correct_ans").click(function() {
+		  aid = $(this).attr('ref');
+		  $(this).addClass('disabled');
+		  $.get("/qna/markascorrect/", { ans: aid } );
+		  $(this).text('תודה לך!');
+
+		  $('.correct_ans[ref!="'+ aid +'"]').remove();
+		  return false;
+		});
+		
+</script>
 
 <?php 
 
