@@ -16,6 +16,9 @@
 		<? if($is_qna_answered == 0):?>
 		<a href="#" class="btn btn-success btn-mini correct_ans" style="float:left;" ref="<?= $answer->aid; ?>";>זו התשובה</a>
 		<? endif; ?>
+		<? if($answer->is_correct == 1): ?>
+		<span class="badge badge-success">התשובה הנכונה</span>
+		<? endif; ?>
 	</div>
 	
 	<p>
