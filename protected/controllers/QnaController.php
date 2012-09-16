@@ -16,6 +16,10 @@ class QnaController extends Controller
 	const QNAS_ON_PAGE = 30;
     
 	public function actionMarkascorrect($ans){
+		
+		if(Yii::app()->user->isGuest) 
+			return;
+		
 		$ans = (int) $ans;
 		
 		$answer = QnaComment::model()->findByPk($ans);
