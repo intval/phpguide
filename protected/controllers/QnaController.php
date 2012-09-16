@@ -124,6 +124,7 @@ class QnaController extends Controller
         	$this->pageAuthor = $qna->author->login;
         	
 	    	$this->addscripts( 'qna','bbcode'); 
+	    	$this->addscripts( 'mark_correct_answer');
 	    	
 	    	if(!static::isQnaViewedEarlier($qna))
 	    	{
