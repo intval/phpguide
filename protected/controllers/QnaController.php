@@ -26,7 +26,7 @@ class QnaController extends Controller
 			$answer->is_correct = 1;
 			$answer->save();
 			
-			$the_helpers_user = user::model()->findByPk($answer->authorid);
+			$the_helpers_user = User::model()->findByPk($answer->authorid);
 			$the_helpers_user->points += 2;
 			$the_helpers_user->save();
 		}

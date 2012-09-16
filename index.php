@@ -1,7 +1,5 @@
 <?php
-echo 'df';
 
-/*
 /**
  * Index file of the hebrew's php-communty website 
  * @link http://phpguide.co.il
@@ -18,7 +16,7 @@ echo 'df';
 /************************************************************************/
 
 
-/*
+
 // determine whether this is production environment
 $production = !in_array( $_SERVER['REMOTE_ADDR'] , array('::1', '127.0.0.1'));
 
@@ -46,5 +44,5 @@ if( !$production )
 require_once($config['params']['PATH_TO_YII'].'/yii'.($production ? 'lite' : '').'.php');
 require_once(dirname(__FILE__).'/protected/sources/global_functions.php');
 Yii::createWebApplication($config)->run();
-*/
+
 
