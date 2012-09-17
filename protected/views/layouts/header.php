@@ -33,7 +33,6 @@
 	
 	<meta itemprop="name" content="<?=e($this->pageTitle)?>">
 	<meta itemprop="description" content="<?=e($this->description)?>">
-	
 </head>
 
 <body dir='rtl' >

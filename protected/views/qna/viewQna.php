@@ -26,7 +26,7 @@
     <?php 
 	foreach($qna->comments as $answer)
 	{
-	    $this->renderPartial('//qna/comment', array('answer' => &$answer));
+	    $this->renderPartial('//qna/comment', array('answer' => &$answer,'is_qna_answered'=>$is_qna_answered));
 	}
     ?>
 </section>

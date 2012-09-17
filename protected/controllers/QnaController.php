@@ -15,6 +15,27 @@ class QnaController extends Controller
 	 */
 	const QNAS_ON_PAGE = 30;
     
+	public function actionMarkascorrect($ans){
+		
+		if(Yii::app()->user->isGuest) 
+			return;
+		
+		$ans = (int) $ans;
+		
+		$answer = QnaComment::model()->findByPk($ans);
+		//correct answers for this qna
+		$is_qna_answered = QnaComment::model()->countByAttributes(array('qid'=>$answer->qid,'is_correct'=>1));
+
+		if($answer->authorid != YII::app()->user->id && $is_qna_answered == 0){
+			$answer->is_correct = 1;
+			$answer->save();
+			
+			$the_helpers_user = User::model()->findByPk($answer->authorid);
+			$the_helpers_user->points += 2;
+			$the_helpers_user->save();
+		}
+	}
+	
     public function actionIndex()
     {
     	$this->pageTitle = 'שאלות ותשובות PHP | עזרה עם PHP | לימוד PHP';
@@ -114,8 +135,10 @@ class QnaController extends Controller
 	            $qna->save();
 	            static::addQnaToViewedList($qna);
 	    	}
+	    
+	    	$is_qna_answered = QnaComment::model()->countByAttributes(array('qid'=>$qna->qid,'is_correct'=>1));
 
-            $this->render('//qna/viewQna', array('qna' => &$qna));      
+            $this->render('//qna/viewQna', array('qna' => &$qna, 'is_qna_answered'=>$is_qna_answered));      
             QnaController::removeQnaFromListOfNewAnswers($qna);
         }
         else
