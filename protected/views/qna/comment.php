@@ -13,8 +13,10 @@
 		<?php if(!Yii::app()->user->isguest && Yii::app()->user->is_admin) { ?><a class="qna-answer-delete" title='מחק תשובה'></a><?php } ?>
 
 		<div class="clear"></div>
-		<? if($is_qna_answered == 0 && $answer->authorid != Yii::app()->user->id):?>
-		<a href="#" class="btn btn-success btn-mini correct_ans" style="float:left;" ref="<?= $answer->aid; ?>">זו התשובה</a>
+		<? if( $canUserMarkAnswer ):?>
+		<a href="#" class="btn btn-success btn-mini correct_ans" style="float:left;" data-id="<?= $answer->aid; ?>">
+			סמן בתור תשובה נכונה
+		</a>
 		<? endif; ?>
 		<? if($answer->is_correct == 1): ?>
 		<span class="badge badge-success">התשובה הנכונה</span>

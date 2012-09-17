@@ -10,7 +10,8 @@
  * @property string $bb_text
  * @property string $html_text
  * @property Datetime $time
- *
+ * @property bool $is_correct
+ * 
  * The followings are the available model relations:
  * @property User $author
  * @property QnaQuestions $question

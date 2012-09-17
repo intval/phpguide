@@ -88,5 +88,28 @@ class User extends DTActiveRecord
 		);
 	}
         
+	
+	
+	
+	
+	
+	
+	/**
+	 * Updates user's points by specified diff amount
+	 * ie update points for user 1 by +5
+	 *
+	 * @param int $userid user's id to update
+	 * @param int $pointsDiff by how many should increase or decrease points
+	 * @example User::updatePointsBy( $id = 1, $diff = +20 );
+	 */
+	public static function updatePointsBy($userid, $pointsDiff)
+	{
+		static::model()->updateCounters
+		(
+			array('points' => $pointsDiff),
+			"id = :id",
+			array(':id' => $userid)
+		);
+	}
 
 }

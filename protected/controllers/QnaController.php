@@ -15,26 +15,59 @@ class QnaController extends Controller
 	 */
 	const QNAS_ON_PAGE = 30;
     
+	
+	/**
+	 * Amount of points given for a correct answer
+	 * @var int
+	 */
+	const POINTS_FOR_CORRECT_ANSWER = 10;
+	
+	
+	/**
+	 * Used to mark an answer as the correct answer to a question
+	 * @param int $ans answer's id
+	 */
 	public function actionMarkascorrect($ans){
 		
 		if(Yii::app()->user->isGuest) 
 			return;
 		
-		$ans = (int) $ans;
+		$answerId = intval($ans);
+		if($answerId < 1) return;
 		
-		$answer = QnaComment::model()->findByPk($ans);
-		//correct answers for this qna
-		$is_qna_answered = QnaComment::model()->countByAttributes(array('qid'=>$answer->qid,'is_correct'=>1));
+		/** @var QnaComment $answer */
+		$answer = QnaComment::model()->findByPk($answerId);
+		
+		if($answer === null)
+			return;
+		
+		$canUserMarkQuestion = Yii::app()->user->is_admin || $answer->question->authorid === Yii::app()->user->id;
+		
+		if(!$canUserMarkQuestion) 
+			return;
+		
+		$previousCorrectAnswer = QnaComment::model()->findByAttributes  (
+				array('qid'=>$answer->qid , 'is_correct'=>true)
+		);
+		
 
-		if($answer->authorid != YII::app()->user->id && $is_qna_answered == 0){
-			$answer->is_correct = 1;
-			$answer->save();
-			
-			$the_helpers_user = User::model()->findByPk($answer->authorid);
-			$the_helpers_user->points += 2;
-			$the_helpers_user->save();
-		}
+		if(null !== $previousCorrectAnswer)
+			$this->unmarkCorrectAnswer($previousCorrectAnswer);
+		
+		QnaComment::model()->updateByPk($answer->aid, array('is_correct' => true));
+		User::updatePointsBy($answer->author->id, + static::POINTS_FOR_CORRECT_ANSWER);
+		
 	}
+	
+	
+
+	private function unmarkCorrectAnswer(QnaComment $answer)
+	{
+		
+		QnaComment::model()->updateByPk($answer->aid, array('is_correct' => false));
+		User::updatePointsBy($answer->author->id, - static::POINTS_FOR_CORRECT_ANSWER);
+	}
+	
 	
     public function actionIndex()
     {
@@ -136,9 +169,10 @@ class QnaController extends Controller
 	            static::addQnaToViewedList($qna);
 	    	}
 	    
-	    	$is_qna_answered = QnaComment::model()->countByAttributes(array('qid'=>$qna->qid,'is_correct'=>1));
-
-            $this->render('//qna/viewQna', array('qna' => &$qna, 'is_qna_answered'=>$is_qna_answered));      
+			$canUserMarkAnswer = !Yii::app()->user->isGuest && 
+				( Yii::app()->user->is_admin || Yii::app()->user->id === $qna->author->id );
+			
+            $this->render('//qna/viewQna', array('qna' => &$qna, 'canUserMarkAnswer' => &$canUserMarkAnswer));      
             QnaController::removeQnaFromListOfNewAnswers($qna);
         }
         else

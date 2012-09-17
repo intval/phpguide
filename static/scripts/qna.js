@@ -98,7 +98,9 @@ var qna =
     	
     	var h2TitleContainer = jQuery('.question-summary-wrapper h2');
     	h2TitleContainer.html('<input type="text" id="editQuestionTitle" ' +  
-    						  ' style="width:400px" value="'+escapeHtml(h2TitleContainer.find('a').text())+'"/>')
+    						  ' style="width:400px" value="'+
+    						  escapeHtml(h2TitleContainer.find('a').text())+
+    						  '"/>');
     },
     
     editQuestionSent: function ()
@@ -176,13 +178,27 @@ var qna =
     		return false;
     	});
     	
-    	
-    	
+    },
+    
+    activateCorrectMarkingButton : function()
+    {
+    	jQuery(".correct_ans").click(function() {
+  		  $.get("/qna/markascorrect/", { ans: parseInt($(this).attr('data-id')) } );
+  		  $('.correct_ans').remove();
+  		  return false;
+  		});
+    },
+    
+    
+    handlePage : function()
+    {
+    	qna.activateEditingButton();
+    	qna.activateCorrectMarkingButton();
     }
     
-}
+};
 
-$(document).ready(qna.activateEditingButton);
+$(document).ready(qna.handlePage);
 
 function escapeHtml(unsafe) {
     return unsafe
@@ -192,15 +208,3 @@ function escapeHtml(unsafe) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
-
-$(document).ready(function() {
-	 $(".correct_ans").click(function() {
-		  aid = $(this).attr('ref');
-		  $(this).addClass('disabled');
-		  $.get("/qna/markascorrect/", { ans: aid } );
-		  $(this).text('תודה לך!');
-
-		  $('.correct_ans[ref!="'+ aid +'"]').remove();
-		  return false;
-		});
-}	
