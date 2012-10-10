@@ -35,7 +35,7 @@
     	<div class='likeus'></div>
         <div class="right" style="padding:5px; font-size: 85%;line-height: 16px; margin-bottom: 25px;  width:400px">
            
-        <img src="/static/images/pixel.gif" title="<? $this->widget('GravatarWidget', array('email' => $article->author->email, 'size' => 50, 'linkOnly' => true)); ?>" alt="<?=e($article->author->login)?>" width="50" height="50" class="right"/>
+        <img src="/static/images/pixel.gif" title="<?php $this->widget('GravatarWidget', array('email' => $article->author->email, 'size' => 50, 'linkOnly' => true)); ?>" alt="<?=e($article->author->login)?>" width="50" height="50" class="right"/>
         <p style=" margin-right:10px; width:245px" class="right">
             על המחבר:
           
@@ -64,7 +64,7 @@
  
     
     
-    <?  $this->renderPartial('//article/comments', array('comments' => $article->comments)); ?>
+    <?php  $this->renderPartial('//article/comments', array('comments' => $article->comments)); ?>
 
 
     

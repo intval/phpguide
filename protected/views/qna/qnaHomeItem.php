@@ -24,7 +24,7 @@
             ,
             <span class="relativetime" style="display:inline-block;">
             	<?= $qna->time->date2heb() ?>
-            	<? if( QnaController::doesQnaHaveNewAnswersSinceLastVisit($qna)) : ?><span style='color:blue; font-style:italic; padding-right:15px;'>חדש</span><?php endif; ?>
+            	<?php if( QnaController::doesQnaHaveNewAnswersSinceLastVisit($qna)) : ?><span style='color:blue; font-style:italic; padding-right:15px;'>חדש</span><?php endif; ?>
             </span>
 		</div>
 	

@@ -14,7 +14,7 @@
 
 <div id="categories_posts" >
 
-<? foreach ($category->articles as $article):  ?>
+<?php foreach ($category->articles as $article):  ?>
 
     <div class="blogpost">
         

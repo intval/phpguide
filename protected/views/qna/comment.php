@@ -1,7 +1,7 @@
 <div class="answer" id="answer<?=$answer->aid?>">
 	<div>	
 		<span class="userinfo" >
-	            <? $this->widget('GravatarWidget', array('email' => $answer->author->email, 'size' => 20, 'htmlOptions' => array('class'=>"avatar"))); ?>
+	            <?php $this->widget('GravatarWidget', array('email' => $answer->author->email, 'size' => 20, 'htmlOptions' => array('class'=>"avatar"))); ?>
 		   ענה
 		    <?=e($answer->author->login)?>
 		   ב
@@ -13,14 +13,14 @@
 		<?php if(!Yii::app()->user->isguest && Yii::app()->user->is_admin) { ?><a class="qna-answer-delete" title='מחק תשובה'></a><?php } ?>
 
 		<div class="clear"></div>
-		<? if( $canUserMarkAnswer ):?>
+		<?php if( $canUserMarkAnswer ):?>
 		<a href="#" class="btn btn-success btn-mini correct_ans" style="float:left;" data-id="<?= $answer->aid; ?>">
 			סמן בתור תשובה נכונה
 		</a>
-		<? endif; ?>
-		<? if($answer->is_correct == 1): ?>
+		<?php endif; ?>
+		<?php if($answer->is_correct == 1): ?>
 		<span class="badge badge-success">התשובה הנכונה</span>
-		<? endif; ?>
+		<?php endif; ?>
 	</div>
 	
 	<p>

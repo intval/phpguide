@@ -11,11 +11,11 @@
 </section>
     
     
-<? $this->widget('application.components.LoginBox') ?>
+<?php $this->widget('application.components.LoginBox') ?>
 
-<? $this->widget('application.components.RatingWidget'); ?>
+<?php $this->widget('application.components.RatingWidget'); ?>
 			
-<? $this->widget('application.components.RecentEvents'); ?>
+<?php $this->widget('application.components.RecentEvents'); ?>
 
 <section class="logos">
 	<a href="https://github.com/intval/phpguide" title='phpguide is open source. Help us!' class='github'></a>

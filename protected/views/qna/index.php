@@ -1,4 +1,4 @@
-<? $this->renderPartial('//qna/newQuestionForm') ?>
+<?php $this->renderPartial('//qna/newQuestionForm') ?>
 
 
 
@@ -8,7 +8,7 @@
 
 
 
-<?  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
+<?php  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
 
 <div class="paginator" id="paginator4" dir="ltr"></div>
 

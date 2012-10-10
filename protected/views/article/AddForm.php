@@ -49,11 +49,11 @@
             
            
 
-            <? if ($article->url !== null && $is_editor_admin): ?>
+            <?php if ($article->url !== null && $is_editor_admin): ?>
             <br/><br/><label>
                 <input type="checkbox" name="change_permalink"/>
                 לשנות קישור קיים?</label><br/>             
-            <? endif; ?>
+            <?php endif; ?>
             <div class="buttons" dir="rtl" >
                 <a href="javascript:$('#data').bbcode('b');" title="bold text"  class="bold-text">B</a>
                 <a href="javascript:$('#data').bbcode('i')" title="italic text"  class="italic-text">I</a>

@@ -8,7 +8,7 @@
     <meta name="keywords" content="<?=e($this->keywords)?>" />
     <meta name="author" content="<?=e($this->pageAuthor)?>" />
     
-    <? if ($this->facebook): ?>
+    <?php if ($this->facebook): ?>
     <meta property="og:title" content="<?=e($this->pageTitle)?>" />
     <meta property="og:description" content="<?=e($this->description)?>" />
     <meta property="og:type" content="<?=e($this->facebook['type'])?>" />
@@ -18,7 +18,7 @@
     <meta property="fb:admins" content="<?=e($this->facebook['admins'])?>" />
     <meta property="fb:app_id" content="<?=e($this->facebook['app_id'])?>" />
     <meta name="medium" content="blog" />
-    <? endif; ?>
+    <?php endif; ?>
 
     <link rel="shortcut icon" href="<?=bu("static/images/favicon.ico")?>" />
     <link href='<?=bu("static/styles/bootstrap.".filemtime(getcwd().'/static/styles/bootstrap.css').".css")?>' rel='stylesheet' />

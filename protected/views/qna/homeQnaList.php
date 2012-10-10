@@ -1,4 +1,4 @@
-<? if($qnas): ?>
+<?php if($qnas): ?>
 
 <h3 style="color: #BC1D35;">
     שאלות אחרונות
@@ -12,4 +12,4 @@
     ?>
     <div class='clear'></div>
 
-<? endif; ?>
+<?php endif; ?>

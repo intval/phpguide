@@ -1,4 +1,4 @@
-<? $model = new QnaQuestion(); ?>
+<?php $model = new QnaQuestion(); ?>
 
 <div class="new_question_form" >
     <div style="margin:0 auto;width:90%;">

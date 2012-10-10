@@ -1,10 +1,10 @@
-<? $user = & Yii::app()->user; ?>
+<?php $user = & Yii::app()->user; ?>
 
 <script type='text/javascript'>
 var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 </script>
 
-<? if(!$user->isguest): ?>
+<?php if(!$user->isguest): ?>
 
 <section id="userinfo" class='registered'>
 	<div class="ava">
@@ -31,7 +31,7 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 
 
 
-<? else: ?>
+<?php else: ?>
 
 <section id="userinfo" class='unregistered'>
 
@@ -97,4 +97,4 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 	
 </section>
 
-<? endif; ?>
+<?php endif; ?>

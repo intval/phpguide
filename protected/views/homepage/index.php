@@ -1,7 +1,7 @@
-<? $this->renderPartial('//qna/newQuestionForm') ?>
+<?php $this->renderPartial('//qna/newQuestionForm') ?>
 
 <section class='clearfix homepage-qna'>
-    <?  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
+    <?php  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
 </section>
 
 <div class="homepage-banner">
@@ -9,6 +9,6 @@
 </div>
 
 <div class='homepage-articles'>
-<?  $this->renderPartial('//article/homepageArticlesList', array('articles' =>  $articles )); ?>
+<?php  $this->renderPartial('//article/homepageArticlesList', array('articles' =>  $articles )); ?>
 &larr; <a href='<?=bu('Article/All')?>'>כל הפוסטים</a>
 </div>

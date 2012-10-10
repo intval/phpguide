@@ -2,7 +2,7 @@
     
 <section id="last_comments" class="rblock">
     <h3>תגובות אחרונות</h3>
-    <? foreach($comments as $comment): ?>
+    <?php foreach($comments as $comment): ?>
     <dl>
             <dt><?php $this->widget('GravatarWidget', array('size' => 24, 'email' => $comment->CommentAuthor->email)); ?></dt>
             <dd>
@@ -14,5 +14,5 @@
             </dd>
 
     </dl>
-    <? endforeach; ?>
+    <?php endforeach; ?>
 </section>

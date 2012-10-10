@@ -34,7 +34,7 @@
 <div id="categories_posts" >
 
 
-<? foreach ($articles as $article):  ?>
+<?php foreach ($articles as $article):  ?>
 
     <div class="blogpost">
 
@@ -60,7 +60,7 @@
             <time datetime="<?=$article->pub_date->date2rfc();?>" ></time>
         </article>
     </div>
-<? endforeach; ?>
+<?php endforeach; ?>
 
 </div>
 

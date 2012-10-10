@@ -46,7 +46,7 @@
 				</tr>
 				<tr>
 					<td>ביקר:</td>
-					<td><? if($user->last_visit != null) echo e($user->last_visit->date2heb(1))?></td>
+					<td><?php if($user->last_visit != null) echo e($user->last_visit->date2heb(1))?></td>
 				</tr>
 			</table>
 		  

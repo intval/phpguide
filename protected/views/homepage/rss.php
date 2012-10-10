@@ -13,7 +13,7 @@
     <lastBuildDate><?=$articles[0]->pub_date->date2rfc()?></lastBuildDate>
 
 
-    <? foreach( $articles as $item ): ?>
+    <?php foreach( $articles as $item ): ?>
         <item>
             <title><![CDATA[<?=e($item->title)?>]]></title>
             <guid><?=e(bu(urlencode($item->url . '.htm'), true))?></guid>
@@ -32,7 +32,7 @@
             <pubDate><?=$item->pub_date->date2rfc()?></pubDate>
             <category><?=bu(null, true)?></category>
         </item>
-    <? endforeach; ?>
+    <?php endforeach; ?>
 
 
 </channel>

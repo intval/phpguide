@@ -86,12 +86,12 @@
         <div class="clear"></div>
         <br/><br/><br/><br/>
         <ol class="luck-read-more">
-        <? foreach($alternatives as $article): ?>
+        <?php foreach($alternatives as $article): ?>
         <li style="margin-top:20px;">
             <a href="/<?=urlencode($article->url)?>.htm" title="<?=e($article->description)?>" rel="details" >
             <?=e($article->title)?></a> <br/> <?=e($article->description)?>
         </li>
-        <? endforeach; ?>
+        <?php endforeach; ?>
         </ol>
         
     </div>
