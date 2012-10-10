@@ -18,10 +18,11 @@
 
 
 // determine whether this is production environment
-$production = !in_array( $_SERVER['REMOTE_ADDR'] , array('::1', '127.0.0.1'));
+$localIPs = ['::ffff:127.0.0.1', '::1', '127.0.0.1'];
+$production = !in_array( $_SERVER['REMOTE_ADDR'] , $localIPs);
 
 // Config path
-$config = include dirname(__FILE__).'/protected/config/config.php';
+$config = include __DIR__.'/protected/config/config.php';
 
 
 if( !$production )
@@ -36,13 +37,13 @@ if( !$production )
     // *local application ONLY* - make inside this file.
 
     // has a function to adjust config for local env
-    require dirname(__FILE__).'/protected/config/local_config.php';
+    require __DIR__.'/protected/config/local_config.php';
 }
 
 
 // use light version in production
 require_once($config['params']['PATH_TO_YII'].'/yii'.($production ? 'lite' : '').'.php');
-require_once(dirname(__FILE__).'/protected/sources/global_functions.php');
+require_once(__DIR__.'/protected/sources/global_functions.php');
 Yii::createWebApplication($config)->run();
 
 

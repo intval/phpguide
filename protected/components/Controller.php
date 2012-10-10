@@ -16,119 +16,143 @@ class Controller extends CController
 	 */
 	public $menu=array();
 
-        /**
+    /**
 	 * @var array the breadcrumbs of the current page. The value of this property will
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
         
-        /**
-         * Facebook microformats data, used to help facebook get an idea what is this page about
-         * @var array $facebook
-         */
-        protected $facebook = array
-        (
-            'image' => '',            // set after getting host
-            'current_page_url' => '', // set at runtime, when request's url is known
-            'site_name' => 'מדריך לימוד PHP — phpguide.co.il',
-            'admins' => '100001276887326',
-            'app_id' => '188852921151034',
-            'type' => 'blog'
-        );
-        
-       
-        /**
-         * <meta> keywords
-         * @var string
-         */
-        public $keywords = 'מדריך, לימוד, PHP';
-        
-        /**
-         * <meta> author
-         * @var string
-         */
-        public $pageAuthor = 'אלכסנדר רסקין';
-        
-        /**
-         * <meta> description
-         * @var string
-         */
-        public $description = "לימוד PHP, מדריכי בניית אתרים, לימוד SQL";
-        
-        /**
-         * <title> of the page, overrides CController->pageTitle
-         * @var string
-         */
-        public $pageTitle = 'לימוד PHP | מדריכי PHP | שאלות PHP';
-        
-        
-        /**
-         * defines the meta microformat schema for the document. 
-         * Could be: Artile, Blog, Book, Person, Product, Review, Other, Event, Organization, LocalBusiness,
-         * @see http://schema.org/docs/schemas.html
-         * @var string
-         */
-        public $metaType = 'Blog';
-        
-        
-        /**
-         * This is the action to handle external exceptions.
-         */
-        public function actionError()
-        {
-            if(false !== ($error=Yii::app()->errorHandler->error))
-            {
-                if(Yii::app()->request->isAjaxRequest)
-                    echo $error['message'];
-                else
-                    $this->render('//error', $error);
-            }
-        }
-        
-        
-        /**
-         * Registers client script from URL and adds it to lateload
-         * Takes the scripts from static/scripts/___.js folder, automatically appending file extension
-         * @param args $script list of arguments, each argument should be a different script
-         * @example $this->addscript('ui') results in <script src='static/scripts/ui.js'>
-         * @example $this->addscript('ui', 'bbcode', 'http://jquery.com/jquery.js');
-         */
-        protected function addscripts($scripts)
-        {
-            foreach (func_get_args() as $url)
-            {
-                if (mb_substr($url, 0, 7) != "http://")
-                {
-                    $url = bu("static/scripts/$url.".filemtime(getcwd()."/static/scripts/$url.js").".js");
-                }
-                Yii::app()->clientScript->registerScriptFile($url, CClientScript::POS_END);
-            }
-        }
-        
-        /**
-         * You are not supposed to call this method directly, i guess
-         * @param type $id
-         * @param type $module 
-         */
-        public function __construct($id, $module = null)
-        {
-            if(!isset($_SERVER["HTTP_USER_AGENT"]) || stristr($_SERVER["HTTP_USER_AGENT"],'facebook') === FALSE)
-            {
-                // should display microformats metadata only to facebook client
-                $this->facebook = null;
-            }
-            else
-            {
-                // nginx access apache via internal communications, therefore REQUEST_URI
-                // is missing. But nginx kindly pushes that value into another server var.
-                $this->facebook['current_page_url'] = 'http://' . $_SERVER['HTTP_HOST'] . (isset($_SERVER["REDIRECT_URL"]) ? $_SERVER["REDIRECT_URL"] : $_SERVER["REQUEST_URI"]);
-                $this->facebook['image'] = 'http://' . $_SERVER['HTTP_HOST'] . '/static/images/logo.jpg';
-            }
 
-			Yii::app()->clientScript->coreScriptPosition = CClientScript::POS_END;
-            parent::__construct($id, $module);
+    private $_assetsBase;
+
+
+    /**
+     * Facebook microformats data, used to help facebook get an idea what is this page about
+     * @var array $facebook
+     */
+    protected $facebook = array
+    (
+        'image' => '',            // set after getting host
+        'current_page_url' => '', // set at runtime, when request's url is known
+        'site_name' => 'מדריך לימוד PHP — phpguide.co.il',
+        'admins' => '100001276887326',
+        'app_id' => '188852921151034',
+        'type' => 'blog'
+    );
+    
+   
+    /**
+     * <meta> keywords
+     * @var string
+     */
+    public $keywords = 'מדריך, לימוד, PHP';
+    
+    /**
+     * <meta> author
+     * @var string
+     */
+    public $pageAuthor = 'אלכסנדר רסקין';
+    
+    /**
+     * <meta> description
+     * @var string
+     */
+    public $description = "לימוד PHP, מדריכי בניית אתרים, לימוד SQL";
+    
+    /**
+     * <title> of the page, overrides CController->pageTitle
+     * @var string
+     */
+    public $pageTitle = 'לימוד PHP | מדריכי PHP | שאלות PHP';
+    
+    
+    /**
+     * defines the meta microformat schema for the document. 
+     * Could be: Artile, Blog, Book, Person, Product, Review, Other, Event, Organization, LocalBusiness,
+     * @see http://schema.org/docs/schemas.html
+     * @var string
+     */
+    public $metaType = 'Blog';
+    
+    
+    /**
+     * This is the action to handle external exceptions.
+     */
+    public function actionError()
+    {
+        if(false !== ($error=Yii::app()->errorHandler->error))
+        {
+            if(Yii::app()->request->isAjaxRequest)
+                echo $error['message'];
+            else
+                $this->render('//error', $error);
         }
+    }
+    
+    
+    /**
+     * Registers client script from URL and adds it to lateload
+     * Takes the scripts from static/scripts/___.js folder, automatically appending file extension
+     * @param args $script list of arguments, each argument should be a different script
+     * @example $this->addscript('ui') results in <script src='static/scripts/ui.js'>
+     * @example $this->addscript('ui', 'bbcode', 'http://jquery.com/jquery.js');
+     */
+    protected function addscripts($scripts)
+    {
+        foreach (func_get_args() as $url)
+        {
+            if (mb_substr($url, 0, 7) != "http://")
+            {
+                $url = $this->getAssetsBase()."/scripts/$url.js";
+            }
+            Yii::app()->clientScript->registerScriptFile($url, CClientScript::POS_END);
+        }
+    }
+    
+    /**
+     * You are not supposed to call this method directly, i guess
+     * @param type $id
+     * @param type $module 
+     */
+    public function __construct($id, $module = null)
+    {
+        if(!isset($_SERVER["HTTP_USER_AGENT"]) || stristr($_SERVER["HTTP_USER_AGENT"],'facebook') === FALSE)
+        {
+            // should display microformats metadata only to facebook client
+            $this->facebook = null;
+        }
+        else
+        {
+            // nginx access apache via internal communications, therefore REQUEST_URI
+            // is missing. But nginx kindly pushes that value into another server var.
+            $this->facebook['current_page_url'] = 'http://' . $_SERVER['HTTP_HOST'] . (isset($_SERVER["REDIRECT_URL"]) ? $_SERVER["REDIRECT_URL"] : $_SERVER["REQUEST_URI"]);
+            $this->facebook['image'] = 'http://' . $_SERVER['HTTP_HOST'] . '/static/images/logo.jpg';
+        }
+
+		Yii::app()->clientScript->coreScriptPosition = CClientScript::POS_END;
+        parent::__construct($id, $module);
+    }
+
+
+
+    /**
+    * Returns the base path to the assets dir
+    */ 
+    public function getAssetsBase()
+    {
+        if ($this->_assetsBase === null) 
+        {
+            $this->_assetsBase = Yii::app()->assetManager->publish
+            (
+                Yii::getPathOfAlias('application.assets'),
+                false,
+                -1,
+                YII_DEBUG
+            );
+        }
+        return $this->_assetsBase;
+    }
         
 }
 

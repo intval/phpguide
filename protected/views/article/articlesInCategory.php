@@ -39,7 +39,7 @@
             <time datetime="<?=$article->pub_date->date2rfc();?>"></time>         
         </article>
     </div>
-<?endforeach;?>
+<?php endforeach;?>
 
 </div>
 

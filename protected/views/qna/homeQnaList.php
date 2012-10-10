@@ -4,7 +4,7 @@
     שאלות אחרונות
 </h3>
 
-    <?
+    <?php
         foreach($qnas as $qna)
         {
                 $this->renderPartial('//qna/qnaHomeItem', array('qna' => &$qna));

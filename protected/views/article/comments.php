@@ -10,5 +10,5 @@
         
         
         
-    <?endif;?>
+    <?php endif;?>
     </section>

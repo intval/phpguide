@@ -4,7 +4,7 @@
 		<?php $this->widget('GravatarWidget', array('size' => 85, 'email' => $user->email)); ?>
 		<div class='right nick_and_rating'>
 			<div class='nick'><?=e($user->login)?></div>
-			<div class='name'><?/*=e($user->name) /* Should ask user's permission to display this */?></div>
+			<div class='name'><?php /*=e($user->name) /* Should ask user's permission to display this */?></div>
 			<div class='points'>רייטינג: <span><?=e($user->points)?></span></div>
 		</div>
 		<div class='clear'></div>
@@ -13,7 +13,7 @@
 	<div class='tabs'>
 		<ul class="nav nav-tabs">
 		  <li class='active'><a href="#whois" data-toggle="tab">Whois</a></li>
-		  <li><a href="#posts" data-toggle="tab">מה כתב<?if($user->gender === 'female') echo 'ה';?></a></li>
+		  <li><a href="#posts" data-toggle="tab">מה כתב<?php if($user->gender === 'female') echo 'ה';?></a></li>
 		  <li><a href="#about" data-toggle="tab"><?= $user->gender === 'male' ? 'מספר על עצמו' : 'מספרת על עצמה' ?></a></li>
 		  <?php if(!Yii::app()->user->isGuest && Yii::app()->user->id == $user->id) :?>
 		  <li><a href="#edit" data-toggle="tab">עריכת פרטים</a></li>
@@ -42,7 +42,7 @@
 				</tr>
 				<tr>
 					<td>נרשם:</td>
-					<td><?if($user->reg_date != null) echo e($user->reg_date->date2heb(1))?></td>
+					<td><?php if($user->reg_date != null) echo e($user->reg_date->date2heb(1))?></td>
 				</tr>
 				<tr>
 					<td>ביקר:</td>
