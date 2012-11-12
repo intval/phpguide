@@ -23,7 +23,7 @@ function apply_local_changes_to_config(&$conf)
     (
         'class'     => 'system.gii.GiiModule',
         'password'  => 'qwerty',
-        'ipFilters' => array('127.0.0.1','::1'),
+        'ipFilters' => array('127.0.0.1','::1', '::ffff:127.0.0.1'),
     );
     
     // add logging in development env
