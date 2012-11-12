@@ -1,7 +1,11 @@
 <?php
 
-// change the following paths if necessary
-$yiic=dirname(__FILE__).'/../../../server/framework/yiic.php';
-$config=dirname(__FILE__).'/config/console.php';
 
-require_once($yiic);
+// Config path
+$config = include __DIR__.'/config/config.php';
+
+// has a function to adjust config for local env
+require __DIR__.'/config/local_config.php';
+
+require_once($config['params']['PATH_TO_YII'].'/yiic.php');
+
