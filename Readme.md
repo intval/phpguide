@@ -21,7 +21,7 @@ Requirments
 
 - MySQL > 5.1
 
-- PHP > 5.3.3
+- PHP > 5.4.8
 
 - *short_open_tags On* !!!!!
 
