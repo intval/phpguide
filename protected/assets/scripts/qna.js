@@ -154,7 +154,7 @@ var qna =
     	});
     	
     	
-    	$('#qnaQuestionHolder')
+    	jQuery('#qnaQuestionHolder')
     	.on('click', 'a.qna-question-edit',  function(item){
     		qna.startEdittingQuestion($(this).nextAll('div.qnapost'));
     	})
@@ -188,12 +188,45 @@ var qna =
   		  return false;
   		});
     },
-    
+
+    activateSubscriptionHandler : function()
+    {
+        jQuery('#qnaSubscribe').on('click', function(checkbox){
+
+            var isChecked = $('#qnaSubscribe').is(':checked');
+            var qid = jQuery('#QnaComment_qid').val();
+
+            jQuery.get('/qna/subscribe', {subscribe: isChecked, subscribeQid: qid});
+            qna.changeSubscriptionButtonText(isChecked);
+
+        });
+    },
+
+    changeSubscriptionButtonText : function(isChecked)
+    {
+        var statusBlock = jQuery('#qnaSubscriptionStatus');
+        var textSubscribe = statusBlock.find('span.sub');
+        var textUnsub = statusBlock.find('span.unsub');
+
+        if(isChecked)
+        {
+            textSubscribe.hide();
+            textUnsub.show();
+            statusBlock.removeClass('alert-warning').addClass('alert-success');
+        }
+        else
+        {
+            textUnsub.hide();
+            textSubscribe.show();
+            statusBlock.removeClass('alert-success').addClass('alert-warning');
+        }
+    },
     
     handlePage : function()
     {
     	qna.activateEditingButton();
     	qna.activateCorrectMarkingButton();
+        qna.activateSubscriptionHandler();
     }
     
 };

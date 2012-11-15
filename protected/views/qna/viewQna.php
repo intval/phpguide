@@ -39,3 +39,23 @@ $model->qid = $qna->qid;
 $this->renderPartial('commentsForm', array('model' => $model)); 
 
 ?>
+
+<?php if(!Yii::app()->user->isGuest): ?>
+
+<div class='alert alert-<?php echo $isSubscribed ? 'success' : 'warning' ?>' id="qnaSubscriptionStatus">
+    <label>
+        <?= CHtml::checkBox('qnasubscribe', $isSubscribed, ['id' => 'qnaSubscribe']); ?>
+
+        <span class='sub' <?php if($isSubscribed) echo 'style="display:none;"' ?>>
+        לחץ כאן כדי להירשם לעידכונים במייל על תשובות חדשות באשכול
+        </span>
+
+        <span class='unsub' <?php if(!$isSubscribed) echo 'style="display:none;"' ?>>
+        אתה רשום לעדכוני מייל באשכול זה. לחץ כאן לביטול ההרשמה
+        </span>
+
+    </label>
+</div>
+
+
+<?php endif; ?>

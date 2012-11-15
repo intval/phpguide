@@ -73,21 +73,22 @@ class QnaQuestion extends DTActiveRecord
     }
 
 
-        public function defaultScope()
-        {
-            return array
+    public function defaultScope()
+    {
+        return array
+        (
+            'condition' =>  'status!="hidden"' ,
+            'order'     =>  'last_activity DESC',
+            'with'      => array
             (
-                'condition' =>  'status!="hidden"' ,
-                'order'     =>  'last_activity DESC',
-                'with'      => array
+                'author' => array
                 (
-                    'author' => array
-                    (
-                        'select'   => array('real_name','login', 'email')
-                    )
+                    'select'   => array('real_name','login', 'email')
                 )
-            );
-        }
+            )
+        );
+    }
+
 
 
    public function getUrl()
