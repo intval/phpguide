@@ -30,7 +30,7 @@
             <br />
             כותרת:
             <br/>
-            <input type="hidden" name="edit" value="<?=$editting_id?>" />
+            <input type="hidden" name="edit" value="<?=$editing_id?>" />
             
             <?= $form->textField($article,'title', array('class' => 'name', 'placeholder' => 'כותרת', 'tabindex' => '1')); ?><br />
             <br/>
