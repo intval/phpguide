@@ -5,7 +5,9 @@
 $config = include __DIR__.'/config/config.php';
 
 // has a function to adjust config for local env
-require __DIR__.'/config/local_config.php';
+$pathToLocalConfig = __DIR__.'/config/local_config.php';
+if(file_exists($pathToLocalConfig))
+    require $pathToLocalConfig;
 
 require_once($config['params']['PATH_TO_YII'].'/yiic.php');
 
