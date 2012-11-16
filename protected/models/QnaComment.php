@@ -14,13 +14,13 @@
  * 
  * The followings are the available model relations:
  * @property User $author
- * @property QnaQuestions $question
+ * @property QnaQuestion $question
  */
 class QnaComment extends DTActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return QnaComments the static model class
+	 * @return QnaComment the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -57,7 +57,7 @@ class QnaComment extends DTActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'author' => array(self::BELONGS_TO, 'User', 'authorid'),
-			'question' => array(self::BELONGS_TO, 'QnaQuestions', 'qid'),
+			'question' => array(self::BELONGS_TO, 'QnaQuestion', 'qid'),
 		);
 	}
 

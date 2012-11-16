@@ -112,4 +112,25 @@ class User extends DTActiveRecord
 		);
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+    public function sendEmail($subject, $text)
+    {
+        //$mailer = new SwiftMailer();
+        // do whatever
+        echo $text;
+
+    }
+
+
+
 }

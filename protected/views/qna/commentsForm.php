@@ -38,6 +38,13 @@
 	    $ajaxProperties = array('success'=>'qna.displayAnswer','beforeSend' => 'qna.answerSent');
 	    $htmlProperties = array('class' => 'btn primary large', 'id' => 'btnNewAnswer');
 	    $btnText = "ענה לשאלה";
+
+        ?>
+        <label>
+            <?= CHtml::checkBox('qnasubscribe', true); ?>
+            לשלוח לי עדכון במייל כשיש תשובות חדשות באשכול
+        </label>
+        <?php
     }
     
     echo Chtml::ajaxSubmitButton( $btnText, bu('/Qna/answer'), $ajaxProperties, $htmlProperties);

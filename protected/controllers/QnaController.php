@@ -120,7 +120,7 @@ class QnaController extends Controller
             	$model = new QnaQuestion();
             }
             
-            if($model === null) 
+            if($model === null)
             {
             	echo 'aww';
             	return;
@@ -143,13 +143,14 @@ class QnaController extends Controller
             }
             else
             {
-                echo 'err::Invalid attributes?' , var_dump($model->getErrors());
+                echo 'err::Invalid attributes?' ; var_dump($model->getErrors());
             }
         }
     }
 
     public function actionView($id)
     {
+        /** @var QnaQuestion $qna */
         $qna = QnaQuestion::model()->findByPk($id);
 	
         if($qna)
@@ -171,8 +172,17 @@ class QnaController extends Controller
 	    
 			$canUserMarkAnswer = !Yii::app()->user->isGuest && 
 				( Yii::app()->user->is_admin || Yii::app()->user->id === $qna->author->id );
-			
-            $this->render('//qna/viewQna', array('qna' => &$qna, 'canUserMarkAnswer' => &$canUserMarkAnswer));      
+
+
+            $isSubscribed = !Yii::app()->user->isGuest &&
+                QnaSubscription::isSubscribed(Yii::app()->user->id, $qna->qid);
+
+
+            $this->render('//qna/viewQna',
+                array('qna' => &$qna,
+                    'canUserMarkAnswer' => &$canUserMarkAnswer,
+                    'isSubscribed' => $isSubscribed
+                ));
             QnaController::removeQnaFromListOfNewAnswers($qna);
         }
         else
@@ -185,6 +195,7 @@ class QnaController extends Controller
     /**
      * Returns whether the currently logged in user had already viewed this qna page earlier today
      * @param QnaQuestion $qna instance of the question.
+     * @return bool
      */
     protected static function isQnaViewedEarlier($qna)
     {
@@ -194,9 +205,9 @@ class QnaController extends Controller
     
     /**
      * Add's the qna's id to the list of qna's already viewed by the user
-     * @param QnaQuestion $qid instance of the question
+     * @param QnaQuestion $qna instance of the question
      */
-    protected static function addQnaToViewedList($qna)
+    protected static function addQnaToViewedList(QnaQuestion $qna)
     {
     	$tempSession=Yii::app()->session[static::viewed_qnas_session_key] ?: array();
     	array_push($tempSession, $qna->qid);
@@ -221,12 +232,15 @@ class QnaController extends Controller
     	    {
 
     	    	$answer = null;
+                $isNew = true;
     	    	
     	    	if(isset($_POST['QnaComment']['aid']))
     	    	{
     	    		$answer = QnaComment::model()->findByPk($_POST['QnaComment']['aid']);
     	    		if(!Yii::app()->user->is_admin && Yii::app()->user->id !== $answer->authorid)
     	    			throw new Exception("Not enough permissions to edit this post");
+
+                    $isNew = false;
     	    	}
     	    	
     	    	if(null === $answer)
@@ -259,21 +273,45 @@ class QnaController extends Controller
                 $transaction->commit();   
                 
                 if('string' === gettype($answer->time)) $answer->time = new SDateTime($answer->time); 
-                $this->renderPartial('//qna/comment', array('answer' => &$answer ));
+                $this->renderPartial('//qna/comment', array('answer' => &$answer, 'canUserMarkAnswer' => false ));
+
+
+
+                if($isNew)
+                {
+                    QnaSubscription::notifySubscribers($answer->question, [Yii::app()->user->id]);
+
+                    if(false !== Yii::app()->request->getPost('qnasubscribe', false))
+                        QnaSubscription::subscribe(Yii::app()->user->id, $answer->question->qid);
+                    else
+                        QnaSubscription::unsubscribe(Yii::app()->user->id, $answer->question->qid);
+                }
+
                 
     	    }
     	    catch(Exception $e)
     	    {
                 echo ':err:'; 
-                if(YII_DEBUG || (!Yii::app()->user->isguest &&  Yii::app()->user->is_admin)) echo $e->getMessage();
-                $transaction->rollback();
+                if(YII_DEBUG || (!Yii::app()->user->isguest &&  Yii::app()->user->is_admin))
+                {
+                    echo $e->getMessage();
+                    var_dump($e);
+                }
+
+                if($transaction->active)
+                    $transaction->rollback();
+
                 Yii::log("Couldn't save qnaAnswer \r\n" . $e->getMessage() , CLogger::LEVEL_ERROR);
     	    }
     	    
     	    
     	}
     }
-    
+
+
+
+
+
     /**
      * Renders CActiveForm for QNaComment by specified GET[id] in ajax requests only
      */
@@ -302,7 +340,7 @@ class QnaController extends Controller
     		$model = null;
     
     		if( null !== $questionid ) $model = QnaQuestion::model()->findByPk($questionid,  (!Yii::app()->user->isguest &&  Yii::app()->user->is_admin) ? '' : 'authorid = ' . Yii::app()->user->id);
-    		if( null === $model ) 
+    		if( null === $model )
     		{
     			echo 'aw';
     			return;
@@ -388,6 +426,55 @@ class QnaController extends Controller
     	}
     }
     
-    
+
+
+
+
+
+
+
+
+
+
+    public function actionSubscribe()
+    {
+        $shouldSubscribe = Yii::app()->request->getQuery('subscribe', false);
+        $qid = intval(Yii::app()->request->getQuery('subscribeQid'));
+
+        if(0 === $qid || Yii::app()->user->isGuest)
+            return;
+
+        $user = Yii::app()->user->id;
+
+        if($shouldSubscribe === 'true')
+            QnaSubscription::subscribe($user, $qid);
+        else
+        {
+            QnaSubscription::unsubscribe($user, $qid);
+           echo 'ההרשמה לאשכול בוטלה';
+        }
+    }
+
+    public function actionUnsubscribeAll()
+    {
+        $userid = Yii::app()->request->getQuery('user', null);
+        $hash = Yii::app()->request->getQuery('hash', null);
+
+        if(QnaSubscription::unsubscribeAll($userid, $hash))
+            echo 'ההרשמה לכל האשכולות בוטלה';
+        else
+            echo 'invalid url';
+    }
+
+
+
+
+
+
+
+
+
+
+
     
 }

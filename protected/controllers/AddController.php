@@ -27,7 +27,7 @@ class AddController extends Controller
             (
                 'article'  => $this->_articlesModel,
                 'plain'  => $this->_plainModel,
-                'editting_id'   => $this->_articlesModel->id,
+                'editing_id'   => $this->_articlesModel->id,
                 'categories'    => $this->_articlesCategories,
                 'is_editor_admin'        => !Yii::app()->user->isGuest && Yii::app()->user->is_admin, 
                 'allCategories' => self::tranform_categories_key_value( Category::model()->findAll() )
@@ -119,19 +119,19 @@ class AddController extends Controller
             }
             else
             {
-                // Editting inexisting post?
+                // Editing inexisting post?
                 if( null === ($article = Article::model()->findByPk($id)) )
                 {
                     throw new CHttpException(404);
                 }
 
-                // Editting post without plain text ?
+                // Editing post without plain text ?
                 if( null === ($articlePlain = ArticlePlainText::model()->findByPk($id)))
                 {
                     throw new CHttpException(404);
                 }
 
-                // Dont have privileges for editting posts ?
+                // Dont have privileges for editing posts ?
                 if (Yii::app()->user->isguest || (  $article->author_id != $curuser->id && !$curuser->is_admin ))
                 {
                     throw new CHttpException(404, 'Insuffient privileges');
