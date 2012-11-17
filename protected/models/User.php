@@ -125,10 +125,11 @@ class User extends DTActiveRecord
 
     public function sendEmail($subject, $text)
     {
-        //$mailer = new SwiftMailer();
-        // do whatever
-        echo $text;
+        $headers  = 'MIME-Version: 1.0' . "\r\n" .
+                    'Content-type: text/html; charset=utf-8' . "\r\n".
+                    'From: phpguide <noreply@phpguide.co.il>' . "\r\n";
 
+        mail($this->email, $subject, $text, $headers);
     }
 
 

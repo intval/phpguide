@@ -119,7 +119,7 @@ class QnaSubscription extends CActiveRecord
         $pk = ['qid' => $qid, 'userid' => $uid];
         $existingSubscription = QnaSubscription::model()->findByPk($pk);
 
-        if($action === self::ACTION_UNSUBSCRIBE || null !== $existingSubscription)
+        if($action === self::ACTION_UNSUBSCRIBE && null !== $existingSubscription)
         {
             QnaSubscription::model()->deleteByPk($pk);
         }
