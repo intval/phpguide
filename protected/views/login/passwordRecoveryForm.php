@@ -16,7 +16,21 @@ echo CHtml::beginForm('', 'post', array('onsubmit' => 'return false;'));
 	</div>
 </fieldset>
 
-<?php 
-echo CHtml::ajaxSubmitButton('שלח לי קישור לשחזור סיסמה למייל', $this->createUrl('Login/recover') , array('id' => 'recoverBtn', 'beforeSend' => 'login.recoverySubmitted', 'success' => 'login.recoverySuccess' ), array('class' => 'btn primary'));
+<?php
+
+/** @var PHPGController $this */
+
+echo CHtml::ajaxSubmitButton
+(
+    'שלח לי קישור לשחזור סיסמה למייל',
+    $this->createUrl('Login/recoverSubmit') ,
+    [
+        'id' => 'recoverBtn',
+        'beforeSend' => 'login.recoverySubmitted',
+        'success' => 'login.recoverySuccess'
+    ],
+    ['class' => 'btn primary']
+);
+
 echo CHtml::endForm();
 

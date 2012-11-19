@@ -1,106 +1,129 @@
 <?php
 
-class LoginController extends Controller
+class LoginController extends PHPGController
 {
 
     /**
      * Displays Log-in page
+     *
+     * @return void
      */
     public function actionIndex()
     {
-        $return_location = Yii::app()->request->getQuery('redir',   Yii::app()->homeUrl );
+        $ret_location = Yii::app()->request->getQuery('redir', Yii::app()->homeUrl);
         $this->addscripts('login');
 
         $this->pageTitle = 'הזדהות לאתר לימוד PHP';
         $this->description = 'עמוד הזדהות וכניסה למערכת';
         $this->keywords = 'הזדהות';
 
-        $this->render('login', array('return_location' => $return_location));  
+        $this->render('login', ['return_location' => $ret_location]);
     }
 
     
     /**
      * Password recovery form and validation
+     *
+     * @return void
      */
     public function actionRecover()
     {
-    	if(Yii::app()->request->getIsAjaxRequest())
-    	{
-    		$login = Yii::app()->request->getPost('login');
-    		$email = Yii::app()->request->getPost('email');
-    		
-    		if( '' === trim($login)  ||  '' === trim($email) )
-    		{
-    			echo 'יש להזין אימייל ושם משתמש כלשהם';
-    		}
-    		else
-    		{
-    			try
-    			{
-    				$user = User::model()->findByAttributes(array('login' => $login, 'email' => $email));
-    				if(null === $user)
-    				{
-    					echo 'לא נמצא משתמש כזה במערכת';
-    				}
-    				else
-    				{
-    					$pwr = new PasswordRecovery();
-    					$pwr->userid = $user->id;
-    					$pwr->ip = Yii::app()->request->getUserHostAddress();
-    					$pwr->key = Helpers::randString(20);
-    					$pwr->validity = new CDbExpression('DATE_ADD(NOW(), INTERVAL 1 HOUR)');
-    					$pwr->save();
-    					
-    					$recovery_url = bu('login/recoverykey?id='.$pwr->id . '&key='.$pwr->key, true);
-    					
-    					$mail = $this->renderPartial('recoveryMail', array('username' => $user->login, 'recovery_url' => $recovery_url), true);
-    					Helpers::sendMail($user->email, "שחזור סיסמה באתר phpguide", $mail);
-    					
-    					echo 'מייל עם הוראות לשחזור סיסמה נשלח לכתובת המייל שלך';
-    				}
-    			}
-    			catch(Exception $e)
-    			{
-    				echo 'חלה שגיאה לא מוכרת כלשהי. נסו שוב מאוחר יותר';
-    				Yii::log("Password recovery error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
-    			}
-    		}
-    	}
-    	else
-    	{
-    		
-    		$this->pageTitle = 'שחזור סיסמה';
-    		$this->description = 'שחזור סיסמה באתר לימוד PHP';
-    		$this->keywords = 'שחזור, סיסמה';
-    		
-    		$this->addscripts('login');
-    		$this->render('passwordRecovery');
-    	}
+        $this->pageTitle = 'שחזור סיסמה';
+        $this->description = 'שחזור סיסמה באתר לימוד PHP';
+        $this->keywords = 'שחזור, סיסמה';
+
+        $this->addscripts('login');
+        $this->render('passwordRecoveryForm');
+
+    }
+
+    /**
+     * Handles submission of the request pw recovery form
+     *
+     * @return void
+     */
+    public function actionRecoverSubmit()
+    {
+
+        $login = Yii::app()->request->getPost('login');
+        $email = Yii::app()->request->getPost('email');
+
+        $recoveryModel = new PasswordRecovery();
+        $ip = Yii::app()->request->getUserHostAddress();
+
+        try
+        {
+            $recoveryResult = $recoveryModel->requestRecovery($login, $email, $ip);
+        }
+        catch(Exception $e)
+        {
+            echo 'חלה שגיאה לא מוכרת כלשהי. נסו שוב מאוחר יותר';
+            $logmsg = "Password recovery error: " . $e->getMessage();
+            Yii::log($logmsg, CLogger::LEVEL_ERROR);
+            return;
+        }
+
+        switch($recoveryResult)
+        {
+            case PasswordRecovery::ERROR_INVALID_EMAIL:
+                echo 'האימייל שהוזן שגוי';
+                break;
+
+            case PasswordRecovery::ERROR_USER_NOT_FOUND:
+                echo 'משתמש עם שם כזה לא רשום במערת';
+                break;
+
+            case PasswordRecovery::ERROR_NONE:
+                echo 'מייל עם הוראות לשחזור סיסמה נשלח לכתובת המייל שלך';
+                break;
+
+            default:
+                echo 'חלה תקלה במערכת. עמכם הסליחה';
+                break;
+        }
+
+
+
+
     }
 
     
     /**
      * Action to be called when a user clicks recover password link in the mail
+     *
+     * @throws CHttpException
+     * @return void
      */
-    public function actionRecoverykey()
+    public function actionResetUrl()
     {
-    	$id = Yii::app()->request->getQuery('id');
-    	$key = Yii::app()->request->getQuery('key');
-    	
-    	$pwr = PasswordRecovery::model()->with('user')->findByPk($id, '`key`=:key and validity > NOW()', array('key' => $key));
-    	
-    	if( null === $pwr || null === $pwr->user)
-    	{
-    		$pwr->delete();
-    		$this->redirect(Yii::app()->homeUrl);
-    	}
-    	
-    	$identity = new AuthorizedIdentity($pwr->user);
-    	Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
-    	
-    	$this->addscripts('login');
-    	Yii::app()->clientScript->registerScript('homepage', 'var homepage_url="'.Yii::app()->homeUrl.'"; ', CClientScript::POS_END);
-    	$this->render('changePassword');
+        $id = Yii::app()->request->getQuery('id');
+        $key = Yii::app()->request->getQuery('key');
+
+        $recoveryResult = PasswordRecovery::model()->recover($id, $key);
+
+        switch($recoveryResult)
+        {
+            case PasswordRecovery::ERROR_INVALID_KEY:
+                throw new CHttpException(404);
+                break;
+
+            case PasswordRecovery::ERROR_RECOVER_TIMEOUT:
+                $this->actionRecover();
+                break;
+
+            case PasswordRecovery::ERROR_NONE:
+
+                $this->addscripts('login');
+
+                Yii::app()->clientScript->registerScript(
+                    'homepage',
+                    'var homepage_url="'.Yii::app()->homeUrl.'"; ',
+                    CClientScript::POS_END
+                );
+
+                $this->render('changePassword');
+                break;
+        }
     }
     
     
@@ -126,48 +149,44 @@ class LoginController extends Controller
      */
     public function actionLogin()
     {
-        if(!Yii::app()->request->getIsAjaxRequest())
-        {
-            throw new CHttpException(400, 'This request available via ajax only');
-        }
-        
         $username = Yii::app()->request->getPost('user');
         $password = Yii::app()->request->getPost('pass');
-        
+
+
         if(empty($username) || empty($password))
+            return;
+
+
+        $identity = new DbUserIdentity($username, $password);
+        $authStatus = $identity->authenticate();
+
+
+        switch ($authStatus)
         {
-            echo 'שם משתמש או סיסמה שגויים';
+            case DbUserIdentity::ERROR_IP_LOCKED:
+                echo 'ביצעתם יותר מדי נסניונות התחברות. נסו שוב בעוד שעה';
+                break;
+
+            case CUserIdentity::ERROR_PASSWORD_INVALID:
+                echo 'סיסמה שגויה';
+                break;
+
+            case CUserIdentity::ERROR_USERNAME_INVALID:
+                echo 'שם משתמש שגוי';
+                break;
+
+            case CUserIdentity::ERROR_NONE:
+                $loginDuration = Yii::app()->params['login_remember_me_duration'];
+                Yii::app()->user->login($identity, $loginDuration);
+                $this->updateExternalAuthInfo();
+                echo 'ok';
+                break;
+
+            default:
+                echo 'שגיאה לא מוכרת';
+
         }
-        else
-        {
-            try
-            {
-                $identity = new DbUserIdentity($username, $password); 
-                if($identity->authenticate())
-                {
-                    Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
-                    
-                    // if authentication takes place after external auth, we want to attach the external Id to the account we are authenticating
-                    $this->updateExternalAuthInfo();
-                    
-                    echo 'ok';
-                }
-                else 
-                {
-                    echo('שם משתמש או סיסמה שגויים');
-                }
-            }
-            catch(BruteForceException $e)
-            {
-                echo('ביצעתם יותר מדי נסניונות התחברות. נסו שוב בעוד שעה');
-            }
-            catch(Exception $e)
-            {
-            	echo 'חלה תקלה בתהליך ההזדהות. נסו שום בעוד כמה דקות';
-            	Yii::log("Login error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
-            	
-            }
-        }
+
     }
     
     

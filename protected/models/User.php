@@ -25,16 +25,16 @@
  * @property string $about
  *
  * The followings are the available model relations:
- * @property Blog[] $blogposts
- * @property BlogComments[] $blogComments
- * @property QnaAnswers[] $qnaAnswers
- * @property QnaQuestions[] $qnaQuestions
+ * @property Article[] $blogposts
+ * @property Comment[] $blogComments
+ * @property QnaComment[] $qnaAnswers
+ * @property QnaQuestion[] $qnaQuestions
  */
 class User extends DTActiveRecord
 {
-    
-        
+
 	/**
+     * @param string $className
 	 * Returns the static model of the specified AR class.
 	 * @return User the static model class
 	 */
@@ -98,40 +98,44 @@ class User extends DTActiveRecord
 	 * Updates user's points by specified diff amount
 	 * ie update points for user 1 by +5
 	 *
-	 * @param int $userid user's id to update
 	 * @param int $pointsDiff by how many should increase or decrease points
-	 * @example User::updatePointsBy( $id = 1, $diff = +20 );
+	 * @example $User->updatePointsBy( $id = 1, $diff = +20 );
 	 */
-	public static function updatePointsBy($userid, $pointsDiff)
+	public function updatePointsBy($pointsDiff)
 	{
-		static::model()->updateCounters
+		$this->updateCounters
 		(
-			array('points' => $pointsDiff),
+			['points' => $pointsDiff],
 			"id = :id",
-			array(':id' => $userid)
+			[':id' => $this->id]
 		);
+
+        if(null !== $this->points)
+            $this->points += $pointsDiff;
+
 	}
-
-
-
-
-
-
-
-
-
-
 
 
     public function sendEmail($subject, $text)
     {
-        $headers  = 'MIME-Version: 1.0' . "\r\n" .
-                    'Content-type: text/html; charset=utf-8' . "\r\n".
-                    'From: phpguide <noreply@phpguide.co.il>' . "\r\n";
-
-        mail($this->email, $subject, $text, $headers);
+        helpers::sendMail($this->email, $subject, $text);
     }
 
 
+
+
+    public function getUserByLogin($login)
+    {
+        return static::model()->findByAttributes(['login' => $login]);
+    }
+
+
+
+    public function authorize()
+    {
+        $identity = new AuthorizedIdentity($this);
+        $loginDuration = Yii::app()->params['login_remember_me_duration'];
+        Yii::app()->user->login($identity, $loginDuration);
+    }
 
 }
