@@ -18,8 +18,7 @@ function e($data)
 
 /**
  * Returns baseUrl for given url if any, otherwise returns Yii::app()->baseUrl
- * @staticvar string $baseUrl caches baseUrl instead of calculating it every function call
- * @param string $url postfix the baseUrl with this provided url
+ * @param string $relativePath the path to return relatively to the base url
  * @param bool $prepend_host - shall add http://hostname/ to url ?
  * @return string Yii::app()->baseUrl + $url
  */
@@ -28,16 +27,12 @@ function bu($relativePath = null, $prepend_host = false)
     $url = '';
     
     if($prepend_host) 
-    {
-         $url .= Yii::app()->request->getHostInfo();
-    }
-    
+        $url .= Yii::app()->request->getHostInfo();
+
     $url .= Yii::app()->getRequest()->getBaseUrl();
     
     if($relativePath)
-    {
         $url .= '/'.ltrim($relativePath,'/');
-    }
-    
+
     return $url;
 }

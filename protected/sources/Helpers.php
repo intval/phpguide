@@ -60,7 +60,7 @@ class Helpers
     	$headers .= "MIME-Version: 1.0\r\n";
     	$headers .= "Content-type: text/html; charset=utf-8\r\n";
     	
-    	@mail($to, "=?utf-8?B?".base64_encode($subject)."?=", $content, $headers);
+    	mail($to, "=?utf-8?B?".base64_encode($subject)."?=", $content, $headers);
 
     }
     
