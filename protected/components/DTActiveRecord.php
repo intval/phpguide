@@ -24,23 +24,12 @@ class DTActiveRecord extends CActiveRecord
 	private static $list_of_datetime_columns = null;
 
 	
-	/*
-	protected function beforeSave()
-	{
-		return $this->convert_DateTime_into_strings() && parent::beforeSave();
-	}
-	*/
 	protected function afterFind()
 	{
 		$this->convert_datetime_fields_into_DateTime();
 		return parent::afterFind();
 	}
-	/*
-	protected function afterSave()
-	{
-		return $this->convert_datetime_fields_into_DateTime() && parent::afterSave();
-	}
-	*/
+
 	/**
 	 * Iterates over list of datetime columns of the current object and converts them into DateTime instances
 	 */
@@ -52,20 +41,7 @@ class DTActiveRecord extends CActiveRecord
 		}
 		return true;
 	}
-	
-	/**
-	 * Iterates over list of columens and converts those that are DateTime instances into string for sql query uses 
-	 * /
-	
-	private function convert_DateTime_into_strings()
-	{
-		foreach( $this->datetime_columns() as $column)
-		{
-			if($this->{$column} instanceof SDateTime) $this->{$column} = $this->{$column}->format('Y-m-d H:i:s');
-		}
-		return true;
-	}
-	*/
+
 	
 	/**
 	 * Returns list of columns which are datetime/timestamp type. Generates it if none stored in cache
@@ -89,7 +65,6 @@ class DTActiveRecord extends CActiveRecord
 	 */
 	private function generate_list_of_datettime_columns()
 	{
-		$className = get_class($this);
 		$dtColumns = array();
 		
 		foreach ($this->getMetaData()->columns as $column)
