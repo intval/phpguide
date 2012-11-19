@@ -37,9 +37,11 @@ class WebUser extends CWebUser
      * @var string
      */
     private $plain_password;
-    
-    public function login( $identity, $duration = 31536000)
+
+
+    public function login($identity, $duration = 31536000)
     {
+        /** @var CUserIdentity $identity */
     	$this->user = $identity->user;
         $this->setState('user', $identity->user);
         $this->plain_password = $identity->password;
@@ -88,7 +90,7 @@ class WebUser extends CWebUser
     	$this->setState('prev_visit', $last_visit);
         $this->updateUserDataOnLoginSuccess($fromCookie);
         $this->was_last_visit_time_updated = true;
-        return parent::afterLogin($fromCookie);
+        parent::afterLogin($fromCookie);
     }
     
 
@@ -130,11 +132,10 @@ class WebUser extends CWebUser
     
     /**
      * Sets new attribute values and rehashes password for user in case he is still using the sha1 based pw encryption
-     * @param User $user
-     * @param type $password plain password user used to input for authentication
+     * @param string $password plain password user used to input for authentication
      * @return array
      */
-    private function password_algorithm_upgrade( &$password)
+    private function password_algorithm_upgrade(&$password)
     {
         $attributes = array();
         if(null !== $this->plain_password && 22 !== mb_strlen($this->getUser()->salt))
@@ -166,14 +167,17 @@ class WebUser extends CWebUser
     {
         $restored = false;
         
-        $smfcookie = Yii::app()->request->getCookies()->itemAt(static::OLD_SMF_COOKIE_NAME);
+        $smfcookie = Yii::app()->request->getCookies()
+                        ->itemAt(static::OLD_SMF_COOKIE_NAME);
+
         if($smfcookie !== null)
         {
             $identity = new SMFUserIdentity($smfcookie);
             
             if($identity->authenticate())
             {
-                $this->login($identity, Yii::app()->params['login_remember_me_duration']);
+                $duration = Yii::app()->params['login_remember_me_duration'];
+                $this->login($identity, $duration);
                 $restored = true;
             }
             
@@ -201,7 +205,8 @@ class WebUser extends CWebUser
      */
     public static function encrypt_password($password, $salt)
     {
-        return '' === $password ? '' : crypt($password, sprintf(static::blowfish_hash, $salt) );
+        return '' === $password ? '' :
+            crypt($password, sprintf(static::blowfish_hash, $salt));
     }
     
 }
