@@ -1,6 +1,6 @@
 <?php
 
-class CommentsController extends Controller
+class CommentsController extends PHPGController
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning

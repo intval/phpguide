@@ -1,6 +1,6 @@
 <?php
 
-class ArticleController extends Controller
+class ArticleController extends PHPGController
 {
     
     

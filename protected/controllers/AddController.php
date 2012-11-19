@@ -6,7 +6,7 @@
  * @property array $_articlesCategories
  * @property User  $_articlesAuthor
  */
-class AddController extends Controller
+class AddController extends PHPGController
 {
 
     public $vars;

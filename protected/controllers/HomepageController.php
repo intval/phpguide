@@ -1,6 +1,6 @@
 <?php
 
-class HomepageController extends Controller
+class HomepageController extends PHPGController
 {
    
     public function actionIndex()

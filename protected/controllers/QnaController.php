@@ -1,6 +1,6 @@
 <?php
 
-class QnaController extends Controller
+class QnaController extends PHPGController
 {
 	
 	/**
@@ -45,7 +45,8 @@ class QnaController extends Controller
 		
 		if(!$canUserMarkQuestion) 
 			return;
-		
+
+        /** @var QnaComment $previousCorrectAnswer */
 		$previousCorrectAnswer = QnaComment::model()->findByAttributes  (
 				array('qid'=>$answer->qid , 'is_correct'=>true)
 		);
@@ -55,7 +56,8 @@ class QnaController extends Controller
 			$this->unmarkCorrectAnswer($previousCorrectAnswer);
 		
 		QnaComment::model()->updateByPk($answer->aid, array('is_correct' => true));
-		User::updatePointsBy($answer->author->id, + static::POINTS_FOR_CORRECT_ANSWER);
+		$answer->author->updatePointsBy(+ self::POINTS_FOR_CORRECT_ANSWER);
+
 		
 	}
 	
@@ -65,7 +67,7 @@ class QnaController extends Controller
 	{
 		
 		QnaComment::model()->updateByPk($answer->aid, array('is_correct' => false));
-		User::updatePointsBy($answer->author->id, - static::POINTS_FOR_CORRECT_ANSWER);
+        $answer->author->updatePointsBy(- self::POINTS_FOR_CORRECT_ANSWER);
 	}
 	
 	

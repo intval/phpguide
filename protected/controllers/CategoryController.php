@@ -6,7 +6,7 @@
  * 
  * @author Alex Raskin (Alex@phpguide.co.il)
  */
-class CategoryController extends Controller
+class CategoryController extends PHPGController
 {
     public function actionIndex($cat_url)
     {
