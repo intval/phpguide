@@ -1,7 +1,15 @@
 <?php
 
-class SiteTest extends WebTestCase
+class PHPGSiteTest extends PHPGWebTestCase
 {
+    /*
+    public function testTest()
+    {
+        $this->assertTrue(true);
+    }
+     */
+
+    /*
 	public function testIndex()
 	{
 		$this->open('');
@@ -44,4 +52,5 @@ class SiteTest extends WebTestCase
 		$this->clickAndWait('link=Logout (demo)');
 		$this->assertTextPresent('Login');
 	}
+    */
 }
