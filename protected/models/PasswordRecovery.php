@@ -116,13 +116,13 @@ class PasswordRecovery extends DTActiveRecord
         $pwr = $this->with('user')->findByPk($id, ['key' => $key]);
 
         if($pwr->key !== $key)
-            return static::ERROR_INVALID_KEY;
+            return self::ERROR_INVALID_KEY;
 
         if($pwr->validity < new DateTime())
-            return static::ERROR_RECOVER_TIMEOUT;
-
+            return self::ERROR_RECOVER_TIMEOUT;
 
         $pwr->user->authorize();
+        return self::ERROR_NONE;
     }
 
 

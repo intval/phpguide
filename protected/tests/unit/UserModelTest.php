@@ -25,6 +25,9 @@ class UserModelTest extends CDbTestCase
             'login' => $login
         ];
 
+        $user->ip = '127.0.0.1';
+        $user->salt = 'abc';
+
         $user->save(true);
 
         $userByLogin = User::model()->getUserByLogin($login);
@@ -51,6 +54,9 @@ class UserModelTest extends CDbTestCase
             'password' => 'pass',
             'login' => $login
         ];
+
+        $user->ip = '127.0.0.1';
+        $user->salt = 'abc';
 
         $user->save(true);
         $this->assertEquals(0, $user->points);
