@@ -30,6 +30,39 @@
 
 
 
+<div>
+    <br/><br/><br/>
+    <h3>הרשמה</h3>           <br/>
+
+    ניתן לבצע הרשמה גם ללא גוגל ופייסבוק.
+    <br/>
+    בחר לעצמך שם וסיסמה והקלד את האמייל שלך, שאליו נשלך תזכורת לסיסמה אם תבקש.
+    <br/><br/>
+
+    <div class='alert hidden' id="regManualResult" ></div>
+
+    <?= CHtml::beginForm('', 'post', ['id' => 'regManualForm']) ?>
+
+    <input type='text' name='reguser' placeholder="שם משתמש"/>
+    שם משתמש
+    <br/>
+    <input type='text' name='regpass' placeholder="סיסמה" />
+    סיסמה
+    <br/>
+    <input type='text' name='regmail' placeholder="אימייל"/>
+    אימייל
+    <br/>
+
+    <input type='button' id='regFormSubmitBtn' class='btn' value='להירשם'
+            onclick='login.regManualSubmit()'/>
+
+    <?= CHtml::endForm(); ?>
+
+
+</div>
+
+
+
 	<!--  Login popup  -->
 	<div id='login_popup'>
 		<div class="auth_window_background" id='auth_window_background' style="cursor: pointer; display: block; opacity: 0.4;"></div>

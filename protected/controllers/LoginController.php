@@ -56,7 +56,6 @@ class LoginController extends PHPGController
             case CUserIdentity::ERROR_NONE:
                 $loginDuration = Yii::app()->params['login_remember_me_duration'];
                 Yii::app()->user->login($identity, $loginDuration);
-                $this->updateExternalAuthInfo();
                 echo 'ok';
                 break;
 
@@ -84,12 +83,12 @@ class LoginController extends PHPGController
     public function actionRegister()
     {
         $username = Yii::app()->request->getPost('reguser');
-        $email = Yii::app()->request->getPost('regemail');
+        $email = Yii::app()->request->getPost('regmail');
         $password = Yii::app()->request->getPost('regpass');
         $externalAuthData = Yii::app()->session['externalAuth'];
 
         $status = (new User('registration'))->register($username, $email, $password, $externalAuthData);
-        var_dump($status);
+
         if(is_array($status))
         {
             $allErrors = array();

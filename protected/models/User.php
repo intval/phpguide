@@ -154,16 +154,17 @@ class User extends DTActiveRecord
         if(!$this->validate())
             return $this->getErrors();
 
-        var_dump($this->save());
+        $this->save();
         $this->authorize();
         return self::ERROR_NONE;
 
     }
 
-    private function setRegistrationAttributes($login, $email, $password, array $externalAuthData)
+    private function setRegistrationAttributes($login, $email, $password, array $externalAuthData = null)
     {
         $this->setScenario('registration');
-        $this->attributes = array('login' => $login, 'email' => $email);
+        $this->setAttributes( array('login' => $login, 'email' => $email, 'password' => $password));
+
         $this->reg_date = new SDateTime();
         $this->last_visit = new SDateTime();
         $this->salt = Helpers::randString(22);
@@ -175,8 +176,9 @@ class User extends DTActiveRecord
             $this->setRegExternalAuthData($externalAuthData);
 
             if (empty($password))
-                $this->password = WebUser::encrypt_password(Helpers::randString(22), $this->salt);
+                $password = Helpers::randString(22);
         }
+        $this->password = WebUser::encrypt_password($password, $this->salt);
     }
 
     private function setRegExternalAuthData(array $externalAuthData)
