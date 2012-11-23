@@ -61,7 +61,7 @@ class DbUserIdentity extends CUserIdentity
             $this->errorCode = static::ERROR_NONE;
         }
         
-        return !$this->errorCode;
+        return $this->errorCode;
         
     }
     

@@ -33,6 +33,11 @@
 class User extends DTActiveRecord
 {
 
+
+    const ERROR_USERNAME_TAKEN = 323;
+    const ERROR_NONE = 454;
+
+
 	/**
      * @param string $className
 	 * Returns the static model of the specified AR class.
@@ -136,6 +141,60 @@ class User extends DTActiveRecord
         $identity = new AuthorizedIdentity($this);
         $loginDuration = Yii::app()->params['login_remember_me_duration'];
         Yii::app()->user->login($identity, $loginDuration);
+    }
+
+
+    public function register($login, $email, $password = null, array $externalAuthData = null)
+    {
+        if($this->countByAttributes(['login' => $login]) > 0)
+            return self::ERROR_USERNAME_TAKEN;
+
+        $this->setRegistrationAttributes($login, $email, $password, $externalAuthData);
+
+        if(!$this->validate())
+            return $this->getErrors();
+
+        var_dump($this->save());
+        $this->authorize();
+        return self::ERROR_NONE;
+
+    }
+
+    private function setRegistrationAttributes($login, $email, $password, array $externalAuthData)
+    {
+        $this->setScenario('registration');
+        $this->attributes = array('login' => $login, 'email' => $email);
+        $this->reg_date = new SDateTime();
+        $this->last_visit = new SDateTime();
+        $this->salt = Helpers::randString(22);
+        $this->ip = Yii::app()->request->getUserHostAddress();
+        $this->gender = 'male';
+
+        if(null !== $externalAuthData)
+        {
+            $this->setRegExternalAuthData($externalAuthData);
+
+            if (empty($password))
+                $this->password = WebUser::encrypt_password(Helpers::randString(22), $this->salt);
+        }
+    }
+
+    private function setRegExternalAuthData(array $externalAuthData)
+    {
+        if(sizeof($externalAuthData) < 1)
+            return false;
+
+        $realName = '';
+
+        foreach($externalAuthData as $serviceName => $userinfo)
+        {
+            $serviceFieldName = ServiceUserIdentity::$service2fieldMap[$serviceName];
+            $this->{$serviceFieldName} = $userinfo['id'];
+            $realName = !empty($realName) ?: $userinfo['name'];
+        }
+
+        $this->real_name = $realName;
+        return true;
     }
 
 }

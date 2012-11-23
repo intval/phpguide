@@ -32,10 +32,8 @@ class LoginController extends PHPGController
         $username = Yii::app()->request->getPost('user');
         $password = Yii::app()->request->getPost('pass');
 
-
         if(empty($username) || empty($password))
             return;
-
 
         $identity = new DbUserIdentity($username, $password);
         $authStatus = $identity->authenticate();
@@ -87,103 +85,37 @@ class LoginController extends PHPGController
     {
         $username = Yii::app()->request->getPost('reguser');
         $email = Yii::app()->request->getPost('regemail');
-        
-        
-        try
-        {              
-        	$externalAuthData = Yii::app()->session['externalAuth'];
-        	
-        	// Allow registration only using oAuth external services
-        	if(!is_array($externalAuthData) || sizeof($externalAuthData) < 1)
-        	{
-        		echo 'הרשמה ניתנן באמצעות פייסבוק';
-        		return;
-        	}
-        	
-        	// registration of new user means taking the existing, unregistered one and updating his name and info
-            $user = new User();
-            $user->scenario = 'register';
-            $user->attributes = array('login' => $username, 'email' => $email);
-            $user->reg_date = new SDateTime();
-            $user->last_visit = new SDateTime();
-            $user->salt = Helpers::randString(22);
-            $user->password = WebUser::encrypt_password( Helpers::randString(22), $user->salt);
-            $user->ip = Yii::app()->request->getUserHostAddress();
-            
+        $password = Yii::app()->request->getPost('regpass');
+        $externalAuthData = Yii::app()->session['externalAuth'];
 
-            try
-            {
-                $user->save();
-            }
-            catch(CDbException $e)
-            {
-                throw (false !== mb_strpos($e->getMessage(), 'Duplicate') ) ? new UsernameAlreadyTaken() : $e;
-            }
-            
+        $status = (new User('registration'))->register($username, $email, $password, $externalAuthData);
+        var_dump($status);
+        if(is_array($status))
+        {
             $allErrors = array();
-            $errors = $user->getErrors();
-            
-            if(sizeof($errors) > 0)
-            {
-                foreach($errors as $fieldErrors)
-                {
-                    $allErrors = array_merge($allErrors, $fieldErrors);
-                }
-                echo '— ' . nl2br(e(implode("\r\n — ", $allErrors)));
-            }
-            else
-            {
-                $identity = new AuthorizedIdentity($user);
-                Yii::app()->user->login($identity, Yii::app()->params['login_remember_me_duration']);
-                $this->updateExternalAuthInfo();               
-                echo 'ok';
-            }
-        }
-        catch (UsernameAlreadyTaken $e)
-        {
-            echo  'שם משתמש זה תפוס';
-        }
-        catch (Exception $e)
-        {
-            echo 'שגיאת שרת בתהליך ההרשמה. אנה נסו במועד מאוחר יותר';
-            Yii::log("Signup error : " . $e->getMessage(), CLogger::LEVEL_ERROR);
-            
-        }
-        
 
-    }
-    
-    
-    /**
-     * Takes external auth data from session 
-     * and updates the user record with the corresponding external ID's
-     */
-    private function updateExternalAuthInfo()
-    {
-    	$externalAuthenticatedProviders = Yii::app()->session['externalAuth'];
-    	if(is_array($externalAuthenticatedProviders) && sizeof($externalAuthenticatedProviders) > 0)
-    	{
-    		$userUpdateData = array();
-    		$userInfoUpdateData = array();
-    	
-    		foreach($externalAuthenticatedProviders as $serviceName => $userinfo)
-    		{
-    			$userUpdateData[ ServiceUserIdentity::$service2fieldMap[$serviceName] ] = $userinfo['id'];
-    			$userInfoUpdateData['real_name'] = $userinfo['name'];
-    		}
-    		$user = User::model()->updateByPk(Yii::app()->user->id, $userUpdateData);
-    		return true;
-    	}
-    	else
-    	{
-    		return false;
-    	}
+            foreach($status as $fieldErrors)
+                $allErrors = array_merge($allErrors, $fieldErrors);
+
+            echo '— ' . nl2br(e(implode("\r\n — ", $allErrors)));
+            return;
+        }
+
+        switch($status)
+        {
+            case User::ERROR_USERNAME_TAKEN:
+                echo 'שם משתמש זה תפוס';
+                break;
+
+            case User::ERROR_NONE:
+                echo 'ok';
+                break;
+
+            default:
+                echo 'שגיאת שרת בתהליך ההרשמה. אנה נסו במועד מאוחר יותר';
+                break;
+        }
     }
 
 }
 
-
-/**
- * Indicates the authentication attempt has been blocked to avoid brute-force 
- */
-class UsernameAlreadyTaken extends Exception{}
