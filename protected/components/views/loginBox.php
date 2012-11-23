@@ -36,13 +36,31 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 <section id="userinfo" class='unregistered'>
 
 	<div class="ava">
-		<a href="#" class="avatar"><img src='<?=bu('static/images/auth_girl.png')?>' alt='loginbox' /></a>
-		<div style='float:right'>
-			<span dir="ltr" id="user_name">אורח</span>
-			<br/>
-			<a href='<?= Yii::app() ->createUrl('login/index'); ?>'>הזדהות והרשמה</a>
-		</div>
-		<div class='clear'></div>
+        <form class='sidebarLoginForm'>
+
+            <h4>
+            כניסה לאתר
+            </h4> <br/>
+
+            <input type="text" class="text-field" placeholder="משתמש" />
+            <input type="password" class="text-field" placeholder="סיסמה" />
+
+
+            <div >
+                <div class='right'>
+                    <input type="submit" value="להיכנס" class="btn" />
+                    &nbsp; &nbsp;
+                    או
+                    <a href='<?=bu('login/register')?>'>להירשם</a>
+                </div>
+                <div class='left'>
+                    <a href='<?=bu('pwrecovery/recover')?>'>שכחתי הכל</a>
+                </div>
+                <div class='clear'></div>
+            </div>
+
+
+        </form>
 	</div>
 	
 	<div class="action">
