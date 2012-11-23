@@ -2,7 +2,7 @@
 /**
 23/11/12 16:00 sasha
  */
-class LoginExternal extends PHPGController
+class LoginExternalController extends PHPGController
 {
 
     const returnUrl = 'returnUrl';
@@ -10,11 +10,9 @@ class LoginExternal extends PHPGController
     /**
      * Fired when the user decides to login with external auth provider.
      */
-    public function actionExternalLogin()
+    public function actionLogin($service)
     {
-        $service = Yii::app()->request->getQuery('service');
         $returnUrl = Yii::app()->request->getQuery('backto');
-
         $this->authWithExternalProvider($service, $returnUrl);
     }
 

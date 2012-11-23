@@ -46,8 +46,8 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 	</div>
 	
 	<div class="action">
-		<a class="sign_in_with_google" href="<?= Yii::app() ->createUrl('login/externalLogin', array('service' => 'google')); ?>"></a>
-		<a class="sign_in_with_facebook" href="<?= Yii::app() ->createUrl('login/externalLogin', array('service' => 'facebook')); ?>"></a>
+		<a class="sign_in_with_google" href="<?= Yii::app() ->createUrl('loginExternal/login', array('service' => 'google')); ?>"></a>
+		<a class="sign_in_with_facebook" href="<?= Yii::app() ->createUrl('loginExternal/login', array('service' => 'facebook')); ?>"></a>
 	</div>
 	
 	
