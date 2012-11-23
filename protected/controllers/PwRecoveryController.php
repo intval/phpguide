@@ -5,6 +5,7 @@
 class PwRecoveryController extends PHPGController
 {
 
+
     /**
      * Password recovery form and validation
      *
@@ -12,13 +13,15 @@ class PwRecoveryController extends PHPGController
      */
     public function actionRecover()
     {
+        if(!Yii::app()->user->isGuest)
+            $this->redirect(Yii::app()->getHomeUrl());
+
         $this->pageTitle = 'שחזור סיסמה';
         $this->description = 'שחזור סיסמה באתר לימוד PHP';
         $this->keywords = 'שחזור, סיסמה';
 
         $this->addscripts('login');
         $this->render('passwordRecoveryForm');
-
     }
 
     /**
@@ -28,6 +31,8 @@ class PwRecoveryController extends PHPGController
      */
     public function actionAjaxRecoverSubmit()
     {
+        if(!Yii::app()->user->isGuest)
+            return;
 
         $login = Yii::app()->request->getPost('login');
         $email = Yii::app()->request->getPost('email');
