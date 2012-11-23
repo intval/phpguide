@@ -57,12 +57,12 @@ class PasswordRecovery extends DTActiveRecord
     const ERROR_RECOVER_TIMEOUT = - 94234;
 
 
-    private $recoveryUrl = 'login/resetUrl?id=%s&key=%s';
+    private $recoveryUrl = 'pwrecovery/resetUrl?id=%s&key=%s';
 
 
     public function requestRecovery($login, $email, $ip)
     {
-        sleep(1); // prevent brutefore
+        sleep(1); // prevent bruteforce
 
         /** @var User $user */
         $user = User::model()->getUserByLogin($login);

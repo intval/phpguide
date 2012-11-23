@@ -88,7 +88,7 @@ var login =
     recoverySuccess: function(data)
     {
     	$('#recoverBtn').removeAttr('disabled');
-    	$('#result').html(data).show();
+    	$('#result').html(data).show().addClass('alert alert-success');
     },
     
     passwordChangeSubmitted: function(xhr)
