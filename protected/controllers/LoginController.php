@@ -215,20 +215,17 @@ class LoginController extends PHPGController
     
     /**
      * Attempts to authenticate the user using external oAuth provider
-     * @param type $providerName 
+     * @param string $providerName
      */
     private function authWithExternalProvider($providerName)
     {
-        $authenticator = Yii::app()->eauth->getIdentity($providerName);
+        /** @var CUserIdentity $identity  */
+        $identity = Yii::app()->eauth->getIdentity($providerName);
 
-        if($authenticator->authenticate() && $authenticator->isAuthenticated) 
-        {
-            $this->externalAuthSucceeded($authenticator);
-        }
+        if($identity->authenticate() && $identity->isAuthenticated)
+            $this->externalAuthSucceeded($identity);
         else
-        {
-            $this->externalAuthFailed($authenticator);
-        }
+            $this->externalAuthFailed($identity);
     }
     
     
@@ -240,8 +237,7 @@ class LoginController extends PHPGController
     private function externalAuthSucceeded(IAuthService $provider)
     {
        $identity = new ServiceUserIdentity($provider) ;
-       $data = $provider->getAttributes();
-       
+
        // Did someone use this external ID in the past?
        if($identity ->isKnownUser() )
        {
@@ -255,12 +251,12 @@ class LoginController extends PHPGController
        		$externalAuthProviders = Yii::app()->session['externalAuth'];
        		
        		if($externalAuthProviders === null) $externalAuthProviders = array();
-       		$externalAuthProviders[$provider -> serviceName] = $userInfo;
+       		$externalAuthProviders[$provider->getServiceName()] = $userInfo;
        		Yii::app()->session['externalAuth'] = $externalAuthProviders;
        		
        		$return_location = Yii::app()->session['backto'] ?: Yii::app()->request->getQuery('redir',   Yii::app()->homeUrl );
        		$this->addscripts('login');
-       		$this->render('chooseNameAfterExternalLogin', array('provider' => $provider->serviceName, 'name' => $userInfo['name'], 'return_location' => $return_location));
+       		$this->render('chooseNameAfterExternalLogin', array('provider' => $provider->getServiceName(), 'name' => $userInfo['name'], 'return_location' => $return_location));
        		
        }
     }
