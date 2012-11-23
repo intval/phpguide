@@ -23,7 +23,7 @@ echo CHtml::beginForm('', 'post', array('onsubmit' => 'return false;'));
 echo CHtml::ajaxSubmitButton
 (
     'שלח לי קישור לשחזור סיסמה למייל',
-    $this->createUrl('pwrecovery/ajaxRecoverSubmit') ,
+    $this->createUrl('PwRecovery/ajaxRecoverSubmit') ,
     [
         'id' => 'recoverBtn',
         'beforeSend' => 'login.recoverySubmitted',

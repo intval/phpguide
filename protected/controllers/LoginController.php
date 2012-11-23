@@ -112,7 +112,7 @@ class LoginController extends PHPGController
 
             case User::ERROR_EMAIL_TAKEN:
                 echo 'אימייל זה כבר רשום במערכת. אם זה אתה, נסה
-                <a href="'.bu('pwrecovery/recover').'">
+                <a href="'.bu('PwRecovery/recover').'">
                 שחזור סיסמה
                 </a>
                 ' ;
