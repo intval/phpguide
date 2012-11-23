@@ -35,6 +35,7 @@ class User extends DTActiveRecord
 
 
     const ERROR_USERNAME_TAKEN = 323;
+    const ERROR_EMAIL_TAKEN = 565;
     const ERROR_NONE = 454;
 
 
@@ -146,8 +147,13 @@ class User extends DTActiveRecord
 
     public function register($login, $email, $password = null, array $externalAuthData = null)
     {
+        sleep(1);
+
         if($this->countByAttributes(['login' => $login]) > 0)
             return self::ERROR_USERNAME_TAKEN;
+
+        if($this->countByAttributes(['email' => $email]) > 0)
+            return self::ERROR_EMAIL_TAKEN;
 
         $this->setRegistrationAttributes($login, $email, $password, $externalAuthData);
 

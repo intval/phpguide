@@ -110,6 +110,14 @@ class LoginController extends PHPGController
                 echo 'ok';
                 break;
 
+            case User::ERROR_EMAIL_TAKEN:
+                echo 'אימייל זה כבר רשום במערכת. אם זה אתה, נסה
+                <a href="'.bu('pwrecovery/recover').'">
+                שחזור סיסמה
+                </a>
+                ' ;
+                break;
+
             default:
                 echo 'שגיאת שרת בתהליך ההרשמה. אנה נסו במועד מאוחר יותר';
                 break;
