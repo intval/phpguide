@@ -1,6 +1,6 @@
 <?php
 
-class PhpliveController extends Controller
+class PhpliveController extends PHPGController
 {
 	public $layout = '//layouts/withoutSidebar';
     

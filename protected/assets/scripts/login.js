@@ -88,7 +88,7 @@ var login =
     recoverySuccess: function(data)
     {
     	$('#recoverBtn').removeAttr('disabled');
-    	$('#result').html(data).show();
+    	$('#result').html(data).show().addClass('alert alert-success');
     },
     
     passwordChangeSubmitted: function(xhr)
@@ -106,6 +106,35 @@ var login =
     passwordChangeSuccess: function(data)
     {
     	window.location = homepage_url;
+    },
+
+
+    regManualSubmit: function()
+    {
+        var data = $('#regManualForm :input');
+        var resultDiv = $('#regManualResult');
+        var valid = true;
+
+        for(var i = 0; i < data.length; i++)
+            if($(data[i]).val() === '')
+                valid = false;
+
+        if(!valid)
+        {
+            resultDiv.html('יש להזין את כל השדות').show();
+            return;
+        }
+
+        resultDiv.hide();
+        $.post('login/register', data.serialize(), function(ret){
+
+            if(ret === 'ok')
+                window.location = redirect_after_login_to;
+            else
+                resultDiv.html(ret).show();
+
+        });
+
     }
     
 }

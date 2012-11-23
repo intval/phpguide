@@ -10,8 +10,10 @@
  * The followings are the available model relations:
  * @property QnaQuestion $qna
  * @property User $user
+ * @property string $ip User's ip
+ * @property SDateTime $time subscription time
  */
-class QnaSubscription extends CActiveRecord
+class QnaSubscription extends DTActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -128,6 +130,8 @@ class QnaSubscription extends CActiveRecord
             $subs = new QnaSubscription();
             $subs->qid = $qid;
             $subs->userid = $uid;
+            $subs->ip = Yii::app()->request->userHostAddress;
+            $subs->time = new SDateTime();
             $subs->save();
         }
     }

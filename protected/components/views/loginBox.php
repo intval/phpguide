@@ -36,9 +36,10 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 <section id="userinfo" class='unregistered'>
 
 	<div class="ava">
-		<a href="#" class="avatar"><img src='<?=bu('static/images/auth_girl.png')?>' alt='loginbox' /></a>
+		<a href="#" class="avatar"><img src='<?='' ?>/images/auth_girl.png' alt='loginbox' /></a>
 		<div style='float:right'>
-			<span dir="ltr" id="user_name">אורח</span>
+			שלום
+            <span dir="ltr" id="user_name">אורח</span>
 			<br/>
 			<a href='<?= Yii::app() ->createUrl('login/index'); ?>'>הזדהות והרשמה</a>
 		</div>
@@ -46,8 +47,8 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 	</div>
 	
 	<div class="action">
-		<a class="sign_in_with_google" href="<?= Yii::app() ->createUrl('login/externalLogin', array('service' => 'google')); ?>"></a>
-		<a class="sign_in_with_facebook" href="<?= Yii::app() ->createUrl('login/externalLogin', array('service' => 'facebook')); ?>"></a>
+		<a class="sign_in_with_google" href="<?= Yii::app() ->createUrl('loginExternal/login', array('service' => 'google')); ?>"></a>
+		<a class="sign_in_with_facebook" href="<?= Yii::app() ->createUrl('loginExternal/login', array('service' => 'facebook')); ?>"></a>
 	</div>
 	
 	

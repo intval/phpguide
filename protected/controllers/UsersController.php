@@ -1,6 +1,6 @@
 <?php
 
-class UsersController extends Controller
+class UsersController extends PHPGController
 {
 	public function actionUser($username)
 	{
