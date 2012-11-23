@@ -2,8 +2,41 @@ Yii EAuth Change Log
 ====================
 
 ### In progress...
-* Fixed infinite loop when calling getAttrbiutes from fetchAttributes inside a provider class.
+* Added Microsoft Live OAuth provider.
+* Added Yandex OAuth provider.
+* Added CustomFacebookService example class.
+* Added 'cache' and 'cacheExpire' options to control cache.
+* Added list of services to display in the EAuthWidget.
+* Changed VK.com API urls.
+
+### Version 1.1.8 (10.06.2012)
+* Added optional headers in EOAuthServiceBase::initRequest().
+* Added LinkedIn OAuth provider.
+* Added GitHub OAuth provider.
+* Fixed sending signed requests with the query parameters in the EOAuthService.
+
+### Version 1.1.7 (30.03.2012)
+* Fixed issue #11. Twitter must authorize user everytime they login.
+* Fixed issue #10. VKontakte must authorize user everytime they login with empty oauth scope.
+* Fixed translations.
+* Fixed bug in the EOAuthService::initRequest(), incorrect variable use in http header.
+* Fixed error with CURL HTTP chunked transfer encoding.
+
+### Version 1.1.6 (01.02.2012)
+* Added EAuthUserIdentity class.
+* Added translations support.
+* Fixed EAuthServiceBase::hasArrtubite() and EAuthServiceBase::getId() methods.
+
+### Version 1.1.5 (03.01.2012)
+* Added MoiKrug OAuth provider.
+* Added Odnoklassniki OAuth provider.
+* Added ability to write in the log of unsuccessful requests in the EAuthServiceBase::makeRequest().
+* Added access_token lifetime handling, #1 closed. Please, check your custom OAuth 2.0 classes!
+* Added links to provider files to register your applications.
 * Changed url for the Yandex OpenID.
+* Fixed infinite loop when calling getAttrbiutes from fetchAttributes inside a provider class.
+* Removed $_GET['js'] from the redirect_uri for the OAuth 2.0 providers, which could cause problems with a callback URL for some providers.
+* Small fixes in the css of the widget.
 
 ### Version 1.1.4 (13.11.2011)
 * Added handling for denied callback in the TwitterOAuthService.

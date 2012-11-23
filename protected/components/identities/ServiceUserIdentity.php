@@ -2,8 +2,6 @@
 
 class ServiceUserIdentity extends CUserIdentity
 {
-    const ERROR_NOT_AUTHENTICATED = 3;
-    
     public static $service2fieldMap = array
         (
             'facebook' => 'fbid',
@@ -30,23 +28,15 @@ class ServiceUserIdentity extends CUserIdentity
     
     public function isKnownUser() 
     {
-        
         $userInfo  = $this->provider->getAttributes();
-        $dbfield = static::$service2fieldMap[$this->provider->serviceName];
-        
+        $dbfield = static::$service2fieldMap[$this->provider->getServiceName()];
         $user = User::model()->findByAttributes(array($dbfield => $userInfo['id']));
-        if($user === null)
-        {
-            $this->errorCode = self::ERROR_NOT_AUTHENTICATED;
-        }
-        else 
-        {
-            $this->user = $user;
-            $this->username = $user->login;
-            $this->errorCode = self::ERROR_NONE;
-        }
-        
-        return !$this->errorCode;
+
+        if(null === $user)
+            return false;
+
+        $this->user = $user;
+        return true;
     }
     
     public function getId()
