@@ -85,7 +85,7 @@ class YiiMail extends CApplicationComponent
 	* </ul>
 	* See the SwiftMailer documentaion for the option meanings.
 	*/
-	public $transportOptions;
+	public $transportOptions = array();
 	
 	/**
 	* @var mixed Holds the SwiftMailer transport
@@ -209,8 +209,16 @@ class YiiMail extends CApplicationComponent
 					break;
 				case 'smtp':
 					$this->transport = Swift_SmtpTransport::newInstance();
-					foreach ($this->transportOptions as $option => $value)
-						$this->transport->{'set'.ucfirst($option)}($value); // sets option with the setter method
+
+                    // sets option with the setter method
+                    if(is_array($this->transportOptions) && !empty($this->transportOptions))
+					    foreach ($this->transportOptions as $option => $value)
+                        {
+                            $methodName = 'set'.ucfirst($option);
+                            if(method_exists($this->transport, $methodName))
+						        $this->transport->{$methodName}($value);
+                        }
+
 					break;
 			}
 		}
