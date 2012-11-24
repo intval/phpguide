@@ -84,7 +84,7 @@ class PasswordRecovery extends DTActiveRecord
         $this->user = $user;
         $this->ip = $ip;
         $this->key = Helpers::randString(20);
-        $this->validity = new DateTime('+1 hour');
+        $this->validity = new SDateTime('+1 hour');
 
         if($this->save())
             return $this->id;
