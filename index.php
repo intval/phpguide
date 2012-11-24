@@ -25,6 +25,10 @@ $production = !in_array( $_SERVER['REMOTE_ADDR'] , $localIPs);
 $config = include __DIR__.'/protected/config/config.php';
 
 
+// add composer packages
+require __DIR__.'/protected/vendors/composerPackages/autoload.php';
+$diEnvironmentConf = 'production';
+
 if( !$production )
 {
     // remove the following lines when in production mode
@@ -38,7 +42,12 @@ if( !$production )
 
     // has a function to adjust config for local env
     require __DIR__.'/protected/config/local_config.php';
+
+    // include local dependency injection configuration
+    $diEnvironmentConf='local';
 }
+
+// require __DIR__."/protected/config/di/{$diEnvironmentConf}.php";
 
 
 // use light version in production

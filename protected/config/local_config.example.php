@@ -48,4 +48,7 @@ function apply_local_changes_to_config(&$conf)
             */   
         )
     );
+
+    $conf['components']['mail']['transportType'] = 'php';
+    $conf['components']['mail']['dryRun'] = true;
 }

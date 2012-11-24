@@ -14,4 +14,9 @@ require __DIR__.'/../sources/global_functions.php';
 require_once $config['params']['PATH_TO_YII'].'/yiit.php';
 require_once __DIR__ . '/PHPGWebTestCase.php';
 
+
+// add composer packages
+require __DIR__.'/../vendors/composerPackages/autoload.php';
+
+
 Yii::createWebApplication($config);
