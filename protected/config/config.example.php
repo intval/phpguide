@@ -18,16 +18,17 @@ return array(
     
 	// autoloading model and component classes
 	'import' => array
-        (
-            'application.models.*',
-            'application.components.*',
-            'application.components.identities.*',
-            'application.controllers.*',
-            'application.sources.*',
-            'ext.eoauth.*',
-            'ext.eoauth.lib.*',
-            'ext.loid.*',
-            'ext.eauth.services.*'
+    (
+        'application.models.*',
+        'application.components.*',
+        'application.components.identities.*',
+        'application.controllers.*',
+        'application.sources.*',
+        'ext.eoauth.*',
+        'ext.eoauth.lib.*',
+        'ext.loid.*',
+        'ext.eauth.services.*',
+        'ext.yii-mail.YiiMailMessage'
 	),
 
 
@@ -113,6 +114,16 @@ return array(
                         */
                     )
                 ),
+
+        'mail' => array
+        (
+            'class' => 'ext.yii-mail.YiiMail',
+            'transportType' => 'smtp',
+            'viewPath' => 'application.views.emails',
+            'logging' => true,
+            'dryRun' => false
+        ),
+
                 'widgetFactory' => array
                 (
                     'widgets' => array
@@ -133,16 +144,20 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array
-        (
-            'adminEmail'=>'some1@localhost',
-            'login_remember_me_duration' => 31536000,
-            
-            /******************************************************/
-            /**** This is production path, above public_html ******/
-            /**** Edit the path in local_config.php, not here******/
-            /******************************************************/
-            'PATH_TO_YII' => dirname(__FILE__).'/../../framework',
-            /******************************************************/
-            /******************************************************/
+    (
+        'adminEmail'=>'some1@localhost',
+        'login_remember_me_duration' => 31536000,
+
+        // indicates what would be the 'from' address for mails sent by the site
+        // email => name ( like:   mysiteBot<noreply@mysite.com> )
+        'emailFrom' => ['noreply@mysite.com' => 'mysiteBot'],
+
+        /******************************************************/
+        /**** This is production path, above public_html ******/
+        /**** Edit the path in local_config.php, not here******/
+        /******************************************************/
+        'PATH_TO_YII' => dirname(__FILE__).'/../../framework',
+        /******************************************************/
+        /******************************************************/
 	),
 );

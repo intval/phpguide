@@ -383,7 +383,7 @@ class QnaController extends PHPGController
     
     /**
      * Stores id's of qna's that have answers published after user's previous visit
-     * @param array prev_visit  */
+     * @param array $qnas  */
     public static function storeQnasWithNewAnswersSinceLastVisitInSession(array $qnas)
     {
     	

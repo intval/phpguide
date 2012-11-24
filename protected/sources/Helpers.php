@@ -6,6 +6,7 @@ class Helpers
 	/**
 	 * finds all urls in text and appends <a> tags to them
 	 * @param string $string_containing_urls
+     * @return string
 	 */
     public static function anchorize_urls_in_text($string_containing_urls)
     {
@@ -47,21 +48,19 @@ class Helpers
         return $result;
     }
     
-    
+
     /**
      * Sends an email with proper headers
-     * @param string $to recipient's email
+     * @param array $to list of recipients
      * @param string $subject mail's subject
      * @param string $content mail's html content
      */
-    public static function sendMail($to, $subject, $content)
+    public static function sendMail(array $to, $subject, $content)
     {
-    	$headers = "From: PHPGuide <noreply@phpguide.co.il>\r\n";
-    	$headers .= "MIME-Version: 1.0\r\n";
-    	$headers .= "Content-type: text/html; charset=utf-8\r\n";
-    	
-    	mail($to, "=?utf-8?B?".base64_encode($subject)."?=", $content, $headers);
-
+        $message = new YiiMailMessage($subject, $content, 'text/html', 'utf-8');
+        $message->setTo($to);
+        $message->setFrom(Yii::app()->params['emailFrom']);
+        Yii::app()->mail->batchSend($message);
     }
-    
+
 }
