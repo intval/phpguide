@@ -4,7 +4,6 @@
     },
 
     "require": {
-        "aura/di": "dev-master",
         "swiftmailer/swiftmailer": "4.3.x-dev"
     }
 }
