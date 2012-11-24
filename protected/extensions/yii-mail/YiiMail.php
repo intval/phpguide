@@ -128,9 +128,11 @@ class YiiMail extends CApplicationComponent
 	* @see batchSend()
 	*/
 	public function send(YiiMailMessage $message, &$failedRecipients = null) {
+
 		if ($this->logging===true) self::log($message);
 		if ($this->dryRun===true) return count($message->to);
 		else return $this->getMailer()->send($message->message, $failedRecipients);
+
 	}
 
 	/**
@@ -190,7 +192,8 @@ class YiiMail extends CApplicationComponent
 			implode('', $message->headers->getAll())."\n".
 			$message->body
 		;
-		Yii::log($msg, CLogger::LEVEL_INFO, 'ext.yii-mail.YiiMail'); // TODO: attempt to determine alias/category at runtime
+		Yii::log($msg, CLogger::LEVEL_INFO, 'ext.yii-mail.YiiMail');
+		// TODO: attempt to determine alias/category at runtime
 		return $msg;
 	}
 
@@ -203,11 +206,13 @@ class YiiMail extends CApplicationComponent
 		if ($this->transport===null) {
 			switch ($this->transportType) {
 				case 'php':
+                    //echo 'building php';
 					$this->transport = Swift_MailTransport::newInstance();
 					if ($this->transportOptions !== null)
 						$this->transport->setExtraParams($this->transportOptions);
 					break;
 				case 'smtp':
+                    //echo 'building smtp transport';
 					$this->transport = Swift_SmtpTransport::newInstance();
 
                     // sets option with the setter method
@@ -220,6 +225,8 @@ class YiiMail extends CApplicationComponent
                         }
 
 					break;
+                default:
+                    //echo 'building nothing';
 			}
 		}
 		
