@@ -135,33 +135,7 @@ class YiiMail extends CApplicationComponent
 
 	}
 
-	/**
-	* Send the given {@link YiiMailMessage} to all recipients individually.
-	* 
-	* This differs from {@link send()} in the way headers are presented to the 
-	* recipient.  The only recipient in the "To:" field will be the individual 
-	* recipient it was sent to.
-	* 
-	* If an iterator is provided, recipients will be read from the iterator 
-	* one-by-one, otherwise recipient data will be retreived from the 
-	* {@link YiiMailMessage} object.
-	* 
-	* Sender information is always read from the {@link YiiMailMessage} object.
-	* 
-	* The return value is the number of recipients who were accepted for 
-	* delivery.
-	* 
-	* @param YiiMailMessage $message
-	* @param array &$failedRecipients, optional
-	* @param Swift_Mailer_RecipientIterator $it, optional
-	* @return int
-	* @see send()
-	*/
-	public function batchSend(YiiMailMessage $message, &$failedRecipients = null, Swift_Mailer_RecipientIterator $it = null) {
-		if ($this->logging===true) self::log($message);
-		if ($this->dryRun===true) return count($message->to);
-		else return $this->getMailer()->batchSend($message->message, $failedRecipients, $it);
-	}
+
 	
 	/**
 	* Sends a message in an extremly simple but less extensive way.
