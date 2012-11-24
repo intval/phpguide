@@ -124,7 +124,7 @@ class User extends DTActiveRecord
 
     public function sendEmail($subject, $text)
     {
-        helpers::sendMail([$this->email], $subject, $text);
+        Helpers::sendMail([$this->email], $subject, $text);
     }
 
 
