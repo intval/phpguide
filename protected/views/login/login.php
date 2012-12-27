@@ -1,4 +1,7 @@
-
+<?php $startToken = Yii::app()->request->getCsrfToken();
+echo $startToken; ?>
+<br/>
+rand: <?= mt_rand(); ?>
 <div id="reg_form_holder">
 
 	
@@ -72,12 +75,14 @@
 				<a class="close_auth_window"  onclick='return false' href="#" id="close_auth_window"></a>
 			</div>
 			<div class="enter-block">
-				
+
 				    <div class="alert alert-warning" id="loginResult" style="margin-bottom:-10px; display:none;">
 					    שם משתמש או סיסמה לא נכונים
 					</div>
 
 				<?= CHtml::beginForm('','post',array('id'=>"authPop", 'dir'=>"rtl", 'onsubmit' => 'return false;')) ?>
+
+
 
 					<div class="col ">
 						<label>שם משתמש:</label>
@@ -86,25 +91,30 @@
 					<div class="col ">
 						<label>סיסמה:</label>
 						<?= CHtml::passwordField('pass',null,array('tabindex'=>"3", 'id'=>"loginpass", 'class'=>"txt-field", 'type' => 'password'));?>
-						
+
 						<div class="save_me">
 						<label><input type="checkbox" checked='checked'> &nbsp; לזכור אותי</label>
 						</div>
 						<?=CHtml::ajaxSubmitButton(
 							'כניסה'
-							, bu('login/Login'), 
-							array('beforeSend' => 'login.submitted', 'success' => 'login.xhrSuccess'), 
+							, bu('login/Login'),
+							array('beforeSend' => 'login.submitted', 'success' => 'login.xhrSuccess'),
 							array('class' => 'submit', 'id' => 'loginSubmitBtn', 'tabindex' => '4')
 							)?>
-							
+
 						<a href="<?= Yii::app() ->createUrl('login/recover'); ?>">שכחתי סיסמה</a>
 					</div>
-					
+
 				<?=CHtml::endForm()?>
 			</div>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript">redirect_after_login_to = '<?=bu(e($return_location))?>';</script>
-    
+
 	<!-- / Login popup -->
+
+
+
+<?php $endToken = Yii::app()->request->getCsrfToken();
+echo $endToken ?>

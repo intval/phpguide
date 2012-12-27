@@ -7,12 +7,8 @@
  * @property integer $id
  * @property string $title
  * @property string $url
- * @property string $image
- * @property string $html_desc_paragraph
  * @property string $html_content
  * @property string $pub_date
- * @property string $keywords
- * @property string $description
  * @property integer $approved
  * @property integer $author_id
  */
@@ -20,6 +16,7 @@ class Article extends DTActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
+     * @param $className string of which model to create
 	 * @return Article the static model class
 	 */
 	public static function model($className=__CLASS__)
@@ -43,10 +40,9 @@ class Article extends DTActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, keywords, description', 'required'),
-                        array('image', 'url', 'allowEmpty' => true),
+			array('title, html_content', 'required'),
 			array('title', 'length', 'max'=>150),
-			array('url, image', 'length', 'max'=>255)
+			array('content', 'length', 'min'=>20)
 		);
 	}
 
@@ -60,7 +56,6 @@ class Article extends DTActiveRecord
 		return array(
                     'author'        => array(self::BELONGS_TO, 'User',     'author_id'),
                     'comments'      => array(self::HAS_MANY,   'Comment',  'blogid'),
-                    'plain'         => array(self::HAS_ONE,    'ArticlePlainText', 'id'),
                     'categories'    => array(self::MANY_MANY,  'Category', 'blog_post2cat(postid, catid)'),
                     'commentsCount' => array(self::STAT,        'Comment',  'blogid')
 		);
@@ -90,19 +85,19 @@ class Article extends DTActiveRecord
             // admins can see anything
             if(!Yii::app()->user->isguest && Yii::app()->user->is_admin) $condition = '';
             
-            return array
-            ( 
+            return
+            [
                 'condition' =>  $condition  ,
                 'order'     =>  'pub_date DESC',
             	'alias'		=> 'blog',
-                'with'      => array
-                (
-                    'author' => array
-                    (
-                        'select'   => array('real_name','login','email')
-                    )
-                )
-            );
+                'with'      =>
+                [
+                    'author' =>
+                    [
+                        'select'   => ['login','email']
+                    ]
+                ]
+            ];
         }
         
         
@@ -110,7 +105,8 @@ class Article extends DTActiveRecord
         
         public function byPage($page = 0, $per_page = 8)
         {
-            $this->getDbCriteria()->mergeWith( array('limit' => $per_page, 'offset' => $page * $per_page) );
+            $condition = ['limit' => $per_page, 'offset' => $page * $per_page];
+            $this->getDbCriteria()->mergeWith($condition);
             return $this;
         }
   
@@ -119,37 +115,18 @@ class Article extends DTActiveRecord
         {
             $this->getDbCriteria()->mergeWith
             (
-                    array('condition' => "`id` IN
+                [
+                    'condition' => "`id` IN
                         (
-                            SELECT `postid` FROM `blog_post2cat` 
+                            SELECT `postid` FROM `blog_post2cat`
                             WHERE `catid` = (SELECT `cat_id` FROM `blog_categories` WHERE `name` = :name)
                         )",
-                            'params' => array('name' => $name)
-                        )
+
+                    'params' => ['name' => $name]
+                ]
             );
             
             return $this;
         }
-        
-        
-        public function similarTo($url)
-        {
-            
-            $this->getDbCriteria()->mergeWith(array(
-            	'alias' => 'blog',
-                'select'    => array('description', 'title', 'url'),
-                'condition' => "blog.id IN 
-                    (
-                    SELECT id FROM blog_plain WHERE 
-                    MATCH(plain_content, plain_description) AGAINST(:url)
-                    )
-                    ",
-                'params'    => array('url' => $url),
-                'limit'     => 8
-            ));
-            
-            return $this;
-        }
 
-        
 }

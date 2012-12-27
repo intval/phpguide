@@ -8,11 +8,12 @@
         <article class="post">
 
             <div>
+                <h1 class="title"><a id="post<?=$article->id?>" href="<?=bu(e(urlencode($article->url)));?>.htm" rel="bookmark" title="<?=e($article->description);?>" ><?=e($article->title);?></a></h1>
+
                 <div class="right post-image">
                     <img src="/static/images/pixel.gif" title="<?=e($article->image);?>" alt="<?=e($article->title);?>" />
                 </div>
                 <div class="right post-content">
-                    <h1 class="title"><a id="post<?=$article->id?>" href="<?=bu(e(urlencode($article->url)));?>.htm" rel="bookmark" title="<?=e($article->description);?>" ><?=e($article->title);?></a></h1>
                     <?=$article->html_desc_paragraph;?>
                     <br/>
                     <div class="submited">
