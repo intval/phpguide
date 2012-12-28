@@ -30,9 +30,9 @@
 
     <div dir="ltr">&nbsp;&lt;?php </div>
     <div style='position:relative;height:405px; width:100%;direction:ltr;' dir="ltr">
-        <div id='editor' style='position:absolute;width:100%; height:100%;font-size:16px;'>
-            <?=e($code)?>
-        </div>
+        <div id='editor' style='position:absolute;width:100%; height:100%;font-size:16px;'><?php
+         echo e($code);
+        ?></div>
     </div>
 
     <?= CHtml::beginForm('http://sandbox.phpguide.co.il/sandbox.php', 'post', array('name'=>"sandboxform", 'id'=>"sandboxform", 'target'=>"xmlFrame", 'dir'=>"rtl")) ?>
