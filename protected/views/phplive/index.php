@@ -28,9 +28,15 @@
 
 <section id="content" >
 
+    <div dir="ltr">&nbsp;&lt;?php </div>
+    <div style='position:relative;height:405px; width:100%;direction:ltr;' dir="ltr">
+        <div id='editor' style='position:absolute;width:100%; height:100%;font-size:16px;'>
+            <?=e($code)?>
+        </div>
+    </div>
+
     <?= CHtml::beginForm('http://sandbox.phpguide.co.il/sandbox.php', 'post', array('name'=>"sandboxform", 'id'=>"sandboxform", 'target'=>"xmlFrame", 'dir'=>"rtl")) ?>
-        <div dir="ltr">&nbsp;&lt;?php </div>
-        <textarea name="code" id="sandboxarea" rows="15" cols="70" dir="ltr" tabindex="1"><?=e($code)?></textarea><br/>
+        <textarea name="code" id="sandboxarea" rows="15" cols="70" dir="ltr" tabindex="1" style="display:none;"></textarea><br/>
         <input type="hidden" name="is_remote" value="true" />
         
         <div>

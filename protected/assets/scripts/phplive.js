@@ -2,40 +2,58 @@ document.domain = 'phpguide.co.il';
 
 var last_urled_code;
 var in_request = false;
-
+var ace_editor;
 
 
 $(document).ready(function()
 {   
-    $('#sandboxarea').keyup(run_live_code);
-    $('#sandboxarea').focus();
+    ace_editor = ace.edit("editor");
+    ace_editor.setTheme("ace/theme/chrome");
+    ace_editor.getSession().setMode("ace/mode/php");
+    ace_editor.setShowPrintMargin(false);
+    ace_editor.getSession().setUseWrapMode(true);
+    ace_editor.focus();
+
     actual_run_code();
+
+    ace_editor.commands.addCommand({
+        name: 'execute_on_ctrlenter',
+        bindKey: {win: 'Ctrl-Return',  mac: 'Command-Return'},
+        exec: function(editor) {
+            run_live_code();
+        },
+        readOnly: true // false if this command should not apply in readOnly mode
+    });
 });
 
 
-
+function getCode()
+{
+    var code = ace_editor.getSession().getValue();
+    $('#sandboxarea').val(code);
+    return code;
+}
+function setCode(code)
+{
+    $('#sandboxarea').val(code);
+    aced_editor.getSession().setValue(code);
+}
 
 function run_live_code(e)
 {
-    var e = e || window.event;
-    if (e.keyCode) code = e.keyCode;
-    else if (e.which) code = e.which;
-    
-    if( $('#sandboxarea').val() != last_urled_code ) reset_code_url();
-    
-    if( !e.ctrlKey || !( code==10 || code==13)  ) return false;
+    if( getCode() != last_urled_code ) reset_code_url();
     actual_run_code();
 }
 function actual_run_code()
 {
-    if( $.trim($('#sandboxarea').val()) == '') return false;
+    if( $.trim(getCode()) == '') return false;
     document.forms["sandboxform"].submit();
 }
 
 
 function generate_code_url()
 {
-    var code = $.trim($('#sandboxarea').val());
+    var code = $.trim(getCode());
     if( code == '') return false;
     
     // show loading image
@@ -69,7 +87,7 @@ function check_code_from_hash()
     var hash = document.location.hash;
     if( hash.substr(1, 5) == 'code:')
     {
-        $('#sandboxarea').val( base64_decode( hash.substr(6) ));
+        setCode( base64_decode( hash.substr(6) ));
         document.location.hash = '#';
     }
     actual_run_code();
@@ -95,7 +113,7 @@ function dropData(status)
     var content = $('#xmlFrame')[0].contentWindow.document.body.innerHTML; 
     content = content.split(';;;;;;;;;;;;;;;;;;;;;;;;;'); 
     delete content[content.length-1] ; 
-    $('#sandboxresponse').html(content.join(''));
+    $('#sandboxresponse').html(nl2br(content.join('')));
 }
 
 
