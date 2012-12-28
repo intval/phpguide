@@ -52,6 +52,18 @@ If you put "framework" directory in public_html - it should be somethig like
 	`cd C:\path\to\phpguide\protected`
 	`yiic.bat migrate`
 	
+- Install composer packages
+On unix:
+		`cd protected/vendors`
+		`curl -s https://getcomposer.org/installer | php` to get composer
+		`php composer.phar install -o` to run it.
+On windows:
+		Download  (composer installer)[https://getcomposer.org/Composer-Setup.exe]
+		Open the `protected/vendors` directory in CMD
+		type in `composer install -o`
+	
+	
+	
 Go to the website. Username: **admin**, pass: **admin**
 
 
