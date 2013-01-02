@@ -6,19 +6,23 @@
     url = '//phpassist.com/Api/Assist'
 
     STATUS_ERROR = "error"
-    STATUS_SUCCESS = "success"
+    STATUS_SUCCESS = "ok"
 
 
     @each ->
 
-      code = $(this).text()
+      codeElem = $ this
+      code = codeElem.text()
       data = {"user": user, "key": key, "code": code}
 
       callback = (response) ->
         if response.status == STATUS_ERROR
-          console.log 'error', response
+          console.log 'aiai, phpassist is browken!!!'
+        else if response.status == STATUS_SUCCESS
+          iframeCode = decodeURIComponent response.url.replace /\+/g, ' '
+          codeElem.replaceWith iframeCode
         else
-          console.log 'success', response
+          console.log 'kurwa! unknow phpassist status'
 
       $.post url, data, callback, 'JSON'
 
