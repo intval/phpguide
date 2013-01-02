@@ -30,7 +30,7 @@ class ArticleController extends PHPGController
         $this->metaType    = 'Article';
 		if($this->facebook) $this->facebook['image'] = $article->image;
 
-
+        $this->addscripts('phpassist.coffee');
         $this->render('index', array('article' => &$article));
     }
     

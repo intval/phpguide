@@ -102,10 +102,18 @@ class PHPGController extends CController
     {
         foreach (func_get_args() as $url)
         {
-            if (mb_substr($url, 0, 7) != "http://")
+            if (!preg_match('#^(https?|//)#iu', $url))
             {
-                $url = $this->getAssetsBase()."/scripts/$url.js";
+                $ext = '.js';
+
+                if(mb_substr($url, -6) === 'coffee')
+                {
+                    $ext = '';
+                }
+
+                $url = $this->getAssetsBase()."/scripts/$url$ext";
             }
+
             Yii::app()->clientScript->registerScriptFile($url, CClientScript::POS_END);
         }
     }
@@ -131,6 +139,13 @@ class PHPGController extends CController
         }
 
 		Yii::app()->clientScript->coreScriptPosition = CClientScript::POS_END;
+
+        if(YII_DEBUG)
+        {
+            $this->addscripts('//jashkenas.github.com/coffee-script/extras/coffee-script.js');
+        }
+
+
         parent::__construct($id, $module);
     }
 
