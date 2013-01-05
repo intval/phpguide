@@ -60,7 +60,7 @@ class Helpers
         $message = new YiiMailMessage($subject, $content, 'text/html', 'utf-8');
         $message->setTo($to);
         $message->setFrom(Yii::app()->params['emailFrom']);
-        Yii::app()->mail->send($message);
+        return Yii::app()->mail->send($message);
     }
 
 }
