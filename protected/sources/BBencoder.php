@@ -60,7 +60,9 @@ Class BBencoder
         
         // cuts out html blocks
         if($this->allow_html)
-        	$string =  preg_replace_callback('#\[html\](.*)\[\/html\]#simU', array($this,'cuthtml'), $this->string);
+        {
+        	$this->string =  preg_replace_callback('#\[html\](.*)\[\/html\]#simU', array($this,'cuthtml'), $this->string);
+        }
     }
     
     private function cuthtml($arr)
@@ -161,22 +163,26 @@ Class BBencoder
     /**
      * bbcode sets images to be <img src='somealttext' title='http://image.url'>
      * This function puts everything back (for rss use basically);
-     * @param string $html the html requiring transformation
-     * @ 
      */
-    public static function fix_lazyload_src()
+    public function fix_lazyload_src()
     {
-        static $pattern = array 
-        (
+        static $pattern =
+        [
             '#src="/static/images/pixel\.gif" alt="(.*)" (.*)title="(.*)"#Uui',
             '#class="content-image-float(left|right)"#'
-        );
+        ];
 
-        static $replacement = array('src="\\3" alt="\\1" title="\\1" \\2', 'style="float:\\1"');
+        static $replacement = ['src="\\3" alt="\\1" title="\\1" \\2', 'style="float:\\1"'];
         return preg_replace($pattern, $replacement, $this->string);
     }
 
 
+    public static function autoLtr($str)
+    {
+        static $pattern = "#([a-z\$]+[a-z\$_\-\&\s\(\)\{\}\"\';]+[a-z\$\&\(\)\{\}\"\';]+)#ium";
+        static $replacement = '<span dir="ltr">\1</span>';
+        return preg_replace($pattern, $replacement, $str);
+    }
 
 
 }
