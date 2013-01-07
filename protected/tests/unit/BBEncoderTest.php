@@ -18,6 +18,17 @@ class BBEncoderTest extends CTestCase
         [left]blabla[/left]
         [html]<span class='s'><abbr>aoeu</abbr></span>[/html]
 
+        [html]
+            <abbr>
+                multiline html
+            </abbr>
+        [/html]
+
+        [html]
+            <script type="text/javascript">stLight.options({ publisher:'18355ba4-a04c-4a33-a76f-847aadfc0f80', onhover:false });</script>
+            <script type='text/javascript' src="http://www.micropoll.com/a/MicroPoll?id=3731518"></script>
+        [/html]
+
 TEST;
 
 
@@ -78,6 +89,25 @@ TEST;
         $result = $encoder -> GetParsedHtml();
 
         $this->assertContains("<span class='s'><abbr>aoeu</abbr></span>", $result);
+    }
+
+    public function testHtmlMultiline()
+    {
+        $encoder = new BBencoder($this->exampleData, 'yo title', true);
+        $result = $encoder -> GetParsedHtml();
+
+        $this->assertContains("<abbr>
+                multiline html
+            </abbr>", $result);
+    }
+
+
+    public function testHtmlWithJavascript()
+    {
+        $encoder = new BBencoder($this->exampleData, 'yo title', true);
+        $result = $encoder -> GetParsedHtml();
+
+        $this->assertContains("<script", $result);
     }
 
     public function testAutoLtr()

@@ -14,7 +14,8 @@
     {
         var node = document.createElement('script');
         node.type = 'text/javascript'; node.async = true; node.src = js;
-        if(!scr ) scr = document.getElementsByTagName('script')[0]; 
+        var scriptTags = document.getElementsByTagName('script');
+        if(!scr ) scr = scriptTags[scriptTags.length-1];
         scr.parentNode.insertBefore(node, scr);
     }
 
