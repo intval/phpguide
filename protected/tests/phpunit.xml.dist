@@ -10,4 +10,10 @@
 		<browser name="Firefox" browser="*firefox" />
 	</selenium>
 
+    <testsuites>
+        <testsuite name="My Test Suite">
+            <directory>./unit/</directory>
+        </testsuite>
+    </testsuites>
+
 </phpunit>
