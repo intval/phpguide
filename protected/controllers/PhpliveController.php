@@ -22,7 +22,7 @@ class PhpliveController extends PHPGController
             $this->description  = "הפעלת קוד php און-ליין בלי שרת או איחסון";
             $this->metaType		= 'Product';
             
-            $this->addscripts( 'phplive');
+            $this->addscripts('http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js','phplive');
             $this->render('index', array('code' => $code));
 	}
         
