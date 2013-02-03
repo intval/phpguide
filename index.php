@@ -22,7 +22,7 @@ $localIPs = ['::ffff:127.0.0.1', '::1', '127.0.0.1'];
 $production = !in_array( $_SERVER['REMOTE_ADDR'] , $localIPs);
 
 // Config path
-$config = include __DIR__.'/protected/config/config.php';
+$config = require __DIR__.'/protected/config/config.php';
 
 
 // add composer packages
