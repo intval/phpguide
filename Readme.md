@@ -77,7 +77,7 @@ Write your code, push it and help building the community.
 Thanks ;)
 
 
-This software is distributed under the BSD Lincence
+This software is distributed under the BSD Licence
 ----------------------------------------
 
 Copyright (c) 2012, Alexander Raskin
