@@ -16,6 +16,11 @@
 /************************************************************************/
 
 
+if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js|less|coffee|sass)$/', $_SERVER["REQUEST_URI"])) {
+    return false;
+}
+
+
 
 // determine whether this is production environment
 $localIPs = ['::ffff:127.0.0.1', '::1', '127.0.0.1'];
