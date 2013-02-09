@@ -75,7 +75,7 @@ class HomepageController extends PHPGController
     	/**
     	 * @todo get a better solution
     	 */
-    	if(!YII_DEBUG && Yii::app()->request->getUserHostAddress() !== '::ffff:176.34.245.11' ) return;
+    	if(!YII_DEBUG && Yii::app()->request->getUserHostAddress() !== '::ffff:142.0.252.132' ) return;
 
     	
     	$items = Yii::app()->db->createCommand("
