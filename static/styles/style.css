@@ -868,6 +868,12 @@ color: #4979A2;
     
 }
 
+#categories_posts .blogpost .submited a, .homepage_posts .blogpost .submited a
+{
+    color:#999999;
+    text-decoration: underline;
+}
+
 
 h1.category-title
 {

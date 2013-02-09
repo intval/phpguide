@@ -16,7 +16,11 @@
                     <?=$article->html_desc_paragraph;?>
                     <br/>
                     <div class="submited">
-                        <div class="right"><?=e($article->author->real_name ?: $article->author->login);?>, </div>
+                        <div class="right">
+                            <a href='<?=bu('users').'/'.e($article->author->login)?>'><?=
+                                e($article->author->login);
+                                ?></a>,
+                        </div>
                         <div class="right">&nbsp;<?=$article->pub_date->date2heb();?>, </div>
                         <div class="right">&nbsp;תגובות: <?= $article->commentsCount; ?></div>
                         <div class="clear"></div>
