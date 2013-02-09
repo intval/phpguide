@@ -141,17 +141,12 @@ class PHPGController extends CController
     */ 
     public function getAssetsBase()
     {
-        if ($this->_assetsBase === null) 
-        {
-            $this->_assetsBase = Yii::app()->assetManager->publish
-            (
-                Yii::getPathOfAlias('application.assets'),
-                false,
-                -1,
-                YII_DEBUG
-            );
-        }
-        return $this->_assetsBase;
+        return bu('static');
+    }
+
+    public static function getAssetsBaseStatic()
+    {
+        return Yii::app()->getController()->getAssetsBase();
     }
         
 }

@@ -1,4 +1,7 @@
-<?php $user = & Yii::app()->user; ?>
+<?php
+/*** @var $user \User */
+$user = & Yii::app()->user;
+?>
 
 <script type='text/javascript'>
 var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
@@ -36,7 +39,7 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 <section id="userinfo" class='unregistered'>
 
 	<div class="ava">
-		<a href="#" class="avatar"><img src='<?='' ?>/images/auth_girl.png' alt='loginbox' /></a>
+		<a href="#" class="avatar"><img src='<?= PHPGController::getAssetsBaseStatic() ?>/images/auth_girl.png' alt='loginbox' /></a>
 		<div style='float:right'>
 			שלום
             <span dir="ltr" id="user_name">אורח</span>
@@ -98,4 +101,4 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 	
 </section>
 
-<?php endif; ?>
+<?php endif;
