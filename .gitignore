@@ -15,6 +15,7 @@ protected/vendors/composerPackages/*
 !protected/vendors/composerPackages/.empty
 composer.lock
 
+xhprof
 ########## General rules #########
 ##################################
 
