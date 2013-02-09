@@ -13,7 +13,7 @@ protected/config/config.php
 #composer packages directory
 protected/vendors/composerPackages/*
 !protected/vendors/composerPackages/.empty
-
+composer.lock
 
 ########## General rules #########
 ##################################
