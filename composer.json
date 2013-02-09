@@ -1,6 +1,6 @@
 {
     "config": {
-        "vendor-dir": "composerPackages"
+        "vendor-dir": "protected/vendors/composerPackages"
     },
 
     "require": {
