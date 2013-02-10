@@ -1,3 +1,17 @@
+<?php
+/*** @var $this RecentEvents */
+
+$recentEventsCacheParams = [
+    'duration'=>3600,
+    'dependency' =>
+    [
+        'class'=>'system.caching.dependencies.CDbCacheDependency',
+        'sql'=>RecentEvents::getCacheDependencySql()
+    ]
+];
+
+?>
+
 <section id="search_box">
     <form method="get" action="http://www.google.co.il/search" id="search_form">
     
@@ -14,8 +28,12 @@
 <?php $this->widget('application.components.LoginBox') ?>
 
 <?php $this->widget('application.components.RatingWidget'); ?>
-			
-<?php $this->widget('application.components.RecentEvents'); ?>
+
+<?php if($this->beginCache('RecentEventsFragmentCache', $recentEventsCacheParams)) { ?>
+
+    <?php $this->widget('application.components.RecentEvents'); ?>
+
+<?php $this->endCache(); } ?>
 
 <section class="logos">
 	<a href="https://github.com/intval/phpguide" title='phpguide is open source. Help us!' class='github'></a>

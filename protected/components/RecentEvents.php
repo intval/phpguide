@@ -17,6 +17,12 @@ Class RecentEvents Extends CWidget
         if(sizeof($comments) > 0)
             $this->render('RecentEvents',array('comments'=> $comments ));
     }
+
+    public static function getCacheDependencySql()
+    {
+        return 'SELECT date FROM '.Comment::model()->tableName().
+               ' ORDER BY date DESC LIMIT 1';
+    }
 }
 
 

@@ -151,5 +151,10 @@ class Article extends DTActiveRecord
             return $this;
         }
 
+    public static function getCacheDependencySql()
+    {
+        return 'SELECT pub_date FROM '.self::model()->tableName().
+               ' ORDER BY pub_date DESC LIMIT 1';
+    }
         
 }
