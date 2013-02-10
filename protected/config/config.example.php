@@ -7,6 +7,9 @@
  * @author Alex Raskin (Alex@phpguide.co.il)
  */
 
+$cacheType = extension_loaded('apc') ?
+                'system.caching.CApcCache' : 'system.caching.CFileCache' ;
+
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
@@ -38,82 +41,83 @@ return array(
 		'session'       => array( 'autoStart' => true),
 		'db'            => require 'dbconnection.php',
 		'errorHandler'  => array( 'errorAction'=>'homepage/error' ),
-                'request'       => array('enableCsrfValidation' => true),
-                'user'          => array( 'class' => 'WebUser'),
-                'urlManager'    => array
-                (
-                    'urlFormat'=>'path',
-                    'showScriptName'=>false,
-                    'rules'=> require 'routes.php'
+        'request'       => array('enableCsrfValidation' => true),
+        'user'          => array( 'class' => 'WebUser'),
+        'cache'         => ['class' => $cacheType],
+        'urlManager'    => array
+        (
+            'urlFormat'=>'path',
+            'showScriptName'=>false,
+            'rules'=> require 'routes.php'
+        ),
+
+        'loid' => array(
+            'class' => 'ext.loid.loid',
+        ),
+        'eauth' => array(
+            'class' => 'ext.eauth.EAuth',
+            'popup' => false, // Use the popup window instead of redirecting.
+            'services' => array
+            (
+
+                'google' => array(
+                    'class' => 'GoogleOpenIDService',
                 ),
-            
-                'loid' => array(
-                    'class' => 'ext.loid.loid',
+
+                'facebook' => array(
+                    // register your app here: https://developers.facebook.com/apps/
+                    'class' => 'FacebookOAuthService',
+                    'client_id' => '...',
+                    'client_secret' => '...',
                 ),
-                'eauth' => array(
-                    'class' => 'ext.eauth.EAuth',
-                    'popup' => false, // Use the popup window instead of redirecting.
-                    'services' => array
-                    (
-                        
-                        'google' => array(
-                            'class' => 'GoogleOpenIDService',
-                        ),
-                    
-                        'facebook' => array(
-                            // register your app here: https://developers.facebook.com/apps/
-                            'class' => 'FacebookOAuthService',
-                            'client_id' => '...',
-                            'client_secret' => '...',
-                        ),
-                        /*
-                        'twitter' => array(
-                            // register your app here: https://dev.twitter.com/apps/new
-                            'class' => 'TwitterOAuthService',
-                            'key' => '...',
-                            'secret' => '...',
-                        ),  
-                         
-                        'yandex' => array(
-                            'class' => 'YandexOpenIDService',
-                        ),
-                        'google_oauth' => array(
-                            // register your app here: https://code.google.com/apis/console/
-                            'class' => 'GoogleOAuthService',
-                            'client_id' => '...',
-                            'client_secret' => '...',
-                            'title' => 'Google (OAuth)',
-                        ),
-                        
-                        'vkontakte' => array(
-                            // register your app here: http://vkontakte.ru/editapp?act=create&site=1
-                            'class' => 'VKontakteOAuthService',
-                            'client_id' => '...',
-                            'client_secret' => '...',
-                        ),
-                        'mailru' => array(
-                            // register your app here: http://api.mail.ru/sites/my/add
-                            'class' => 'MailruOAuthService',
-                            'client_id' => '...',
-                            'client_secret' => '...',
-                        ),
-                        'moikrug' => array(
-                            // register your app here: https://oauth.yandex.ru/client/my
-                            'class' => 'MoikrugOAuthService',
-                            'client_id' => '...',
-                            'client_secret' => '...',
-                        ),
-                        'odnoklassniki' => array(
-                            // register your app here: http://www.odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&st._aid=Apps_Info_MyDev
-                            'class' => 'OdnoklassnikiOAuthService',
-                            'client_id' => '...',
-                            'client_public' => '...',
-                            'client_secret' => '...',
-                            'title' => 'Odnokl.',
-                        ),
-                        */
-                    )
+                /*
+                'twitter' => array(
+                    // register your app here: https://dev.twitter.com/apps/new
+                    'class' => 'TwitterOAuthService',
+                    'key' => '...',
+                    'secret' => '...',
                 ),
+
+                'yandex' => array(
+                    'class' => 'YandexOpenIDService',
+                ),
+                'google_oauth' => array(
+                    // register your app here: https://code.google.com/apis/console/
+                    'class' => 'GoogleOAuthService',
+                    'client_id' => '...',
+                    'client_secret' => '...',
+                    'title' => 'Google (OAuth)',
+                ),
+
+                'vkontakte' => array(
+                    // register your app here: http://vkontakte.ru/editapp?act=create&site=1
+                    'class' => 'VKontakteOAuthService',
+                    'client_id' => '...',
+                    'client_secret' => '...',
+                ),
+                'mailru' => array(
+                    // register your app here: http://api.mail.ru/sites/my/add
+                    'class' => 'MailruOAuthService',
+                    'client_id' => '...',
+                    'client_secret' => '...',
+                ),
+                'moikrug' => array(
+                    // register your app here: https://oauth.yandex.ru/client/my
+                    'class' => 'MoikrugOAuthService',
+                    'client_id' => '...',
+                    'client_secret' => '...',
+                ),
+                'odnoklassniki' => array(
+                    // register your app here: http://www.odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&st._aid=Apps_Info_MyDev
+                    'class' => 'OdnoklassnikiOAuthService',
+                    'client_id' => '...',
+                    'client_public' => '...',
+                    'client_secret' => '...',
+                    'title' => 'Odnokl.',
+                ),
+                */
+            )
+        ),
 
         'mail' => array
         (
