@@ -1,8 +1,6 @@
-
 /*************************************************************************/
 /**************************** My STYLES **********************************/
 /*************************************************************************/
-
 
 
 body {
@@ -39,14 +37,21 @@ a:visited
 }
 
 
+ul, ol
+{
+	padding-right: 10px;
+	margin: 0 0 10px 0;
+}
 
+ul ul
+{
+	list-style: circle;
+}
 
-
-
-
-
-
-
+ul ul ul
+{
+	list-style: square;
+}
 
 
 .hidden
@@ -539,6 +544,7 @@ padding-bottom:10px;
 }
 
 #last_comments dl {
+	word-wrap: break-word;
 	margin-top: 15px;
 }
 
@@ -1621,12 +1627,6 @@ div.addform .errors
 {
     line-height: 24px;
 	max-width:460px;
-}
-
-
-.qna-home-row .question-summary-wrapper {
-    float: right;
-    
 }
 
 .qna-home-row h2 a
