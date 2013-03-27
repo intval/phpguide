@@ -23,12 +23,23 @@ $blogpostCacheAttrs = [
     פרסם כאן
 </div>
 
-<?php if($this->beginCache('HomepageBlogpostsFragmentCache', $blogpostCacheAttrs)) { ?>
+<?php
+$cacheStarted = false;
 
-<div class='homepage-articles'>
-<?php  $this->renderPartial('//article/homepageArticlesList',
-            array('articles' =>  $articles )); ?>
-&larr; <a href='<?=bu('Article/All')?>'>כל הפוסטים</a>
-</div>
+if(!Yii::app()->user->isguest && Yii::app()->user->is_admin &&
+    $this->beginCache('HomepageBlogpostsFragmentCache', $blogpostCacheAttrs))
+{
+    $cacheStarted = true;
+}
+?>
+    <div class='homepage-articles'>
+    <?php  $this->renderPartial('//article/homepageArticlesList', ['articles' => $articles]); ?>
+    &larr; <a href='<?=bu('Article/All')?>'>כל הפוסטים</a>
+    </div>
 
-<?php $this->endCache(); } ?>
+<?php
+if($cacheStarted)
+{
+    $this->endCache();
+}
+?>
