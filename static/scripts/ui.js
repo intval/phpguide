@@ -384,28 +384,23 @@ window.onload = function()
 }
 
 // Bug fix: autosave after sending <dekelyi>
-(function(l,$) {
-  function s(s1,s2) {
-    return s1.slice(0, s2.length) == s2;
-  }
-  function r(e) {
-    for(var s = localStorage, i = 0, l = s.length;i<l;i++)
-      if(s(s.key(i),l.hostname + l.pathname + l.search + l.hash)) 
-        s.removeItem(s.key(i));
+(function($) {
+  function remove(e) {
+    $.sisyphus().manuallyReleaseData();
     return TRUE;
   }
-  function rf(e) {
-    r(e);
+  function remove_returnFALSE(e) {
+    $.sisyphus().manuallyReleaseData();
     return FALSE;
   }
   $(function() {
     var $f = $('body form');
-    if ($f.prop('onsubmit').toLowerCase.indexOf( 'return false') === -1)
-      $f.prop('onsubmit',rf);
+    if ($f.prop('onsubmit').toLowerCase.indexOf('return false') === -1)
+      $f.prop('onsubmit',remove_returnFALSE);
     else
-      $f.prop('obsumbit',r);
+      $f.prop('obsumbit',remove);
   });
-})(location,jQuery)
+})(jQuery)
 
 
 
