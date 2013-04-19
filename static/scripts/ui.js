@@ -383,6 +383,30 @@ window.onload = function()
     }, 3000);
 }
 
+// Bug fix: autosave after sending <dekelyi>
+(function(l,$) {
+  function s(s1,s2) {
+    return s1.slice(0, s2.length) == s2;
+  }
+  function r(e) {
+    for(var s = localStorage, i = 0, l = s.length;i<l;i++)
+      if(s(s.key(i),l.hostname + l.pathname + l.search + l.hash)) 
+        s.removeItem(s.key(i));
+    return TRUE;
+  }
+  function rf(e) {
+    r(e);
+    return FALSE;
+  }
+  $(function() {
+    var $f = $('body form');
+    if ($f.prop('onsubmit').toLowerCase.indexOf( 'return false') === -1)
+      $f.prop('onsubmit',rf);
+    else
+      $f.prop('obsumbit',r);
+  });
+})(location,jQuery)
+
 
 
 
