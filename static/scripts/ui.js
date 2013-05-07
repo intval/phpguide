@@ -378,6 +378,30 @@ window.onload = function()
             
             jQuery('#plusone_for_concrete_post').html('<div class="g-plusone" data-size="tall" data-href="'+loc + '/' + window.location.pathname+'"></div>');
         }
+        
+        
+	(function(){
+		var uv=document.createElement('script');
+		uv.type='text/javascript';
+		uv.async=true;
+		uv.src='//widget.uservoice.com/ErfXLhKesduxPbqb4bKw3A.js';
+		var s=document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(uv,s)}
+	)();
+
+	UserVoice = window.UserVoice || [];
+	UserVoice.push(['showTab', 'classic_widget', {
+	  mode: 'full',
+	  primary_color: '#cc6d00',
+	  link_color: '#007dbf',
+	  default_mode: 'support',
+	  forum_id: 205721,
+	  tab_label: 'Feedback & Support',
+	  tab_color: '#cc6d00',
+	  tab_position: 'middle-right',
+	  tab_inverted: false
+	}]);
+
 
 
     }, 3000);
