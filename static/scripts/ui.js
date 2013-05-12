@@ -407,6 +407,25 @@ window.onload = function()
     }, 3000);
 }
 
+// Bug fix: autosave after sending <dekelyi>
+(function($) {
+  function remove(e) {
+    $.sisyphus().manuallyReleaseData();
+    return TRUE;
+  }
+  function remove_returnFALSE(e) {
+    $.sisyphus().manuallyReleaseData();
+    return FALSE;
+  }
+  $(function() {
+    var $f = $('body form');
+    if ($f.prop('onsubmit').toLowerCase.indexOf('return false') === -1)
+      $f.prop('onsubmit',remove_returnFALSE);
+    else
+      $f.prop('obsumbit',remove);
+  });
+})(jQuery)
+
 
 
 
