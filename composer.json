@@ -4,6 +4,6 @@
     },
 
     "require": {
-        "swiftmailer/swiftmailer": "4.3.x-dev"
+        "swiftmailer/swiftmailer": "4.3.*"
     }
 }
