@@ -389,18 +389,19 @@ window.onload = function()
 		s.parentNode.insertBefore(uv,s)}
 	)();
 
+	
 	UserVoice = window.UserVoice || [];
 	UserVoice.push(['showTab', 'classic_widget', {
-	  mode: 'full',
-	  primary_color: '#cc6d00',
+	  mode: 'feedback',
+	  primary_color: '#5a55eb',
 	  link_color: '#007dbf',
-	  default_mode: 'support',
 	  forum_id: 205721,
-	  tab_label: 'Feedback & Support',
-	  tab_color: '#cc6d00',
+	  tab_label: 'Feedback',
+	  tab_color: '#444abd',
 	  tab_position: 'middle-right',
-	  tab_inverted: false
+	  tab_inverted: true
 	}]);
+
 
 
 
