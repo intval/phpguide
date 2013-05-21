@@ -406,7 +406,7 @@ window.onload = function()
 
 
     }, 3000);
-}
+};
 
 // Bug fix: autosave after sending <dekelyi>
 (function($) {
