@@ -97,7 +97,7 @@
 							array('class' => 'submit', 'id' => 'loginSubmitBtn', 'tabindex' => '4')
 							)?>
 							
-						<a href="<?= Yii::app() ->createUrl('login/recover'); ?>">שכחתי סיסמה</a>
+						<a href="<?= Yii::app() ->createUrl('PwRecovery/recover'); ?>">שכחתי סיסמה</a>
 					</div>
 					
 				<?=CHtml::endForm()?>

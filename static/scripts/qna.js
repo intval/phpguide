@@ -48,6 +48,7 @@ var qna =
     clearAnswerText: function()
     {
     	$('#message').val('');
+        if($('form').sisyphus !== undefined) $('form').sisyphus().manuallyReleaseData();
     },
 
     appendAnswer: function(text)
@@ -88,7 +89,6 @@ var qna =
     	$('.qnaCommentForm').remove();
     	$('#' + qna.editedId).show().replaceWith(data);
     	qna.editedId = false;
-
     },
 
 
@@ -129,6 +129,7 @@ var qna =
 
     editQuestionSuccess : function(data)
     {
+        if($('form').sisyphus !== undefined) $('form').sisyphus().manuallyReleaseData();
     	document.location  = data;
     },
 

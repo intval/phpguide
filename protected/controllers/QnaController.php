@@ -264,7 +264,13 @@ class QnaController extends PHPGController
 
                 if( !$answer->validate())
                 {
-                    throw new InvalidArgumentException("Some submitted data for QnaANswer didnt pass validation");
+                    $errList = [];
+
+                    foreach($answer->getErrors() as $allErrorsForInput)
+                        foreach($allErrorsForInput as $error)
+                        $errList[] = $error;
+
+                    throw new InvalidArgumentException(implode(PHP_EOL, $errList));
                 }
 
                 if(!$answer->save() )
@@ -293,10 +299,9 @@ class QnaController extends PHPGController
     	    }
     	    catch(Exception $e)
     	    {
-                echo ':err:'; 
+                echo ':err:', $e->getMessage();
                 if(YII_DEBUG || (!Yii::app()->user->isguest &&  Yii::app()->user->is_admin))
                 {
-                    echo $e->getMessage();
                     var_dump($e);
                 }
 

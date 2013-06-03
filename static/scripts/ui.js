@@ -59,6 +59,7 @@ function comment_sumbitted_callback(response)
     	show_comments_alert('תגובתך נוספה! תודה', 'ok');
         jQuery('#post_comments').append ( response  );
         jQuery('#commenttext').val('');
+        if($('form').sisyphus !== undefined) $('form').sisyphus().manuallyReleaseData();
     }
     
     jQuery('#comments_form').show();
@@ -145,6 +146,12 @@ function disable_new_question_form(xhr)
 		alert('נושא השאלה חייב להיות בעורך של חמישה תווים לפחות');
 		return false;
 	}
+
+    if( $.trim(jQuery('#forum_question_text').val()).length < 5 )
+    {
+        alert('תוכן השאלה לא הכי אינפורמטיבי');
+        return false;
+    }
 	
     jQuery('#forum_question_text').prop('disabled', true);
     jQuery('#forum_question_subject').prop('disabled', true);
@@ -153,11 +160,23 @@ function disable_new_question_form(xhr)
 
 function new_question_submitted_callback(response)
 {
-    jQuery('#forum_question_text').prop('disabled', false).val('');
-    jQuery('#forum_question_subject').prop('disabled', false).val('');
-    
-    if ( response.substr(0, 5) === 'err::') alert(response.substr(5));
-    else document.location =  response; 
+    var textField = jQuery('#forum_question_text');
+    var subjectField = jQuery('#forum_question_subject');
+
+    if ( response.substr(0, 5) === 'err::')
+    {
+        textField.prop('disabled', false);
+        subjectField.prop('disabled', false);
+        alert(response.substr(5));
+    }
+    else
+    {
+        textField.val('');
+        subjectField.val('');
+
+        if($('form').sisyphus !== undefined) $('form').sisyphus().manuallyReleaseData();
+        document.location =  response;
+    }
 }
 
 
@@ -378,18 +397,7 @@ window.onload = function()
             
             jQuery('#plusone_for_concrete_post').html('<div class="g-plusone" data-size="tall" data-href="'+loc + '/' + window.location.pathname+'"></div>');
         }
-        
-        
-	(function(){
-		var uv=document.createElement('script');
-		uv.type='text/javascript';
-		uv.async=true;
-		uv.src='//widget.uservoice.com/ErfXLhKesduxPbqb4bKw3A.js';
-		var s=document.getElementsByTagName('script')[0];
-		s.parentNode.insertBefore(uv,s)}
-	)();
 
-	
 	UserVoice = window.UserVoice || [];
 	UserVoice.push(['showTab', 'classic_widget', {
 	  mode: 'feedback',
@@ -402,32 +410,10 @@ window.onload = function()
 	  tab_inverted: true
 	}]);
 
+    load('//widget.uservoice.com/ErfXLhKesduxPbqb4bKw3A.js');
+
 
 
 
     }, 3000);
 };
-
-// Bug fix: autosave after sending <dekelyi>
-(function($) {
-  function remove(e) {
-    $.sisyphus().manuallyReleaseData();
-    return TRUE;
-  }
-  function remove_returnFALSE(e) {
-    $.sisyphus().manuallyReleaseData();
-    return FALSE;
-  }
-  $(function() {
-    var $f = $('body form');
-    if ($f.prop('onsubmit').toLowerCase.indexOf('return false') === -1)
-      $f.prop('onsubmit',remove_returnFALSE);
-    else
-      $f.prop('obsumbit',remove);
-  });
-})(jQuery)
-
-
-
-
-

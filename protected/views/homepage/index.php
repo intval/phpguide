@@ -26,7 +26,7 @@ $blogpostCacheAttrs = [
 <?php
 $cacheStarted = false;
 
-if(!Yii::app()->user->isguest && Yii::app()->user->is_admin &&
+if(!Yii::app()->user->isguest && !Yii::app()->user->is_admin &&
     $this->beginCache('HomepageBlogpostsFragmentCache', $blogpostCacheAttrs))
 {
     $cacheStarted = true;
