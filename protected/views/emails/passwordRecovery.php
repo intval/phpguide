@@ -4,7 +4,7 @@
 מישהו, כנראה אתה, ביקש לשחזר את סיסמתך לאתר <a href="<?=e(bu('', true))?>" ><?php echo e(Yii::app()->name); ?></a>
 <br/>
 על מנת לשחזר את הסיסמה יש ללוץ על הקישור הבא:
-<a href='<?=e($recovery_url)?>'><?=e($recovery_url)?></a>
+<a href='<?=bu($recovery_url, true)?>'><?=bu($recovery_url, true)?></a>
 
 <br/>
 <br/>
