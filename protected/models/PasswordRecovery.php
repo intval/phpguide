@@ -81,7 +81,7 @@ class PasswordRecovery extends DTActiveRecord
 
     private function createRecoveryRecord(User $user, $ip)
     {
-        $this->user = $user;
+        $this->userid = $user->id;
         $this->ip = $ip;
         $this->key = Helpers::randString(20);
         $this->validity = new SDateTime('+1 hour');
@@ -113,15 +113,17 @@ class PasswordRecovery extends DTActiveRecord
     public function recover($id, $key)
     {
         /** @var PasswordRecovery $pwr  */
-        $pwr = $this->with('user')->findByPk($id, ['key' => $key]);
+        $pwr = $this->findByPk($id, '`key`=:k',[':k' => $key]);
 
-        if($pwr->key !== $key)
+
+        if($pwr === null || $pwr->key !== $key)
             return self::ERROR_INVALID_KEY;
 
         if($pwr->validity < new DateTime())
             return self::ERROR_RECOVER_TIMEOUT;
 
         $pwr->user->authorize();
+        $pwr->delete();
         return self::ERROR_NONE;
     }
 
