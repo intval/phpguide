@@ -12,9 +12,9 @@
 	לחץ על אחד הכפתורים הללו על מנת להזדהות
 	
 	<br/><br/>
-	<a href='<?= Yii::app() ->createUrl('login/externalLogin', array('service' => 'facebook')); ?>' class='sign_in_with_facebook_long'></a>
+	<a href='<?= Yii::app() ->createUrl('loginExternal/login', array('service' => 'facebook')); ?>' class='sign_in_with_facebook_long'></a>
 	<br/>
-	<a href='<?= Yii::app() ->createUrl('login/externalLogin', array('service' => 'google')); ?>' class='sign_in_with_google_long'></a>
+	<a href='<?= Yii::app() ->createUrl('loginExternal/login', array('service' => 'google')); ?>' class='sign_in_with_google_long'></a>
 
 	<br/>
 	<b><u>פרטיות המידע</u></b>

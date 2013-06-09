@@ -5,14 +5,14 @@
 class LoginExternalController extends PHPGController
 {
 
-    const returnUrl = 'returnUrl';
+    const returnUrl = '/';
 
     /**
      * Fired when the user decides to login with external auth provider.
      */
-    public function actionLogin($service)
+    public function actionLogin($service, $backto = self::returnUrl)
     {
-        $returnUrl = Yii::app()->request->getQuery('backto');
+        $returnUrl = $backto ?: Yii::app()->request->getQuery('backto');
         $this->authWithExternalProvider($service, $returnUrl);
     }
 
