@@ -55,20 +55,16 @@ class WebUser extends CWebUser
      */ 
     public function __get($key) 
     {
-    	$user = $this->getUser(); 
+    	$user = $this->getUserInstance();
      	return isset($user->{$key}) ? $user->{$key} : parent::__get($key);
     }
 
 
-    private function getUser()
+    public function getUserInstance()
     {
-    	
-    	if(null !== $this->user) 
+    	if(null !== $this->user)
     		return $this->user;
-    	
-    	
-    		
-    	
+
     	if( null !== ($user = $this->getState('user'))   ||  ($this->getId() &&  null !== ($user = User::model()->findByPk($this->getId())) ))
     	{
     		$this->user = $user;
@@ -83,7 +79,7 @@ class WebUser extends CWebUser
     
     protected function afterLogin($fromCookie)
     {
-    	$user = $this->getUser();
+    	$user = $this->getUserInstance();
     	if($user === null) $last_visit = new SDateTime();
     	else $last_visit = $user->last_visit;
     	
@@ -138,7 +134,7 @@ class WebUser extends CWebUser
     private function password_algorithm_upgrade(&$password)
     {
         $attributes = array();
-        if(null !== $this->plain_password && 22 !== mb_strlen($this->getUser()->salt))
+        if(null !== $this->plain_password && 22 !== mb_strlen($this->getUserInstance()->salt))
         {
             $salt = Helpers::randString(22);
             $attributes['salt'] = $salt;
