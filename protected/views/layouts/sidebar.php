@@ -27,6 +27,17 @@ $recentEventsCacheParams = [
     
 <?php $this->widget('application.components.LoginBox') ?>
 
+<section class="rblock" style='background-color:rgb(255, 238, 115);'>
+	<h3>
+		אלכס כותב ספר על תכנות מונחה עצמים למתחילים
+	</h3>
+	<br/>
+	<a href='http://phpguide.co.il/oopbook/' style="font-size:120%; color:dark-blue; font-weight:bold;">
+	לחץ כאן כדי לדעת ראשון כשהספר מוכן
+	</a>
+	
+</section>
+
 <?php $this->widget('application.components.RatingWidget'); ?>
 
 <?php if($this->beginCache('RecentEventsFragmentCache', $recentEventsCacheParams)) { ?>
