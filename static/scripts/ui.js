@@ -193,6 +193,7 @@ function unauth_message(type)
 	var qnaQuestion = 'לקבל תשובות לשאלה שלך';
 	var qnaAnswer = 'לענות על השאלה';
 	var vote = 'לדרג';
+    var contest = 'להשתתף';
 	var default1 = 'לעשות את זה';
 	
 	switch (type)
@@ -202,7 +203,8 @@ function unauth_message(type)
 		case 'qnaQuestion'	: show_unauth_message(qnaQuestion, true); break;
 		case 'qnaAnswer'	: show_unauth_message(qnaAnswer, true); break;
 		case 'vote' 		: show_unauth_message(vote, false); break;
-		default				: show_anauth_message(default1, true); 
+		case 'contest' 		: show_unauth_message(contest, false); break;
+		default				: show_unauth_message(default1, true);
 	}
 }
 
@@ -339,6 +341,10 @@ function getStyle(a,b){var c=jQuery(a);if(c.currentStyle)return c.currentStyle[b
     			expand_forum_question_textarea();
     		
     	}});
+
+
+        /* Timeago plugin */
+        jQuery("time.timeago").timeago();
     	
     })();
 
