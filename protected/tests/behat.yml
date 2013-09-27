@@ -1,0 +1,10 @@
+default:
+    paths:
+      features: features
+      bootstrap: features/bootstrap
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://local.phpguide.co.il
+            default_session: selenium2
+            selenium2:
+              wd_host: http://localhost:8643/wd/hub
