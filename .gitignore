@@ -15,6 +15,10 @@ protected/vendors/composerPackages/*
 !protected/vendors/composerPackages/.empty
 composer.lock
 
+#binaries of composer packages
+protected/tests/phpunit
+protected/tests/behat
+
 xhprof
 ########## General rules #########
 ##################################
@@ -62,6 +66,3 @@ publish
 
 #zend debugger
 dummmy.php
-
-#phing
-build.xml

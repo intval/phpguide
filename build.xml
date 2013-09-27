@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="phpguide" default="main">
+
+    <!-- ============================================  -->
+    <!-- Target: main, the all stuf                    -->
+    <!-- ============================================  -->
+    <target name="main" depends="finish"> </target>
+
+	<target name="gitupdate" >
+
+		<echo msg="cleaning existing repo" />
+		<exec command="rm -rf /home/phpgTempGitClone" />
+		<exec command="mkdir /home/phpgTempGitClone" />
+
+		<echo msg="Cloning git repo" />
+		<exec command="git clone git://github.com/intval/phpguide.git /home/phpgTempGitClone" />
+		<echo msg="Repo cloned" />
+		<echo msg="Removing .git dir from clone" />
+		<exec command="rm -R /home/phpgTempGitClone/.git" />
+	</target>
+
+
+	<target name="cleanPrevBuild" depends="gitupdate">
+		<delete includeemptydirs="true">
+			<fileset dir="/home/www/phpguide">
+				<exclude name="protected/config/dbconnection.php" />
+				<exclude name="protected/config/services.php" />
+			    <exclude name="protected/config/config.php" />
+                <exclude name="protected/runtime/state.bin" />
+				<exclude name="protected/yiic*" />
+				<exclude name="build.xml" />
+			</fileset>
+		</delete>
+	</target>
+
+
+	<target name="copy" depends="cleanPrevBuild">
+		 <copy todir="/home/www/phpguide" overwrite="true" includeemptydirs="true">
+			<fileset dir="/home/phpgTempGitClone">
+				<exclude name="protected/config/*.example.php" />
+				<exclude name="protected/data**" />
+				<exclude name="protected/runtime/*" />
+				<exclude name="protected/data**" />
+				<exclude name="protected/tests**" />
+				<exclude name=".gitignore" />
+				<exclude name="assets/*" />
+				<exclude name="dummy.php" />
+				<exclude name="Readme.md" />
+				<exclude name="**/.gitignore" />
+				<exclude name=".git" />
+				<exclude name=".nginx.conf" />
+			</fileset>
+		</copy>
+	</target>
+
+
+	<target name="finish" depends="copy">
+		<echo msg="setting permissions" />
+                <exec command="chown www1:www -R /home/www" />
+                <exec command="chown +x /home/www/phpguide/protected/yiic" />
+
+                <echo msg="deleting cloned repo" />
+                <exec command="rm -rf /home/phpgTempGitClone" />
+
+                <echo msg="running composer" />
+                <exec command="composer install -o" />
+
+                <echo msg="setting permissions again" />
+                <exec command="chown www1:www -R /home/www" />
+                <exec command="chown +x /home/www/phpguide/protected/yiic" />
+
+		<echo msg="setting permissions to writable dirs" />
+		<exec command="chmod 777 /home/www/phpguide/assets" />
+		<exec command="chomd 777 /home/www/phpguide/cache" />
+		<exec command="chmod 777 /home/www/phpguide/protected/runtime" />
+ 		<exec command="chmod 777 /home/www/phpguide/static/sitemap.xml" />
+
+                <echo msg="running migrations" />
+                <exec command="/home/www/phpguide/protected/yiic migrate --interactive=0" />
+
+                <echo msg="cleaning nginx error_log" />
+                <exec command=" echo '' > /var/log/nginx/error.log" />
+
+                <echo msg="restarting php-fcgi to clear apc cache" />
+                <exec command="service php-fcgi restart" />
+
+	</target>
+
+</project>
