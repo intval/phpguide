@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" itemscope itemtype="http://schema.org/<?=e($this->metaType)?>">
+<html lang="he" itemscope itemtype="http://schema.org/<?=e($this->metaType)?>" ng-app="phpg">
 <head>
     <base href="<?=bu()."/"?>" />
     <meta charset="utf-8" />
