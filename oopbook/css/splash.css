@@ -1,0 +1,209 @@
+/*
+    GREENED - A Responsive Bootstrap Under Construction Theme by Gioska :: splash.css
+    Designed and Developed by Gioska
+--------------------------------------------------------------------------------------------------------*/
+
+	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline; }
+	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+		display: block; }
+	body {
+		line-height: 1; }
+	ol, ul {
+		list-style: none; }
+	blockquote, q {
+		quotes: none; }
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none; }
+	table {
+		border-collapse: collapse;
+		border-spacing: 0; }
+		
+		
+
+
+/* #Basic Styles
+================================================== */
+	body {
+		background: url(../img/bg-light/noisy_grid.png) repeat; 
+	background-position: center center;
+		font: 12px/20px Arial, sans-serif;
+		color: #888;
+ }
+
+ 
+
+ 
+
+
+
+/* #Typography
+================================================== */
+	h1, h2, h3, h4, h5, h6 {
+		color: #888;
+		font-weight: normal;
+		}
+	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
+	h1 { font-size: 16px; color: #888; margin-bottom: 10px; font-weight: bold;}
+	h2 { font-size: 22px; line-height: 30px; color: #545454;margin-bottom: 8px;}
+	h3 { font-size: 17px; line-height: 23px;margin-bottom: 10px;}
+	h4 { font-size: 14px; line-height: 21px;margin-bottom: 10px;}
+	h5 { font-size: 12px; line-height: 16px; }
+	h6 { font-size: 11px; line-height: 14px;}
+	.subheader { color: #777; }
+
+	p { margin: 0 0 20px 0 ;  padding: 0; color: #777;}
+	p img { margin: 0; }
+	p.lead { font-size: 21px; line-height: 27px; color: #777;  }
+
+	em { font-style: italic; }
+	strong { font-weight: bold; color: #333; }
+	small { font-size: 80%; }
+
+
+
+
+/* #Links
+================================================== */
+	a, a:visited { 
+	color: #888;
+	text-decoration: none; 
+	outline: 0;
+	-webkit-transition: color 0.2s ease-out, background 0.2s ease-out;
+	-moz-transition: color 0.2s ease-out, background 0.2s ease-out; 
+	-o-transition: color 0.2s ease-out, background 0.2s ease-out; 
+	-ms-transition: color 0.2s ease-out, background 0.2s ease-out; 
+	transition: color 0.2s ease-out, background 0.2s ease-out;
+	
+	}
+	
+	a img {   
+		-webkit-transition: all 0.2s ease-out;
+	  -moz-transition: all 0.2s ease-out;
+	  -o-transition: all 0.2s ease-out;
+	  -ms-transition: all 0.2s ease-out;
+	  transition: all 0.2s ease-out;
+
+  }
+	
+	a.green:hover { color: #74b727;}
+	a.orange:hover { color: #f60;}
+	a.blue:hover { color: #00A6A6;}
+	a:hover img { opacity: 0.8;}
+	p a, p a:visited { line-height: inherit; }
+	
+
+
+
+/* #Lists
+================================================== */
+	ul, ol { margin-bottom: 20px; }
+	ul { list-style: none outside; }
+	ol { list-style: decimal; }
+	ol, ul.bullet, ul.check, ul.square, ul.circle, ul.disc { margin-right: 20px; }
+	ul.square { list-style: square outside; }
+	ul.circle { list-style: circle outside; }
+	ul.disc { list-style: disc outside; }
+	ul ul, ul ol,
+	ol ol, ol ul { margin: 4px 30px 5px 0 ;  font-size: 90%;  }
+	ul ul li, ul ol li,
+	ol ol li, ol ul li { margin-bottom: 0px; }
+	li { line-height: 18px; margin-bottom: 0px; }
+	ul.large li { line-height: 21px; }
+	li p { line-height: 21px; }
+	
+	
+	
+	
+
+
+
+
+/* #Base 960 Grid
+================================================== */
+
+.container{
+ position: relative;
+ width: 100%;	
+}
+
+.logo{
+ position: relative;
+ width: 185px;
+ height: 60px;
+ margin: 50px auto;
+ background: url('../landing-img/logo.png') no-repeat top right;
+}
+
+.previewItems{
+	width: 590px;
+	margin: 0 auto;
+	margin-top: 70px;
+}
+
+.previewItem{
+ width: 247px;
+ position: relative;
+ float: right;
+}
+
+
+.previewItem li{
+ line-height: 20px;
+}
+
+.previewItem.first{
+margin-left: 96px;
+margin-bottom: 10px;
+}
+
+.itemDesc{
+ text-align: center;
+ margin-top: 15px;
+}
+
+
+.previewItemlast{
+ width: 247px;
+ margin: 0 auto;
+ margin-top: 70px;
+}
+
+/* #Tablet (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 768px */
+
+    @media only screen and (min-width: 768px) and (max-width: 999px) {
+
+
+    }
+
+
+/*  #Mobile (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 320px */
+
+    @media only screen and (max-width: 800px) {
+		.previewItems{
+			width: 247px;
+		}
+    }
+
+
+/* #Mobile (Landscape)
+================================================== */
+
+    /* Note: Design for a width of 480px */
+
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+
+    }

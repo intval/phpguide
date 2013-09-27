@@ -1,0 +1,832 @@
+/*
+    GREENED - A Responsive Bootstrap Under Construction Theme by Gioska :: style.css
+    Designed and Developed by Gioska
+--------------------------------------------------------------------------------------------------------*/
+
+/* Body */
+
+body{   
+    width: 100%; 
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Overlay for the fullscreen Slideshow Background (index3) */
+
+#overlay{
+	top: 0;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-repeat: repeat;
+	background-image: url('../img/overlay.png');
+	z-index: -997;
+	opacity:0.5;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Title Header About Section*/
+
+#workingtext {
+	font-family: 'Passion One', cursive;
+	color: #323232;
+	font-size: 4.50em;
+	font-weight:normal;
+	padding: 110px 30px 0px 30px ; 
+	height: 100%;
+	margin: 0 auto;
+	text-align: center;
+	list-style-type: none;
+	text-transform: uppercase;
+	
+
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Container logo */
+
+.container-logo {
+    position: relative;
+	width:114px;
+    margin:0 auto;
+    padding: 0px 0px 0px 0px ; 
+	opacity:1;
+}
+
+/* Logo */
+
+.logo { 
+	margin: 0 auto; 
+	opacity: 0; 
+	position: fixed; 
+	top: -600px; 
+	z-index:999; 
+	text-align:center;}
+
+.logo a { 
+	display:block; 
+}
+
+.logo span { 
+	position: absolute; 
+	top:-5000px; }
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Container  Copyleft Text*/	
+  
+.container-copyleft {
+	margin:0 auto;
+       position: relative;
+        max-width: 400px;
+		height:10px;
+		padding: 10px 0px 0px 0px ; 
+		text-align: center;
+		font-family: 'Lato', cursive;
+	color: #7a7979;
+	font-size: 11px;
+	font-weight:normal;
+	z-index:2;
+	
+      }
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+	  
+/* Container services - Middle section - About Section*/
+
+.container-services {
+        margin: 0 auto;
+        max-width: 800px;
+		padding: 0px 20px 10px 20px ; 
+		text-align: center;
+       color: #323232;
+       font-weight:normal;
+       text-decoration:none;
+	   list-style-type: none;
+}	  
+
+	  
+.container-services h2 {
+       text-align: center;
+	   padding: 0px 0px 0px 0px ; 
+	  font-family: 'Passion One', cursive;
+	   font-size: 18px;
+      }	
+
+	  
+.container-services p {
+       text-align: center;
+	   padding: 0px 0px 0px 0px ; 
+	   font-family: 'Lato', cursive;
+	   color: #323232; 
+	   font-size: 1.12em; 
+	   line-height: 25px; 
+	   margin: 0 0 15px;
+	   
+      }	  
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Container Text First Page */
+
+.container-first-text{  
+		margin: 0 auto; 
+        max-width: 1080px;
+		padding: 0px 0px 0px 0px ; 
+		text-align: center;
+      }
+
+.container-first-text p{ 
+	font-family: 'Passion One', cursive;
+	color: #323232;
+
+	padding: 100px 20px 0px 20px ;
+	text-align: center;
+	list-style-type: none;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 2px 0;
+	}
+
+
+.container-second-text{ 
+		margin: 0 auto;   
+        max-width: 680px;
+		padding: 0px 0px 0px 0px ; 
+		text-align: center;
+      }
+
+.container-second-text p{
+	font-family: 'Lato', cursive;
+	color: #323232;
+	font-size: 1.12em;
+	font-weight:normal;
+	padding: 0px 7px 10px 7px ; 
+	text-align: center;
+	list-style-type: none;
+	font-weight:400;
+	line-height:25px;
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+	  
+/* Countdown */
+
+.container-count {
+	margin: 0 auto;
+        max-width: 960px;
+		padding: 20px 0px 10px 0px ; 
+		text-align: center;
+      }
+
+	
+.countdown {
+	font-family: 'Lato', cursive;
+}
+	
+.countdown .count {
+		background: url('../img/baseCount.png') no-repeat; /* Delete or comment this line if you want only digit */
+		display:inline-block;
+		width:100px;
+		height:100px;
+		margin:0px 10px;
+		margin-top:0px;
+		margin-bottom:15px;
+		text-align:center;
+		
+	}
+	
+.countdown {
+		color:#999999;
+		font-size:1em;
+		display:inline-block;
+		line-height:0.95em;
+	}
+		
+.countdown .count .bigCount {
+			display:block;
+			font-size:2em;
+			line-height:0.5em;
+			margin-top:30px;
+			margin-bottom:10px;
+		}
+			
+.countdown .count .smallCount {
+			display:block;
+			font-family: 'Lato', cursive;
+			font-size:0.8em;
+		}
+			
+.countdown .sepCount span {
+			display:block;
+		}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Font Colors */
+
+.font-dark {
+	color:#525252;
+}
+
+.font-blue {
+	color:#35bae5;	
+}
+
+.font-green {
+	color:#b2ce56;	
+}
+
+.font-yellow {
+	color:#f2c133;
+}
+
+.font-pink {
+	color:#fb67d5;
+}
+
+.font-white {
+	color:#fff;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Container Form */
+	  
+.container-form {
+        margin: 0 auto;
+        max-width: 312px;
+		padding: 12px 0px 0px 0px ; 
+		
+		
+      }
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Twitter Feed */
+
+.section-tweet {
+	 padding: 40px 0px 0px 0px ; 
+	 z-index:2;
+	 position:relative;
+}
+
+.tweet-icon{
+text-align: center;
+margin:0 auto;
+width:65px;
+height:36px;
+background:url(../img/twitter_logo.png) no-repeat;
+padding: 0px 0px 10px 0px ; 
+}
+
+
+.tweets-list-container{
+	padding: 0px 0px 0px 0px ; 
+    overflow: hidden;
+}
+
+.tweet-list{
+    list-style-type: none;
+	padding: 0px 0px 0px 0px ; 
+	
+}
+
+.tweets-home .tweet-list li p{
+	text-align: center;
+    font: italic 1em 'Lato', cursive;
+    line-height: 20px;
+    color: #fff;
+	
+}
+
+.tweets-home .tweet-list li a{
+    font: italic 13px 'Lato', cursive;
+    line-height: 20px;
+    color: #fff;
+	
+}
+
+.tweet-list li a:hover{
+    color: #525252;
+}
+
+.tweets-home .tweet-list li small{
+     font: italic 13px 'Lato', cursive;
+    color: #aaa;
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Social Media Icons */
+
+.socmed {
+	text-align: center;
+	padding-bottom:40px;
+	margin: 0 auto;
+	width: 255px;
+	overflow: hidden;
+}
+
+
+.socmed-footer {
+	text-align: center;
+	padding-top:10px;
+	padding-right:10px;
+	margin: 0 auto;
+	width: 255px;
+	overflow: hidden;
+}
+
+
+.twitter a,.facebook a,.tumblr a,.dribbble a,.linkedin a,.rss a,.delicious a,.devianart a,.digg a,.digg2 a,.flickr a,.lastfm a,.myspace a,.picasa a,.sharethis a,.skype a,.twitter2 a,.vimeo a,.youtube a,.yahoo a,.yahoo2 a,.wikipedia a {
+	float:right;
+	background:url(../img/socmed.png) no-repeat right bottom;
+	text-indent:8000px;
+	width:32px;
+	height:32px;
+	margin-left:10px;
+	-o-transition:all .3s;
+	-moz-transition:all .3s;
+	-webkit-transition:all .3s;
+	-ms-transition:all .3s;
+}
+.twitter a:hover,.facebook a:hover,.tumblr a:hover,.dribbble a:hover,.linkedin a:hover,.rss a:hover,.delicious a:hover,.devianart a:hover,.digg a:hover,.digg2 a:hover,.flickr a:hover,.lastfm a:hover,.myspace a:hover,.picasa a:hover,.sharethis a:hover,.skype a:hover,.twitter2 a:hover,.vimeo a:hover,.youtube a:hover,.yahoo a:hover,.yahoo2 a:hover,.wikipedia a:hover {
+	background:url(../img/socmed.png) no-repeat right top;
+}
+.twitter,.twitter a{background-position:-0px bottom}
+.twitter a:hover{background-position:-0px top}
+.twitter2,.twitter2 a{background-position:-528px bottom}
+.twitter2 a:hover{background-position:-528px top}
+.facebook,.facebook a{background-position:-33px bottom}
+.facebook a:hover{background-position:-33px top}
+.tumblr,.tumblr a{background-position:-66px bottom}
+.tumblr a:hover{background-position:-66px top}
+.dribbble,.dribbble a{background-position:-99px bottom}
+.dribbble a:hover{background-position:-99px top}
+.linkedin,.linkedin a{background-position:-133px bottom}
+.linkedin a:hover{background-position:-133px top}
+.rss,.rss a{background-position:-166px bottom}
+.rss a:hover{background-position:-166px top}
+.delicious,.delicious a{background-position:-199px bottom}
+.delicious a:hover{background-position:-199px top}
+.devianart,.devianart a{background-position:-233px bottom}
+.devianart a:hover{background-position:-233px top}
+.digg,.digg a{background-position:-266px bottom}
+.digg a:hover{background-position:-266px top}
+.digg2,.digg2 a{background-position:-299px bottom}
+.digg2 a:hover{background-position:-299px top}
+.flickr,.flickr a{background-position:-331px bottom}
+.flickr a:hover{background-position:-331px top}
+.lastfm,.lastfm a{background-position:-364px bottom}
+.lastfm a:hover{background-position:-364px top}
+.myspace,.myspace a{background-position:-397px bottom}
+.myspace a:hover{background-position:-397px top}
+.picasa,.picasa a{background-position:-431px bottom}
+.picasa a:hover{background-position:-431px top}
+.sharethis,.sharethis a{background-position:-464px bottom}
+.sharethis a:hover{background-position:-464px top}
+.skype,.skype a{background-position:-497px bottom}
+.skype a:hover{background-position:-497px top}
+.vimeo,.vimeo a{background-position:-562px bottom}
+.vimeo a:hover{background-position:-562px top}
+.youtube,.youtube a{background-position:-594px bottom}
+.youtube a:hover{background-position:-594px top}
+.yahoo,.yahoo a{background-position:-628px bottom}
+.yahoo a:hover{background-position:-628px top}
+.yahoo2,.yahoo2 a{background-position:-662px bottom}
+.yahoo2 a:hover{background-position:-662px top}
+.wikipedia,.wikipedia a{background-position:-694px bottom}
+.wikipedia a:hover{background-position:-694px top}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Block Home slideshow page*/
+
+.blockhome-slideshow {
+	padding: 10px 0 50px 0 ; 
+	position: relative;	
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Block Home*/
+
+.blockhome {
+	padding: 10px 0 50px 0 ; 
+	position: relative;
+	background: url(../img/bg-light/shattered.png) repeat; 
+	background-position: center center;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Block About Section*/
+
+.blockaboutus {
+	padding: 30px 0 50px 0 ; 
+	position: relative;
+	background: url(../img/bg-light/bedge_grunge.png) repeat; 
+	background-position: center center;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Block LastPage*/
+
+.blocklastpage {
+	padding: 0px 0 0px 0 ; 
+	position: relative;
+	
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Span text color Used in contact page */
+
+.text {
+       font-family: 'Lato', cursive;
+       color:#fff;
+	   font-size: 16px;
+	   font-weight:400;
+      }	 
+
+.text2 {
+       font-family: 'Lato', cursive;
+       color:#000000;
+	   font-size:13px;
+	   font-weight:normal;
+      }		  
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Map - */
+
+#map{
+	position: absolute;
+    top:0px;
+    right:0;
+    z-index:1;
+    width:100%;
+    height:100%;	
+}
+
+
+
+#contactMap {
+    position: absolute;
+    top:0px;
+    right:0;
+    z-index:1;
+    width:100%;
+    height:100%;
+} 
+
+.gmnoprint {
+    display:none;
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Contact Container */
+
+#opa {
+    position: relative;
+	text-align:center;
+	max-width: 550px;
+    margin:0 auto;
+    top:0px;
+    z-index:2;
+    padding: 150px 0px 30px 0px ; 
+			 
+ 
+}
+
+
+#opa2 {
+    position: relative;
+	max-width: 550px;
+    margin:0 auto;
+    top:10px;
+    z-index:2;
+    padding: 0 0px 5px 0px ; 
+	
+}
+
+
+#opa2:hover {
+	
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Contact Info */
+
+.contactInfo{
+	margin: 0px 0px 0px 0px ; 
+	max-width: 980px;
+
+	
+}
+
+
+.contactInfo h2{
+	text-align:center;
+    font-size: 4em;
+    font-family: 'Passion one', cursive;
+    color: #fff;
+    font-weight:200;
+    margin:0 auto;
+    padding-top:10px;
+	padding-bottom:10px;
+	text-transform:uppercase;
+}
+
+
+
+.contactInfo p{
+	text-align:center;
+    width: 300px;
+    font-family: 'Lato', cursive;
+	font-size: 16px;
+    color: #74b727;
+    clear:right;
+	 margin:0 auto;
+    line-height:24px;
+	
+}
+
+.contactInfo a{
+	text-decoration:none;
+	color: #74b727;	
+}
+
+.contactInfo a:hover{
+	text-decoration:none;
+	color: #7a7979;	
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Team Member About Page*/
+
+.section-content {
+    max-width: 780px;
+    margin:0 auto;
+	font-family: 'Lato', sans-serif;
+	 color: #949494;
+	 padding: 0px 15px 0px 0px ; 
+}
+
+
+
+.section-title,
+.section-subtitle {	
+    padding-bottom: 20px;
+    
+}
+
+
+.section-subtitle {
+    color: #949494;
+	padding-bottom: 20px;
+   
+}
+
+.team {
+    position: relative;
+    height: 100%;
+    margin: 20px 0px;
+    overflow: hidden;
+	
+}
+.team-member {
+    display: block;
+    float: right;
+    width: 118px;
+    margin: 0 5px;
+    font-size: 12px;
+    line-height: 15px;
+	text-align:center;
+}
+
+.team-member-portrait {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+    overflow: hidden;
+    border: 3px solid #74b727;
+    -webkit-border-radius: 43px;
+    -moz-border-radius: 43px;
+    border-radius: 43px;
+}
+
+.team-member-portrait>img { display: block }
+
+.team-member-name {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: 700;
+	 color: #323232;
+	
+}
+
+.team-member-title { 
+display: block; 
+color: #323232;
+
+
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Scroll Button home*/
+
+.landing_enter {
+	width:52px; 
+	display:block;
+	position:relative;
+	right:50%;
+	top:50%;
+	margin:30px 0 0 -29px;
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);	
+	transition: all 800ms; 
+	-webkit-transition: all 800ms; 
+	-moz-transition:all 800ms; 
+	-o-transition: all 800ms;	
+	opacity: 0.7;
+}
+
+
+
+.landing_enter img { 
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:52px;
+	height:28px;
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	transition: opacity 300ms; 
+	-webkit-transition: opacity 300ms; 
+	-moz-transition:opacity 300ms; 
+	-o-transition: opacity 300ms;	
+	opacity: 1;
+}
+
+
+.landing_enter:hover img { 
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);	
+}
+
+
+.landing_enter:hover { 
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);	
+}
+
+
+.landing_enter.hided {
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Scroll Button About - Second Page*/
+
+.landing_about {
+	width:52px; 
+	height:28px;
+	display:block;
+	position:relative;
+	right:50%;
+	top:50%;
+	margin:8px 0 0px -24px;
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);	
+	transition: all 800ms; 
+	-webkit-transition: all 800ms; 
+	-moz-transition:all 800ms; 
+	-o-transition: all 800ms;
+	opacity: 0.5; 	
+}
+
+
+
+.landing_about img { 
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:52px;
+	height:28px;
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	transition: opacity 300ms; 
+	-webkit-transition: opacity 300ms; 
+	-moz-transition:opacity 300ms; 
+	-o-transition: opacity 300ms;	
+}
+
+
+.landing_about:hover img { 
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);	
+}
+
+
+.landing_about:hover { 
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);	
+}
+
+.landing_about.hided {
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Services - About Section */
+
+.section-content-special {
+    max-width: 680px;
+    margin:0 auto;
+	font-family: 'Lato', sans-serif;
+	 color: #949494;
+	 padding: 0px 0px 0px 0px ; 
+}
+
+#buckets img{
+    text-align:center;
+}
+
+#buckets {
+	
+	margin-top:10px;
+    margin-bottom:0px;
+    text-align:center;
+}
+
+#buckets p {
+	
+    font-size:13px;
+    color:#706f6f;
+    line-height:24px;
+    font-family: 'Lato', cursive;
+    text-align:center;
+}
+
+#buckets h2 {
+    font-family: 'Passion One', cursive;
+    font-size:16px;
+    color:#626364;
+    font-weight:400;
+    text-align:center;
+	text-transform:uppercase;
+}
+
+
+#buckets .span4 {
+    margin-bottom:10px 
+}
+	
+/* End Css - :) */
