@@ -102,7 +102,7 @@ class PHPGController extends CController
     {
         foreach (func_get_args() as $url)
         {
-            if (mb_substr($url, 0, 7) != "http://")
+            if (!preg_match('#(http://|https://|//)#i', $url))
             {
                 $url = $this->getAssetsBase()."/scripts/$url.js";
             }
