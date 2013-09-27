@@ -4,7 +4,7 @@
  * DateTime with support for __toString() and few other usefull methods
  * @author Alex Raskin <Alex@phpguide.co.il>
  */
-class SDateTime extends DateTime
+class SDateTime extends DateTime implements JsonSerializable
 {
 	public function __toString()
 	{
@@ -15,7 +15,8 @@ class SDateTime extends DateTime
 	/**
 	 * Returns dates string with hebrew month name in it
 	 * @param string $strDate
-	 */
+     * @return string localized
+     */
 	public static function translateDate($strDate)
 	{
 		static $months = Array("ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר");
@@ -27,7 +28,8 @@ class SDateTime extends DateTime
 	/**
 	 * Returns full date string with hebrew months' names
 	 * @param bool $includeHoursAndMinutes or date only?
-	 */
+     * @return string
+     */
 	public function date2heb($includeHoursAndMinutes = false)
 	{
 		return self::translateDate( $this->format('d לM Y' . ($includeHoursAndMinutes ? ' H:i' : '')) );
@@ -40,5 +42,16 @@ class SDateTime extends DateTime
 	{
 		return $this->format('Y-m-d\TH:i:sP');
 	}
-	
+
+    /**
+     * (PHP 5 &gt;= 5.4.0)<br/>
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+        return $this->date2rfc();
+    }
 }
