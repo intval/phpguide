@@ -39,9 +39,9 @@ class CommentsController extends PHPGController
                 $model=new Comment;
                 $model->attributes=$_POST['Comment'];
 
-                $model->approved    = 1;
+                $model->approved    = Comment::APPROVED_PUBLISHED;
                 $model->authorid    = Yii::app()->user->id;
-                $model->date        = new CDbExpression('NOW()');
+                $model->date        = new SDateTime();
                 $model->postingip   = Yii::app()->request->userHostAddress;
 
                 try

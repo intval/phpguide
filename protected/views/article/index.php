@@ -49,14 +49,27 @@
         <div class='clear'></div>
     
     	<?php  if(!Yii::app()->user->isguest && ($article->author->id === Yii::app()->user->id || Yii::app()->user->is_admin)):  ?>
-	        <div><a href="<?= bu('Add?edit='.$article->id)?>">Edit this article</a></div>
+	        <div><a href="<?= bu('Add?edit='.$article->id)?>">Edit this article</a></div><br/>
 	        <div class='clear'></div>
         <?php endif; ?>
 
-        <?php  if(!Yii::app()->user->isguest && Yii::app()->user->is_admin):  
-        	$action =  $article->approved ? 'disapprove' : 'approve';
-        ?>
-            <div><a href="<?= bu('Add/'.$action.'?id='.$article->id)?>"><?=ucfirst($action)?> the publication</a></div>
+        <?php
+        if(!Yii::app()->user->isguest && Yii::app()->user->is_admin): ?>
+            <div>
+                <? if($article->approved != Article::APPROVED_PUBLISHED) { ?>
+                    <a href="<?= bu('Add/approve?id='.$article->id)?>">Approve for homepage</a><br/>
+                <? }
+                   if($article->approved != Article::APPROVED_SANDBOX){
+                ?>
+                    <a href="<?= bu('Add/send2Sandbox?id='.$article->id)?>">Send to Sandbox</a><br/>
+                <? } else { ?>
+                    Currently in sandbox<br/>
+                <? }
+                   if($article->approved != Article::APPROVED_NONE){
+                ?>
+                    <a href="<?= bu('Add/disapprove?id='.$article->id)?>">Disapprove the publication</a>
+                <? } ?>
+            </div>
             <div class='clear'></div>
         <?php endif; ?>
     </div>

@@ -18,10 +18,16 @@
  */
 class Article extends DTActiveRecord
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return Article the static model class
-	 */
+
+    const APPROVED_PUBLISHED = 2;
+    const APPROVED_SANDBOX = 1;
+    const APPROVED_NONE = 0;
+
+    /**
+     * Returns the static model of the specified AR class.
+     * @param string $className
+     * @return Article the static model class
+     */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -44,7 +50,7 @@ class Article extends DTActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title, keywords, description', 'required'),
-                        array('image', 'url', 'allowEmpty' => true),
+            array('image', 'url', 'allowEmpty' => true),
 			array('title', 'length', 'max'=>150),
 			array('url, image', 'length', 'max'=>255)
 		);
@@ -57,12 +63,13 @@ class Article extends DTActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-                    'author'        => array(self::BELONGS_TO, 'User',     'author_id'),
-                    'comments'      => array(self::HAS_MANY,   'Comment',  'blogid'),
-                    'plain'         => array(self::HAS_ONE,    'ArticlePlainText', 'id'),
-                    'categories'    => array(self::MANY_MANY,  'Category', 'blog_post2cat(postid, catid)'),
-                    'commentsCount' => array(self::STAT,        'Comment',  'blogid')
+		return array
+        (
+            'author'        => array(self::BELONGS_TO, 'User',     'author_id'),
+            'comments'      => array(self::HAS_MANY,   'Comment',  'blogid'),
+            'plain'         => array(self::HAS_ONE,    'ArticlePlainText', 'id'),
+            'categories'    => array(self::MANY_MANY,  'Category', 'blog_post2cat(postid, catid)'),
+            'commentsCount' => array(self::STAT,       'Comment',  'blogid')
 		);
 	}
 
@@ -81,19 +88,20 @@ class Article extends DTActiveRecord
 
         public function defaultScope()
         {
-            $condition = 'blog.approved=1';
+            $condition = 'blog.approved != '.self::APPROVED_NONE;
             
             // allow poster to see his post
             $userid = Yii::app()->user->id;
             (Yii::app()->user->isguest || null === $userid) ?: $condition .= " OR author_id = $userid";
             
             // admins can see anything
-            if(!Yii::app()->user->isguest && Yii::app()->user->is_admin) $condition = '';
+            if(!Yii::app()->user->isguest && Yii::app()->user->is_admin)
+                $condition = '';
             
             return array
             ( 
-                'condition' =>  $condition  ,
-                'order'     =>  'pub_date DESC',
+                'condition' => $condition  ,
+                'order'     => 'pub_date DESC',
             	'alias'		=> 'blog',
                 'with'      => array
                 (
@@ -113,7 +121,12 @@ class Article extends DTActiveRecord
             $this->getDbCriteria()->mergeWith( array('limit' => $per_page, 'offset' => $page * $per_page) );
             return $this;
         }
-  
+
+        public function publishedOnly()
+        {
+            $this->getDbCriteria()->mergeWith(['condition' => "blog.approved = ".self::APPROVED_PUBLISHED]);
+            return $this;
+        }
         
         public function byCat($name)
         {

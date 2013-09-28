@@ -288,30 +288,38 @@ class AddController extends PHPGController
 		 */
         public function actionApprove()
         {
-            $this->ApproveOrDisapprove(true);
+            $this->SetApprovalStatus(Article::APPROVED_PUBLISHED);
         }
-        
+
+        /**
+         * Move and approve article in sandbox
+         */
+        public function actionSend2Sandbox()
+        {
+            $this->SetApprovalStatus(Article::APPROVED_SANDBOX);
+        }
+
         /**
          * Marks the article as disapproved
          */
         public function actionDisapprove()
         {
-        	$this->ApproveOrDisapprove(false);
+            $this->SetApprovalStatus(Article::APPROVED_NONE);
         }
-        
-        /**
-         * changes article's approval status 
-         * article's id arrives from the query string
-         * @param bool $approvalStatus (true to display the article, false to not)
-         */
-        private function ApproveOrDisapprove($approvalStatus = 1)
-        {
-        	$id = Yii::app()->request->getQuery('id');
-        	if(null === $id) return;
-        	if(Yii::app()->user->isguest || !Yii::app()->user->is_admin) return;
-        	Article::model()->updateByPk($id, array('approved' => $approvalStatus));
-        	$this->redirect(Yii::app()->request->urlReferrer );
-        }
+
+    /**
+     * changes article's approval status
+     * article's id arrives from the query string
+     * @param bool|int $approvalStatus (true to display the article, false to not)
+     */
+    private function SetApprovalStatus($approvalStatus = 1)
+    {
+        $id = Yii::app()->request->getQuery('id');
+        if(null === $id) return;
+        if(Yii::app()->user->isguest || !Yii::app()->user->is_admin) return;
+        Article::model()->updateByPk($id, array('approved' => $approvalStatus));
+        $this->redirect(Yii::app()->request->urlReferrer );
+    }
 
 
 }

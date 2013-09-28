@@ -12,7 +12,7 @@ class HomepageController extends PHPGController
         $this->render('index' ,
             array 
             (
-                'articles'     => Article::model()->byPage(0, 4)->findAll(), 
+                'articles'     => Article::model()->byPage(0, 4)->publishedOnly()->findAll(),
                 'qnas'         => &$qnas, 
             )
         );
@@ -87,7 +87,7 @@ class HomepageController extends PHPGController
 	    				DATE_FORMAT(`pub_date`,'%Y-%m-%d') as 'lastmod', 
 	    				0.9 as 'priority', 
 	    				'monthly' as 'freq' 
-	    			FROM `blog` WHERE `approved`=1
+	    			FROM `blog` WHERE `approved`= ".Article::APPROVED_PUBLISHED."
     			
     			UNION
     			

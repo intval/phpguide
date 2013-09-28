@@ -2,14 +2,8 @@
 
 class ArticleController extends PHPGController
 {
-    
-    
-    public $vars;
-
-
     public function actionIndex($article_url)
     {
-
         $article = Article::model()->findByAttributes( array('url' => $article_url) );
 
         if($article === null)
@@ -17,7 +11,7 @@ class ArticleController extends PHPGController
             throw new CHttpException(404, $article_url);
         }
         
-        if( '0' === $article->approved && !Yii::app()->user->isGuest && $article->author_id == Yii::app()->user->id)
+        if( Article::APPROVED_NONE === $article->approved && !Yii::app()->user->isGuest && $article->author_id == Yii::app()->user->id)
         {
             Yii::app()->user->setFlash('yourpost', "מדריך זה עדיין לא אושר וניתן לצפיה רק לך");
         }
@@ -47,13 +41,13 @@ class ArticleController extends PHPGController
     		if($page > 100000) $page = 0;
     	}
 
+        $totalPages = ceil( Article::model()->count() / $posts_per_page );
 
     	$this->render('allArticles' ,
-    			array
-    			(
-    					'articles'     => Article::model()->byPage($page, $posts_per_page)->findAll(),
-    					'pagination'   => array('total_pages' => ceil(Article::model()->countByAttributes(array('approved' => 1))/$posts_per_page) , 'current_page' => $page+1)
-    			)
+            [
+                'articles'     => Article::model()->byPage($page, $posts_per_page)->findAll(),
+                'pagination'   => ['total_pages' => & $totalPages , 'current_page' => $page+1]
+            ]
     	);
     	
     }
