@@ -61,7 +61,7 @@ ul ul ul
 
 
 
-input, textarea { font-size:14px; font-family: Arial;}
+input, textarea { font-size:14px; font-family: Arial,serif;}
 
 /**************************** Header section ********************/
 #header
@@ -1221,6 +1221,32 @@ div.addform .errors
 
 
 
+
+
+
+
+/************************************ Emailing subscriptions ***********************************/
+
+.inPostMailSubscriptionForm
+{
+    background:#D8FFD8;
+    padding:20px 20px 10px 20px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /****************************************************************************/
 /************************** Chosen jquery plugin ****************************/
 /****************************************************************************/
@@ -1262,7 +1288,7 @@ div.addform .errors
   -webkit-border-radius: 4px;
   -moz-border-radius   : 4px;
   border-radius        : 4px;
-  -moz-background-clip   : padding;
+  -moz-background-clip   : padding-box;
   -webkit-background-clip: padding-box;
   background-clip        : padding-box;
   border: 1px solid #aaa;
@@ -1289,7 +1315,7 @@ div.addform .errors
   -webkit-border-radius: 0 0 4px 4px ;
   -moz-border-radius   : 0 0 4px 4px ;
   border-radius        : 0  0 4px 4px ;
-  -moz-background-clip   : padding;
+  -moz-background-clip   : padding-box;
   -webkit-background-clip: padding-box;
   background-clip        : padding-box;
   background: #ccc;
@@ -1332,7 +1358,7 @@ div.addform .errors
   -webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius   : 0 4px 4px 0;
   border-radius        : 0 4px 4px 0;
-  -moz-background-clip   : padding;
+  -moz-background-clip   : padding-box;
   -webkit-background-clip: padding-box;
   background-clip        : padding-box;
 }
@@ -1385,7 +1411,7 @@ div.addform .errors
   -webkit-border-radius: 3px;
   -moz-border-radius   : 3px;
   border-radius        : 3px;
-  -moz-background-clip   : padding;
+  -moz-background-clip   : padding-box;
   -webkit-background-clip: padding-box;
   background-clip        : padding-box;
   background-color: #e4e4e4;

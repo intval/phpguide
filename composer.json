@@ -5,7 +5,8 @@
     },
 
     "require": {
-        "swiftmailer/swiftmailer": "4.3.*"
+        "swiftmailer/swiftmailer": "4.3.*",
+        "mailchimp/mailchimp": "2.*"
     },
 
     "require-dev": {

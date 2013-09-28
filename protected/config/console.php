@@ -7,6 +7,6 @@ return array
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'components'=>array
     (
-        'db'=> require 'dbconnection.php'
+        'db'=> require 'dbconnection.php',
     ),
 );

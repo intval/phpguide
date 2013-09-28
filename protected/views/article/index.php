@@ -1,4 +1,9 @@
-
+<?php
+/** @var $currentLoggedInUserEmail string */
+/** @var $currentUserFirstName string */
+/** @var $articleCategory string */
+/** @var $article Article */
+?>
     <h1 class='content-title'><span></span><?=e($article->title);?></h1>
     
     <!-- publisher -->
@@ -27,7 +32,75 @@
     
     <br/><br/>
     <br/><br/>
-    
+
+    <?php
+        $nginit = "email='".e($currentLoggedInUserEmail)."';".
+                  "name='".e($currentUserFirstName)."';".
+                  "category='".e($articleCategory)."';".
+                  "csrf='".e(Yii::app()->request->csrfToken)."';";
+    ?>
+
+    <?php if(Yii::app()->user->isGuest || !Yii::app()->user->getUserInstance()->hasMailSubscription): ?>
+    <div ng-controller="MailSubscriptionCtrl" ng-init="<?=$nginit?>">
+        <div id="inPostSubscribe" class="inPostMailSubscriptionForm" ng-show="!isSubscribed">
+
+            <h3>
+                למד עוד על
+                {{ keyword }}
+
+                <span ng-show="keyword">
+ועוד
+                </span>
+                דברים מעניינים בתחום ה-{{ category }}
+                ו-PHP.
+                <br/>
+                הירשם לרשימת התפוצה, קבל ישירות את התוכן הכי טוב ועלה ברמה המקצועית שלך
+
+            </h3>
+            <br/>
+
+            <div class="alert alert-{{alertType}}" ng-show="submitResulted || submitInProgress">
+                {{ alertText }}
+            </div>
+
+            <div class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="mailSubscribeName">
+                        שם
+                    </label>
+                    <div class="controls">
+                        <input type="text" id="mailSubscribeName" ng-model="name" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="mailSubscribeMail">
+                        אימייל
+                    </label>
+                    <div class="controls">
+                            <input type="email" id="mailSubscribeMail" ng-model="email" dir="ltr" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button ng-click="subscribe()" class="btn btn-info" ng-disabled="submitInProgress">
+                            הירשם לעדכונים ומידע חדש
+                        </button>
+                    </div>
+                </div>
+
+                 <span>
+                     בממוצע תקבל מייל אחד לשבוע עם חומר לימודי חדש מעולם ה-PHP
+                     ופיתוח אינטרנט.
+                     <br/>
+חוץ מזה                     אנחנו שונאים ספאם. כל מייל מכיל קישור להסרה מהרשימה, ככה שתוכל להפסיק לקבל מיילים מתי שתרצה
+                </span>
+
+            </div>
+
+
+        </div>
+    </div>
+    <?php endif; ?>
     <hr/>
    
    

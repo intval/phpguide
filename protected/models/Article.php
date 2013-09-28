@@ -15,6 +15,7 @@
  * @property string $description
  * @property integer $approved
  * @property integer $author_id
+ * @property Category[] $categories
  */
 class Article extends DTActiveRecord
 {

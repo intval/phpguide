@@ -23,6 +23,7 @@
  * @property string $city
  * @property string $site
  * @property string $about
+ * @property bool $hasMailSubscription
  *
  * The followings are the available model relations:
  * @property Article[] $blogposts

@@ -24,8 +24,38 @@ class ArticleController extends PHPGController
         $this->metaType    = 'Article';
 		if($this->facebook) $this->facebook['image'] = $article->image;
 
+        if(Yii::app()->user->isGuest || !Yii::app()->user->getUserInstance()->hasMailSubscription)
+        {
+            $this->addscripts
+            (
+                'http://code.angularjs.org/1.2.0-rc.2/angular.min.js',
+                'http://code.angularjs.org/1.2.0-rc.2/angular-resource.min.js',
+                'http://code.angularjs.org/1.2.0-rc.2/angular-cookies.min.js',
+                'MailSubscriptionCtrl'
+            );
 
-        $this->render('index', array('article' => &$article));
+            $currentLoggedInUserEmail = Yii::app()->user->isGuest ? '' : Yii::app()->user->email ?: '';
+            $currentUserFirstName = Yii::app()->user->isGuest ? '' : Yii::app()->user->real_name ?: '';
+
+            /** @var $firstCategory Category */
+            $firstCategory = $article->categories[0] ?: null;
+            $articleCategory = $firstCategory ? $firstCategory->name: '';
+        }
+        else
+        {
+            $currentLoggedInUserEmail = null;
+            $currentUserFirstName = null;
+            $articleCategory = null;
+        }
+
+        $this->render('index',
+            [
+                'article' => &$article,
+                'currentLoggedInUserEmail' => $currentLoggedInUserEmail,
+                'currentUserFirstName' => $currentUserFirstName,
+                'articleCategory' => $articleCategory
+            ]
+        );
     }
     
     

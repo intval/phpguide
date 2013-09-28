@@ -34,6 +34,11 @@ return array(
         'ext.yii-mail.YiiMailMessage'
 	),
 
+    'registerPathAliases' => function()
+    {
+        $protectedDirPath = realpath(__DIR__.'/../');
+        Yii::setPathOfAlias('phpg', $protectedDirPath);
+    },
 
 	// application components
 	'components'=>array
@@ -155,6 +160,10 @@ return array(
         // indicates what would be the 'from' address for mails sent by the site
         // email => name ( like:   mysiteBot<noreply@mysite.com> )
         'emailFrom' => ['noreply@mysite.com' => 'mysiteBot'],
+
+        // api key for mailchimp.com
+        'mailchimpApiKey' => null,
+        'mailchimpListId' => null,
 
         /******************************************************/
         /**** This is production path, above public_html ******/
