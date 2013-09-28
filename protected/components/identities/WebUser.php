@@ -191,18 +191,23 @@ class WebUser extends CWebUser
         
     }
 
-    
-    
-     /**
+
+    /**
      * Encrypts plain text password in blowfish using provided salt
      * @param string $password plain text password
      * @param string $salt 22 chars long salt
-     * @return string encrypted pass 
+     * @throws InvalidArgumentException
+     * @return string encrypted pass
      */
     public static function encrypt_password($password, $salt)
     {
-        return '' === $password ? '' :
-            crypt($password, sprintf(static::blowfish_hash, $salt));
+        if(empty($password))
+            throw new InvalidArgumentException("Password cannot be empty");
+
+        if(empty($salt))
+            throw new InvalidArgumentException("Salt should not be empty");
+
+        return crypt($password, sprintf(static::blowfish_hash, $salt));
     }
     
 }

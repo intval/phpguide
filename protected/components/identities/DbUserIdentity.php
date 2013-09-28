@@ -37,7 +37,7 @@ class DbUserIdentity extends CUserIdentity
         if($this->isIpLocked($ip))
         {
             $this->errorCode = static::ERROR_IP_LOCKED;
-            return false;
+            return $this->errorCode;
         }
         
         $this->user = User::model()->
