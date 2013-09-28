@@ -64,17 +64,17 @@
                 <exec command="rm -rf /home/phpgTempGitClone" />
 
                 <echo msg="running composer" />
-                <exec command="composer install -o" />
+                <exec command="composer update -o --no-dev" />
 
                 <echo msg="setting permissions again" />
                 <exec command="chown www1:www -R /home/www" />
                 <exec command="chown +x /home/www/phpguide/protected/yiic" />
 
-		<echo msg="setting permissions to writable dirs" />
-		<exec command="chmod 777 /home/www/phpguide/assets" />
-		<exec command="chomd 777 /home/www/phpguide/cache" />
-		<exec command="chmod 777 /home/www/phpguide/protected/runtime" />
- 		<exec command="chmod 777 /home/www/phpguide/static/sitemap.xml" />
+                <echo msg="setting permissions to writable dirs" />
+                <exec command="chmod 777 /home/www/phpguide/assets" />
+                <exec command="chomd 777 /home/www/phpguide/cache" />
+                <exec command="chmod 777 /home/www/phpguide/protected/runtime" />
+                <exec command="chmod 777 /home/www/phpguide/static/sitemap.xml" />
 
                 <echo msg="running migrations" />
                 <exec command="/home/www/phpguide/protected/yiic migrate --interactive=0" />
