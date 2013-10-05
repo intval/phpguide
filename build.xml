@@ -17,7 +17,7 @@
 		<exec command="git clone git://github.com/intval/phpguide.git /home/phpgTempGitClone" />
 		<echo msg="Repo cloned" />
 		<echo msg="Removing .git dir from clone" />
-		<exec command="rm -R /home/phpgTempGitClone/.git" />
+		<exec command="rm -rf /home/phpgTempGitClone/.git" />
 	</target>
 
 
@@ -57,8 +57,8 @@
 
 	<target name="finish" depends="copy">
 		<echo msg="setting permissions" />
-                <exec command="chown www1:www -R /home/www" />
-                <exec command="chown +x /home/www/phpguide/protected/yiic" />
+                <exec command="chown www:www1 -R /home/www" />
+                <exec command="chmod +x /home/www/phpguide/protected/yiic" />
 
                 <echo msg="deleting cloned repo" />
                 <exec command="rm -rf /home/phpgTempGitClone" />
@@ -67,14 +67,14 @@
                 <exec command="composer update -o --no-dev" />
 
                 <echo msg="setting permissions again" />
-                <exec command="chown www1:www -R /home/www" />
-                <exec command="chown +x /home/www/phpguide/protected/yiic" />
+                <exec command="chown www:www1 -R /home/www" />
+                <exec command="chmod +x /home/www/phpguide/protected/yiic" />
 
                 <echo msg="setting permissions to writable dirs" />
-                <exec command="chmod 777 /home/www/phpguide/assets" />
-                <exec command="chomd 777 /home/www/phpguide/cache" />
-                <exec command="chmod 777 /home/www/phpguide/protected/runtime" />
-                <exec command="chmod 777 /home/www/phpguide/static/sitemap.xml" />
+                <exec command="chmod -R g+rw /home/www/phpguide/assets" />
+                <exec command="chomd -R g+rw /home/www/phpguide/cache" />
+                <exec command="chmod -R g+rw /home/www/phpguide/protected/runtime" />
+                <exec command="chmod -R g+rw /home/www/phpguide/static/sitemap.xml" />
 
                 <echo msg="running migrations" />
                 <exec command="/home/www/phpguide/protected/yiic migrate --interactive=0" />
@@ -82,8 +82,8 @@
                 <echo msg="cleaning nginx error_log" />
                 <exec command=" echo '' > /var/log/nginx/error.log" />
 
-                <echo msg="restarting php-fcgi to clear apc cache" />
-                <exec command="service php-fcgi restart" />
+                <echo msg="restarting php-fpm to clear apc cache" />
+                <exec command="service php-fpm restart" />
 
 	</target>
 
