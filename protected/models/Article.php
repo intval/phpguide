@@ -125,7 +125,9 @@ class Article extends DTActiveRecord
 
         public function publishedOnly()
         {
-            $this->getDbCriteria()->mergeWith(['condition' => "blog.approved = ".self::APPROVED_PUBLISHED]);
+            if(Yii::app()->user->isguest || !Yii::app()->user->is_admin)
+                $this->getDbCriteria()->mergeWith(['condition' => "blog.approved = ".self::APPROVED_PUBLISHED]);
+
             return $this;
         }
         
