@@ -60,7 +60,7 @@ class HomepageController extends PHPGController
     public function actionRss($showFullPosts = false)
     {
         $this->layout = '/';
-        $this->render('rss' ,['articles'   => Article::model()->byPage(0, 10)->findAll(), 'showFullPosts' => $showFullPosts]);
+        $this->render('rss' ,['articles'   => Article::model()->byPage(0, 10)->publishedOnly()->findAll(), 'showFullPosts' => $showFullPosts]);
     }
     /**
      * Generates sitemap. available only via webcron from localhost
