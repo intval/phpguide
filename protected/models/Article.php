@@ -10,7 +10,7 @@
  * @property string $image
  * @property string $html_desc_paragraph
  * @property string $html_content
- * @property string $pub_date
+ * @property SDateTime $pub_date
  * @property string $keywords
  * @property string $description
  * @property integer $approved

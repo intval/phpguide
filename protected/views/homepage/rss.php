@@ -1,4 +1,7 @@
-<?='<?'?>xml version="1.0" encoding="UTF-8"?>
+<?php
+/** @var $articles Article[] */
+/** @var $showFullPosts bool */
+?><?='<?'?>xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
 
@@ -13,7 +16,8 @@
     <lastBuildDate><?=$articles[0]->pub_date->date2rfc()?></lastBuildDate>
 
 
-    <?php foreach( $articles as $item ): ?>
+    <?php /** @var $item Article */
+    foreach( $articles as $item ): ?>
         <item>
             <title><![CDATA[<?=e($item->title)?>]]></title>
             <guid><?=e(bu(urlencode($item->url . '.htm'), true))?></guid>
@@ -24,7 +28,7 @@
                         <tr>
                             <td><img src="<?=e($item->image)?>" alt="image"/></td>
                             <td width="20"></td>
-                            <td valign="top"> <?= $item->html_desc_paragraph ?> </td>
+                            <td valign="top"> <?= $showFullPosts ? $item->html_content : $item->html_desc_paragraph ?> </td>
                         </tr>
                     </table>
 

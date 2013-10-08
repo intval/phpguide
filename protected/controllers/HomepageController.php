@@ -57,12 +57,11 @@ class HomepageController extends PHPGController
     /**
      * Displays site posts as RSS feed 
      */
-    public function actionRss()
+    public function actionRss($showFullPosts = false)
     {
         $this->layout = '/';
-        $this->render('rss' ,array('articles'   => Article::model()->byPage(0, 10)->findAll()));
+        $this->render('rss' ,['articles'   => Article::model()->byPage(0, 10)->findAll(), 'showFullPosts' => $showFullPosts]);
     }
-    
     /**
      * Generates sitemap. available only via webcron from localhost
      */
