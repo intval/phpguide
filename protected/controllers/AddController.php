@@ -243,9 +243,16 @@ class AddController extends PHPGController
                     $article->html_content = $contentBBencoder->GetParsedHtml();
                     $article->html_desc_paragraph = $descriptionBBencoder -> GetParsedHtml();
                     $article->pub_date = new SDateTime();
-                    
 
-                    $this->render('//article/index', array('article' => &$article));
+                    $this->render('//article/index',
+                        [
+                            'article' => &$article,
+                            'currentLoggedInUserEmail' => '',
+                            'currentUserFirstName' => '',
+                            'articleCategory' => isset($article->categories, $article->categories[0]) ? $article->categories[0] : ''
+                        ]
+                    );
+
                 }
                 else
                 {

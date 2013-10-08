@@ -38,7 +38,7 @@ class ArticleController extends PHPGController
             $currentUserFirstName = Yii::app()->user->isGuest ? '' : Yii::app()->user->real_name ?: '';
 
             /** @var $firstCategory Category */
-            $firstCategory = $article->categories[0] ?: null;
+            $firstCategory = isset($article->categories, $article->categories[0]) ? $article->categories[0] : null;
             $articleCategory = $firstCategory ? $firstCategory->name: '';
         }
         else
