@@ -26,9 +26,9 @@
                 <div dir='rtl'>
                     <table>
                         <tr>
-                            <td><img src="<?=e($item->image)?>" alt="image"/></td>
+                            <td valign="top"><img src="<?=e($item->image)?>" alt="image"/></td>
                             <td width="20"></td>
-                            <td valign="top"> <?= $showFullPosts ? $item->html_content : $item->html_desc_paragraph ?> </td>
+                            <td valign="top"> <?= $item->html_desc_paragraph .  ($showFullPosts ? $item->html_content : '') ?> </td>
                         </tr>
                     </table>
 
