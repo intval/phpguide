@@ -404,19 +404,23 @@ window.onload = function()
             jQuery('#plusone_for_concrete_post').html('<div class="g-plusone" data-size="tall" data-href="'+loc + '/' + window.location.pathname+'"></div>');
         }
 
-	UserVoice = window.UserVoice || [];
-	UserVoice.push(['showTab', 'classic_widget', {
-	  mode: 'feedback',
-	  primary_color: '#5a55eb',
-	  link_color: '#007dbf',
-	  forum_id: 205721,
-	  tab_label: 'Feedback',
-	  tab_color: '#444abd',
-	  tab_position: 'middle-right',
-	  tab_inverted: true
-	}]);
+	if($(window).width() > 1025)
+	{
 
-    load('//widget.uservoice.com/ErfXLhKesduxPbqb4bKw3A.js');
+		UserVoice = window.UserVoice || [];
+		UserVoice.push(['showTab', 'classic_widget', {
+		  mode: 'feedback',
+		  primary_color: '#5a55eb',
+		  link_color: '#007dbf',
+		  forum_id: 205721,
+		  tab_label: 'Feedback',
+		  tab_color: '#444abd',
+		  tab_position: 'middle-right',
+		  tab_inverted: true
+		}]);
+	
+	    	load('//widget.uservoice.com/ErfXLhKesduxPbqb4bKw3A.js');
+	}
 
 
 
