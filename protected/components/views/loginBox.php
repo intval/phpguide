@@ -28,7 +28,7 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 		<div class='clear'></div>
 	</div>
 	<div class="action">
-		<a href="<?= bu('Add')?>">הוסף פוסט</a>
+		<a href="<?= bu('Add')?>">הוסף מדריך לאתר</a>
 	</div>
 </section>
 
