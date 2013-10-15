@@ -35,7 +35,7 @@ class ArticleController extends PHPGController
             );
 
             $currentLoggedInUserEmail = Yii::app()->user->isGuest ? '' : Yii::app()->user->email ?: '';
-            $currentUserFirstName = Yii::app()->user->isGuest ? '' : Yii::app()->user->real_name ?: '';
+            $currentUserFirstName = Yii::app()->user->isGuest ? '' : Yii::app()->user->getUserInstance()->real_name ?: '';
 
             /** @var $firstCategory Category */
             $firstCategory = isset($article->categories, $article->categories[0]) ? $article->categories[0] : null;
