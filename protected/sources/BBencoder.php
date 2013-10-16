@@ -118,7 +118,8 @@ Class BBencoder
             '/\[url\=(https?:\/\/)([^\]]*)\](.*?)\[\/url\]/i',
             '/\[img\s?(left|right)?\](.*?)\[\/img\]/i',
             '@\[color=([a-z0-9#]+)\](.*)\[/color\]@iUms', 
-            '#\[youtube\].*?v\=([a-z0-9\-_]+)&?.*?\[/youtube\]#i'
+            '#\[youtube\].*?v\=([a-z0-9\-_]+)&?.*?\[/youtube\]#i',
+            '#/@([A-Za-z0-9א-ת\.\-\_]+)/#iu'
         ) ;
 
         $rep = Array
@@ -135,7 +136,8 @@ Class BBencoder
             '<a href="\\1\\2">\\3</a>',
             '<img src="/static/images/pixel.gif" alt="'.e($this->page_title).'" title="\\2" class="content-image-float\\1"/>',
             '<span style="color:\\1;">\\2</span>',
-            '<iframe width="480" height="390" src="http://www.youtube.com/embed/\\1?rel=0" frameborder="0" allowfullscreen></iframe>'
+            '<iframe width="480" height="390" src="http://www.youtube.com/embed/\\1?rel=0" frameborder="0" allowfullscreen></iframe>',
+            '<a href="/users/\\1">\\1</a>',
         );
 
         
