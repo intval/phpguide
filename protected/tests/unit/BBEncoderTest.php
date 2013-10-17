@@ -29,6 +29,10 @@ class BBEncoderTest extends CTestCase
             <script type='text/javascript' src="http://www.micropoll.com/a/MicroPoll?id=3731518"></script>
         [/html]
 
+        @John
+        @Johs
+        myemail@gmail.com
+
 TEST;
 
 
@@ -132,6 +136,34 @@ TEST;
         $expected = 'תנסה לעשות <span dir="ltr">function yo(&$var) {echo "$var"; };</span> טוב';
         $actual = BBencoder::autoLtr($string);
         $this->assertEquals($expected, $actual);
+    }
+
+    public function testUserTag()
+    {
+
+        $src = '
+            @John
+            @another_test.case-name
+            @Joh#%$@@4
+            @#OOInvalidname
+            @@double
+            @a@b@c@d@e
+            myemail@gmail.com
+            #@shouldnt
+        ';
+
+        $expected = '<a href="/users/John">@John</a><br />            '.
+                    '<a href="/users/another_test.case-name">@another_test.case-name</a><br />            '.
+                    '@Joh#%$@@4<br />            '.
+                    '@#OOInvalidname<br />            '.
+                    '@@double<br />            '.
+                    '@a@b@c@d@e<br />            '.
+                    'myemail@gmail.com<br />            '.
+                    '#@shouldnt';
+
+        $encoder = new BBencoder($src, 'yo title', false);
+        $result = $encoder -> GetParsedHtml();
+        $this->assertEquals($expected, $result);
     }
 }
 
