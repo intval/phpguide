@@ -82,10 +82,15 @@ class SubscriptionController extends PHPGController
                 Yii::app()->request->cookies['SubscribedToMails'] = new \CHttpCookie('SubscribedToMails', $email, $conf);
 
                 /** @var $user User */
-                $user = Yii::app()->user->getUserInstance();
-                $user->hasMailSubscription = true;
-                $user->update(['hasMailSubscription']);
-
+                if(!Yii::app()->user->isGuest)
+                {
+                    $user = Yii::app()->user->getUserInstance();
+                    if(null !== $user)
+                    {
+                        $user->hasMailSubscription = true;
+                        $user->update(['hasMailSubscription']);
+                    }
+                }
                 return self::SUCCESS;
             }
             else

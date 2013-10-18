@@ -43,13 +43,9 @@
 <body dir="rtl">
 
     <div class="container">
-        <!--
-            <img src="http://www.iwillteachyoutoberich.com/signup/thankyou/sadramit.jpg" />
-            -->
-        <h1>
-            אני עצוב
-            =(
-        </h1>
+
+            <img src="<?=bu()?>/static/images/sad.jpg" />
+
             <div class="text-container">
 
 
