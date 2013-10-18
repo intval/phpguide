@@ -88,7 +88,8 @@ class SubscriptionController extends PHPGController
                     if(null !== $user)
                     {
                         $user->hasMailSubscription = true;
-                        $user->update(['hasMailSubscription']);
+                        $user->real_name = $name;
+                        $user->update(['hasMailSubscription', 'real_name']);
                     }
                 }
                 return self::SUCCESS;

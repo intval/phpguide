@@ -29,7 +29,7 @@ $recentEventsCacheParams = [
 
 <section class="rblock" style='background-color:rgb(255, 238, 115);'>
 	<h3>
-		אלכס כותב ספר על תכנות מונחה עצמים למתחילים
+		אלכס כותב ספר על תכנות מונחה עצמים מאפס
 	</h3>
 	<br/>
 	<a href='http://phpguide.co.il/oopbook/' style="font-size:120%; color:dark-blue; font-weight:bold;">

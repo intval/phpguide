@@ -60,7 +60,7 @@ class PasswordRecovery extends DTActiveRecord
     private $recoveryUrl = 'PwRecovery/resetUrl?id=%s&key=%s';
 
 
-    public function requestRecovery($login, $email, $ip)
+    public function requestRecovery($login, $email, $ip, $sendEmail = true)
     {
         sleep(1); // prevent bruteforce
 
@@ -74,7 +74,9 @@ class PasswordRecovery extends DTActiveRecord
             return self::ERROR_INVALID_EMAIL;
 
         $this->createRecoveryRecord($user, $ip);
-        $this->sendRecoveryLetter($user);
+
+        if($sendEmail)
+            $this->sendRecoveryLetter($user);
 
         return self::ERROR_NONE;
     }
@@ -84,7 +86,7 @@ class PasswordRecovery extends DTActiveRecord
         $this->userid = $user->id;
         $this->ip = $ip;
         $this->key = Helpers::randString(20);
-        $this->validity = new SDateTime('+1 hour');
+        $this->validity = new SDateTime('+7 day');
 
         if($this->save())
             return $this->id;
