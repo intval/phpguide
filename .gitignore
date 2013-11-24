@@ -17,6 +17,8 @@ composer.lock
 
 #binaries of composer packages
 protected/tests/phpunit
+protected/tests/dbunit
+protected/tests/webunit
 protected/tests/behat
 
 xhprof
