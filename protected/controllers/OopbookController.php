@@ -11,11 +11,7 @@ class OopbookController extends PHPGController
     public function actionSuccess()
     {
         $order = Order::model()->findByAttributes(['ip' => Yii::app()->request->getUserHostAddress()], 'time > DATE_SUB(NOW(), INTERVAL 1 DAY)');
-
-        if($order === null)
-            $this->render('awaiting');
-        else
-            $this->render('success', ['email' => $order->buyer_email]);
+        $this->render('success', ['email' => $order !== null ? $order->buyer_email : '']);
     }
 
     public function actionCancel()
