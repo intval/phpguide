@@ -87,8 +87,8 @@ class Ipn
         if ($postData['mc_currency'] !== self::EXPECTED_CURRENCY)
             throw new \Exception("Received payment not in expected currency");
 
-        if($postData['mc_gross'] !== $expectedAmount)
-            throw new \Exception("Amount does not match");
+        if(floatval($postData['mc_gross']) !== floatval($expectedAmount))
+            throw new \Exception("Amount does not match. Expected <".floatval($postData['mc_gross']).'>, got <'.floatval($expectedAmount).'>');
 
         $existingTransaction = Order::model()->findByAttributes(['txid' => 1]);
         if($existingTransaction !== null)
