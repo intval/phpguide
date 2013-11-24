@@ -6,7 +6,9 @@
 
     "require": {
         "swiftmailer/swiftmailer": "4.3.*",
-        "mailchimp/mailchimp": "2.*"
+        "mailchimp/mailchimp": "2.*",
+        "psr/log": "1.0.*@dev",
+        "monolog/monolog": "1.7.0"
     },
 
     "require-dev": {

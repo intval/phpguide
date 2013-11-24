@@ -2,11 +2,13 @@
 
 class IpnController extends PHPGController
 {
-    protected $layout = false;
+    public $layout = false;
 
     public function actionIndex()
     {
-        $logger = Yii::app()->logger;
+        $logger = new Monolog\Logger('ipn logger');
+        $logger->pushHandler(new Monolog\Handler\StreamHandler( Yii::app()->basePath.'/runtime/ipn.log' ));
+
         $ipn = new Ipn($logger, new Helpers(), new IpnListener());
         $ipn->ProcessIpnRequest($_POST);
     }

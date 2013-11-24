@@ -71,6 +71,7 @@
                 <exec command="chmod +x /home/www/phpguide/protected/yiic" />
 
                 <echo msg="setting permissions to writable dirs" />
+                <exec command="chown -R www:www1 /home/www/phpguide" />
                 <exec command="chmod -R g+rw /home/www/phpguide/assets" />
                 <exec command="chomd -R g+rw /home/www/phpguide/cache" />
                 <exec command="chmod -R g+rw /home/www/phpguide/protected/runtime" />
