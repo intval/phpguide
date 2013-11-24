@@ -8,7 +8,7 @@ class Ipn
     protected $logger, $helpers, $ipnListener;
     private $tempRequestId, $adminEmail, $paypalReceiverEmail, $user;
 
-    public function __construct(\Psr\Log\LoggerInterface $logger, Helpers $emailHelper, IpnListener $ipnListener, User $currentUser, $adminEmail, $paypalReceiverEmail)
+    public function __construct(\Psr\Log\LoggerInterface $logger, Helpers $emailHelper, IpnListener $ipnListener, User $currentUser = null, $adminEmail, $paypalReceiverEmail)
     {
         $this->logger = $logger;
         $this->helpers = $emailHelper;
