@@ -47,19 +47,31 @@ class Helpers
         }
         return $result;
     }
-    
+
 
     /**
      * Sends an email with proper headers
      * @param array $to list of recipients
      * @param string $subject mail's subject
      * @param string $content mail's html content
+     * @param string $attachmentPath
+     * @return
      */
-    public static function sendMail(array $to, $subject, $content)
+    public static function sendMail(array $to, $subject, $content, $attachmentPath = '')
     {
         $message = new YiiMailMessage($subject, $content, 'text/html', 'utf-8');
-        $message->setTo($to);
-        $message->setFrom(Yii::app()->params['emailFrom']);
+
+        /*** Swift_Message $msg */
+        $msg = $message->message;
+
+        $msg->setTo($to);
+        $msg->setFrom(Yii::app()->params['emailFrom']);
+
+        if($attachmentPath)
+        {
+            $msg->attach(Swift_Attachment::fromPath($attachmentPath));
+        }
+
         return Yii::app()->mail->send($message);
     }
 

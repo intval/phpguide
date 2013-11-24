@@ -165,6 +165,12 @@ return array(
         'mailchimpApiKey' => null,
         'mailchimpListId' => null,
 
+        // paypal
+        'paypalReceiverEmail' => 'paypal@email.com',
+        'products' => [
+            'iceCream' => ['price' => 9.90, 'pathToFile' => '/home/icecream.txt'],
+        ],
+
         /******************************************************/
         /**** This is production path, above public_html ******/
         /**** Edit the path in local_config.php, not here******/

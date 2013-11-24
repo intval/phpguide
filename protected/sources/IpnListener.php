@@ -87,7 +87,8 @@ class IpnListener {
      *  exception if the post fails. Populates the response, response_status,
      *  and post_uri properties on success.
      *
-     *  @param  string  The post data as a URL encoded string
+     * @param  string  The post data as a URL encoded string
+     * @throws Exception
      */
     protected function curlPost($encoded_data) {
 

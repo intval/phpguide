@@ -39,9 +39,7 @@
 		 <copy todir="/home/www/phpguide" overwrite="true" includeemptydirs="true">
 			<fileset dir="/home/phpgTempGitClone">
 				<exclude name="protected/config/*.example.php" />
-				<exclude name="protected/data**" />
 				<exclude name="protected/runtime/*" />
-				<exclude name="protected/data**" />
 				<exclude name="protected/tests**" />
 				<exclude name=".gitignore" />
 				<exclude name="assets/*" />
