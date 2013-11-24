@@ -71,6 +71,14 @@ class IpnListener {
     const PAYPAL_HOST = 'www.paypal.com';
     const SANDBOX_HOST = 'www.sandbox.paypal.com';
 
+
+    private $certFile;
+
+    public function __construct($pathToCertificateFile)
+    {
+        $this->certFile = $pathToCertificateFile;
+    }
+
     /**
      *  Post Back Using cURL
      *
@@ -95,8 +103,7 @@ class IpnListener {
 
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-        curl_setopt($ch, CURLOPT_CAINFO,
-            dirname(__FILE__)."/cert/api_cert_chain.crt");
+        curl_setopt($ch, CURLOPT_CAINFO, $this->certFile);
         curl_setopt($ch, CURLOPT_URL, $uri);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded_data);

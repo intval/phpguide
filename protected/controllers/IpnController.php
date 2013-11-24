@@ -9,7 +9,9 @@ class IpnController extends PHPGController
         $logger = new Monolog\Logger('ipn logger');
         $logger->pushHandler(new Monolog\Handler\StreamHandler( Yii::app()->basePath.'/runtime/ipn.log' ));
 
-        $ipn = new Ipn($logger, new Helpers(), new IpnListener());
+        $certFile = Yii::app()->basePath.'/data/paypal_api_certificate.crt';
+
+        $ipn = new Ipn($logger, new Helpers(), new IpnListener($certFile));
         $ipn->ProcessIpnRequest($_POST);
     }
 }
