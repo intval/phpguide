@@ -262,9 +262,10 @@ class IpnListener {
      *  back as "VERIFIED", false if the response came back "INVALID", and
      *  throws an exception if there is an error.
      *
-     *  @param array
+     * @param array
      *
-     *  @return boolean
+     * @throws Exception
+     * @return boolean
      */
     public function processIpn($post_data=null) {
 

@@ -38,7 +38,6 @@ class Ipn
     private function TryProcessIpnRequest(array $postData, $expectedAmount, $productName, $filePath)
     {
         $this->ipnListener->requirePostMethod();
-        $this->ipnListener->use_sandbox = true;
         $verified = $this->ipnListener->processIpn($postData);
 
         $this->logger->info($this->tempRequestId.": Ipn request was verified as <".var_export($verified, true).">;");
