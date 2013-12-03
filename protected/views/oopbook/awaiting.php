@@ -2,7 +2,7 @@
 
 <div class="row-fluid">
     <div class="span12">
-        <div class="container-first-text">
+        <div class="container-first-text container-first-text-full-size">
 
             <p>
     <span class="font-green" >
