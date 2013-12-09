@@ -4,7 +4,7 @@
 
     <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ספר OOP טוב</title>
+    <title>תכנות מונחה עצמים מאפס ב-PHP</title>
 
 
     <!-- StileSheet -->
