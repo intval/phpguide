@@ -81,8 +81,14 @@
                 <echo msg="cleaning nginx error_log" />
                 <exec command=" echo '' > /var/log/nginx/error.log" />
 
+                <echo msg="cleaning nginx cache" />
+                <exec command="rm -rf /tmp/ngx_pagespeed_cache/*" />
+
                 <echo msg="restarting php-fpm to clear apc cache" />
                 <exec command="service php-fpm restart" />
+
+                <echo msg="restarting nginx to reset cache" />
+                <exec command="service nginx restart" />
 
 	</target>
 
