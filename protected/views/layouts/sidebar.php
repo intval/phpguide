@@ -27,16 +27,23 @@ $recentEventsCacheParams = [
     
 <?php $this->widget('application.components.LoginBox') ?>
 
-<section class="rblock" style='background-color:rgb(255, 238, 115);'>
+<section class="rblock">
 	<h3>
-		אלכס כותב ספר על תכנות מונחה עצמים מאפס
+        <a href="/oopbook/" >
+		הספר הכי פשוט על OOP
+            </a>
 	</h3>
+    <p>
+        סוף סוף הספר הראשון שמסביר oop בעברית פשוטה, בצורה מלאה עם הסברים ברורים ודוגמאות קוד קצרות מאפס
+    </p>
 	<br/>
-	<a href='http://phpguide.co.il/oopbook/' style="font-size:120%; color:dark-blue; font-weight:bold;">
-	לחץ כאן כדי לדעת ראשון כשהספר מוכן
-	</a>
-	
 </section>
+
+<div class='rblock' style="padding:0 -50px; width:100%; background: white;">
+    <a href='http://phpguide.co.il/oopbook/'>
+        <img src="http://i.picresize.com/images/2013/12/09/LzjqY.png" alt="" />
+    </a>
+</div>
 
 <?php $this->widget('application.components.RatingWidget'); ?>
 
