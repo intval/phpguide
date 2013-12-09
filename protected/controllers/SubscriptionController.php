@@ -75,7 +75,7 @@ class SubscriptionController extends PHPGController
 
         try
         {
-            $status = $mailchipm->lists->subscribe($mailchimpListId, ['email' => $email], ['NAME' => $name]);
+            $status = $mailchipm->lists->subscribe($mailchimpListId, ['email' => $email], ['NAME' => $name, 'FNAME' => $name]);
             if($status)
             {
                 $conf = ['expire' => (new SDateTime('+5 year'))->getTimestamp(), 'httpOnly' => false];
