@@ -23,7 +23,7 @@
     <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="/static/oopbook/css/my.css" />
-
+    <?php $this->addScripts('plugins', 'ui', 'analytics'); ?>  
 
     <!-- End Head -->
 </head>
@@ -52,21 +52,6 @@
 
 
 </div><!-- End Block Home -->
-
-
-<script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-18788673-3']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-</script>
 
 </body>
 </html>

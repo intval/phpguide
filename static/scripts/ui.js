@@ -253,12 +253,34 @@ function getStyle(a,b){var c=jQuery(a);if(c.currentStyle)return c.currentStyle[b
 
 
 
+/**************************************************************************/
+/*************************** General Functions ****************************/
+/**************************************************************************/
 
 
 
+var scr = false;
+function load(js, callback)
+{
+    var node = document.createElement('script');
+    
+    node.type = 'text/javascript'; 
+    node.async = true; 
+    node.src = js;
+
+    if(isFunction(callback))
+        node.onload = callback;
+
+    var scriptTags = document.getElementsByTagName('script');
+    if(!scr ) scr = scriptTags[scriptTags.length-1];
+    scr.parentNode.insertBefore(node, scr);
 
 
-
+    function isFunction(obj) {
+        var getType = {};
+        return obj && getType.toString.call(obj) === '[object Function]';
+    }
+}
 
 
 
@@ -404,26 +426,24 @@ window.onload = function()
             jQuery('#plusone_for_concrete_post').html('<div class="g-plusone" data-size="tall" data-href="'+loc + '/' + window.location.pathname+'"></div>');
         }
 
-	if($(window).width() > 1025)
-	{
 
-		UserVoice = window.UserVoice || [];
-		UserVoice.push(['showTab', 'classic_widget', {
-		  mode: 'feedback',
-		  primary_color: '#5a55eb',
-		  link_color: '#007dbf',
-		  forum_id: 205721,
-		  tab_label: 'Feedback',
-		  tab_color: '#444abd',
-		  tab_position: 'middle-right',
-		  tab_inverted: true
-		}]);
-	
-	    	load('//widget.uservoice.com/ErfXLhKesduxPbqb4bKw3A.js');
-	}
+    	if($(window).width() > 1025)
+    	{
 
-
-
+    		UserVoice = window.UserVoice || [];
+    		UserVoice.push(['showTab', 'classic_widget', {
+    		  mode: 'feedback',
+    		  primary_color: '#5a55eb',
+    		  link_color: '#007dbf',
+    		  forum_id: 205721,
+    		  tab_label: 'Feedback',
+    		  tab_color: '#444abd',
+    		  tab_position: 'middle-right',
+    		  tab_inverted: true
+    		}]);
+    	
+    	    load('//widget.uservoice.com/ErfXLhKesduxPbqb4bKw3A.js');
+    	}
 
     }, 3000);
 };

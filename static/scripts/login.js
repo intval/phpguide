@@ -47,6 +47,7 @@ var login =
 		)
 		{
 		    xhr.abort(); 
+            window.analytics.track('registration', 'failed', 'Empty Input');
 			
 		    $('#regResult').html(
 		    'יש למלא את כל השדות'
@@ -62,10 +63,12 @@ var login =
     {
 		if(data != 'ok')
 		{
+            window.analytics.track('registration', 'failed', data);
 		    $('#regResult').html(data).show();
 		}
 		else
 		{
+            window.analytics.track('registration', 'success');
 		    window.location = redirect_after_login_to ;
 		}
     },
@@ -129,9 +132,15 @@ var login =
         $.post('login/register', data.serialize(), function(ret){
 
             if(ret === 'ok')
+            {
+                window.analytics.track('registration', 'success');
                 window.location = redirect_after_login_to;
+            }
             else
+            {
+                window.analytics.track('registration', 'failed', ret);
                 resultDiv.html(ret).show();
+            }
 
         });
 

@@ -30,7 +30,7 @@
     
     <title><?=e($this->pageTitle)?></title>
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
-	<?php $this->addScripts( 'plugins', 'ui'); ?>    
+	<?php $this->addScripts('plugins', 'ui', 'analytics'); ?>    
 	
 	<meta itemprop="name" content="<?=e($this->pageTitle)?>">
 	<meta itemprop="description" content="<?=e($this->description)?>">
