@@ -226,7 +226,7 @@
         <li>איך ללכת מכות נכון עם ניימספייסים</li>
     </ul>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" data-buy-form="true">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="5JCVNDA2SK3RL">
 
@@ -234,7 +234,7 @@
         39.90 &#8362; בלבד
         </div>
 
-        <input type="image" src="https://www.paypalobjects.com/he_IL/IL/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="">
+        <input type="image" src="https://www.paypalobjects.com/he_IL/IL/i/btn/btn_buynowCC_LG.gif" border="0" data-buy-button="true" name="submit" alt="">
     </form>
 
     <div style="text-align: center">
@@ -357,7 +357,7 @@
         <li>איך ללכת מכות נכון עם ניימספייסים</li>
     </ul>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" data-buy-form="true">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="5JCVNDA2SK3RL">
 
@@ -365,7 +365,7 @@
             39.90 &#8362; בלבד
         </div>
 
-        <input type="image" src="https://www.paypalobjects.com/he_IL/IL/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="">
+        <input type="image" src="https://www.paypalobjects.com/he_IL/IL/i/btn/btn_buynowCC_LG.gif" data-buy-button="true" alt="">
     </form>
 
     <div style="text-align: center">

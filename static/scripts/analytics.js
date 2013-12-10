@@ -1,5 +1,7 @@
 window.Analytics = function(){};
-window.Analytics.track = function(){};
+window.Analytics.track = function(category, eventName, data){
+    console.log('Tracking analytics event: ', category, eventName, data);
+};
 
 (function(){
 
