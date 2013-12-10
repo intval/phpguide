@@ -17,4 +17,4 @@ class OopbookController extends PHPGController
     {
         $this->redirect('index');
     }
-} 
+}
