@@ -46,8 +46,8 @@ var login =
 		    $.trim($('#regmail').val()) == '' 
 		)
 		{
-		    xhr.abort(); 
-            window.analytics.track('registration', 'failed', 'Empty Input');
+		    xhr.abort();
+            window.Analytics.track('registration', 'failed', 'Empty Input');
 			
 		    $('#regResult').html(
 		    'יש למלא את כל השדות'
@@ -63,12 +63,12 @@ var login =
     {
 		if(data != 'ok')
 		{
-            window.analytics.track('registration', 'failed', data);
+            window.Analytics.track('registration', 'failed', data);
 		    $('#regResult').html(data).show();
 		}
 		else
 		{
-            window.analytics.track('registration', 'success');
+            window.Analytics.track('registration', 'success');
 		    window.location = redirect_after_login_to ;
 		}
     },
@@ -125,6 +125,7 @@ var login =
         if(!valid)
         {
             resultDiv.html('יש להזין את כל השדות').show();
+            window.Analytics.track('registration', 'failed', 'Empty Input');
             return;
         }
 
@@ -133,12 +134,12 @@ var login =
 
             if(ret === 'ok')
             {
-                window.analytics.track('registration', 'success');
+                window.Analytics.track('registration', 'success');
                 window.location = redirect_after_login_to;
             }
             else
             {
-                window.analytics.track('registration', 'failed', ret);
+                window.Analytics.track('registration', 'failed', ret);
                 resultDiv.html(ret).show();
             }
 
