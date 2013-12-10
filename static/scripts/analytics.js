@@ -21,18 +21,6 @@
 	mixpanel.init(analyticsConfnig.mixPanel);
 	mixpanel.track_links("a", "link click", {referrer: document.referrer});
 
-	if(window.user && typeof(window.user.id) !== 'undefined')
-	{
-		mixpanel.identify(window.user.id);
-		
-		_gaq.push(['_setCustomVar',
-	      1,                   	// This custom var is set to slot #1.  Required parameter.
-	      'customerId',     	// The name acts as a kind of category for the user activity.  Required parameter.
-	      window.user.id,       // This value of the custom variable.  Required parameter.
-	      1                    	// Sets the scope to session-level.  Optional parameter.
-	   ]);
-	}
-
 	/* GA */
 	window._gaq = _gaq = window._gaq || []; 
 	_gaq.push(['_setAccount', analyticsConfnig.gac]); 
@@ -43,6 +31,20 @@
 	/* Heap analytics */
 	window.heap=heap||[];heap.load=function(a){window._heapid=a;var b=document.createElement("script");b.type="text/javascript",b.async=!0,b.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap.js";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d=function(a){return function(){heap.push([a].concat(Array.prototype.slice.call(arguments,0)))}},e=["identify","track"];for(var f=0;f<e.length;f++)heap[e[f]]=d(e[f])};
     window.heap.load(analyticsConfnig.heap);
+
+
+
+    if(window.user && typeof(window.user.id) !== 'undefined')
+	{
+		mixpanel.identify(window.user.id);
+		
+		_gaq.push(['_setCustomVar',
+	      1,                   	// This custom var is set to slot #1.  Required parameter.
+	      'customerId',     	// The name acts as a kind of category for the user activity.  Required parameter.
+	      window.user.id,       // This value of the custom variable.  Required parameter.
+	      1                    	// Sets the scope to session-level.  Optional parameter.
+	   ]);
+	}
 
 });
 
