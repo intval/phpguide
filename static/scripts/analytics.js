@@ -22,7 +22,6 @@ window.Analytics.track = function(){};
 	b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
 
 	mixpanel.init(analyticsConfnig.mixPanel);
-	mixpanel.track_links("a", "link click", {referrer: document.referrer});
 
 	/* GA */
 	window._gaq = _gaq = window._gaq || []; 
