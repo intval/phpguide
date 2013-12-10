@@ -130,10 +130,35 @@ class PHPGController extends CController
             $this->facebook['image'] = 'http://' . $_SERVER['HTTP_HOST'] . '/static/images/logo.jpg';
         }
 
-		Yii::app()->clientScript->coreScriptPosition = CClientScript::POS_END;
+		$this->registerPageScripts();
+
         parent::__construct($id, $module);
     }
 
+
+    private function registerPageScripts()
+    {
+
+        Yii::app()->clientScript->coreScriptPosition = CClientScript::POS_END;
+        $this->registerUserInfoScriptBlock();      
+    }
+
+    private function registerUserInfoScriptBlock()
+    {
+        if(!Yii::app()->user->isguest)
+        {
+            $user = Yii::app()->user->getUserInstance();
+
+            $userInfoCode = "
+                window.user = {
+                    id:   '{$user->id}',
+                    nick: '{$user->login}'
+                };
+            ";
+
+            Yii::app()->clientScript->registerScript('userInfo', $userInfoCode, CClientScript::POS_BEGIN);  
+        }
+    }
 
 
     /**
