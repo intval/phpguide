@@ -195,7 +195,7 @@
 
 <p dir="RTL">רוב האנשים סבורים שההשקעה הכי טובה שיוכלו לעשות בחייהם היא קניית דירה או רכוש אחר. רוב האנשים לא מספיק חכמים, רוב האנשים לא מקבלים משכורת מעל לממוצעת, ולא בונים אתרים כמו פייסבוק וטוויטר. לאומת זאת, האנשים המצליחים מבינים ומסכימים על דבר אחד: <strong>ההשקעה הכי טובה שתוכל אי פעם לעשות היא השקעה בעצמך. </strong></p>
 
-<p dir="RTL">ידע וניסיון שתרכוש היום מסוגלים להחזיר אחוזים עצומים על ההשקעה <strong>לאורך כל משך חייך</strong>.ידע שתרכוש היום ישפיע בצורה ישירה על גובה המשכורת שלך, על סיכויי ההצלחה של הסטארטאפ שלך ועל איכות האתר שלך. השקעה של 560 ש&quot;ח בספרים או בקורס מלא תוחזר אליך בשבוע הראשון של תלוש המשכורת החדש שלך, בפרויקט הפרילנס הראשון שתעשה או בצורת זמן ועצבים שלא תצטרך לבזבז יותר סתם.</p>
+<p dir="RTL">ידע וניסיון שתרכוש היום מסוגלים להחזיר אחוזים עצומים על ההשקעה <strong>לאורך כל משך חייך</strong>.ידע שתרכוש היום ישפיע בצורה ישירה על גובה המשכורת שלך, על סיכויי ההצלחה של הסטארטאפ שלך ועל איכות האתר שלך. השקעה של כמה שקלים בספרים או בקורס מלא תוחזר אליך בשבוע הראשון של תלוש המשכורת החדש שלך, בפרויקט הפרילנס הראשון שתעשה או בצורת זמן ועצבים שלא תצטרך לבזבז יותר סתם.</p>
 
 <p dir="RTL">מתי
     בפעם האחרונה השקעת בעצמך?
@@ -226,11 +226,15 @@
         <li>איך ללכת מכות נכון עם ניימספייסים</li>
     </ul>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" data-buy-form="true">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="5JCVNDA2SK3RL">
-        <input type="image" src="https://www.paypalobjects.com/he_IL/IL/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - הדרך הקלה והבטוחה לשלם באינטרנט!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+
+        <div style="font-size:1.5em; color:#505aff; margin:20px 0 5px">
+        39.90 &#8362; בלבד
+        </div>
+
+        <input type="image" src="https://www.paypalobjects.com/he_IL/IL/i/btn/btn_buynowCC_LG.gif" border="0" data-buy-button="true" name="submit" alt="">
     </form>
 
     <div style="text-align: center">
@@ -294,6 +298,18 @@
     -->
 </p>
 
+<h2 dir="RTL">האם הספר הזה בשבילך?</h2>
+
+<p dir="RTL">אם אתה רוצה להיכנס לעולם התכנות מונחה עצמים - בהחלט כן, אבל לפני כן צריך להיות לך ידע בסיסי ב-PHP. &nbsp;<br />
+    אם אתה<br />
+    &nbsp;- יודע&nbsp;ליצור ולקרוא לפונקציות שמקבלות פרמטרים ומחזירות ערכים;<br />
+    &nbsp;- מבין במערכים מספריים ואסוציאטיביים;<br />
+    &nbsp;- מכיר את טיפוסי הנתונים הבסיסיים: מחרוזת, בוליאנים וכו&#39;;<br />
+    &nbsp;- יודע מה זה include ו-require ומפריד את הקוד לקבצים שונים;<br />
+    אז הספר הזה בשבילך.</p>
+
+<p dir="RTL">אם אחד הסעיפים ברשימה הזו לא נכון לגביך, או PHP היא שפת התכנות הראשונה שלך והתחלת ללמוד אותה לפני פחות מחצי שנה -&nbsp;<strong>אל תקנה את הספר הזה</strong>. הוא עומד לבלבל אותך יותר מאשר לעזור לך.</p>
+
 <h2 dir="RTL">מה אם בכל זאת לא אבין שום דבר?</h2>
 
 <p dir="RTL">מדריכים שונים באינטרנט שוכחים לענות על השאלה העיקרית &ndash; מה תרוויח מתכנות מונחה עצמים. חשוב להבין שלקרוא על תכנות מונחה עצמים זה כמו לקרוא על חוויות מגלישת סקי בחרמון. תיאור מילולי של ירידה במורד לא משתווה להרגשה האמיתית של האדרנלין בדם והבריז הקריר לפנים. הסבר, בין אם קצר או בין אם ארוך, על תכנות מונחה עצמים לא שווה הרבה בלי שתנסה. אבל, יש פתרון.</p>
@@ -341,11 +357,15 @@
         <li>איך ללכת מכות נכון עם ניימספייסים</li>
     </ul>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" data-buy-form="true">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="5JCVNDA2SK3RL">
-        <input type="image" src="https://www.paypalobjects.com/he_IL/IL/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - הדרך הקלה והבטוחה לשלם באינטרנט!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+
+        <div style="font-size:1.5em; color:#505aff; margin:20px 0 5px">
+            39.90 &#8362; בלבד
+        </div>
+
+        <input type="image" src="https://www.paypalobjects.com/he_IL/IL/i/btn/btn_buynowCC_LG.gif" data-buy-button="true" alt="">
     </form>
 
     <div style="text-align: center">

@@ -1,4 +1,6 @@
-<!DOCTYPE HTML><head>
+<!DOCTYPE HTML>
+<html>
+    <head>
     <meta charset="utf-8">
 
 
@@ -23,9 +25,11 @@
     <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="/static/oopbook/css/my.css" />
-    <?php $this->addScripts('plugins', 'ui', 'analytics'); ?>  
 
-    <!-- End Head -->
+    <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
+    <?php $this->addScripts('plugins', 'ui', 'analytics', 'salespageAnalytics'); ?>
+
+        <!-- End Head -->
 </head>
 
 
@@ -47,11 +51,18 @@
 
 
 
-    <?=$content?>
+    <?= $content ?>
 
 
 
 </div><!-- End Block Home -->
+
+    <script type="text/javascript" >
+        function StartAnalytics(product)
+        {
+            new SalesPageAnalytics(product, Analytics);
+        }
+    </script>
 
 </body>
 </html>
