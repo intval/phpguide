@@ -2,15 +2,6 @@
 /*** @var $this PHPGController */
 /*** @var $qnas array */
 /*** @var $articles array */
-
-$blogpostCacheAttrs = [
-    'duration' => 400,
-    'dependency' =>[
-        'class'=>'system.caching.dependencies.CDbCacheDependency',
-        'sql'=>Article::getCacheDependencySql()
-    ]
-];
-
 ?>
 
 <?php $this->renderPartial('//qna/newQuestionForm') ?>
@@ -23,23 +14,8 @@ $blogpostCacheAttrs = [
     פרסם כאן
 </div>
 
-<?php
-$cacheStarted = false;
 
-if(!Yii::app()->user->isguest && !Yii::app()->user->is_admin &&
-    $this->beginCache('HomepageBlogpostsFragmentCache', $blogpostCacheAttrs))
-{
-    $cacheStarted = true;
-}
-?>
-    <div class='homepage-articles'>
-    <?php  $this->renderPartial('//article/homepageArticlesList', ['articles' => $articles]); ?>
-    &larr; <a href='<?=bu('Article/All')?>'>כל הפוסטים</a>
-    </div>
-
-<?php
-if($cacheStarted)
-{
-    $this->endCache();
-}
-?>
+<div class='homepage-articles'>
+<?php  $this->renderPartial('//article/homepageArticlesList', ['articles' => $articles]); ?>
+&larr; <a href='<?=bu('Article/All')?>'>כל הפוסטים</a>
+</div>
