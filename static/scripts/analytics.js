@@ -55,7 +55,7 @@ window.Analytics.track = function(category, eventName, data){
     window.Analytics.track = function(category, eventName, data)
     {
         _gaq.push(['_trackEvent', category, eventName, data]);
-        mixpanel.track(category + '/'  + eventName, {"data": data});
+        mixpanel.track(category + '/' + eventName, data);
     };
 
 })();
