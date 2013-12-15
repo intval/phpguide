@@ -226,7 +226,7 @@
         <li>איך ללכת מכות נכון עם ניימספייסים</li>
     </ul>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" data-buy-form="true">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" data-buy-form="true" class="buy-oop-book-form">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="5JCVNDA2SK3RL">
 
@@ -357,7 +357,7 @@
         <li>איך ללכת מכות נכון עם ניימספייסים</li>
     </ul>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" data-buy-form="true">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" data-buy-form="true" class="buy-oop-book-form">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="5JCVNDA2SK3RL">
 
