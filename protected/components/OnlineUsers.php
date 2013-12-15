@@ -7,7 +7,7 @@ class OnlineUsers extends CWidget
         $criteria = new CDbCriteria([
             'select' => 'login, last_visit',
             'condition' => 'last_visit > DATE_SUB(NOW(), INTERVAL 10 MINUTE)',
-            'order' => 'last_visit DESC'
+            'order' => 'last_visit ASC'
         ]);
 
         $onlineUsers = User::model()->findAll($criteria);

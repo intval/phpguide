@@ -649,6 +649,17 @@ section.logos .rss , section.logos .github
     vertical-align: middle;
     
 }
+
+.onlineUsers
+{
+    direction: rtl;
+}
+
+.onlineUsers span
+{
+    direction: ltr;
+}
+
 /********************************** ASK QUESTION FORM ***********************/
 
 #forum_question_subject
