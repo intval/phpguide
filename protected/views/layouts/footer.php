@@ -1,6 +1,6 @@
 
 <footer id='footer'>
-
+    <?php $this->widget('application.components.OnlineUsers'); ?>
 </footer>
 
 
