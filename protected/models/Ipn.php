@@ -89,7 +89,7 @@ class Ipn
         if(floatval($postData['mc_gross']) !== floatval($expectedAmount))
             throw new \Exception("Amount does not match. Expected <".floatval($postData['mc_gross']).'>, got <'.floatval($expectedAmount).'>');
 
-        $existingTransaction = Order::model()->findByAttributes(['txid' => 1]);
+        $existingTransaction = Order::model()->findByAttributes(['txid' => $postData['txn_id']]);
         if($existingTransaction !== null)
             throw new \Exception("Duplicate transaction id. Db record #".$existingTransaction->id);
 
