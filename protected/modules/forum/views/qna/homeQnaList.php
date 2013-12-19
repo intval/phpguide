@@ -7,7 +7,7 @@
     <?php
         foreach($qnas as $qna)
         {
-                $this->renderPartial('//qna/qnaHomeItem', array('qna' => &$qna));
+                $this->renderPartial('forum.views.qna.qnaHomeItem', array('qna' => &$qna));
         }
     ?>
     <div class='clear'></div>

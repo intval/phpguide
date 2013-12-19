@@ -47,7 +47,7 @@
         <?php
     }
     
-    echo Chtml::ajaxSubmitButton( $btnText, bu('/Qna/answer'), $ajaxProperties, $htmlProperties);
+    echo Chtml::ajaxSubmitButton( $btnText, bu('qna/answer'), $ajaxProperties, $htmlProperties);
     echo CHtml::endForm(); ?>
     
 </div>

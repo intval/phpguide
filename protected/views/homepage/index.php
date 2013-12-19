@@ -4,10 +4,10 @@
 /*** @var $articles array */
 ?>
 
-<?php $this->renderPartial('//qna/newQuestionForm') ?>
+<?php $this->renderPartial('forum.views.qna.newQuestionForm') ?>
 
 <section class='clearfix homepage-qna'>
-    <?php  $this->renderPartial('//qna/homeQnaList', array('qnas' => &$qnas)) ?>
+    <?php  $this->renderPartial('forum.views.qna.homeQnaList', array('qnas' => &$qnas)) ?>
 </section>
 
 <div class="homepage-banner">

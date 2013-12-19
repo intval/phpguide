@@ -154,7 +154,7 @@ var qna =
     		jQuery.ajax({
     			'success':qna.editSuccess,
     			'beforeSend':qna.editSent,
-    			'type':'POST','url':'/Qna/answer','cache':false,
+    			'type':'POST','url':'/qna/answer','cache':false,
     			'data':jQuery(this).parents("form").serialize()});
 
     		return false;
@@ -179,7 +179,7 @@ var qna =
     		{
 	    		jQuery.ajax({
 	    			'success':qna.editQuestionSuccess,
-	    			'type':'POST','url':'/Qna/new',
+	    			'type':'POST','url':'/qna/new',
 	    			'cache':false,'data':jQuery(this).parents("form").serialize()});
     		}
     		return false;

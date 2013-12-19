@@ -14,7 +14,7 @@
 		<div class='clear' style='margin-top:16px'></div>        
         <div id="forum_question_controls" >
             <div class="right">
-                <?= Chtml::ajaxSubmitButton("שאל אותנו!", bu('/Qna/new'),
+                <?= Chtml::ajaxSubmitButton("שאל אותנו!", bu('/qna/new'),
                         array('success'=>'new_question_submitted_callback', 'beforeSend' => 'disable_new_question_form'),
                 		array('class' => 'btn info')
                         ) ?>

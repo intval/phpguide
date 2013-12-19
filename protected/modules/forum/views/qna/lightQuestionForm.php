@@ -28,7 +28,7 @@
     	 CHtml::activeHiddenField($model, 'subject', array('id' => 'editQuestionSubjectHidden'));
   
     
-    echo Chtml::ajaxSubmitButton( $btnText, bu('/Qna/new'), $ajaxProperties, $htmlProperties);
+    echo Chtml::ajaxSubmitButton( $btnText, bu('/qna/new'), $ajaxProperties, $htmlProperties);
     echo CHtml::endForm(); ?>
     
 </div>

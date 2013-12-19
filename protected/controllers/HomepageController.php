@@ -5,7 +5,6 @@ class HomepageController extends PHPGController
    
     public function actionIndex()
     {
-        
         $qnas = QnaQuestion::model()->findAll(array('limit' => 7));
         QnaController::storeQnasWithNewAnswersSinceLastVisitInSession($qnas);
 
@@ -74,7 +73,7 @@ class HomepageController extends PHPGController
     	/**
     	 * @todo get a better solution
     	 */
-    	if(!YII_DEBUG && Yii::app()->request->getUserHostAddress() !== '::ffff:142.0.252.132' ) return;
+    	if(!YII_DEBUG) return;
 
     	
     	$items = Yii::app()->db->createCommand("

@@ -20,11 +20,12 @@
 class QnaQuestion extends DTActiveRecord
 {
 
-	
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return QnaQuestion the static model class
-	 */
+
+    /**
+     * Returns the static model of the specified AR class.
+     * @param string $className
+     * @return QnaQuestion the static model class
+     */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -94,7 +95,7 @@ class QnaQuestion extends DTActiveRecord
    public function getUrl()
    {
    		$url = str_pad( preg_replace("/[^a-z0-9_\s".'א-ת'."]/ui", '', $this->subject), '2', 'x');
-   		return Yii::app()->createUrl('qna/view', array('id' => $this->qid, 'subj' => $url));
+   		return Yii::app()->createUrl('/forum/qna/view', array('id' => $this->qid, 'subj' => $url));
    }
 
 
