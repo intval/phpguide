@@ -2,10 +2,14 @@
 /*** @var $this PHPGController */
 /*** @var $qnas array */
 /*** @var $articles array */
+/** @var $paginationCurrentPage integer */
+/** @var $paginationTotalPages integer */
 ?>
 
 <div class="lastActiveQuestions">
-    <? $this->widget('forum.components.LastActiveTopicsWidget', ['count' => 3]); ?>
+    <?
+    if($paginationCurrentPage == 1)
+        $this->widget('forum.components.LastActiveTopicsWidget', ['count' => 3]); ?>
 </div>
 
 <div class='homepage-articles'>

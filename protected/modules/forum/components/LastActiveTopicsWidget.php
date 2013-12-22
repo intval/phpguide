@@ -1,11 +1,16 @@
 <?php
 
-class LastActiveTopicsWidget extends CWidget
+class LastActiveTopicsWidget extends PHPGWidget
 {
     public $count = 7;
 
     public function run()
     {
-        $this->render('forum.views.qna.homeQnaList' ,['qnas' =>  QnaQuestion::model()->findAll(['limit' => $this->count])]);
+        $this->renderPartial('forum.views.qna.homeQnaList' ,
+            [
+                'showCategory' => true,
+                'qnas' =>  QnaQuestion::model()->findAll(['limit' => $this->count])
+            ]
+        );
     }
 } 

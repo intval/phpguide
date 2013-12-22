@@ -7,7 +7,7 @@
 
 <div class="qna_view_question" id="qnaQuestionHolder">
     
-    <?php $this->renderPartial('qnaHomeItem', array('qna' => &$qna)) ?>
+    <?php $this->renderPartial('qnaHomeItem', array('qna' => &$qna, 'showCategory' => false)) ?>
     <div class="clear"></div>
     
     <?php if((!Yii::app()->user->isguest &&  Yii::app()->user->is_admin) || $qna->authorid === Yii::app()->user->id) { ?><a class="qna-question-edit" title='ערוך תשובה'></a><?php } ?>

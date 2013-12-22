@@ -15,7 +15,7 @@
 
 <?php
 $this->renderPartial('newQuestionForm', ['allCategories' => $allCategories, 'selectedCategory' => $category->catid]);
-$this->renderPartial('homeQnaList', array('qnas' => &$qnas));
+$this->renderPartial('homeQnaList', array('qnas' => &$qnas, 'showCategory' => false));
 
 Yii::app()->clientScript->registerScript
 (

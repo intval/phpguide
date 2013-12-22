@@ -1,4 +1,5 @@
 <?php
+/** @var $showCategory bool */
 /***
  * @var QnaQuestion[] $qnas;
  */
@@ -10,7 +11,7 @@ if(isset($qnas) && !empty($qnas)): ?>
 
     <?php
         foreach($qnas as $qna)
-            $this->render('forum.views.qna.qnaHomeItem', array('qna' => &$qna));
+            $this->renderPartial('forum.views.qna.qnaHomeItem', ['qna' => &$qna, 'showCategory' => $showCategory]);
     ?>
     <div class='clear'></div>
 

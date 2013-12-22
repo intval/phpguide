@@ -1,3 +1,5 @@
+<? /** @var $qna QnaQuestion */ ?>
+
 <div class="qna-home-row">
     <div class="counts">
         <!--<div class="votes">
@@ -24,10 +26,21 @@
                 <a href='<?=bu('users/').urlencode($qna->author->login)?>'><?=e($qna->author->login)?></a>
 
             ,
-            <span class="relativetime" style="display:inline-block;">
+            <time class="timeago relativetime" datetime="<?=$qna->time->date2rfc()?>" style="display:inline-block;">
             	<?= $qna->time->date2heb() ?>
-            	<?php if( QnaController::doesQnaHaveNewAnswersSinceLastVisit($qna)) : ?><span style='color:blue; font-style:italic; padding-right:15px;'>חדש</span><?php endif; ?>
+            	<?php
+            	/* if( QnaController::doesQnaHaveNewAnswersSinceLastVisit($qna)) : ?><span style='color:blue; font-style:italic; padding-right:15px;'>חדש</span><?php endif; */
+                ?>
+            </time>
+
+
+            <? if(isset($showCategory) && $showCategory === true): ?>
+                ,
+            בקטגורית
+            <span dir="ltr" style="font-size: 80%">
+                <a href='/forum/<?=$qna->categoryid?>'><?=e($qna->category->cat_name); ?></a>
             </span>
+            <? endif; ?>
 		</div>
 	
     </div>
