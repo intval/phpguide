@@ -1,14 +1,16 @@
-<?php if($qnas): ?>
+<?php
+/***
+ * @var QnaQuestion[] $qnas;
+ */
+if(isset($qnas) && !empty($qnas)): ?>
 
 <h3 style="color: #BC1D35;">
-    שאלות אחרונות
+    דיונים אחרונים
 </h3>
 
     <?php
         foreach($qnas as $qna)
-        {
-                $this->renderPartial('forum.views.qna.qnaHomeItem', array('qna' => &$qna));
-        }
+            $this->renderPartial('forum.views.qna.qnaHomeItem', array('qna' => &$qna));
     ?>
     <div class='clear'></div>
 

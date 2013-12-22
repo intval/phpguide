@@ -1825,6 +1825,66 @@ margin-top:20px;
 }
 
 
+
+/************************* qna Forum **************************/
+
+.qna_forum_list td
+{
+    border-bottom: 1px solid #d1d3d6;
+    padding:13px;
+}
+
+.qna_forum_list td .icon
+{
+    width:60px;
+    height:60px;
+    background-repeat: none;
+}
+
+
+.qna_forum_list td a
+{
+    color: #626162;
+}
+
+.qna_forum_list td.spacer
+{
+    width:1px;
+}
+.qna_forum_list td.spacer span
+{
+    display:block;background: #d1d3d7;width:1px;height:71px;
+}
+
+.qna_forum_list td.category_name
+{
+    width:314px;
+}
+.qna_forum_list td.category_name a
+{
+    font-size: 18px;
+}
+
+.qna_forum_list td.last_post a
+{
+    font-weight: bold;
+}
+
+.qna_forum_list td.last_post a.author
+{
+    color:black;
+    direction: rtl;
+}
+
+.qna_forum_list td.last_post time
+{
+    font-size: 11px;
+    direction: rtl;
+}
+
+
+
+
    
     
 /************************** QNA Answers *******************/

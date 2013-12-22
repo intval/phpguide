@@ -1,3 +1,9 @@
+<?php
+/** @var $isSubscribed bool */
+/** @var $canUserMarkAnswer bool */
+/** @var $qna QnaQuestion */
+/** @var $allCategories QnaCategory[] */
+?>
 
 <div class="qna_view_question" id="qnaQuestionHolder">
     
@@ -58,4 +64,17 @@ $this->renderPartial('commentsForm', array('model' => $model));
 </div>
 
 
+<?php endif; ?>
+
+
+<?php if(!Yii::app()->user->isguest && Yii::app()->user->is_admin): ?>
+    <? echo CHtml::beginForm('qna/moveQuestionToCategory'); ?>
+        להעביר דיון לקטגורית:
+        <?
+            $data = CHtml::listData($allCategories, 'catid', 'cat_name');
+            echo CHtml::dropDownList('destinationCatId', $qna->categoryid, $data);
+            echo CHtml::hiddenField('questionId', $qna->qid);
+        ?>
+        <input type="submit" class="btn" value="yalla"/>
+    <? echo CHtml::endForm(); ?>
 <?php endif; ?>

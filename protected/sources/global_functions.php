@@ -13,7 +13,7 @@
  */
 function e($data)
 {
-    return htmlSpecialChars($data, ENT_QUOTES);
+    return htmlSpecialChars($data, ENT_QUOTES | ENT_DISALLOWED | ENT_HTML5, 'UTF-8');
 }
 
 /**

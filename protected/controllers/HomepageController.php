@@ -5,15 +5,24 @@ class HomepageController extends PHPGController
    
     public function actionIndex()
     {
-        $qnas = QnaQuestion::model()->findAll(array('limit' => 7));
-        QnaController::storeQnasWithNewAnswersSinceLastVisitInSession($qnas);
+        $posts_per_page = 10;
+        $page = 0;
 
-        $this->render('index' ,
-            array 
-            (
-                'articles'     => Article::model()->byPage(0, 4)->publishedOnly()->findAll(),
-                'qnas'         => &$qnas, 
-            )
+        if(isset($_GET['page']))
+        {
+            $page = intval($_GET['page']) - 1;
+            if($page < 0) $page = 0;
+            if($page > 100000) $page = 0;
+        }
+
+        $totalPages = ceil( Article::model()->count() / $posts_per_page );
+
+        $this->render('//article/allArticles' ,
+            [
+                'articles'     => Article::model()->byPage($page, $posts_per_page)->findAll(),
+                'paginationTotalPages' => $totalPages,
+                'paginationCurrentPage' => $page+1
+            ]
         );
     }
         

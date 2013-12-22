@@ -9,10 +9,11 @@
  * @property string $bb_text
  * @property string $html_text
  * @property integer $authorid
- * @property string $time
+ * @property SDateTime $time
  * @property SDateTime $last_activity
  * @property integer $views
  * @property integer $answers
+ * @property integer $categoryid
  *
  * The followings are the available model relations:
  * @property User $author
@@ -49,6 +50,8 @@ class QnaQuestion extends DTActiveRecord
 		return array(
 			array('subject', 'required'),
 			array('subject', 'length', 'max'=>255, 'min'=>5),
+            array('categoryid', 'numerical', 'integerOnly' => true, 'allowEmpty' => false),
+            array('categoryid', 'validatorExistingCategory'),
 			array('bb_text', 'length', 'min'=>5, 'allowEmpty' => false)
 		);
 	}
@@ -62,7 +65,8 @@ class QnaQuestion extends DTActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 		    'author' => array(self::BELONGS_TO, 'User', 'authorid'),
-		    'comments' =>  array(self::HAS_MANY, 'QnaComment', 'qid')
+		    'comments' =>  array(self::HAS_MANY, 'QnaComment', 'qid'),
+            'category' => [self::BELONGS_TO, 'QnaCategory', 'categoryid']
 		);
 	}
     
@@ -73,6 +77,11 @@ class QnaQuestion extends DTActiveRecord
         return $this;
     }
 
+    public function inCategory($id)
+    {
+        $this->getDbCriteria()->mergeWith(['condition' => 'categoryid = :catid', 'params' => [':catid' => $id]]);
+        return $this;
+    }
 
     public function defaultScope()
     {
@@ -91,6 +100,20 @@ class QnaQuestion extends DTActiveRecord
     }
 
 
+    public function categoriesWithLastPost()
+    {
+        $where = Yii::app()->db->createCommand()
+            ->select('max(qid)')
+            ->from(QnaQuestion::model()->tableName(). ' subquery')
+            ->where('t.categoryid = subquery.categoryid');
+
+        $this->with('category');
+        $this->getDbCriteria()->mergeWith([
+            'condition' => 'qid = ('.$where->getText().')',
+            'order' => 'categoryid ASC'
+        ]);
+        return $this;
+    }
 
    public function getUrl()
    {
@@ -98,5 +121,18 @@ class QnaQuestion extends DTActiveRecord
    		return Yii::app()->createUrl('/forum/qna/view', array('id' => $this->qid, 'subj' => $url));
    }
 
+
+
+    public function validatorExistingCategory($attribute, $params)
+    {
+        $allCategories = QnaCategory::model()->findAll();
+
+        /** @var $category QnaCategory */
+        foreach($allCategories as $category)
+            if($this->$attribute === $category->catid)
+                return true;
+
+        $this->addError($attribute, 'Invalid category id ;/');
+    }
 
 }

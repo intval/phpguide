@@ -1,12 +1,9 @@
 <div class="qnaCommentForm">
         
 
-    <?php 
-    
-    echo  CHtml::beginForm('', 'post', array('onsubmit' => 'return false;'))  ;
-    
-    $fieldid = ($model->aid ? 'editmessage' . $model->aid :   'message');
-    
+    <?php
+        $fieldid = ($model->aid ? 'editmessage' . $model->aid :   'message');
+        echo  CHtml::beginForm('', 'post', ['onsubmit' => 'return false;']);
     ?>
     
     

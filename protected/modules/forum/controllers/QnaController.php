@@ -69,15 +69,24 @@ class QnaController extends PHPGController
 		QnaComment::model()->updateByPk($answer->aid, array('is_correct' => false));
         $answer->author->updatePointsBy(- self::POINTS_FOR_CORRECT_ANSWER);
 	}
-	
-	
+
     public function actionIndex()
     {
-    	$this->pageTitle = 'שאלות ותשובות PHP | עזרה עם PHP | לימוד PHP';
-    	$this->keywords = 'שאלות ותשובות, PHP, פיתוח אינטרנט';
-    	$this->description = 'שאלות ותשובות לימוד PHP. יש לך שאלה? תשאל!';
+        $this->render('index');
+    }
+	
+    public function actionCategory($categoryId)
+    {
+        /** @var $category QnaCategory */
+        $category = QnaCategory::model()->findByPk($categoryId);
+
+        if(null === $category)
+            throw new \CHttpException(404);
+
+    	$this->pageTitle = 'פורום ושאלות ' . $category->cat_name;
+    	$this->description = 'דיונים ושאלות בנושאים' . $category->cat_name . ' ' . $category->cat_description;
     	
-        $this->addscripts( 'qna');
+        $this->addscripts('qna');
         
         $page = 0;
         
@@ -88,12 +97,15 @@ class QnaController extends PHPGController
             if($page > 100000) $page = 0;
         }
         
-        $qnas=QnaQuestion::model()->findAll();
-        QnaController::storeQnasWithNewAnswersSinceLastVisitInSession($qnas);
+        $qnas=QnaQuestion::model()->inCategory($categoryId)->count();
+        //QnaController::storeQnasWithNewAnswersSinceLastVisitInSession($qnas);
         
-        $this->render('index' ,[
-            'qnas' => QnaQuestion::model()->byPage($page, static::QNAS_ON_PAGE)->findAll(),
-            'pagination' => array('total_pages' => ceil(sizeof($qnas)/self::QNAS_ON_PAGE) , 'current_page' => $page+1)
+        $this->render('topicsInCategory' ,[
+            'qnas' => QnaQuestion::model()->inCategory($categoryId)->byPage($page, static::QNAS_ON_PAGE)->findAll(),
+            'allCategories' => QnaCategory::model()->findAll(),
+            'paginationTotalPages' => ceil($qnas/self::QNAS_ON_PAGE),
+            'paginationCurrentPage' => $page+1,
+            'category' => $category
         ]);
     }
     
@@ -151,7 +163,7 @@ class QnaController extends PHPGController
     public function actionView($id)
     {
         /** @var QnaQuestion $qna */
-        $qna = QnaQuestion::model()->findByPk($id);
+        $qna = QnaQuestion::model()->with('category')->findByPk($id);
 	
         if($qna)
         {
@@ -177,20 +189,51 @@ class QnaController extends PHPGController
             $isSubscribed = !Yii::app()->user->isGuest &&
                 QnaSubscription::isSubscribed(Yii::app()->user->id, $qna->qid);
 
+            $allCategories = [];
+
+            if(!Yii::app()->user->isGuest && Yii::app()->user->is_admin)
+                $allCategories = QnaCategory::model()->findAll();
 
             $this->render('viewQna',
                 array('qna' => &$qna,
                     'canUserMarkAnswer' => &$canUserMarkAnswer,
-                    'isSubscribed' => $isSubscribed
+                    'isSubscribed' => $isSubscribed,
+                    'allCategories' => $allCategories
                 ));
-            QnaController::removeQnaFromListOfNewAnswers($qna);
+
+            //QnaController::removeQnaFromListOfNewAnswers($qna);
         }
         else
         {
             throw new CHttpException(404, "aww");
         }
     }
-    
+
+    public function actionMoveQuestionToCategory()
+    {
+        if(Yii::app()->user->isGuest || !Yii::app()->user->is_admin)
+            return;
+
+        $questionId = Yii::app()->request->getPost('questionId');
+        $destinationCatId = Yii::app()->request->getPost('destinationCatId');
+
+        /** @var $question QnaQuestion */
+        $question = QnaQuestion::model()->findByPk($questionId);
+
+        if(null === $question)
+            return;
+
+        /** @var QnaCategory $category */
+        $category = QnaCategory::model()->findByPk($destinationCatId);
+
+        if(null === $category)
+            return;
+
+        $question->categoryid = $destinationCatId;
+        $question->save();
+
+        $this->redirect($question->getUrl());
+    }
     
     /**
      * Returns whether the currently logged in user had already viewed this qna page earlier today

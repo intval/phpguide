@@ -6,7 +6,9 @@
         </div>-->
         <div class="status  <?=$qna->answers < 1 ? 'un' : '';?>answered">
             <div class="item-count"><?=$qna->answers?></div>
-            <div>תשובות</div>
+            <div>
+                תגובות
+            </div>
         </div>
         <div class="views">
              <div class="item-count"><?=$qna->views?></div>
@@ -17,7 +19,7 @@
     <div class="question-summary-wrapper">
         <h2><a href="<?=  $qna->getUrl() ?>" title="<?=e(strip_tags(mb_substr($qna->html_text, 0, 500)))?>"><?=e($qna->subject)?></a></h2>
         <div class="userinfo">
-            שאל
+            פתח
             
                 <a href='<?=bu('users/').urlencode($qna->author->login)?>'><?=e($qna->author->login)?></a>
 

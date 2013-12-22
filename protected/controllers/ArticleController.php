@@ -57,30 +57,4 @@ class ArticleController extends PHPGController
             ]
         );
     }
-    
-    
-    public function actionAll()
-    {
-    	$posts_per_page = 10;
-    	$page = 0;
-   	
-    	if(isset($_GET['page']))
-    	{
-    		$page = intval($_GET['page']) - 1;
-    		if($page < 0) $page = 0;
-    		if($page > 100000) $page = 0;
-    	}
-
-        $totalPages = ceil( Article::model()->count() / $posts_per_page );
-
-    	$this->render('allArticles' ,
-            [
-                'articles'     => Article::model()->byPage($page, $posts_per_page)->findAll(),
-                'pagination'   => ['total_pages' => & $totalPages , 'current_page' => $page+1]
-            ]
-    	);
-    	
-    }
-
-
 }

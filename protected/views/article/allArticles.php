@@ -1,5 +1,15 @@
-<h1 class="category-title">מדריכי PHP</h1>
+<?
+/** @var $articles Article[] */
+/** @var $paginationTotalPages integer */
+/** @var $paginationCurrentPage integer */
+?>
 
+
+<h1 class="category-title">
+    מדריכים וכתבות
+</h1>
+<br/>
+<!--
 <div class="categories_list">
 
     <a id="guides_cats"></a>
@@ -28,12 +38,13 @@
     </div>
     <div class="clear"></div>
 </div>
-
+-->
 
 <div id="categories_posts" >
 
 
-<?php foreach ($articles as $article):  ?>
+<?php
+foreach ($articles as $article):  ?>
 
     <div class="blogpost">
 
@@ -69,6 +80,18 @@
 
 <div class="paginator" id="paginator3" dir="ltr"></div>
 
-<?php 
-Yii::app()->clientScript->registerScript('paginator', "pag3 = new Paginator('paginator3', ".$pagination['total_pages'] . " /*total*/, 15, " . $pagination['current_page'] ." /*current*/, '".bu('Article/All')."?page=');", CClientScript::POS_READY);
+<?php
+
+Yii::app()->clientScript->registerScript
+(
+        'paginator',
+        "pag3 = new Paginator
+        (
+            'paginator3',
+            $paginationTotalPages /*total*/,
+            15,
+            $paginationCurrentPage,
+            '/?page='
+        );",
+        CClientScript::POS_READY);
 ?>
