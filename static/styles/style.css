@@ -1728,6 +1728,11 @@ div.addform .errors
 
 
 
+.lastActiveQuestions
+{
+    margin-bottom: 60px;
+}
+
 
 .qna_view_question
 {
@@ -1838,7 +1843,7 @@ margin-top:20px;
 {
     width:60px;
     height:60px;
-    background-repeat: none;
+    background-repeat: no-repeat;
 }
 
 

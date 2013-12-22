@@ -4,8 +4,18 @@
 /*** @var $articles array */
 ?>
 
+<div class="lastActiveQuestions">
+    <? $this->widget('forum.components.LastActiveTopicsWidget', ['count' => 3]); ?>
+</div>
 
 <div class='homepage-articles'>
-<?php  $this->renderPartial('//article/homepageArticlesList', ['articles' => $articles]); ?>
-&larr; <a href='<?=bu('Article/All')?>'>כל הפוסטים</a>
+
+<?=
+    $this->renderPartial('//article/allArticles', [
+        'articles'     => $articles,
+        'paginationTotalPages' => $paginationTotalPages,
+        'paginationCurrentPage' => $paginationCurrentPage
+    ]);
+?>
+
 </div>

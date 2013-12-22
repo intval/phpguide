@@ -17,7 +17,7 @@ class HomepageController extends PHPGController
 
         $totalPages = ceil( Article::model()->count() / $posts_per_page );
 
-        $this->render('//article/allArticles' ,
+        $this->render('index' ,
             [
                 'articles'     => Article::model()->byPage($page, $posts_per_page)->findAll(),
                 'paginationTotalPages' => $totalPages,

@@ -5,10 +5,6 @@
 ?>
 
 
-<h1 class="category-title">
-    מדריכים וכתבות
-</h1>
-<br/>
 <!--
 <div class="categories_list">
 
