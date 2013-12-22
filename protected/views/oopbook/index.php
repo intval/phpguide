@@ -231,7 +231,8 @@
         <input type="hidden" name="hosted_button_id" value="5JCVNDA2SK3RL">
 
         <div style="font-size:1.5em; color:#505aff; margin:20px 0 5px">
-        39.90 &#8362; בלבד
+            <?= number_format(Yii::app()->params['products']['oopbook']['price'], 2); ?>
+            &#8362; בלבד
         </div>
 
         <input type="image" src="https://www.paypalobjects.com/he_IL/IL/i/btn/btn_buynowCC_LG.gif" border="0" data-buy-button="true" name="submit" alt="">
@@ -362,7 +363,8 @@
         <input type="hidden" name="hosted_button_id" value="5JCVNDA2SK3RL">
 
         <div style="font-size:1.5em; color:#505aff; margin:20px 0 5px">
-            39.90 &#8362; בלבד
+            <?= number_format(Yii::app()->params['products']['oopbook']['price'], 2); ?>
+             &#8362; בלבד
         </div>
 
         <input type="image" src="https://www.paypalobjects.com/he_IL/IL/i/btn/btn_buynowCC_LG.gif" data-buy-button="true" alt="">
