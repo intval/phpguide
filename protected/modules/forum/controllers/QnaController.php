@@ -74,6 +74,11 @@ class QnaController extends PHPGController
     {
         $this->render('index');
     }
+
+    public function actionCreateNewTopic()
+    {
+        $this->render('newQuestionForm', ['selectedCategory' => null, 'allCategories' => QnaCategory::model()->findAll()]);
+    }
 	
     public function actionCategory($categoryId)
     {

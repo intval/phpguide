@@ -9,7 +9,7 @@
 <div class="lastActiveQuestions">
     <?
     if($paginationCurrentPage == 1)
-        $this->widget('forum.components.LastActiveTopicsWidget', ['count' => 3]); ?>
+        $this->widget('forum.components.LastActiveTopicsWidget', ['count' => 6]); ?>
 </div>
 
 <div class='homepage-articles'>
