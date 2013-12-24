@@ -4,11 +4,14 @@
 #test controller to play with on localhost
 protected/controllers/TestController.php
 
+#coffee and stylus generated files
+*.compiled.*
+
 # local config data
 protected/config/dbconnection.php
 protected/config/local_config.php
 protected/config/services.php
-protected/config/config.php
+protected/config/config.prod.php
 
 #composer packages directory
 protected/vendors/composerPackages/*
@@ -63,7 +66,7 @@ dwsync.xml
 intermediate
 publish
 .idea
-
+node_modules
 
 
 #zend debugger
