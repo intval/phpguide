@@ -1,4 +1,3 @@
-
 <?php $this->renderPartial('//layouts/header'); ?>
 
 <?php
@@ -21,10 +20,8 @@
 
 
 
-<div >
+<div class="layout-holder">
 
-
-    
     <section id="content" >
         <?=$content; ?> 
     </section> <!-- /content -->
@@ -33,15 +30,7 @@
         <?php $this->renderPartial('//layouts/sidebar'); ?>
     </section>
 
-
-
-
-
-
 </div>
 
 
-
-
-    
 <?php $this->renderPartial('//layouts/footer'); ?>

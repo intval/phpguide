@@ -1,0 +1,111 @@
+
+/* =========================================================== */
+/* aside userinfo block  */
+#userinfo {
+
+  border: 1px solid #dce1e1;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* #userinfo.unregistered { height:193px; } */
+
+#userinfo .action {
+  height: 64px;
+  border-top: 1px solid #dce1e1;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background: #dae7e7;
+}
+
+#userinfo.unregistered .action { background:inherit; }
+
+
+#userinfo.registered .action a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 15px 30px ;
+  background: url(../images/addpencil.png) no-repeat #27b1db 35px 7px;
+  height: 35px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+
+  text-align: center;
+  vertical-align: middle;
+  line-height: 35px;
+
+}
+
+#userinfo.unregistered .action a {
+  margin: 15px 45px 15px -10px;
+
+  height:24px;
+  width: 87px;
+  float:right;
+
+}
+
+
+#userinfo.registered .action a:hover {
+  background: url(../images/addpencil-act.png) no-repeat #ff9600 35px 7px;
+
+}
+
+#userinfo .ava {
+
+  margin: 20px 29px;
+}
+
+#userinfo .ava a.avatar {
+  float: right;
+  display: block;
+  width:50px;
+  height: 50px;
+}
+
+#userinfo.unregistered .ava a.avatar {
+  height:92px;
+  width:95px;
+  padding-left:10px;
+
+}
+
+
+#userinfo .ava nav {
+
+  margin-right: 15px;
+  margin-top:10px;
+}
+
+#userinfo .ava .userinfo
+{
+  display: block;
+  margin: 5px 70px 15px 0 ;
+}
+
+#userinfo .ava .userpoints
+{
+  font-size:10px;
+}
+#userinfo .ava a.username {
+  font: 14px Verdana;
+  font-weight: bold;
+  color: #4f5555;
+  padding-right:15px;
+  padding-bottom:10px;
+}
+
+#userinfo .ava nav a {
+  float: right;
+  margin-left: 13px;
+  height: 14px;
+  width:14px;
+  line-height: 14px;
+  vertical-align: baseline;
+  display: block;
+}

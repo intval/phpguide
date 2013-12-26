@@ -46,7 +46,7 @@ module.exports = (grunt) ->
                 options: { livereload: true}
 
             stylus:
-                files: "static/styles/**/*.styl"
+                files: ["static/styles/**/*.styl","static/styles/**/*.css"]
                 tasks: ["stylus"]
                 options: { livereload: true}
 

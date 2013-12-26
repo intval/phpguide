@@ -21,16 +21,14 @@
     <?php endif; ?>
 
     <link rel="shortcut icon" href="<?=bu("static/images/favicon.ico")?>" />
-    <?php Yii::app()->clientScript->registerCssFile($this->getAssetsBase().'/styles/style.css'); ?>
-    <?php Yii::app()->clientScript->registerCssFile($this->getAssetsBase().'/styles/bootstrap.css'); ?>
-    <?php Yii::app()->clientScript->registerCssFile($this->getAssetsBase().'/styles/images.css'); ?>
-    
+    <?php Yii::app()->clientScript->registerCssFile($this->getAssetsBase().'/styles/allstyles.compiled.css'); ?>
+
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     
     <title><?=e($this->pageTitle)?></title>
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
-	<?php $this->addScripts('plugins', 'ui', 'analytics'); ?>    
+	<?php $this->addScripts('scripts.compiled','plugins', 'ui', 'analytics'); ?>
 	
 	<meta itemprop="name" content="<?=e($this->pageTitle)?>">
 	<meta itemprop="description" content="<?=e($this->description)?>">
