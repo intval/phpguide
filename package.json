@@ -1,0 +1,11 @@
+{
+    "name": "phpguide",
+    "version": "0.0.0",
+    "devDependencies":
+    {
+        "grunt-cli": "*",
+        "grunt-contrib-stylus": "*",
+        "grunt-contrib-coffee": "*",
+        "grunt-simple-watch": "*"
+    }
+}

@@ -3,6 +3,8 @@
 
 #test controller to play with on localhost
 protected/controllers/TestController.php
+static/scripts/test.coffee
+
 
 #coffee and stylus generated files
 *.compiled.*
