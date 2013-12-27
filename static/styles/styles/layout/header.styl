@@ -1,45 +1,51 @@
-/**************************** Header section ********************/
 #header
-{
-  height:75px;
-  border-bottom:1px solid #cccccc;
-  margin:0 auto 10px auto;
-}
+    margin 10px 0 25px 0
 
-#header .homepage-link
-{
-  padding-top:30px;
-  display:block;
-  width:257px;
-  height:43px;
-  float:right;
-}
+    .topRowHolder
+        margin-bottom 5px
+        position relative
 
-#header .social-buttons
-{
-  float: right;
-  margin: 20px 20px 0 20px;
-  text-align: left;
+nav.main
+    ul
+        list-style none
+        display block
+        clear both
 
-}
+        position absolute
+        bottom 3px
+        margin-bottom 0
 
-#header ul.header
-{
-  list-style: none;
-  float:left;
-  display:block;
-  margin-top:10px;
-}
+        li
 
-#header ul li
-{
-  float:left;
-  padding-right:20px;
-}
+            float right
+            margin-left 20px
 
-#header ul.header a
-{
-  color: #211C21;
-  padding:35px 10px 0 10px;
-  display:block;
-}
+            a
+                font-size 20px
+                font-weight bold
+                color #005580
+                display block
+                text-decoration underline
+
+                &.active
+                    color black
+                    text-decoration none
+
+                &:hover
+                    text-decoration none
+
+
+nav.sub
+
+    background-color #EAF1F7
+    padding 5px 10px
+    border-radius 7px
+
+    ul
+        list-style none
+        display block
+        clear both
+
+        li
+            float right
+            margin-left 20px

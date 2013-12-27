@@ -34,6 +34,9 @@ $config = require __DIR__.'/protected/config/config.php';
 require __DIR__.'/protected/vendors/composerPackages/autoload.php';
 $diEnvironmentConf = 'production';
 
+// fix ip behind incapsula
+(new \Intval\IncapsulaIpFixer($_SERVER))->FixRemoteAddrInServerArray();
+
 if( !$production )
 {
     // remove the following lines when in production mode

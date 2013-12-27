@@ -19,20 +19,19 @@ function e($data)
 /**
  * Returns baseUrl for given url if any, otherwise returns Yii::app()->baseUrl
  * @param string $relativePath the path to return relatively to the base url
- * @param bool $prepend_host - shall add http://hostname/ to url ?
+ * @param bool $prependHost - shall add http://hostname/ to url ?
+ * @param string $subDomain
  * @return string Yii::app()->baseUrl + $url
  */
-function bu($relativePath = null, $prepend_host = false)
+function bu($relativePath = null, $prependHost = false, $subDomain = '')
 {
-    $url = '';
-    
-    if($prepend_host) 
-        $url .= Yii::app()->request->getHostInfo();
-
-    $url .= Yii::app()->getRequest()->getBaseUrl();
+    $url = Yii::app()->getRequest()->getBaseUrl($prependHost || $subDomain);
     
     if($relativePath)
         $url .= '/'.ltrim($relativePath,'/');
+
+    if($subDomain)
+        $url = str_replace('://', '://' . $subDomain . '.', $url);
 
     return $url;
 }

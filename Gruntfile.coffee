@@ -50,12 +50,6 @@ module.exports = (grunt) ->
                 tasks: ["stylus"]
                 options: { livereload: true}
 
-            php:
-                files: "protected/**/*"
-                tasks: []
-                options: { livereload: true}
-
-
 
     grunt.registerTask "phpserver", "Runs php builtin server", ->
         require("child_process").spawn "php", ["-S", "33.33.33.100:1234", "index.php"],
@@ -91,7 +85,7 @@ module.exports = (grunt) ->
 
     grunt.loadNpmTasks "grunt-contrib-stylus"
     grunt.loadNpmTasks "grunt-contrib-coffee"
-    #grunt.loadNpmTasks "grunt-contrib-watch"
+    grunt.loadNpmTasks "grunt-contrib-watch"
     grunt.loadNpmTasks "grunt-simple-watch"
 
     grunt.registerTask "deploy", ["build", "test", "analyze", "cap-deploy"]

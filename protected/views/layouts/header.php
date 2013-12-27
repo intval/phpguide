@@ -38,19 +38,46 @@
 <div class='page-container'>
     
     <section id='header' >
-            
-        <div>
-            <a href='index.php' title="מדריך לימוד PHP" class='homepage-link' rel="start"></a>
+
+        <div class="topRowHolder">
+            <a style="float:left;" href="/"><img src="/static/images/logo.backup.jpg" /></a>
+            <nav class="main" style="float:right;">
+                <ul>
+                    <li><a href="/" class="active">
+                            פוסטים
+                    </a></li>
+                    <li><a href="/qna">
+                            פורום
+                    </a></li>
+                    <li><a href="/events">
+אירועים
+                    </a></li>
+                    <li><a href="<?=bu(null, true, 'market')?>">
+                            מארקט
+                    </a></li>
+                    <li><a href="/qna">
+קריירה
+                    </a></li>
+
+                </ul>
+                <div class="clear" ></div>
+            </nav>
+            <div class="clear" ></div>
         </div>
-       
-        <div class="social-buttons" id="social_buttons"><!-- populated on page's load complete with js --></div>
-        <nav >
-           <ul class='header' id="headernav">
-                <li><a href='<?=bu('qna')?>' title='שאלות ותשובות' style="color:orangered;font-weight:bold;" class='forum' >
-פורומים
-                </a></li>
+
+
+        <nav class="sub">
+            <ul>
+                <li><a href="#">
+                        פוסטים
+                    </a></li>
+                <li><a href="#">
+                        פורום
+                    </a></li>
+
             </ul>
+            <div class="clear" ></div>
         </nav>
-    
+
     </section> <!-- /header -->
 
