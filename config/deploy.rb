@@ -39,8 +39,7 @@ set :copy_exclude, [
 	"build.xml", 
 	".nginx.conf", 
 	"Readme.md",
-	"Capfile",
-	"Gruntfile.coffee"
+	"Capfile"
 ]
 
 set :files_to_remove, [
@@ -49,7 +48,8 @@ set :files_to_remove, [
 	"REVISION",
 	"public",
 	"composer.json",
-	"composer.lock"
+	"composer.lock",
+	"Gruntfile.coffee"
 ]
 
 
