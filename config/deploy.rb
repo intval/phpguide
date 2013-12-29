@@ -62,6 +62,7 @@ namespace :deploy do
          update_code # built-in function
 		 preserve_shared
 		 build
+		 migrate
 		 cleanup1
 		 fixpermissions
          symlink # built-in function
@@ -87,6 +88,7 @@ namespace :deploy do
    task :fixpermissions do 
 		transaction do 
 			run "chown deployer:www1 -R #{release_path} && chmod g+rw -R #{release_path}"
+			run "chown deployer:www1 -R #{shared_path}/projectfiles && chmod g+rw -R #{shared_path}/projectfiles"
 		end
    end
 
