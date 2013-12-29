@@ -21,7 +21,7 @@ module.exports = (grunt) ->
         coffee:
             scripts:
                 files:
-                    "static/scripts/scripts.compiled.js": "static/scripts/*.coffee"
+                    "static/scripts/scripts.compiled.js": "static/scripts/**/*.coffee"
 
         stylus:
             do:
@@ -41,7 +41,7 @@ module.exports = (grunt) ->
     # default watch configuration
         watch:
             coffee:
-                files: "static/scripts/*.coffee"
+                files: "static/scripts/**/*.coffee"
                 tasks: ["coffee"]
                 options: { livereload: true}
 

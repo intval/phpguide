@@ -23,7 +23,7 @@ function e($data)
  * @param string $subDomain
  * @return string Yii::app()->baseUrl + $url
  */
-function bu($relativePath = null, $prependHost = false, $subDomain = '')
+function bu($relativePath = null, $prependHost = true, $subDomain = '')
 {
     $url = Yii::app()->getRequest()->getBaseUrl($prependHost || $subDomain);
     

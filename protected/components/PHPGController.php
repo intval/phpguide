@@ -24,9 +24,6 @@ class PHPGController extends CController
 	public $breadcrumbs=array();
         
 
-    private $_assetsBase;
-
-
     /**
      * Facebook microformats data, used to help facebook get an idea what is this page about
      * @var array $facebook
@@ -65,8 +62,20 @@ class PHPGController extends CController
      * @var string
      */
     public $pageTitle = 'לימוד PHP | מדריכי PHP | שאלות PHP';
-    
-    
+
+
+    /**
+     * Which item in the top navigation should be set as active
+     * @var string
+     */
+    public $mainNavSelectedItem = null;
+
+    /**
+     * Which item is the sub navigation should be set as active
+     * @var string
+     */
+    public $subNavSelectedItem = null;
+
     /**
      * defines the meta microformat schema for the document. 
      * Could be: Artile, Blog, Book, Person, Product, Review, Other, Event, Organization, LocalBusiness,
@@ -74,7 +83,31 @@ class PHPGController extends CController
      * @var string
      */
     public $metaType = 'Blog';
-    
+
+
+    /** @var array $jstate - registered and passed to javascript */
+    private $jsState = [];
+
+    protected function beforeRender($action)
+    {
+        $this->registerJsStateScriptBlock();
+        return parent::beforeRender($action);
+    }
+
+    private function registerJsStateScriptBlock()
+    {
+        if(empty($this->jsState))
+            return;
+
+        $codeBlock = "window.phpgstate = ".json_encode($this->jsState).";";
+        Yii::app()->clientScript->registerScript('phpgstate', $codeBlock, CClientScript::POS_BEGIN);
+    }
+
+
+    protected function MergeJsState(array $data)
+    {
+        $this->jsState = array_merge($this->jsState, $data);
+    }
     
     /**
      * This is the action to handle external exceptions.
@@ -89,12 +122,13 @@ class PHPGController extends CController
                 $this->render('//error', $error);
         }
     }
-    
-    
+
+
     /**
      * Registers client script from URL and adds it to lateload
      * Takes the scripts from static/scripts/___.js folder, automatically appending file extension
-     * @param args $script list of arguments, each argument should be a different script
+     * @param $scripts
+     * @internal param \args $script list of arguments, each argument should be a different script
      * @example $this->addscript('ui') results in <script src='static/scripts/ui.js'>
      * @example $this->addscript('ui', 'bbcode', 'http://jquery.com/jquery.js');
      */
@@ -112,10 +146,10 @@ class PHPGController extends CController
     
     /**
      * You are not supposed to call this method directly, i guess
-     * @param type $id
-     * @param type $module 
+     * @param string $id
+     * @param CWebModule $module
      */
-    public function __construct($id, $module = null)
+    public function __construct($id, CWebModule $module = null)
     {
         if(!isset($_SERVER["HTTP_USER_AGENT"]) || stristr($_SERVER["HTTP_USER_AGENT"],'facebook') === FALSE)
         {
@@ -140,7 +174,7 @@ class PHPGController extends CController
     {
 
         Yii::app()->clientScript->coreScriptPosition = CClientScript::POS_END;
-        $this->registerUserInfoScriptBlock();      
+        $this->registerUserInfoScriptBlock();
     }
 
     private function registerUserInfoScriptBlock()
@@ -161,6 +195,7 @@ class PHPGController extends CController
     }
 
 
+
     /**
     * Returns the base path to the assets dir
     */ 
@@ -171,7 +206,9 @@ class PHPGController extends CController
 
     public static function getAssetsBaseStatic()
     {
-        return Yii::app()->getController()->getAssetsBase();
+        /*** @var $controller \PHPGController */
+        $controller = Yii::app()->getController();
+        return $controller->getAssetsBase();
     }
         
 }

@@ -53,6 +53,10 @@ ul ul ul
 	list-style: square;
 }
 
+h1, h2, h3
+{
+    margin: 0;
+}
 
 .hidden
 {
@@ -961,7 +965,10 @@ div.addform .errors
 .qna-home-row h2
 {
     line-height: 24px;
-	max-width:460px;
+	max-width:80%;
+    height:27px;
+    margin:0;
+
 }
 
 .qna-home-row h2 a
@@ -1031,6 +1038,11 @@ div.addform .errors
     margin-bottom: 60px;
 }
 
+.lastActiveQuestions h3
+{
+    height:30px;
+
+}
 
 .qna_view_question
 {
@@ -1076,7 +1088,7 @@ margin-top:20px;
     background:#EEEEEE; 
     border:1px solid #C0CAD5; 
     border-bottom:none; 
-    width:632px; 
+    width:99.5%;
     padding:8px; 
     margin-bottom:3px;
 }

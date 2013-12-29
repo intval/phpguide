@@ -10,8 +10,6 @@ if(file_exists($pathToLocalConfig))
     require $pathToLocalConfig;
 
 
-# $config['registerPathAliases']();
-unset($config['registerPathAliases']);
 
 require_once($config['params']['PATH_TO_YII'].'/yiic.php');
 

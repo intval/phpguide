@@ -24,6 +24,9 @@ class Article extends DTActiveRecord
     const APPROVED_SANDBOX = 1;
     const APPROVED_NONE = 0;
 
+    /** @var \RedisDao\PostDAL $redisDal */
+    protected static $redisDal = null;
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className
@@ -89,12 +92,17 @@ class Article extends DTActiveRecord
 
         public function defaultScope()
         {
+            if(Yii::app() instanceof CConsoleApplication)
+                return [];
+
             $condition = 'blog.approved != '.self::APPROVED_NONE;
-            
+
             // allow poster to see his post
             $userid = Yii::app()->user->id;
-            (Yii::app()->user->isguest || null === $userid) ?: $condition .= " OR author_id = $userid";
-            
+
+            if(!Yii::app()->user->isguest && null !== $userid)
+                $condition .= " OR author_id = $userid";
+
             // admins can see anything
             if(!Yii::app()->user->isguest && Yii::app()->user->is_admin)
                 $condition = '';
@@ -120,6 +128,12 @@ class Article extends DTActiveRecord
         public function byPage($page = 0, $per_page = 8)
         {
             $this->getDbCriteria()->mergeWith( array('limit' => $per_page, 'offset' => $page * $per_page) );
+            return $this;
+        }
+
+        public function orderByField($field, array $values)
+        {
+            $this->getDbCriteria()->mergeWith( ['order' => "FIELD($field, ".join(',', $values).")"] );
             return $this;
         }
 
@@ -172,5 +186,39 @@ class Article extends DTActiveRecord
         return 'SELECT pub_date FROM '.self::model()->tableName().
                ' ORDER BY pub_date DESC LIMIT 1';
     }
-        
+
+
+    protected static function GetRedisDal()
+    {
+        if(null === self::$redisDal)
+            self::$redisDal = new \RedisDao\PostDAL(Yii::app()->redis);
+
+        return self::$redisDal;
+    }
+
+
+    public function GetRating()
+    {
+        return self::GetRedisDal()->GetPostRating($this->id);
+    }
+
+    public function GetViewsCount()
+    {
+        return self::GetRedisDal()->GetPostViewsCount($this->id);
+    }
+
+    public function IncrementViewsCount($incr = 1)
+    {
+        return self::GetRedisDal()->IncrementPostViewsCount($this->id, $incr);
+    }
+
+    public function IncrementRating($incr = 1, $userid = null)
+    {
+        return self::GetRedisDal()->IncrementPostRating($this->id, $incr, $userid);
+    }
+
+    public function HasUserVoted($userid)
+    {
+        return self::GetRedisDal()->HasUserVoted($this->id, $userid);
+    }
 }

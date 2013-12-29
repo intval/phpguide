@@ -3,6 +3,7 @@
 /** @var $currentUserFirstName string */
 /** @var $articleCategory string */
 /** @var $article Article */
+/** @var $tweetText string */
 ?>
     <h1 class='content-title'><span></span><?=e($article->title);?></h1>
     
@@ -31,103 +32,57 @@
     </article>
     
     <br/><br/>
-    <br/><br/>
-
-    <?php
-        $nginit = "email='".e($currentLoggedInUserEmail)."';".
-                  "name='".e($currentUserFirstName)."';".
-                  "category='".e($articleCategory)."';".
-                  "csrf='".e(Yii::app()->request->csrfToken)."';";
-    ?>
-
-    <?php if(Yii::app()->user->isGuest || !Yii::app()->user->getUserInstance()->hasMailSubscription): ?>
-    <div ng-controller="MailSubscriptionCtrl" ng-init="<?=$nginit?>">
-        <div id="inPostSubscribe" class="inPostMailSubscriptionForm" ng-show="!isSubscribed">
-
-            <h3>
-                למד עוד על
-                {{ keyword }}
-
-                <span ng-show="keyword">
-ועוד
-                </span>
-                דברים מעניינים בתחום ה-{{ category }}
-                ו-PHP.
-                <br/>
-                הירשם לרשימת התפוצה, קבל ישירות את התוכן הכי טוב ועלה ברמה המקצועית שלך
-
-            </h3>
-            <br/>
-
-            <div class="alert alert-{{alertType}}" ng-show="submitResulted || submitInProgress">
-                {{ alertText }}
-            </div>
-
-            <div class="form-horizontal">
-                <div class="control-group">
-                    <label class="control-label" for="mailSubscribeName">
-                        שם
-                    </label>
-                    <div class="controls">
-                        <input type="text" id="mailSubscribeName" ng-model="name" />
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="mailSubscribeMail">
-                        אימייל
-                    </label>
-                    <div class="controls">
-                            <input type="email" id="mailSubscribeMail" ng-model="email" dir="ltr" />
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <button ng-click="subscribe()" class="btn btn-info" ng-disabled="submitInProgress">
-                            הירשם לעדכונים ומידע חדש
-                        </button>
-                    </div>
-                </div>
-
-                 <span>
-                     בממוצע תקבל מייל אחד לשבוע עם חומר לימודי חדש מעולם ה-PHP
-                     ופיתוח אינטרנט.
-                     <br/>
-חוץ מזה                     אנחנו שונאים ספאם. כל מייל מכיל קישור להסרה מהרשימה, ככה שתוכל להפסיק לקבל מיילים מתי שתרצה
-                </span>
-
-            </div>
 
 
+    <div class="info_box" data-ng-controller="PostViewCtrl">
+
+        <div class="right left-spaced">
+
+            <img
+                src="/static/images/pixel.gif"
+                title="<?php $this->widget('GravatarWidget', ['email' => $article->author->email, 'size' => 16, 'linkOnly' => true]); ?>"
+                alt="<?=e($article->author->login)?>"
+             />
+
+            <a href="<?= bu('users/'.e($article->author->login))?>"><?=e($article->author->login)?></a>
         </div>
-    </div>
-    <?php endif; ?>
-    <hr/>
-   
-   
-    <div style="margin-top:15px;position:relative;">
-    	<div class='likeus'></div>
-        <div class="right" style="padding:5px; font-size: 85%;line-height: 16px; margin-bottom: 25px;  width:400px">
-           
-        <img src="/static/images/pixel.gif" title="<?php $this->widget('GravatarWidget', array('email' => $article->author->email, 'size' => 50, 'linkOnly' => true)); ?>" alt="<?=e($article->author->login)?>" width="50" height="50" class="right"/>
-        <p style=" margin-right:10px; width:245px" class="right">
-            על המחבר:
-          
-            <b><a href='<?=bu('users/').urlencode($article->author->login)?>'><?=e($article->author->login)?></a></b>             
-        </p>
+
+        <div class="right left-spaced">
+            <a
+               title="להעלות לכתבה את הרייטינג"
+               class="{{ hasAlreadyVoted ? 'inactive' : 'active' }}"
+               data-ng-click="vote('up')" ><i class="icon-upload icon-{{ hasAlreadyVoted ? 'inactive' : 'white active' }} rating-up" ></i></a>
+            <span>{{ postRating }}</span>
+            <a  title="להוריד לכתבה את הרייטינג"
+                data-ng-click="vote('down')"><i class="icon-download icon-{{ hasAlreadyVoted ? 'inactive' : 'white active' }} rating-down"></i></a>
+        </div>
+
+        <div class="right left-spaced">
+            <i class="icon-eye-open"></i> <?=$article->GetViewsCount()?>
+        </div>
+
+        <div class="right left-spaced">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=<?=bu('posts/'.$article->id)?>" class="post-share-btn share-on-facebook-16-16"></a>
+            <a href="http://twitter.com/intent/tweet?text=<?=urlencode($tweetText)?>" class="post-share-btn share-on-twitter-16-16"></a>
+            <a href="https://plus.google.com/share?url=<?=bu('posts/'.$article->id)?>" class="post-share-btn share-on-gplus-16-16"></a>
+            <div class="clear"></div>
+        </div>
+
         <div class="clear"></div>
     </div>
-        
-        <div  id="like_for_concrete_post" class="left" style="margin:10px  0 0 10px;width:50px;"></div>
-        <div  id="plusone_for_concrete_post" class="left" style="margin:10px  0 0 10px;"></div>
-        <div class='clear'></div>
-    
+
+
+    <div>
     	<?php  if(!Yii::app()->user->isguest && ($article->author->id === Yii::app()->user->id || Yii::app()->user->is_admin)):  ?>
+            <br/><br/>
+            <hr/>
 	        <div><a href="<?= bu('Add?edit='.$article->id)?>">Edit this article</a></div><br/>
 	        <div class='clear'></div>
         <?php endif; ?>
 
         <?php
         if(!Yii::app()->user->isguest && Yii::app()->user->is_admin): ?>
+
             <div>
                 <? if($article->approved != Article::APPROVED_PUBLISHED) { ?>
                     <a href="<?= bu('Add/approve?id='.$article->id)?>">Approve for homepage</a><br/>

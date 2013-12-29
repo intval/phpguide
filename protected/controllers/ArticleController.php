@@ -4,6 +4,9 @@ class ArticleController extends PHPGController
 {
     public function actionIndex($article_url)
     {
+        $this->mainNavSelectedItem = MainNavBarWidget::POSTS;
+
+        /** @var Article $article */
         $article = Article::model()->findByAttributes( array('url' => $article_url) );
 
         if($article === null)
@@ -26,14 +29,6 @@ class ArticleController extends PHPGController
 
         if(Yii::app()->user->isGuest || !Yii::app()->user->getUserInstance()->hasMailSubscription)
         {
-            $this->addscripts
-            (
-                'http://code.angularjs.org/1.2.0-rc.2/angular.min.js',
-                'http://code.angularjs.org/1.2.0-rc.2/angular-resource.min.js',
-                'http://code.angularjs.org/1.2.0-rc.2/angular-cookies.min.js',
-                'MailSubscriptionCtrl'
-            );
-
             $currentLoggedInUserEmail = Yii::app()->user->isGuest ? '' : Yii::app()->user->email ?: '';
             $currentUserFirstName = Yii::app()->user->isGuest ? '' : Yii::app()->user->getUserInstance()->real_name ?: '';
 
@@ -48,12 +43,27 @@ class ArticleController extends PHPGController
             $articleCategory = null;
         }
 
+        $hasUserVoted = !Yii::app()->user->isGuest && $article->HasUserVoted(Yii::app()->user->id);
+
+        $article->IncrementViewsCount();
+        $this->MergeJsState([
+            'post' => [
+                'id' => $article->id,
+                'rating' => $article->GetRating(),
+                'hasCurrentUserVoted' => $hasUserVoted
+            ]
+        ]);
+
+        $url = bu('posts/'.$article->id, true);
+        $tweetText = mb_substr($article->title, 0, 139-mb_strlen($url)) . ' '. $url;
+
         $this->render('index',
             [
                 'article' => &$article,
                 'currentLoggedInUserEmail' => $currentLoggedInUserEmail,
                 'currentUserFirstName' => $currentUserFirstName,
-                'articleCategory' => $articleCategory
+                'articleCategory' => $articleCategory,
+                'tweetText' => $tweetText
             ]
         );
     }

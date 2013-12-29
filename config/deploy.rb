@@ -61,7 +61,7 @@ namespace :deploy do
       transaction do
          update_code # built-in function
 		 preserve_shared
-		 composer_install
+		 build
 		 cleanup1
 		 fixpermissions
          symlink # built-in function
@@ -72,9 +72,9 @@ namespace :deploy do
       shared_assets.each { |link| run "ln -nfs #{shared_path}/projectfiles/#{link} #{release_path}/#{link}" }
     end	
 
-   task :composer_install do
+   task :build do
       transaction do
-         run "cd #{current_release} && composer install --no-dev --quiet"
+         run "cd #{current_release} && npm install && grunt build"
       end
    end
 

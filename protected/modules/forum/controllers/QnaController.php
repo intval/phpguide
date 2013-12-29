@@ -22,7 +22,13 @@ class QnaController extends PHPGController
 	 */
 	const POINTS_FOR_CORRECT_ANSWER = 10;
 	
-	
+
+    protected function beforeAction($action)
+    {
+        $this->mainNavSelectedItem = MainNavBarWidget::FORUM;
+        return parent::beforeAction($action);
+    }
+
 	/**
 	 * Used to mark an answer as the correct answer to a question
 	 * @param int $ans answer's id
@@ -72,7 +78,34 @@ class QnaController extends PHPGController
 
     public function actionIndex()
     {
+        $this->subNavSelectedItem = \SubNavBarWidget::FORUM_LIST;
         $this->render('index');
+    }
+
+    public function actionListNew()
+    {
+        $this->subNavSelectedItem = \SubNavBarWidget::FORUM_NEW;
+        $this->addscripts('qna');
+
+        $page = 0;
+
+        if(isset($_GET['page']))
+        {
+            $page = intval($_GET['page']) - 1;
+            if($page < 0) $page = 0;
+            if($page > 100000) $page = 0;
+        }
+
+        $qnas=QnaQuestion::model()->count();
+        //QnaController::storeQnasWithNewAnswersSinceLastVisitInSession($qnas);
+
+        $this->render('listOfTopicsWithPagination' ,[
+            'qnas' => QnaQuestion::model()->byPage($page, static::QNAS_ON_PAGE)->findAll(),
+            'allCategories' => QnaCategory::model()->findAll(),
+            'paginationTotalPages' => ceil($qnas/self::QNAS_ON_PAGE),
+            'paginationCurrentPage' => $page+1,
+            'showCategory' => true
+        ]);
     }
 
     public function actionCreateNewTopic()
@@ -92,7 +125,7 @@ class QnaController extends PHPGController
     	$this->description = 'דיונים ושאלות בנושאים' . $category->cat_name . ' ' . $category->cat_description;
     	
         $this->addscripts('qna');
-        
+
         $page = 0;
         
         if(isset($_GET['page']))
@@ -104,7 +137,7 @@ class QnaController extends PHPGController
         
         $qnas=QnaQuestion::model()->inCategory($categoryId)->count();
         //QnaController::storeQnasWithNewAnswersSinceLastVisitInSession($qnas);
-        
+
         $this->render('topicsInCategory' ,[
             'qnas' => QnaQuestion::model()->inCategory($categoryId)->byPage($page, static::QNAS_ON_PAGE)->findAll(),
             'allCategories' => QnaCategory::model()->findAll(),

@@ -15,6 +15,9 @@ class HomepageController extends PHPGController
             if($page > 100000) $page = 0;
         }
 
+        $this->mainNavSelectedItem = MainNavBarWidget::POSTS;
+        $this->subNavSelectedItem = SubNavBarWidget::POSTS_NEWEST;
+
         $totalPages = ceil( Article::model()->count() / $posts_per_page );
 
         $this->render('index' ,

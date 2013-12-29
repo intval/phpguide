@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?
+/*** @var $this \PHPGController */
+?><!DOCTYPE html>
 <html lang="he" itemscope itemtype="http://schema.org/<?=e($this->metaType)?>" ng-app="phpg">
 <head>
     <base href="<?=bu()."/"?>" />
@@ -24,7 +26,7 @@
     <?php Yii::app()->clientScript->registerCssFile($this->getAssetsBase().'/styles/allstyles.compiled.css'); ?>
 
     <link rel="alternate" type="application/rss+xml" title="הירשם לעידכונים ב-RSS" href="http://feeds.feedburner.com/phpguideblog" /> 
-    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     
     <title><?=e($this->pageTitle)?></title>
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
@@ -34,50 +36,22 @@
 	<meta itemprop="description" content="<?=e($this->description)?>">
 </head>
 
-<body dir='rtl' >
+<body dir='rtl' class="<?=e(str_replace('/', '-',$this->getUniqueId()))?>">
 <div class='page-container'>
-    
-    <section id='header' >
 
-        <div class="topRowHolder">
-            <a style="float:left;" href="/"><img src="/static/images/logo.backup.jpg" /></a>
-            <nav class="main" style="float:right;">
-                <ul>
-                    <li><a href="/" class="active">
-                            פוסטים
-                    </a></li>
-                    <li><a href="/qna">
-                            פורום
-                    </a></li>
-                    <li><a href="/events">
-אירועים
-                    </a></li>
-                    <li><a href="<?=bu(null, true, 'market')?>">
-                            מארקט
-                    </a></li>
-                    <li><a href="/qna">
-קריירה
-                    </a></li>
+    <? if($this->beginCache('fragment.header.menu.'.$this->mainNavSelectedItem.'.'.$this->subNavSelectedItem)): ?>
+        <section id='header' >
 
-                </ul>
+            <div class="topRowHolder">
+                <a class="logo" href="/"><img src="/static/images/logo.jpg" /></a>
+                <? $mainNav = $this->widget('MainNavBarWidget', ['navItem' => $this->mainNavSelectedItem]); ?>
                 <div class="clear" ></div>
-            </nav>
-            <div class="clear" ></div>
-        </div>
+            </div>
 
-
-        <nav class="sub">
-            <ul>
-                <li><a href="#">
-                        פוסטים
-                    </a></li>
-                <li><a href="#">
-                        פורום
-                    </a></li>
-
-            </ul>
-            <div class="clear" ></div>
-        </nav>
-
-    </section> <!-- /header -->
+            <? $this->widget('SubNavBarWidget', ['mainNavItem' => $this->mainNavSelectedItem, 'subNavItem' => $this->subNavSelectedItem]); ?>
+        </section> <!-- /header -->
+    <?
+        $this->endCache();
+    endif;
+    ?>
 
