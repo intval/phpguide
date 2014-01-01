@@ -177,6 +177,12 @@ class AddController extends PHPGController
             }
 
             $trans->commit();
+
+            $postdal = new \RedisDao\PostDAL(Yii::app()->redis);
+            $postdal->SetPostDate($article->id, new DateTime());
+            $postdal->IncrementPostViewsCount($article->id, 1);
+            $postdal->IncrementPostRating($article->id, 1);
+
             $this->redirect(bu(urlencode($article->url) . '.htm'));
         } catch (Exception $e) {
             $trans->rollback();
