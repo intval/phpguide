@@ -12,8 +12,14 @@ class BBEncoderTest extends CTestCase
         <script>alert('hi');</script>
         [url=script:alert(document.cookie)]cool_url[/url]
 
-        [php]<?php echo 'hi';[/php]
+        [php]<?php echo 'hi1';[/php]
         [php]<script>alert(document.cookie);[/php]
+
+        [code=csharp]var x = list.FirstOrDefault().val ?? -1;[/code]
+
+        [code=javascript]
+            var x = document.window['x'];
+        [/code]
 
         [left]blabla[/left]
         [html]<span class='s'><abbr>aoeu</abbr></span>[/html]
@@ -62,11 +68,18 @@ TEST;
         $this->assertContains('<span class="underline">aoeu</span>', $result);
     }
 
-    public function testColorizedCodePresense()
+    public function testPHPTagParsedCorrectly()
     {
         $encoder = new BBencoder($this->exampleData, 'yo title', false);
         $result = $encoder -> GetParsedHtml();
-        $this->assertContains('<div class="php codeblock">', $result);
+        $this->assertContains('<div class="php codeblock"><span class="sy0">&lt;</span>script<span class="sy0">&gt;</span>alert<span class="br0">&#40;</span>document<span class="sy0">.</span>cookie<span class="br0">&#41;</span><span class="sy0">;</span></div>', $result);
+    }
+
+    public function testCodeCSharpTagParsedCorrectly()
+    {
+        $encoder = new BBencoder($this->exampleData, 'yo title', false);
+        $result = $encoder -> GetParsedHtml();
+        $this->assertContains('<div class="csharp codeblock"><span class="kw1">var</span> x <span class="sy0">=</span> list<span class="sy0">.</span><span class="me1">FirstOrDefault</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span><span class="me1">val</span> <span class="sy0">??</span> <span class="sy0">-</span><span class="nu0">1</span><span class="sy0">;</span></div>', $result);
     }
 
     public function testLeft()

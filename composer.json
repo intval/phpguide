@@ -9,7 +9,8 @@
         "mailchimp/mailchimp": "2.*",
         "psr/log": "1.0.*@dev",
         "monolog/monolog": "1.7.0",
-        "intval/incapsula-ip-fixer": "*"
+        "intval/incapsula-ip-fixer": "*",
+        "easybook/geshi": "dev-master"
     },
 
     "require-dev": {

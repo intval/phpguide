@@ -1,5 +1,6 @@
 <?php
-
+xdebug_enable();
+ini_set('xdebug.show_exception_trace', 0);
 
 // Config path
 $config = include __DIR__.'/../config/test.php';
@@ -16,14 +17,16 @@ if(file_exists($pathToLocalConfig))
 require __DIR__.'/../sources/global_functions.php';
 require_once $config['params']['PATH_TO_YII'].'/yiit.php';
 
-$config['registerPathAliases']();
-unset($config['registerPathAliases']);
+
 
 
 // add composer packages
 require __DIR__.'/../vendors/composerPackages/autoload.php';
 
-
 Yii::createWebApplication($config);
+
+unset($config);
+unset($pathToLocalConfig);
+
 
 
