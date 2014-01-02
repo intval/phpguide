@@ -18,6 +18,7 @@ set :ssh_options, {
 }
 
 set :keep_releases, 3
+after "deploy:update", "deploy:cleanup"
  
 default_run_options[:pty] = true # needed for the password prompt from git to work
  
