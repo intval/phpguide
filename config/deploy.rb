@@ -75,7 +75,7 @@ namespace :deploy do
 
    task :build do
       transaction do
-         run "cd #{current_release} && npm install && grunt build"
+         run "cd #{current_release} && npm install && composer install -o --no-dev && grunt coffee && grunt stylus"
       end
    end
 
