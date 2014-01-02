@@ -61,31 +61,41 @@ module.exports = (grunt) ->
 
             if error isnt null
                 grunt.log.error "exec error: " + error + " " + stderr
-                false
+                done false
             else
                 grunt.log.write stdout
-                done()
+                done true
 
     grunt.registerTask "cap-deploy", "deploy with capistrano", ->
         done = this.async()
         require("child_process").exec "cap deploy", (error, stdout, stderr) ->
-            grunt.log.write stdout
-            console.log "exec error: " + error + " " + stderr if error isnt null
-            done()
+
+            if error isnt null
+                grunt.log.error "exec error: " + error + " " + stderr
+                done false
+            else
+                grunt.log.write stdout
+                done true
 
     grunt.registerTask "test", "runs unit tests", ->
         done = this.async()
         require("child_process").exec "protected/tests/phpunit -c protected/tests/phpunit.xml.dist", (error, stdout, stderr) ->
-            grunt.log.write stdout
-            console.log "exec error: " + error + " " + stderr if error isnt null
-            done()
+            if error isnt null
+                grunt.log.error "exec error: " + error + " " + stderr
+                done false
+            else
+                grunt.log.write stdout
+                done true
 
     grunt.registerTask "analyze", "run static code analysis on the code", ->
         done = this.async()
         require("child_process").exec "echo ok..", (error, stdout, stderr) ->
-            grunt.log.write stdout
-            console.log "exec error: " + error + " " + stderr if error isnt null
-            done()
+            if error isnt null
+                grunt.log.error "exec error: " + error + " " + stderr
+                done false
+            else
+                grunt.log.write stdout
+                done true
 
     grunt.loadNpmTasks "grunt-contrib-stylus"
     grunt.loadNpmTasks "grunt-contrib-coffee"
