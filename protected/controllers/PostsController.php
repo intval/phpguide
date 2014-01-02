@@ -100,6 +100,6 @@ class PostsController extends \PHPGController
         if(null === $article)
             throw new \CHttpException(404);
 
-        $this->redirect('/'.urlencode($article->url).'.htmx');
+        $this->redirect('/'.urlencode($article->url).'.html');
     }
 } 
