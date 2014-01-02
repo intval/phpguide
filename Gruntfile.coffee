@@ -58,9 +58,13 @@ module.exports = (grunt) ->
     grunt.registerTask "composer", "install composer depenedencies", ->
         done = this.async()
         require("child_process").exec "composer install -o", (error, stdout, stderr) ->
-            grunt.log.write stdout
-            console.log "exec error: " + error + " " + stderr if error isnt null
-            done()
+
+            if error isnt null
+                grunt.log.error "exec error: " + error + " " + stderr
+                false
+            else
+                grunt.log.write stdout
+                done()
 
     grunt.registerTask "cap-deploy", "deploy with capistrano", ->
         done = this.async()

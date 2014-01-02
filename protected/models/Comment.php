@@ -56,12 +56,13 @@ class Comment extends DTActiveRecord
                 'CommentAuthor' => array(self::BELONGS_TO, 'user', 'authorid')
             );
 	}
-        
-        
-	/**
-	 * fetches the last X comments 
-	 * @param int $limit how many comments to fetch
-	 */
+
+
+    /**
+     * fetches the last X comments
+     * @param int $limit how many comments to fetch
+     * @return $this
+     */
 	public function RecentComments($limit = 8)
 	{
 		$this->getDbCriteria() ->mergeWith

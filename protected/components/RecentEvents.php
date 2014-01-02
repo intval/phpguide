@@ -12,7 +12,7 @@ Class RecentEvents Extends CWidget
 {
     public function run()
     {
-        $comments = Comment::model()->RecentComments()->findAll();
+        $comments = \Comment::model()->RecentComments()->findAll();
         
         if(sizeof($comments) > 0)
             $this->render('RecentEvents',array('comments'=> $comments ));
@@ -20,7 +20,7 @@ Class RecentEvents Extends CWidget
 
     public static function getCacheDependencySql()
     {
-        return 'SELECT date FROM '.Comment::model()->tableName().
+        return 'SELECT date FROM '.\Comment::model()->tableName().
                ' ORDER BY date DESC LIMIT 1';
     }
 }
