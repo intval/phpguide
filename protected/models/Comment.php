@@ -53,7 +53,7 @@ class Comment extends DTActiveRecord
 	{
             return array(
 				'Article' => array(self::BELONGS_TO, 'Article', 'blogid'),
-                'CommentAuthor' => array(self::BELONGS_TO, 'user', 'authorid')
+                'CommentAuthor' => array(self::BELONGS_TO, 'User', 'authorid')
             );
 	}
 
