@@ -9,10 +9,11 @@
  * @license http://www.opensource.org/licenses/bsd-license.php
  */
 
-require_once dirname(dirname(__FILE__)).'/EOAuth2Service.php';
+require_once dirname(dirname(__FILE__)) . '/EOAuth2Service.php';
 
 /**
  * VKontakte provider class.
+ *
  * @package application.extensions.eauth.services
  */
 class VKontakteOAuthService extends EOAuth2Service {
@@ -44,8 +45,8 @@ class VKontakteOAuthService extends EOAuth2Service {
 		$info = $info['response'][0];
 
 		$this->attributes['id'] = $info->uid;
-		$this->attributes['name'] = $info->first_name.' '.$info->last_name;
-		$this->attributes['url'] = 'http://vk.com/id'.$info->uid;
+		$this->attributes['name'] = $info->first_name . ' ' . $info->last_name;
+		$this->attributes['url'] = 'http://vk.com/id' . $info->uid;
 
 		/*if (!empty($info->nickname))
 			$this->attributes['username'] = $info->nickname;
@@ -67,41 +68,37 @@ class VKontakteOAuthService extends EOAuth2Service {
 
 	/**
 	 * Returns the url to request to get OAuth2 code.
+	 *
 	 * @param string $redirect_uri url to redirect after user confirmation.
-	 * @return string url to request. 
+	 * @return string url to request.
 	 */
 	protected function getCodeUrl($redirect_uri) {
 		$this->setState('redirect_uri', $redirect_uri);
-		
+
 		$url = parent::getCodeUrl($redirect_uri);
-		if (isset($_GET['js']))
+		if (isset($_GET['js'])) {
 			$url .= '&display=popup';
-				
+		}
+
 		return $url;
 	}
-	
-	/**
-	 * Returns the url to request to get OAuth2 access token.
-	 * @return string url to request. 
-	 */
-	protected function getTokenUrl($code) {
-		return parent::getTokenUrl($code).'&redirect_uri='.urlencode($this->getState('redirect_uri'));
-	}
-	
+
 	/**
 	 * Save access token to the session.
+	 *
 	 * @param stdClass $token access token object.
 	 */
 	protected function saveAccessToken($token) {
 		$this->setState('auth_token', $token->access_token);
 		$this->setState('uid', $token->user_id);
-		$this->setState('expires', time() + $token->expires_in - 60);
+		$this->setState('expires', $token->expires_in === 0 ? (time() * 2) : (time() + $token->expires_in - 60));
 		$this->uid = $token->user_id;
 		$this->access_token = $token->access_token;
 	}
-	
+
 	/**
 	 * Restore access token from the session.
+	 *
 	 * @return boolean whether the access token was successfuly restored.
 	 */
 	protected function restoreAccessToken() {
@@ -117,17 +114,19 @@ class VKontakteOAuthService extends EOAuth2Service {
 
 	/**
 	 * Returns the error info from json.
+	 *
 	 * @param stdClass $json the json response.
 	 * @return array the error array with 2 keys: code and message. Should be null if no errors.
 	 */
 	protected function fetchJsonError($json) {
 		if (isset($json->error)) {
 			return array(
-				'code' => $json->error->error_code,
-				'message' => $json->error->error_msg,
+				'code' => is_string($json->error) ? 0 : $json->error->error_code,
+				'message' => is_string($json->error) ? $json->error : $json->error->error_msg,
 			);
 		}
-		else
+		else {
 			return null;
+		}
 	}
 }

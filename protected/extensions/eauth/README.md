@@ -6,6 +6,10 @@ Supported protocols: OpenID, OAuth 1.0 and OAuth 2.0.
 
 EAuth is a extension for provide a unified (does not depend on the selected service) method to authenticate the user. So, the extension itself does not perform login, does not register the user and does not bind the user accounts from different providers.
 
+* [Demo](http://nodge.ru/yii-eauth/demo/)
+* [Demo project](https://github.com/Nodge/yii-eauth-demo/)
+* [Installation](#installation)
+* [Version for yii2](https://github.com/Nodge/yii2-eauth/)
 
 ### Why own extension and not a third-party service?
 The implementation of the authorization on your own server has several advantages:
@@ -33,16 +37,33 @@ The implementation of the authorization on your own server has several advantage
 * Ready for authenticate via Google, Twitter, Facebook and other providers.
 
 
-### Supported providers "out of box":
+### Included services:
 
-* OpenID: Google, Yandex(ru)
-* OAuth: Twitter, LinkedIn
-* OAuth 2.0: Google, Facebook, Live, GitHub, VKontake(ru), Mail.ru(ru), Moi Krug(ru), Odnoklassniki(ru)
+* OpenID:
+	* Google
+	* Yahoo
+	* Steam
+	* Yandex (ru)
+* OAuth1:
+	* Twitter
+	* LinkedIn
+* OAuth2:
+	* Google
+	* Facebook
+	* Live
+	* GitHub
+	* Yandex (ru)
+	* VKontake (ru)
+	* Mail.ru (ru)
+	* Odnoklassniki (ru)
+	* Moi Krug(ru)
 
 
 ### Resources
 
 * [Yii EAuth](https://github.com/Nodge/yii-eauth)
+* [Demo](http://nodge.ru/yii-eauth/demo/)
+* [Demo project](https://github.com/Nodge/yii-eauth-demo/)
 * [Yii Framework](http://yiiframework.com/)
 * [OpenID](http://openid.net/)
 * [OAuth](http://oauth.net/)
@@ -88,9 +109,19 @@ The implementation of the authorization on your own server has several advantage
 			'services' => array( // You can change the providers and their classes.
 				'google' => array(
 					'class' => 'GoogleOpenIDService',
+					//'realm' => '*.example.org',
 				),
 				'yandex' => array(
 					'class' => 'YandexOpenIDService',
+					//'realm' => '*.example.org',
+				),
+				'steam' => array(
+					'class' => 'SteamOpenIDService',
+					//'realm' => '*.example.org',
+				),
+				'yahoo' => array(
+					'class' => 'YahooOpenIDService',
+					//'realm' => '*.example.org',
 				),
 				'twitter' => array(
 					// register your app here: https://dev.twitter.com/apps/new
@@ -173,36 +204,54 @@ The implementation of the authorization on your own server has several advantage
 
 ## Usage
 
+### Demo project
+
+The source code of the [demo](http://nodge.ru/yii-eauth/demo/) is available [here](https://github.com/Nodge/yii-eauth-demo/).
+
+### Basic setup
+
 #### The action
 
 ```php
 <?php
 ...
 	public function actionLogin() {
-		$service = Yii::app()->request->getQuery('service');
-		if (isset($service)) {
-			$authIdentity = Yii::app()->eauth->getIdentity($service);
-			$authIdentity->redirectUrl = Yii::app()->user->returnUrl;
-			$authIdentity->cancelUrl = $this->createAbsoluteUrl('site/login');
+		$serviceName = Yii::app()->request->getQuery('service');
+		if (isset($serviceName)) {
+			/** @var $eauth EAuthServiceBase */
+			$eauth = Yii::app()->eauth->getIdentity($serviceName);
+			$eauth->redirectUrl = Yii::app()->user->returnUrl;
+			$eauth->cancelUrl = $this->createAbsoluteUrl('site/login');
 
-			if ($authIdentity->authenticate()) {
-				$identity = new EAuthUserIdentity($authIdentity);
+			try {
+				if ($eauth->authenticate()) {
+					//var_dump($eauth->getIsAuthenticated(), $eauth->getAttributes());
+					$identity = new EAuthUserIdentity($eauth);
 
-				// successful authentication
-				if ($identity->authenticate()) {
-					Yii::app()->user->login($identity);
+					// successful authentication
+					if ($identity->authenticate()) {
+						Yii::app()->user->login($identity);
+						//var_dump($identity->id, $identity->name, Yii::app()->user->id);exit;
 
-					// special redirect with closing popup window
-					$authIdentity->redirect();
+						// special redirect with closing popup window
+						$eauth->redirect();
+					}
+					else {
+						// close popup window and redirect to cancelUrl
+						$eauth->cancel();
+					}
 				}
-				else {
-					// close popup window and redirect to cancelUrl
-					$authIdentity->cancel();
-				}
+
+				// Something went wrong, redirect to login page
+				$this->redirect(array('site/login'));
 			}
+			catch (EAuthException $e) {
+				// save authentication error to session
+				Yii::app()->user->setFlash('error', 'EAuthException: '.$e->getMessage());
 
-			// Something went wrong, redirect to login page
-			$this->redirect(array('site/login'));
+				// close popup window and redirect to cancelUrl
+				$eauth->redirect($eauth->getCancelUrl());
+			}
 		}
 
 		// default authorization code through login/password ..
@@ -212,11 +261,18 @@ The implementation of the authorization on your own server has several advantage
 #### The view
 
 ```php
+<?php
+	if (Yii::app()->user->hasFlash('error')) {
+		echo '<div class="error">'.Yii::app()->user->getFlash('error').'</div>';
+	}
+?>
+...
 <h2>Do you already have an account on one of these sites? Click the logo to log in with it here:</h2>
 <?php
 	$this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login'));
 ?>
 ```
+
 
 #### Getting more user data (optional)
 
@@ -227,10 +283,12 @@ Examples of extended classes can be found in `protected/extensions/eauth/custom_
 After overriding the base class, you need to modify your configuration file to set new name of the class.
 Also you may need to override the `EAuthUserIdentity` class to store additional data.
 
+
 #### Translations (optional)
 
 * Copy the file `/protected/extensions/eauth/messages/[lang]/eauth.php` to `/protected/messages/[lang]/eauth.php` to translate the EAuth extension into other languages.
 * To add a new language, you can use the blank file `/protected/extensions/eauth/messages/blank/eauth.php`.
+
 
 ## License
 
