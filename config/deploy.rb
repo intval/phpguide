@@ -50,7 +50,10 @@ set :files_to_remove, [
 	"public",
 	"composer.json",
 	"composer.lock",
-	"Gruntfile.coffee"
+	"Gruntfile.coffee",
+	"node_modules/",
+	"config/",
+	"packages.json"
 ]
 
 
