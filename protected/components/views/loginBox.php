@@ -23,6 +23,7 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 				<a href="#" class='messages' title="הודעות פרטיות"></a>
 				<a href="#" class='favorites' title="מועדפים"></a>
 				<a href="#" class='preferences' title="הגדרות"></a>
+				<a href="#" class='logout' title="התנתקות"></a>
 			</nav>
 		</div>
 		<div class='clear'></div>
