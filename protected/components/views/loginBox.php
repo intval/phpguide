@@ -23,7 +23,6 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 				<a href="#" class='messages' title="הודעות פרטיות"></a>
 				<a href="#" class='favorites' title="מועדפים"></a>
 				<a href="#" class='preferences' title="הגדרות"></a>
-				<a href="login/logout/" class='logout' title="התנתקות"></a>
 			</nav>
 		</div>
 		<div class='clear'></div>
@@ -31,6 +30,7 @@ var isguest = <?=Yii::app()->user->isguest ? 'true' : 'false' ?>;
 	<div class="action">
 		<a href="<?= bu('Add')?>">הוסף כתבה לאתר</a>
 	</div>
+    <a href="<?=bu('login/logout')?>" class='logout icon-remove' title="התנתקות"></a>
 </section>
 
 
