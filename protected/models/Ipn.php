@@ -6,13 +6,15 @@ class Ipn
     const EXPECTED_CURRENCY = 'ILS';
 
     protected $logger, $helpers, $ipnListener;
-    private $tempRequestId, $adminEmail, $paypalReceiverEmail, $user;
+    private $tempRequestId, $adminEmail, $paypalReceiverEmail, $user, $affiliateManager;
 
-    public function __construct(\Psr\Log\LoggerInterface $logger, Helpers $emailHelper, IpnListener $ipnListener, User $currentUser = null, $adminEmail, $paypalReceiverEmail)
+    public function __construct(\Psr\Log\LoggerInterface $logger, Helpers $emailHelper, IpnListener $ipnListener, User $currentUser = null, AffiliateManager $affiliateManager,
+                                $adminEmail, $paypalReceiverEmail)
     {
         $this->logger = $logger;
         $this->helpers = $emailHelper;
         $this->ipnListener = $ipnListener;
+        $this->affiliateManager = $affiliateManager;
 
         $this->tempRequestId = rand();
         $this->adminEmail = $adminEmail;
@@ -46,7 +48,7 @@ class Ipn
         {
             if($this->checkCompletedRequest($postData, $expectedAmount))
             {
-                $this->successfulPurchase($postData, $productName, $filePath, $this->ipnListener->getTextReport());
+                $this->successfulPurchase($postData, $productName, $filePath, $this->ipnListener->getTextReport(), $expectedAmount);
             }
         }
         else
@@ -55,7 +57,7 @@ class Ipn
         }
     }
 
-    private function successfulPurchase(array $postData, $productName, $filePath, $textReport){
+    private function successfulPurchase(array $postData, $productName, $filePath, $textReport, $amount){
 
         $order = new Order();
         $order->ip = Yii::app()->request->getUserHostAddress();
@@ -69,6 +71,8 @@ class Ipn
             $order->buyer = $this->user->id;
 
         $order->save(false);
+
+        $this->affiliateManager->NotifyAffiliatePurchace($amount, $order->id);
 
         $this->helpers->sendMail([$this->adminEmail], 'Succesful ipn', $textReport . PHP_EOL . var_export($postData, true));
         $this->helpers->sendMail([$order->buyer_email], 'הספר שלך: OOP מאפס', 'תודה על הקניה', $filePath);

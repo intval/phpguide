@@ -64,5 +64,9 @@
         }
     </script>
 
+    <script type="text/javascript" src="http://www.affilosophy.com/il/jsc/remember_me.js" language="javascript"></script>
+
+
+
 </body>
 </html>

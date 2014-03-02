@@ -19,7 +19,8 @@ class IpnController extends PHPGController
         $price = Yii::app()->params['products'][$product]['price'];
         $filePath = Yii::app()->params['products'][$product]['pathToFile'];
 
-        $ipn = new Ipn($logger, new Helpers(), $listener, Yii::app()->user->getUserInstance(), $admMail, $paypalOwnerMail);
+        $affiliate = new AffiliateManager($logger, Yii::app()->params['affiliateKey']);
+        $ipn = new Ipn($logger, new Helpers(), $listener, Yii::app()->user->getUserInstance(), $affiliate, $admMail, $paypalOwnerMail);
         $ipn->ProcessIpnRequest($_POST, $price, $product, $filePath);
     }
 }
