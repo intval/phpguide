@@ -6,6 +6,8 @@ class MainNavBarWidget extends \PHPGWidget
     const FORUM = 'qna';
     const EVENTS = 'events';
     const MARKET = 'market';
+    const PHPLIVE = 'phplive';
+    const CONTACT = 'contact';
     const CAREER = 'career';
     const FREELANCE = 'freelance';
 
@@ -13,7 +15,8 @@ class MainNavBarWidget extends \PHPGWidget
     private static $mainBar = [
         self::POSTS => 'פוסטים',
         self::FORUM => 'פורום',
-        self::EVENTS => 'אירועים',
+        //self::EVENTS => 'אירועים',
+        self::PHPLIVE => 'php live',
         self::MARKET => 'מארקט'
     ];
 
