@@ -17,7 +17,8 @@ class MainNavBarWidget extends \PHPGWidget
         self::FORUM => 'פורום',
         //self::EVENTS => 'אירועים',
         self::PHPLIVE => 'php live',
-        self::MARKET => 'מארקט'
+        self::MARKET => 'מארקט',
+        self::CONTACT => 'צור קשר'
     ];
 
 

@@ -155,6 +155,7 @@ return array(
 	'params'=>array
     (
         'adminEmail'=>'some1@localhost',
+        'contactMail' => 'some1@localhost',
         'login_remember_me_duration' => 31536000,
 
         // indicates what would be the 'from' address for mails sent by the site
