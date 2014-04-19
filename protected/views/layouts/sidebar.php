@@ -30,6 +30,30 @@ $recentEventsCacheParams = [
     
 <?php $this->widget('application.components.LoginBox') ?>
 
+<section class="rblock">
+    <h3>
+        <a href="/oopbook/" >
+            הספר הכי פשוט על OOP
+        </a>
+    </h3>
+    <p>
+        סוף סוף תוכל להתקדם ברמה וללמוד תכנות מונחה עצמים בעברית פשוטה, בצורה מלאה עם הסברים ברורים ודוגמאות קוד קצרות מאפס
+    </p>
+    <br/>
+
+    <a class="price_only" href="/oopbook/">
+    <?= number_format(\Yii::app()->params['products']['oopbook']['price'], 2); ?>
+    בלבד
+    </a>
+
+</section>
+
+<div class='rblock' style="padding:0 -50px; width:100%; background: white;">
+    <a href='http://phpguide.co.il/oopbook/'>
+        <img src="http://i.picresize.com/images/2013/12/09/LzjqY.png" alt="" />
+    </a>
+</div>
+
 <?php if($this->beginCache('RecentEventsFragmentCache', $recentEventsCacheParams)) { ?>
 
     <?php $this->widget('application.components.RecentEvents'); ?>
