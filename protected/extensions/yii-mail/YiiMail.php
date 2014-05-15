@@ -152,19 +152,24 @@ class YiiMail extends CApplicationComponent
 			->setTo($to)
 			->setBody($body, 'text/html');
 		
-		if ($this->logging===true) self::log($message);
-		if ($this->dryRun===true) return count($message->to);
-		else return $this->getMailer()->send($message);
+		if ($this->dryRun===true) $res = count($message->to);
+		else $res = $this->getMailer()->send($message);
+
+        if ($this->logging===true)
+        {
+            self::log($message, $res);
+        }
 	}
 
 	/**
 	* Logs a YiiMailMessage in a (hopefully) readable way using Yii::log.
 	* @return string log message
 	*/
-	public static function log(YiiMailMessage $message) {
+	public static function log(YiiMailMessage $message, $response = null) {
 		$msg = 'Sending email to '.implode(', ', array_keys($message->to))."\n".
 			implode('', $message->headers->getAll())."\n".
-			$message->body
+			$message->body."\n".
+            'response: '.$response
 		;
 		Yii::log($msg, CLogger::LEVEL_INFO, 'ext.yii-mail.YiiMail');
 		// TODO: attempt to determine alias/category at runtime
@@ -194,7 +199,7 @@ class YiiMail extends CApplicationComponent
 					    foreach ($this->transportOptions as $option => $value)
                         {
                             $methodName = 'set'.ucfirst($option);
-                            if(method_exists($this->transport, $methodName))
+                            if(method_exists($this->transport, $methodName) || in_array($option, ['username', 'password'], true))
 						        $this->transport->{$methodName}($value);
                         }
 

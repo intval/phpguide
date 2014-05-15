@@ -130,7 +130,18 @@ return array(
             'transportType' => 'smtp',
             'viewPath' => 'application.views.emails',
             'logging' => true,
-            'dryRun' => false
+            'dryRun' => false,
+
+            // Uncomment if you want to use mandrill as well
+            /*
+            'transportOptions' =>
+            [
+                'username' => '...',
+                'password' => '...',
+                'host' => 'smtp.mandrillapp.com',
+                'port' => 587
+            ]
+            */
         ),
 
                 'widgetFactory' => array
