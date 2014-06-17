@@ -11,6 +11,7 @@ class PhpliveController extends PHPGController
         if (false !== ($code = filter_input(INPUT_GET, 'code', FILTER_VALIDATE_INT))) {
             $livecode = Livecode::model()->findByPk($code);
             if ($livecode !== null) $code = $livecode->code;
+			else $code = "<?php".PHP_EOL;
         }
 
 
