@@ -111,10 +111,10 @@ function reset_code_url()
 
 function dropData(status)
 { 
-    var content = $('#xmlFrame')[0].contentWindow.document.body.innerTEXT; 
+    var content = $('#xmlFrame')[0].contentWindow.document.body.innerHTML; 
     content = content.split(';;;;;;;;;;;;;;;;;;;;;;;;;'); 
     delete content[content.length-1] ; 
-    $('#sandboxresponse').text(content.join(''));
+    $('#sandboxresponse').html(content.join(''));
 }
 
 

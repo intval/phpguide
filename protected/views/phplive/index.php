@@ -28,7 +28,7 @@
         ?></div>
     </div>
 
-    <?= CHtml::beginForm('http://sandbox.phpguide.co.il/sandbox.php', 'post', array('name'=>"sandboxform", 'id'=>"sandboxform", 'target'=>"xmlFrame", 'dir'=>"rtl")) ?>
+    <?= CHtml::beginForm('//sandbox.phpguide.co.il/sandbox.php', 'post', array('name'=>"sandboxform", 'id'=>"sandboxform", 'target'=>"xmlFrame", 'dir'=>"rtl")) ?>
         <textarea name="code" id="sandboxarea" rows="15" cols="70" dir="ltr" tabindex="1" style="display:none;"></textarea><br/>
         <input type="hidden" name="is_remote" value="true" />
         
@@ -43,7 +43,7 @@
         </div>
         
     <?= CHtml::endForm() ?>
-    <iframe style="display:none;" src="http://sandox.phpguide.co.il/iframe.htm"  id="xmlFrame" name="xmlFrame"></iframe>
+    <iframe style="display:none;" src="//sandox.phpguide.co.il/iframe.htm"  id="xmlFrame" name="xmlFrame"></iframe>
     <br/>
     <div dir="ltr">Response: </div>
     <pre id="sandboxresponse" dir="ltr"></pre>
