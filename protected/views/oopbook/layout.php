@@ -64,7 +64,6 @@
         }
     </script>
 
-    <script type="text/javascript" src="http://www.affilosophy.com/il/jsc/remember_me.js" language="javascript"></script>
 
 
 <script id="_webengage_script_tag" type="text/javascript">
@@ -81,7 +80,6 @@
     _sNode.parentNode.insertBefore(_we, _sNode);
   })(document);
 </script>
-
 
 </body>
 </html>
