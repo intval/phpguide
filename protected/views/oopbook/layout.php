@@ -46,7 +46,7 @@
 
     <div style="text-align: center;">
 
-        <a href="/" title=""><img src="http://phpguide.co.il/static/images/logo.backup.jpg" alt="logo"/></a>
+        <a href="/" title=""><img src="http://phpguide.co.il/static/images/logo.jpg" alt="logo"/></a>
     </div>
 
 
@@ -66,6 +66,21 @@
 
     <script type="text/javascript" src="http://www.affilosophy.com/il/jsc/remember_me.js" language="javascript"></script>
 
+
+<script id="_webengage_script_tag" type="text/javascript">
+  var _weq = _weq || {};
+  _weq['webengage.licenseCode'] = '76a9bb9';
+  _weq['webengage.widgetVersion'] = "4.0";
+  
+  (function(d){
+    var _we = d.createElement('script');
+    _we.type = 'text/javascript';
+    _we.async = true;
+    _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
+    var _sNode = d.getElementById('_webengage_script_tag');
+    _sNode.parentNode.insertBefore(_we, _sNode);
+  })(document);
+</script>
 
 
 </body>
