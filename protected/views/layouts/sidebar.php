@@ -32,7 +32,7 @@ $recentEventsCacheParams = [
 
 <section class="rblock">
     <h3>
-        <a href="/oopbook/" style="color:red">
+        <a href="/oopbook/" style="color:rgb(255, 82, 0)">
             למד לבנות מערכות גדולות באמצעות תכנות מונחה עצמים
 			&mdash;
 			הספר
@@ -44,13 +44,14 @@ $recentEventsCacheParams = [
 		
 		
     </p>
+	<!--
     <br/>
 
     <a class="price_only" href="/oopbook/">
     <?= number_format(\Yii::app()->params['products']['oopbook']['price'], 2); ?>
     בלבד
     </a>
-
+	-->
 </section>
 
 <div class='rblock' style="padding:0 -50px; width:100%; background: white;">
