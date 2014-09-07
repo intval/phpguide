@@ -30,6 +30,21 @@ $recentEventsCacheParams = [
     
 <?php $this->widget('application.components.LoginBox') ?>
 
+
+<section>
+	<br/><br/>
+	<a href="http://phpguide-mvc-ebook.myinstapage.com/" style="border:none;" border=0
+	title="למד איך עובד MVC"
+	onClick="Analytics.track('Promotion', 'GoToLanding', 'mvcebook-sidebar-banner1');"
+	>
+
+		<img title="http://s29.postimg.org/8r9adrhef/banner_1.png" 
+		alt="למד איך ופעל MVC"
+		/>
+	</a>
+</section>
+
+
 <section class="rblock">
     <h3>
         <a href="/oopbook/" style="color:rgb(255, 82, 0)">
