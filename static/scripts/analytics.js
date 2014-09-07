@@ -26,35 +26,33 @@ window.Analytics.track = function(category, eventName, data){
 	mixpanel.init(analyticsConfnig.mixPanel);
 
 	/* GA */
-	window._gaq = _gaq = window._gaq || []; 
-	_gaq.push(['_setAccount', analyticsConfnig.gac]); 
-	_gaq.push(['_trackPageview']);
-	load('http://www.google-analytics.com/ga.js');
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-
+ 
 	/* Heap analytics */
 	window.heap=window.heap||[];
     window.heap.load=function(a){window._heapid=a;var b=document.createElement("script");b.type="text/javascript",b.async=!0,b.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap.js";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d=function(a){return function(){heap.push([a].concat(Array.prototype.slice.call(arguments,0)))}},e=["identify","track"];for(var f=0;f<e.length;f++)heap[e[f]]=d(e[f])};
     window.heap.load(analyticsConfnig.heap);
 
 
+	var currentUserId = null;
 
     if(typeof(window.user) !== 'undefined' && typeof(window.user.id) !== 'undefined')
 	{
 		mixpanel.identify(window.user.id);
-		
-		_gaq.push(['_setCustomVar',
-	      1,                   	// This custom var is set to slot #1.  Required parameter.
-	      'customerId',     	// The name acts as a kind of category for the user activity.  Required parameter.
-	      window.user.id,       // This value of the custom variable.  Required parameter.
-	      1                    	// Sets the scope to session-level.  Optional parameter.
-	   ]);
+		currentUserId = window.user.id;
 	}
+
+	ga('create', 'UA-18788673-3', 'auto', {userId: currentUserId});
+	ga('send', 'pageview');
 
 
     window.Analytics.track = function(category, eventName, data)
     {
-        _gaq.push(['_trackEvent', category, eventName, data]);
+        ga('send', 'event', category, eventName, data);
         mixpanel.track(category + '/' + eventName, data);
     };
 
