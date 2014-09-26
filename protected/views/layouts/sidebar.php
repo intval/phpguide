@@ -33,7 +33,7 @@ $recentEventsCacheParams = [
 
 <section>
 	<br/><br/>
-	<a href="http://phpguide-mvc-ebook.myinstapage.com/" style="border:none;" border=0
+	<a href="//s.phpguide.co.il/mvcebook/" style="border:none;" border=0
 	title="למד איך עובד MVC"
 	onClick="Analytics.track('Promotion', 'GoToLanding', 'mvcebook-sidebar-banner1');"
 	>
