@@ -1,10 +1,12 @@
 
     
-<h1 class="category-title"><?=e($category->name)?></h1>
+<h1 class="category-title">מדריכי <?=e($category->name)?></h1>
 <div class="category_bread_crumbs">
-    <a href="">phpguide</a> 
+    <a href="">phpguide</a>
     &raquo;
-    <a href="<?=bu('Article/All')?>">כתבות ומדריכים</a>
+    <a href="<?=bu('posts')?>">כתבות ומדריכים</a>
+    &raquo;
+    <a href="<?=bu('category/list')?>">כל הקטגוריות</a>
     &raquo;
 מדריכים בנושא 
     <?=e($category->name)?>

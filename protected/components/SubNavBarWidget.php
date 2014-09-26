@@ -11,6 +11,7 @@ class SubNavBarWidget extends \PHPGWidget
     const POSTS_NEWEST = 'posts';
     const POSTS_BEST_ALLTIME = 'posts/best/alltime';
     const POSTS_BEST_MONTH = 'posts/best/month';
+    const POSTS_CATEGORIES = 'category/list';
 
     const FORUM_LIST = 'qna';
     const FORUM_NEW = 'qna/listnew';
@@ -22,7 +23,8 @@ class SubNavBarWidget extends \PHPGWidget
     private static $items = [
         \MainNavBarWidget::POSTS => [
             self::POSTS_NEWEST => 'חדשים',
-            self::POSTS_BEST_ALLTIME => 'הכי טובים'
+            self::POSTS_BEST_ALLTIME => 'הכי טובים',
+            self::POSTS_CATEGORIES => 'לפי קטגוריה'
         ],
         \MainNavBarWidget::FORUM => [
             self::FORUM_LIST => 'כל הפורומים',

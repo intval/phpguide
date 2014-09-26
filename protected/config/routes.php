@@ -13,7 +13,7 @@ return array
 
     ''                                                          => 'homepage/index',
 	'<article_url:[-_\+\sA-Za-z0-9א-ת]+>.htm'                   => 'Article/index',
-	'cat/<cat_url:[-_\+\sA-Za-z0-9א-ת]+>\.htm'                  => 'Category/index',
+	'cat/<cat_url:[-_\+\sA-Za-z0-9א-ת]+>.htm'                  => 'Category/index',
 	'users/<username:[-_\+\sA-Za-z0-9א-ת\.]+>/<action:\w+>'		=> 'Users/<action>',
 	'users/<username:[-_\+\sA-Za-z0-9א-ת\.]+>'		            => 'Users/user',
     '<controller:[a-z]+>/<action:\w+>'                          => '<controller>/<action>',

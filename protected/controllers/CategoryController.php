@@ -21,8 +21,18 @@ class CategoryController extends PHPGController
         $this->keywords     =  $cat_url . ' מדריכים, לימוד וכתבתות PHP';
         $this->description  =  $cat_url . ' לימוד PHP ותכנות אתרים' ;
 
+        $this->mainNavSelectedItem = MainNavBarWidget::POSTS;
+        $this->subNavSelectedItem = SubNavBarWidget::POSTS_CATEGORIES;
 
         $this->render('//article/articlesInCategory', array('category' => $category));
     }
 
+    public function actionList()
+    {
+        $this->pageTitle = 'מדריכים לפי קטגוריות';
+        $this->mainNavSelectedItem = MainNavBarWidget::POSTS;
+        $this->subNavSelectedItem = SubNavBarWidget::POSTS_CATEGORIES;
+
+        $this->render('//article/categoriesList');
+    }
 }
