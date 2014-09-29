@@ -211,7 +211,7 @@ class QnaController extends PHPGController
         	$this->keywords = 'שאלה, עזרה' ;
         	$this->pageAuthor = $qna->author->login;
         	
-	    	$this->addscripts( 'qna','bbcode'); 
+	    	$this->addscripts( 'qna','bbcode', '//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.8/ouibounce.js', 'ouibounce');
 	    	
 	    	if(!static::isQnaViewedEarlier($qna))
 	    	{

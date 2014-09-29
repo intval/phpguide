@@ -1,6 +1,6 @@
 window.Analytics = function(){};
-window.Analytics.track = function(category, eventName, data){
-    console.log('Tracking analytics event: ', category, eventName, data);
+window.Analytics.track = function(category, action, eventName, data){
+    console.log('Tracking analytics event: ', category, action, eventName, data);
 };
 
 (function(){
@@ -50,10 +50,10 @@ window.Analytics.track = function(category, eventName, data){
 	ga('send', 'pageview');
 
 
-    window.Analytics.track = function(category, eventName, data)
+    window.Analytics.track = function(category, action, eventName, data)
     {
-        ga('send', 'event', category, eventName, data);
-        mixpanel.track(category + '/' + eventName, data);
+        ga('send', 'event', category, action, eventName, data);
+        mixpanel.track(category + '/' + eventName + '/' + action, data);
     };
 
 })();

@@ -54,6 +54,8 @@ class ArticleController extends PHPGController
             ]
         ]);
 
+        $this->addscripts('//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.8/ouibounce.min.js', 'ouibounce');
+
         $url = bu('posts/'.$article->id, true);
         $tweetText = mb_substr($article->title, 0, 139-mb_strlen($url)) . ' '. $url;
 

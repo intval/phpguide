@@ -18,19 +18,19 @@ function SalesPageAnalytics(product, analytics)
         pageVisits: totalVisits
     };
 
-    analytics.track(product, 'pageview', visitData);
+    analytics.track(product, 'pageview', product, visitData);
 
 
 
 
 
     jQuery('[data-buy-button]').click(function(){
-        analytics.track(product, 'clickedBuyButton', visitData);
+        analytics.track(product, 'clickedBuyButton', product, visitData);
     });
 
     jQuery(window).on('unload',function(){
         var msOnPage = new Date() - startTime;
         visitData.secondsOnPage = Math.round( msOnPage / 10) / 100;
-        analytics.track(product, 'duration', visitData);
+        analytics.track(product, 'duration', product, visitData);
     });
 }

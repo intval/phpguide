@@ -35,7 +35,7 @@ $recentEventsCacheParams = [
 	<br/><br/>
 	<a href="//s.phpguide.co.il/mvcebook/" style="border:none;" border=0
 	title="למד איך עובד MVC"
-	onClick="Analytics.track('Promotion', 'GoToLanding', 'mvcebook-sidebar-banner1');"
+	onClick="Analytics.track('Promotion', 'click', 'GoToLanding', 'mvcebook-sidebar-banner1');"
 	>
 
 		<img title="http://s29.postimg.org/8r9adrhef/banner_1.png" 
