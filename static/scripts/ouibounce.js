@@ -22,7 +22,7 @@
         var isModalShown = false;
         var _ouibounce = ouibounce(document.getElementById(MODAL_WINDOW_ID), {
 
-            aggressive: true,//displayCount < 2,
+            aggressive: displayCount < 2,
             timer: 0,
             callback: function () {
                 window.Analytics.track(

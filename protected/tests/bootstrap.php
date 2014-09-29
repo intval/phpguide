@@ -1,5 +1,7 @@
 <?php
-xdebug_enable();
+if(extension_loaded('xdebug'))
+    xdebug_enable();
+
 ini_set('xdebug.show_exception_trace', 0);
 
 // Config path
