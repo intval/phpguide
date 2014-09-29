@@ -7,7 +7,7 @@
     width: 100%;
     height: 100%;
 }
-#ouibounce-modal .underlay {
+#ouibounce-modal .ouiunderlay {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -18,7 +18,7 @@
     -webkit-animation: fadein 0.5s;
     animation: fadein 0.5s;
 }
-#ouibounce-modal .modal {
+#ouibounce-modal .ouimodal {
     /* width: ??px;
     height: ??px; */
     background-color: #f0f1f2;
@@ -35,7 +35,7 @@
 }
 
 
-#ouibounce-modal .modal.popup-mvceebok {
+#ouibounce-modal .ouimodal.popup-mvceebok {
     width: 780px;
     height: 496px;
 }

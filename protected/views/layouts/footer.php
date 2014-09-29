@@ -13,8 +13,8 @@
 
 <!-- Ouibounce Modal -->
 <div id="ouibounce-modal">
-    <div class="underlay"></div>
-    <div class="modal popup-mvceebok" data-variant="1" data-popupname="mvcebook-popup">
+    <div class="ouiunderlay"></div>
+    <div class="ouimodal popup-mvceebok" data-variant="1" data-popupname="mvcebook-popup">
 
         <div id="ouibounce-modal-forward-btn"
              class="ouibounce-btn"
