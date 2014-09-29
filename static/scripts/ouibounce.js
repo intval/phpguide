@@ -14,7 +14,7 @@
 
     jQuery(document).ready(function () {
 
-        var modal = jQuery('#ouibounce-modal .modal');
+        var modal = jQuery('#ouibounce-modal .ouimodal');
         var POPUP_NAME = modal.data('popupname');
         var VARIANT = modal.data('variant');
 
