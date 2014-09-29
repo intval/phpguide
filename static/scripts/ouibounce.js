@@ -19,6 +19,8 @@
         var VARIANT = modal.data('variant');
 
         var displayCount = parseInt(jQuery.cookie(COOKIE_NAME), 10);
+        if(!displayCount || isNaN(displayCount))
+            displayCount = 0;
         var isModalShown = false;
         var _ouibounce = ouibounce(document.getElementById(MODAL_WINDOW_ID), {
 
