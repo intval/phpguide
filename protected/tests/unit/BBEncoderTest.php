@@ -15,6 +15,8 @@ class BBEncoderTest extends CTestCase
         [php]<?php echo 'hi1';[/php]
         [php]<script>alert(document.cookie);[/php]
 
+        [code]<?php echo "this is like php";[/code]
+
         [code=csharp]var x = list.FirstOrDefault().val ?? -1;[/code]
 
         [code=javascript]
@@ -73,6 +75,13 @@ TEST;
         $encoder = new BBencoder($this->exampleData, 'yo title', false);
         $result = $encoder -> GetParsedHtml();
         $this->assertContains('<div class="php codeblock"><span class="sy0">&lt;</span>script<span class="sy0">&gt;</span>alert<span class="br0">&#40;</span>document<span class="sy0">.</span>cookie<span class="br0">&#41;</span><span class="sy0">;</span></div>', $result);
+    }
+
+    public function test_CodeTag_WithoutLang_ParsedAsPHP()
+    {
+        $encoder = new BBencoder($this->exampleData, 'yo title', false);
+        $result = $encoder -> GetParsedHtml();
+        $this->assertContains('<div class="php codeblock"><span class="kw2">&lt;?php</span> <span class="kw1">echo</span> <span class="st0">&quot;this is like php&quot;</span><span class="sy0">;</span></div>', $result);
     }
 
     public function testCodeCSharpTagParsedCorrectly()

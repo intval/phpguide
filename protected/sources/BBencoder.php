@@ -58,6 +58,8 @@ Class BBencoder
         // cuts out code blocks
         $this->string =  preg_replace_callback('#\[php\](.*)\[\/php\]#simU',   array($this, 'cutphpcode'), $this->string);
 
+        $this->string = str_replace('[code]', '[code=php]', $this->string);
+
         $this->string =  preg_replace_callback('#\[code=('.implode('|', self::$geshiLanguages).')\](.*)\[\/code\]#simU',   array($this, 'cutcode'), $this->string); //
 
         // cuts out html blocks
