@@ -14,18 +14,20 @@
 
     jQuery(document).ready(function () {
 
-        var modal = jQuery('#ouibounce-modal .ouimodal');
+        var modal = jQuery('#'+MODAL_WINDOW_ID+' .ouimodal');
         var POPUP_NAME = modal.data('popupname');
         var VARIANT = modal.data('variant');
 
         var displayCount = parseInt(jQuery.cookie(COOKIE_NAME), 10);
         if(!displayCount || isNaN(displayCount))
             displayCount = 0;
+
         var isModalShown = false;
         var _ouibounce = ouibounce(document.getElementById(MODAL_WINDOW_ID), {
 
             aggressive: displayCount < 2,
             timer: 0,
+            sitewide: true,
             callback: function () {
                 window.Analytics.track(
                     'promotions',
@@ -33,7 +35,7 @@
                     POPUP_NAME,
                     {source: 'ouibounce', variant: VARIANT}
                 );
-                jQuery.cookie(COOKIE_NAME, displayCount + 1, {expires: 777});
+                jQuery.cookie(COOKIE_NAME, displayCount + 1, {expires: 777, path: '/'});
                 isModalShown = true;
             }
 
