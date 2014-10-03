@@ -10,7 +10,9 @@
         "psr/log": "1.0.*@dev",
         "monolog/monolog": "1.7.0",
         "intval/incapsula-ip-fixer": "*",
-        "easybook/geshi": "dev-master"
+        "easybook/geshi": "dev-master",
+        "nodge/yii-eauth": "*"
+
     },
 
     "require-dev": {

@@ -6,7 +6,7 @@ set :git_enable_submodules, 1
 set :repository,  "https://github.com/intval/phpguide.git"
 set :deploy_via, :remote_cache
 
-role :app, "54.229.193.33" # EDIT server ip address 
+role :app, "54.171.81.198" # Server of deployment
 set :deploy_to, "/var/www/phpguide" # EDIT folder where files should be deployed
  
 set :user, "deployer" 
