@@ -29,12 +29,6 @@ class LoginExternalController extends PHPGController
         $authProvider->setRedirectUrl(bu($returnUrl,true));
         $authProvider->setCancelUrl(bu($returnUrl, true));
 
-        // Workaround of bug, setState not saving redirect_uri between redirects to fb and back
-        if($providerName == 'facebook') {
-            $sess = Yii::app()->session;
-            $sess ['__eauth_facebook__redirect_uri'] = bu('loginExternal/login/service/facebook', true);
-        }
-
         if($authProvider->authenticate())
             $this->externalAuthSucceeded($authProvider);
         else
