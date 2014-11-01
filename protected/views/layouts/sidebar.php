@@ -47,7 +47,7 @@ $recentEventsCacheParams = [
 
 <section class="rblock">
     <h3>
-        <a href="/oopbook/" style="color:rgb(255, 82, 0)">
+        <a href="//s.phpguide.co.il/oopbook/" style="color:rgb(255, 82, 0)">
             למד לבנות מערכות גדולות באמצעות תכנות מונחה עצמים
 			&mdash;
 			הספר
@@ -62,7 +62,7 @@ $recentEventsCacheParams = [
 	<!--
     <br/>
 
-    <a class="price_only" href="/oopbook/">
+    <a class="price_only" href="//s.phpguide.co.il/oopbook/">
     <?= number_format(\Yii::app()->params['products']['oopbook']['price'], 2); ?>
     בלבד
     </a>
@@ -70,7 +70,7 @@ $recentEventsCacheParams = [
 </section>
 
 <div class='rblock' style="padding:0 -50px; width:100%; background: white;">
-    <a href='http://phpguide.co.il/oopbook/'>
+    <a href='http://s.phpguide.co.il/oopbook/'>
         <img src="http://i.picresize.com/images/2013/12/09/LzjqY.png" alt="" />
     </a>
 </div>
