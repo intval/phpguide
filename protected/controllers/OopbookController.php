@@ -6,7 +6,7 @@ class OopbookController extends PHPGController
 
     public function actionIndex(){
 
-        $this->redirect("//s.phpguide.co.il/oopbook", true, 301);
+        $this->redirect("http://s.phpguide.co.il/oopbook", true, 301);
         return;
         /*
         Yii::app()->clientScript->registerScript('userInfo', 'StartAnalytics("oopbook")', CClientScript::POS_READY);
