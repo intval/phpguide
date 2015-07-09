@@ -57,7 +57,7 @@ class PasswordRecovery extends DTActiveRecord
     const ERROR_RECOVER_TIMEOUT = - 94234;
 
 
-    private $recoveryUrl = 'PwRecovery/resetUrl?id=%s&key=%s';
+    private $recoveryUrl = 'PwRecovery/ResetUrl?id=%s&key=%s';
 
 
     public function requestRecovery($login, $email, $ip, $sendEmail = true)
