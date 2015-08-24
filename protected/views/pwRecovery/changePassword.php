@@ -12,5 +12,5 @@ echo CHtml::beginForm('', 'post', array('onsubmit' => 'return false;'));
 </fieldset>
 
 <?php 
-echo CHtml::ajaxSubmitButton('שנה סיסמה', $this->createUrl('Login/changepw') , array('id' => 'changepwBtn', 'beforeSend' => 'login.passwordChangeSubmitted', 'success' => 'login.passwordChangeSuccess'), array('class' => 'btn primary'));
+echo CHtml::ajaxSubmitButton('שנה סיסמה', $this->createUrl('PwRecovery/ChangePw') , array('id' => 'changepwBtn', 'beforeSend' => 'login.passwordChangeSubmitted', 'success' => 'login.passwordChangeSuccess'), array('class' => 'btn primary'));
 echo CHtml::endForm();
