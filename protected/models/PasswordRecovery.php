@@ -97,7 +97,7 @@ class PasswordRecovery extends DTActiveRecord
 
     private function sendRecoveryLetter(User $user)
     {
-        $url = bu(sprintf($this->recoveryUrl, $this->id, $this->key));
+        $url = sprintf($this->recoveryUrl, $this->id, $this->key);
         $data = ['username' => $user->login, 'recovery_url' => $url];
 
         $mailContent = Yii::app()->controller->
