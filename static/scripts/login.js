@@ -108,7 +108,8 @@ var login =
     
     passwordChangeSuccess: function(data)
     {
-    	window.location = homepage_url;
+    	if(data.length > 1)	alert(data);
+    	else window.location = homepage_url;
     },
 
 
