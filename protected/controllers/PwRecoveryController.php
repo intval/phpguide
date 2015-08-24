@@ -1,11 +1,6 @@
 <?php
-/**
-23/11/12 14:00 sasha
- */
 class PwRecoveryController extends PHPGController
 {
-
-
     /**
      * Password recovery form and validation
      *
@@ -118,16 +113,30 @@ class PwRecoveryController extends PHPGController
 
     public function actionChangepw()
     {
-        if(Yii::app()->request->getIsAjaxRequest() && !Yii::app()->user->isguest)
-        {
-            $password = Yii::app()->request->getPost('pass');
-            if(empty($password)) return;
+		try
+		{
+			if(Yii::app()->request->getIsAjaxRequest() && !Yii::app()->user->isguest)
+			{
+				$password = Yii::app()->request->getPost('pass');
+				if(empty($password)) 
+				{
+						echo 'סיסמה ריקה';
+						return;
+				}
 
-            $salt = Helpers::randString(22);
-            $password = WebUser::encrypt_password($password, $salt);
+				$salt = Helpers::randString(22);
+				$password = WebUser::encrypt_password($password, $salt);
 
-            User::model()->updateByPk(Yii::app()->user->id, array('password' => $password, 'salt' => $salt));
-            Yii::app()->user->setFlash('successPwChange', 'סיסמתך שונת בהצלחה');
-        }
+				User::model()->updateByPk(Yii::app()->user->id, array('password' => $password, 'salt' => $salt));
+				Yii::app()->user->setFlash('successPwChange', 'סיסמתך שונתה בהצלחה');
+			}
+			else
+			{
+				echo "נסה לבצע שינוי סיסמה מתוך עמוד שינוי הסיסמה";
+			}
+		}
+		catch (Exception $e){
+			echo 'שינוי סיסמה נכשל. משהו נשבר :(';
+		}
     }
 }
